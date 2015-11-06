@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Service="SAF.Negocio.Implementacion.SeguridadLogic" Language="C#"   %>

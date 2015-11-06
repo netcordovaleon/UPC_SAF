@@ -1,0 +1,350 @@
+﻿@model SAF.Web.Models.SolRegModel
+@using SAF.Configuracion.Enum;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Solicitud Registro</title>
+    @Styles.Render("~/Content/Login")
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body class="hold-transition login-page">
+
+
+    <section class="content-header">
+        <h1>
+            <i class="fa fa-check-square-o"></i>&nbsp;Solicitud Registro
+            <small>Inscripción Auditores / Sociedades Auditoria</small>
+        </h1>
+    </section>
+
+
+    <div class="wrapper">
+
+        <section class="content">
+            <div class="callout callout-info">
+                <h4><i class="icon fa fa-warning"></i>&nbsp;Información Confidencial!</h4>
+                <p>Toda información ingresada sera validada!</p>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="box box-primary color-palette-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Tipo de Solicitud</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(c => c.cboTipoSolicitud)
+                                        @Html.DropDownListFor(c => c.solicitud.codTipSol, Model.cboTipoSolicitud, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="pnlSociedadAuditoria">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-primary color-palette-box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Información Sociedad Auditoria</h3>
+                            </div>
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            @Html.LabelFor(c => c.soa.rucSoa)
+                                            @Html.TextBoxFor(c => c.soa.rucSoa, new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Html.LabelFor(c => c.soa.razSocSoa)
+                                            @Html.TextBoxFor(c => c.soa.razSocSoa, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            @Html.LabelFor(c => c.soa.misSoa)
+                                            @Html.TextAreaFor(c => c.soa.misSoa, new { @class = "form-control", @rows = "4" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            @Html.LabelFor(c => c.soa.visSoa)
+                                            @Html.TextAreaFor(c => c.soa.visSoa, new { @class = "form-control", @rows = "4" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-primary color-palette-box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Información Usuario</h3>
+                            </div>
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            @Html.LabelFor(c => c.soa.nomUsu)
+                                            @Html.TextBoxFor(c => c.soa.nomUsu, new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.LabelFor(c => c.soa.pasUsu)
+                                            @Html.PasswordFor(c => c.soa.pasUsu, new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.LabelFor(c => c.soa.repPasUsu)
+                                            @Html.PasswordFor(c => c.soa.repPasUsu, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="pnlAuditor" style="display:none;">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-primary color-palette-box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Información Auditor</h3>
+                            </div>
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            @Html.LabelFor(c => c.auditor.dniAud)
+                                            @Html.TextBoxFor(c => c.auditor.dniAud, new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.LabelFor(c => c.auditor.fecNacAud)
+                                            @Html.TextBoxFor(c => c.auditor.fecNacAud, new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.LabelFor(c => c.auditor.sexAud)
+                                            @Html.TextBoxFor(c => c.auditor.sexAud, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            @Html.LabelFor(c => c.auditor.nomAud)
+                                            @Html.TextBoxFor(c => c.auditor.nomAud, new { @class = "form-control", @rows = "4" })
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Html.LabelFor(c => c.auditor.apeComAud)
+                                            @Html.TextBoxFor(c => c.auditor.apeComAud, new { @class = "form-control", @rows = "4" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            @Html.LabelFor(c => c.auditor.codDeparAud)
+                                            @Html.DropDownListFor(c => c.auditor.codDeparAud, Model.auditor.cboDepartamento, "Seleccione", new { @class = "form-control", @rows = "4" })
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.LabelFor(c => c.auditor.codProvAud)
+                                            @Html.DropDownListFor(c => c.auditor.codProvAud,Model.auditor.cboProvincia, "Seleccione", new { @class = "form-control", @rows = "4" })
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.LabelFor(c => c.auditor.codDisAud)
+                                            @Html.DropDownListFor(c => c.auditor.codDisAud,Model.auditor.cboDistrito, "Seleccione", new { @class = "form-control", @rows = "4" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            @Html.LabelFor(c => c.auditor.corAud)
+                                            @Html.TextBoxFor(c => c.auditor.corAud, new { @class = "form-control", @rows = "4" })
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.LabelFor(c => c.auditor.telAud)
+                                            @Html.TextBoxFor(c => c.auditor.telAud, new { @class = "form-control", @rows = "4" })
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.LabelFor(c => c.auditor.celAud)
+                                            @Html.TextBoxFor(c => c.auditor.celAud, new { @class = "form-control", @rows = "4" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-primary color-palette-box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Información Usuario</h3>
+                            </div>
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            @Html.LabelFor(c => c.auditor.nomUsu)
+                                            @Html.TextBoxFor(c => c.auditor.nomUsu, new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.LabelFor(c => c.auditor.pasUsu)
+                                            @Html.PasswordFor(c => c.auditor.pasUsu, new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.LabelFor(c => c.auditor.repPasUsu)
+                                            @Html.PasswordFor(c => c.auditor.repPasUsu, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-default color-palette-box">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <center>
+                                            <button type="button" id="btnGuardarSolicitud" class="btn btn-primary"><i class="fa fa-save"></i>&nbsp;Guardar</button>
+                                            <button type="button" id="btnCancelarSolicitud" class="btn btn-info"><i class="fa fa-chevron-left"></i>&nbsp;Regresar</button>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+
+
+    @Scripts.Render("~/Scripts/Login")
+    <script type="text/javascript" language="javascript">
+
+        $(document).ready(function () {
+            $("#solicitud_codTipSol").change(seleccionTipoSolicitud);
+            $("#soa_rucSoa").blur(ingresarUsuarioSOA);
+            $("#auditor_dniAud").blur(ingresarUsuarioAuditor);
+            $("#btnGuardarSolicitud").click(function () {
+                 bootbox.confirm(parametros.general.mensajeConfirmacion, function (result) {
+                    guardarSolicitud();
+                });
+            });
+            $("#btnCancelarSolicitud").click(cancelarSolicitud);
+        });
+
+        function seleccionTipoSolicitud() {
+            if ($("#solicitud_codTipSol").val() == '@Convert.ToInt32(Tipo.TipoSolicitud.InscripcionSoa)') {
+                $("#pnlSociedadAuditoria").show("slow");
+                $("#pnlAuditor").hide();
+            } else {
+                $("#pnlSociedadAuditoria").hide();
+                $("#pnlAuditor").show("slow");
+            }
+        }
+
+        function ingresarUsuarioSOA() {
+            $("#soa_nomUsu").val($("#soa_rucSoa").val());
+        }
+
+        function ingresarUsuarioAuditor() {
+            $("#auditor_nomUsu").val($("#auditor_dniAud").val());
+        }
+
+        function guardarSolicitud() {
+            var obj = jsonObject();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GrabarSolicitudRegistro", "SolReg")',
+                data: JSON.stringify(obj),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    mostrarNotificacion(result);
+                }
+            });
+        }
+
+        function cancelarSolicitud() {
+            document.location = '@Url.Action("Acceso","Seg")';
+        }
+
+        function jsonObject() {
+            var obj = [];
+            obj = {
+                solicitud: {
+                    codTipSol: $("#solicitud_codTipSol").val(),
+                },
+                soa: {
+                    razSocSoa: $("#soa_razSocSoa").val(),
+                    rucSoa: $("#soa_rucSoa").val(),
+                    misSoa: $("#soa_misSoa").val(),
+                    visSoa: $("#soa_visSoa").val(),
+                    nomUsu: $("#soa_nomUsu").val(),
+                    pasUsu: $("#soa_pasUsu").val()
+                },
+                auditor: {
+                    dniAud: $("#auditor_dniAud").val(),
+                    fecNacAud: $("#auditor_fecNacAud").val(),
+                    sexAud: $("#auditor_sexAud").val(),
+                    nomAud: $("#auditor_nomAud").val(),
+                    apeComAud: $("#auditor_apeComAud").val(),
+                    codDeparAud: $("#auditor_codDeparAud").val(),
+                    codProvAud: $("#auditor_codProvAud").val(),
+                    codDisAud: $("#auditor_codDisAud").val(),
+                    corAud: $("#auditor_corAud").val(),
+                    telAud: $("#auditor_telAud").val(),
+                    celAud: $("#auditor_celAud").val(),
+                    nomUsu: $("#auditor_nomUsu").val(),
+                    pasUsu: $("#auditor_pasUsu").val()
+                }
+            };
+            return obj;
+        }
+    </script>
+</body>
+</html>

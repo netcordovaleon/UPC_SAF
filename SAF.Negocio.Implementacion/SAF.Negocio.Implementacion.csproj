@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D01CF968-DE9C-41F3-911F-2EFA60A86522}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SAF.Negocio.Implementacion</RootNamespace>
+    <AssemblyName>SAF.Negocio.Implementacion</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=1.0.0.155, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SAF.Configuracion\Dll\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConcursoPublicoMeritoLogic.cs" />
+    <Compile Include="General\SafAuditorLogic.cs" />
+    <Compile Include="General\SafConsultaLogic.cs" />
+    <Compile Include="General\SafCronoEntidadLogic.cs" />
+    <Compile Include="General\SafCronogramaLogic.cs" />
+    <Compile Include="General\SafEntidadLogic.cs" />
+    <Compile Include="General\SafInvitacionLogic.cs" />
+    <Compile Include="General\SafNotificacionLogic.cs" />
+    <Compile Include="General\SafPublicacionLogic.cs" />
+    <Compile Include="General\SafSoaLogic.cs" />
+    <Compile Include="General\SafSolCapacitacionLogic.cs" />
+    <Compile Include="General\SafSolExperienciaLogic.cs" />
+    <Compile Include="General\SafSolicitudLogic.cs" />
+    <Compile Include="General\SpSafInvitacionLogic.cs" />
+    <Compile Include="General\SpSafResultadoCorteLogic.cs" />
+    <Compile Include="General\VwSafInvitacionLogic.cs" />
+    <Compile Include="General\VwSafPublicacionLogic.cs" />
+    <Compile Include="GestionSociedadAuditorLogic.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="General\SafTipoSolicitudLogic.cs" />
+    <Compile Include="General\SafUsuarioLogic.cs" />
+    <Compile Include="General\ServicioSociedadAuditorREST.cs" />
+    <Compile Include="PropuestaAuditoriaLogic.cs" />
+    <Compile Include="SafRestLogic.cs" />
+    <Compile Include="SeguridadLogic.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SAF.AccesoDatos\SAF.AccesoDatos.csproj">
+      <Project>{e669336c-7b6c-4b3a-8536-ccb084068c9f}</Project>
+      <Name>SAF.AccesoDatos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SAF.Configuracion\SAF.Configuracion.csproj">
+      <Project>{6825f52d-8bdf-4965-9d78-23a8bc77a2c4}</Project>
+      <Name>SAF.Configuracion</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SAF.DTO\SAF.DTO.csproj">
+      <Project>{5285c5c1-0f85-4b16-bff8-8b8ccf6ef649}</Project>
+      <Name>SAF.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SAF.Entidad\SAF.Entidad.csproj">
+      <Project>{3d87ffd1-4ea0-424f-98ef-91d40921b0ad}</Project>
+      <Name>SAF.Entidad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SAF.Inteligencia.Contrato\SAF.Inteligencia.Contrato.csproj">
+      <Project>{36bb1ddd-7c8f-4182-b02c-136baa903546}</Project>
+      <Name>SAF.Inteligencia.Contrato</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SAF.Inteligencia.Implementacion\SAF.Inteligencia.Implementacion.csproj">
+      <Project>{10c2714b-2b17-498c-929c-c8b75b163bd6}</Project>
+      <Name>SAF.Inteligencia.Implementacion</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SAF.Negocio.Contrato\SAF.Negocio.Contrato.csproj">
+      <Project>{a82f25b3-fb9b-4298-bfc0-f9eb2ef02780}</Project>
+      <Name>SAF.Negocio.Contrato</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SAF.DTO" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SAF.DTO" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="CronogramaDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CodigoCronograma" type="xs:int" />
+      <xs:element minOccurs="0" name="AñoCronograma" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FechaPublicaCronograma" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaMaximaCreaBase" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="NumRepCronograma" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="EstadoCronograma" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CronogramaDTO" nillable="true" type="tns:CronogramaDTO" />
+  <xs:complexType name="CronoEntidadDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CodigoCroEntidad" type="xs:int" />
+      <xs:element minOccurs="0" name="FechaInicioCroEntidad" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaFinCroEntidad" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CodigoTipoContrato" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CodigoTipoEntidad" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="DescripcionCroEntidad" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CodigoEntidad" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CodigoCronograma" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CronoEntidadDTO" nillable="true" type="tns:CronoEntidadDTO" />
+  <xs:complexType name="ArrayOfPublicacionViewDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PublicacionViewDTO" nillable="true" type="tns:PublicacionViewDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPublicacionViewDTO" nillable="true" type="tns:ArrayOfPublicacionViewDTO" />
+  <xs:complexType name="PublicacionViewDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CodigoPublicacion" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroPublicacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FecMaxCreaConsulta" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CodigoBase" type="xs:int" />
+      <xs:element minOccurs="0" name="DescripBase" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FecMaxConsulta" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FecMaxRespConsulta" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FecMaxPresProp" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CodigoEstadoPublicacion" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="NombreEstadoPublicacion" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PublicacionViewDTO" nillable="true" type="tns:PublicacionViewDTO" />
+  <xs:complexType name="PublicacionDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CodigoPublicacion" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroPublicacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FecMaxCreaConsulta" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CodigoBase" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FecMaxConsulta" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FecMaxRespConsulta" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FecMaxPresProp" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="EstadoPublicacion" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PublicacionDTO" nillable="true" type="tns:PublicacionDTO" />
+  <xs:complexType name="ArrayOfResultadoCorteSpDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ResultadoCorteSpDTO" nillable="true" type="tns:ResultadoCorteSpDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfResultadoCorteSpDTO" nillable="true" type="tns:ArrayOfResultadoCorteSpDTO" />
+  <xs:complexType name="ResultadoCorteSpDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CodigoAuditor" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CodigoCargo" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="HoraCapAudFinan" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="HoraCapGesPub" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="HoraExpAudFinan" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="HoraExpGesPub" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="NombreCargo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NombreCompletoAuditor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PuntosCapacitacion" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="PuntosExperiencia" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TotalPuntos" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResultadoCorteSpDTO" nillable="true" type="tns:ResultadoCorteSpDTO" />
+</xs:schema>

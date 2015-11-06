@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3D87FFD1-4EA0-424F-98EF-91D40921B0AD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SAF.Entidad</RootNamespace>
+    <AssemblyName>SAF.Entidad</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SAFModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SAFModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAFModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAFModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SAFModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_AUDITOR.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_AUDITORIA.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_BASE.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_BASEENTREGABLE.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_CAPACITACION.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_CARGO.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_CARRERA.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_CONSULTA.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_CORTE_AUDITOR.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_CORTE_AUDITOR_CARGO.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_CRONOENTIDAD.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_CRONOGRAMA.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_DOCUMENTO.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_EMPRESA.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_ENTIDADES.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_EXPERIENCIA.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_FLUJO_DOCUMENTO.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_INVITACION.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_INVITACIONDETALLE.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_NOTIFICACION.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_PARAMETRICA.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_PROPUESTA.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_PUBLICACION.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_SERAUDCARCAP.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_SERAUDCAREXP.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_SERAUDCARGO.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_SERVICIOAUDITORIA.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_SOA.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_SOLCAPACITACION.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_SOLEXPERIENCIA.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_SOLICITUD.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_TIPOPARAMETRICA.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_TIPOSOLICITUD.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_UNIVERSIDAD.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_USUARIO.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_AUDITORAPTOINVITAR_Result.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_CORTEPUBLICACION_Result.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_INVITACION_Result.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_MEJOREQUIPO_Result.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_RESULTADOCORTE_Result.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_SAF_INVITACION.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_SAF_PUBLICACION.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_SAF_SOLICITUD.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="SAFModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SAFModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+    <None Include="SAFModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SAFModel.edmx</DependentUpon>
+      <LastGenOutput>SAFModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="SAFModel.edmx.diagram">
+      <DependentUpon>SAFModel.edmx</DependentUpon>
+    </None>
+    <None Include="SAFModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SAFModel.edmx</DependentUpon>
+      <LastGenOutput>SAFModel.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

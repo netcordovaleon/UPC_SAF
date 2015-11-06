@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SAF.DTO" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SAF.DTO" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfTipoSolicitudDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TipoSolicitudDTO" nillable="true" type="tns:TipoSolicitudDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTipoSolicitudDTO" nillable="true" type="tns:ArrayOfTipoSolicitudDTO" />
+  <xs:complexType name="TipoSolicitudDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CodigoTipoSolicitud" type="xs:int" />
+      <xs:element minOccurs="0" name="NombreTipoSolicitud" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DescripcionTipoSolicitud" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TipoSolicitudDTO" nillable="true" type="tns:TipoSolicitudDTO" />
+  <xs:complexType name="SolicitudInsActDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Solicitud" nillable="true" type="tns:SolicitudDTO" />
+      <xs:element minOccurs="0" name="Auditor" nillable="true" type="tns:AuditorDTO" />
+      <xs:element minOccurs="0" name="SOA" nillable="true" type="tns:SoaDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SolicitudInsActDTO" nillable="true" type="tns:SolicitudInsActDTO" />
+  <xs:complexType name="SolicitudDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CodigoSolicitud" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroSolicitud" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DescripcionSolicitud" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CodigoTipoSolicitud" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="EstadoSolicitud" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CodigoSociedadAuditoria" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CodigoAuditor" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SolicitudDTO" nillable="true" type="tns:SolicitudDTO" />
+  <xs:complexType name="AuditorDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CodigoAuditor" type="xs:int" />
+      <xs:element minOccurs="0" name="NombreAuditor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApellidoAuditor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DNIAuditor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CelularAuditor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TelefonoAuditor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DireccionAuditor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CodigoDepartamentoAuditor" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CodigoProvinciaAuditor" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CodigoDistritoAuditor" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CorreoAuditor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SexoAuditor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechaNacimientoAuditor" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IndicadorAuditorAuditor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IndicadorEspecialistaAuditor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IndicadorSocioAuditor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CodigoCertificadoAuditor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ArchivoCertificadoAuditor" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="NombreUsuario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PasswordUsuario" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AuditorDTO" nillable="true" type="tns:AuditorDTO" />
+  <xs:complexType name="SoaDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CodigoSOA" type="xs:int" />
+      <xs:element minOccurs="0" name="RucSOA" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RazonSocialSOA" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NombreRepLegalSOA" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApellidoRepLegalSOA" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CorreoRepLegalSOA" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CelularRepLegalSOA" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TelefonoRepLegalSOA" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CodigoColegioContadoresSOA" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroPartidaSunarpSOA" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirmaPCAOBSOA" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirmaInternacionalSOA" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MisionSOA" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VisionSOA" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ArchivoColegioContadoresSOA" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="NombreUsuario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PasswordUsuario" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SoaDTO" nillable="true" type="tns:SoaDTO" />
+</xs:schema>

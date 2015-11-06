@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Solicitud";
+    ViewBag.PageTitle = "Solicitud";
+    ViewBag.PageDescription = "Solicitud";
+}
+
+
+
+<div class="box box-default color-palette-box">
+    <div class="box-header with-border">
+        <h3 class="box-title"><i class="fa fa-filter"></i>&nbsp;Filtro de Busqueda</h3>
+    </div>
+    <div class="box-body">
+        zzzz
+    </div>
+</div>
+
+<button type="button" id="btn">
+    ajax
+</button>
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btn").click(eje);
+        });
+
+        function eje() {
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("mensaje", "Notificacion")',
+                data: {},
+                success: function (result) {
+                    console.log(result);
+
+                }
+            });
+        }
+    </script>
+}

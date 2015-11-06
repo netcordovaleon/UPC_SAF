@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="cb71a9c3-9bcb-49a2-ba4b-fdddf7f24530" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:33694/ServicioGestionSoaAuditor.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServicioGestionSoaAuditor4.xsd" MetadataType="Schema" ID="7a5f4c05-8775-49f1-aad9-3635f7c5a614" SourceId="1" SourceUrl="http://localhost:33694/ServicioGestionSoaAuditor.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServicioGestionSoaAuditor2.xsd" MetadataType="Schema" ID="ac7945db-1572-47d3-9b35-9e3957e9c497" SourceId="1" SourceUrl="http://localhost:33694/ServicioGestionSoaAuditor.svc?xsd=xsd2" />
+    <MetadataFile FileName="GestionSociedadAuditorLogic.wsdl" MetadataType="Wsdl" ID="1eb5abf6-9270-4607-ade4-d74b096810c7" SourceId="1" SourceUrl="http://localhost:33694/ServicioGestionSoaAuditor.svc?wsdl" />
+    <MetadataFile FileName="ServicioGestionSoaAuditor1.xsd" MetadataType="Schema" ID="816f4a1b-9ccf-4863-b358-514f614cfc48" SourceId="1" SourceUrl="http://localhost:33694/ServicioGestionSoaAuditor.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServicioGestionSoaAuditor.disco" MetadataType="Disco" ID="61002666-9314-4766-947b-203bc0e191a7" SourceId="1" SourceUrl="http://localhost:33694/ServicioGestionSoaAuditor.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

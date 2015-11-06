@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SAF.DTO" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SAF.DTO" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="InvitacionDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CodigoAuditor" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CodigoInvitacion" type="xs:int" />
+      <xs:element minOccurs="0" name="CodigoPublicacion" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CodigoSOA" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CodigoServicioAuditoria" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="EstadoInvitacion" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FechaMaxAceptarInvitacion" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaMaxPreparaPropuesta" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IndCancelaInvitacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroInvitacion" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InvitacionDTO" nillable="true" type="tns:InvitacionDTO" />
+  <xs:complexType name="ArrayOfInvitacionViewDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InvitacionViewDTO" nillable="true" type="tns:InvitacionViewDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfInvitacionViewDTO" nillable="true" type="tns:ArrayOfInvitacionViewDTO" />
+  <xs:complexType name="InvitacionViewDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CodigoAuditor" type="xs:int" />
+      <xs:element minOccurs="0" name="CodigoEstadoInvitacion" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CodigoInvitacion" type="xs:int" />
+      <xs:element minOccurs="0" name="CodigoPublicacion" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CodigoSOA" type="xs:int" />
+      <xs:element minOccurs="0" name="CodigoServicioAuditoria" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="DNIAuditor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechaMaxAceptaInvitacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechaMaxPreparaPropuesta" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NombreCompletoAuditor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NombreEstadoInvitacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroInvitacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RazonSocialSOA" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InvitacionViewDTO" nillable="true" type="tns:InvitacionViewDTO" />
+</xs:schema>

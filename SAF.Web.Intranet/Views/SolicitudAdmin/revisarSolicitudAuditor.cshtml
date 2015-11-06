@@ -1,0 +1,204 @@
+﻿@model SAF.Web.Intranet.Models.AuditorModel
+@{
+    ViewBag.PageTitle = "Evaluar";
+    ViewBag.PageDescription = "Evaluar";
+    ViewBag.PageDescription = "Solicitud Auditor Financiero";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@*<link href="~/Content/jHtmlArea/jHtmlArea.Editor.css" rel="stylesheet" />*@
+
+<link href="~/Content/jHtmlArea/jHtmlArea.css" rel="stylesheet" />
+
+@*<link href="~/Content/jHtmlArea/jHtmlArea.ColorPickerMenu.css" rel="stylesheet" />*@
+
+@using (Html.BeginForm("observarSolicitudAuditor", "SolicitudAdmin", FormMethod.Post, new { id = "frmRevisarSolicitudAuditor" }))
+{
+    @Html.HiddenFor(c => c.codigoSolicitud)
+    @Html.HiddenFor(c => c.codAud)
+
+    @Html.HiddenFor(c => c.estadoSolicitud)
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary color-palette-box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Información Auditor</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                @Html.LabelFor(c => c.dniAud)
+                                @Html.TextBoxFor(c => c.dniAud, new { @class = "form-control", @readonly = "true" })
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(c => c.fecNacAud)
+                                @Html.TextBoxFor(c => c.fecNacAud, new { @class = "form-control", @readonly = "true" })
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(c => c.sexAud)
+                                @Html.TextBoxFor(c => c.sexAud, new { @class = "form-control", @readonly = "true" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                @Html.LabelFor(c => c.nomAud)
+                                @Html.TextBoxFor(c => c.nomAud, new { @class = "form-control", @rows = "4", @readonly = "true" })
+                            </div>
+                            <div class="col-md-8">
+                                @Html.LabelFor(c => c.apeComAud)
+                                @Html.TextBoxFor(c => c.apeComAud, new { @class = "form-control", @rows = "4", @readonly = "true" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                @Html.LabelFor(c => c)
+                                @Html.DropDownListFor(c => c.codDeparAud, Model.cboDepartamento, "Seleccione", new { @class = "form-control", @rows = "4", @disabled = "disabled" })
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(c => c.codProvAud)
+                                @Html.DropDownListFor(c => c.codProvAud, Model.cboProvincia, "Seleccione", new { @class = "form-control", @rows = "4", @disabled = "disabled" })
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(c => c.codDisAud)
+                                @Html.DropDownListFor(c => c.codDisAud, Model.cboDistrito, "Seleccione", new { @class = "form-control", @rows = "4", @disabled = "disabled" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                @Html.LabelFor(c => c.corAud)
+                                @Html.TextBoxFor(c => c.corAud, new { @class = "form-control", @rows = "4", @disabled = "disabled" })
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(c => c.telAud)
+                                @Html.TextBoxFor(c => c.telAud, new { @class = "form-control", @rows = "4", @disabled = "disabled" })
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(c => c.celAud)
+                                @Html.TextBoxFor(c => c.celAud, new { @class = "form-control", @rows = "4", @disabled = "disabled" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary color-palette-box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Información Adicional</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group">
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                @Html.LabelFor(c => c.codCerAud)
+                                @Html.TextBoxFor(c => c.codCerAud, new { @class = "form-control", @disabled = "disabled" })
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nombreArchivo)
+                                    <div class="input-group">
+                                        @Html.TextBoxFor(m => m.nombreArchivo, new { @class = "form-control", @readonly = "", @disabled = "disabled" })
+                                    </div>
+                                    @Html.HiddenFor(m => m.codArchivo)
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-default color-palette-box">
+                <div class="box-body">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @Html.TextAreaFor(c => c.observacionSolicitud, new { @class = "form-control", @rows = "10" })
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <center>
+                                    <button type="button" id="btnAceptarSolicitud" class="btn btn-success"><i class="fa fa-check"></i>&nbsp;Aceptar</button>
+                                    <button type="button" id="btnObservarSolicitud" class="btn btn-primary"><i class="fa fa-close"></i>&nbsp;Observar</button>
+                                    <button type="button" id="btnRegresar" class="btn btn-info"><i class="fa fa-chevron-left"></i>&nbsp;Regresar</button>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts {
+
+
+    <script type="text/javascript" language="javascript">
+        $("#nombreArchivo").fileInput({ file: $("#codArchivo").val(), fileName: "archivoCertificadoAuditor", disabled: true });
+
+        $(document).ready(function () {
+            $("#observacionSolicitud").htmlarea();
+            $("#btnObservarSolicitud").click(observarSolicitud);
+            $("#btnAceptarSolicitud").click(function () {
+                bootbox.confirm(parametros.general.mensajeConfirmacion, function (result) {
+                    aceptarSolicitudAuditor();
+                });
+            });
+            $("#btnRegresar").click(regresar);
+        });
+
+
+        function aceptarSolicitudAuditor() {
+            $.ajax({
+                url: '@Url.Action("aceptarSolicitud", "SolicitudAdmin")',
+                type: 'POST',
+                async: false,
+                data: { id: $("#codigoSolicitud").val() },
+                success: function (result) {
+                    mostrarNotificacion(result);
+                    if (result.Exito) {
+                        $("#btnObservarSolicitud").attr("disabled", true);
+                        $("#btnAceptarSolicitud").attr("disabled", true);
+                    }
+                }
+            });
+        }
+
+        function observarSolicitud() {
+            $("#frmRevisarSolicitudAuditor").submit();
+        }
+
+        function regresar() {
+            document.location = '@Url.Action("Index","SolicitudAdmin")';
+        }
+
+    </script>
+}
