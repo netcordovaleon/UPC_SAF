@@ -343,6 +343,12 @@
     <Compile Include="SP_SAF_CORTEPUBLICACION_Result.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_SAF_CREARSOLICITUDAUDITOR_Result.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_CREARSOLICITUDSOA_Result.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_SAF_INVITACION_Result.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>

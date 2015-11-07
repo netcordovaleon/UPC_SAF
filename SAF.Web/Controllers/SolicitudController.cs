@@ -170,26 +170,26 @@ namespace SAF.Web.Controllers
             }
         }
 
-        //public JsonResult crearNuevaSolicitud()
-        //{
-        //    if ((int)Session["sessionTipoUsuario"] == (int)Tipo.TipoUsuarioExtranet.Auditor)
-        //    {
-        //        var auditor = Session["sessionCodigoResponsableLogin"] as SAF_AUDITOR;
-
-        //    }
-            
-        //    var soa = Session["sessionCodigoResponsableLogin"] as SAF_SOA;
-        //    //crearSolicitudSoa()
-        //}
-
-        public void crearSolicitudSoa(SAF_SOA soa) { 
-
-        }
-
-        public void crearSolicitudAuditor(SAF_AUDITOR auditor)
+        public JsonResult crearNuevaSolicitud()
         {
+            if ((int)Session["sessionTipoUsuario"] == (int)Tipo.TipoUsuarioExtranet.Auditor)
+                return Json(crearSolicitudAuditor((int)Session["sessionCodigoResponsableLogin"]));
 
+            return Json(crearSolicitudSoa((int)Session["sessionCodigoResponsableLogin"]));
         }
+
+        public MensajeRespuesta crearSolicitudSoa(int codSoa)
+        {
+            var result = modelEntity.SP_SAF_CREARSOLICITUDSOA(codSoa).FirstOrDefault();
+            return new MensajeRespuesta(result.MENSAJE, result.RESULTADO == 1, new { Codigo = result.CODIGO, Tipo = 1 });
+        }
+
+        public MensajeRespuesta crearSolicitudAuditor(int codAuditor)
+        {
+            var result = modelEntity.SP_SAF_CREARSOLICITUDAUDITOR(codAuditor).FirstOrDefault();
+            return new MensajeRespuesta(result.MENSAJE, result.RESULTADO == 1, new { Codigo = result.CODIGO, Tipo = 2 });
+        }
+
         #region Capacitacion
         public JsonResult listarCapacitaciones(int id)
         {

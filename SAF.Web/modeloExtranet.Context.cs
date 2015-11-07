@@ -193,5 +193,23 @@ namespace SAF.Web
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_AGENDAREGISTRAR_Result>("SP_SAF_AGENDAREGISTRAR", cODINVParameter, nUMHORParameter, sTRFECHASParameter);
         }
+    
+        public virtual ObjectResult<SP_SAF_CREARSOLICITUDAUDITOR_Result> SP_SAF_CREARSOLICITUDAUDITOR(Nullable<int> cODAUD)
+        {
+            var cODAUDParameter = cODAUD.HasValue ?
+                new ObjectParameter("CODAUD", cODAUD) :
+                new ObjectParameter("CODAUD", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_CREARSOLICITUDAUDITOR_Result>("SP_SAF_CREARSOLICITUDAUDITOR", cODAUDParameter);
+        }
+    
+        public virtual ObjectResult<SP_SAF_CREARSOLICITUDSOA_Result> SP_SAF_CREARSOLICITUDSOA(Nullable<int> cODSOA)
+        {
+            var cODSOAParameter = cODSOA.HasValue ?
+                new ObjectParameter("CODSOA", cODSOA) :
+                new ObjectParameter("CODSOA", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_CREARSOLICITUDSOA_Result>("SP_SAF_CREARSOLICITUDSOA", cODSOAParameter);
+        }
     }
 }

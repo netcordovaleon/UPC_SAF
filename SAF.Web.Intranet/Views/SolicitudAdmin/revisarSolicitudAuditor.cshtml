@@ -130,6 +130,32 @@
 
     <div class="row">
         <div class="col-md-12">
+            <div class="box box-primary color-palette-box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Capacitaciones</h3>
+                </div>
+                <div class="box-body">
+                    <table id="tabCapacitaciones" class="table table-striped table-bordered" cellpadding="0" cellspacing="0" border="0"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary color-palette-box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Experiencias</h3>
+                </div>
+                <div class="box-body">
+                    <table id="tabExperiencias" class="table table-striped table-bordered" cellpadding="0" cellspacing="0" border="0"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
             <div class="box box-default color-palette-box">
                 <div class="box-body">
                     <div class="form-group">
@@ -162,6 +188,8 @@
 
 
     <script type="text/javascript" language="javascript">
+        var tabCapacitaciones, _capacitaciones_;
+        var tabExperiencias, _experiencias_;
         $("#nombreArchivo").fileInput({ file: $("#codArchivo").val(), fileName: "archivoCertificadoAuditor", disabled: true });
 
         $(document).ready(function () {
@@ -173,8 +201,9 @@
                 });
             });
             $("#btnRegresar").click(regresar);
+            cargarCapacitaciones();
+            cargarExperiencias();
         });
-
 
         function aceptarSolicitudAuditor() {
             $.ajax({
@@ -200,5 +229,90 @@
             document.location = '@Url.Action("Index","SolicitudAdmin")';
         }
 
+        function cargarCapacitaciones() {
+            $.ajax({
+                url: '@Url.Action("listarCapacitaciones", "SolicitudAdmin")',
+                type: 'POST',
+                async: false,
+                data: { id: '@Model.codigoSolicitud' },
+                success: function (result) {
+                    _capacitaciones_ = result;
+                    tabCapacitaciones.fnReloadData(_capacitaciones_);
+                }
+            });
+        };
+
+        tabCapacitaciones = $("#tabCapacitaciones").dataTable({
+            "info": false,
+            "bServerSide": false,
+            "data": _capacitaciones_,
+            //"order": [[1, "asc"]],
+            "columns": [
+                {
+                    "bSortable": false,
+                    "sClass": "center",
+                    "sWidth": "5%",
+                    "render": function (data, type, row) {
+                        return "";
+                    }
+                },
+            {
+                "sTitle": "Descripción",
+                "sClass": "center"
+            },
+            { "sTitle": "Especialidad" },
+            { "sTitle": "Inicio" },
+            { "sTitle": "Fin" },
+            {
+                "sClass": "center",
+                "render": function (data, type, row) {
+                    return "";
+                }
+            },
+            ]
+        });
+
+        function cargarExperiencias() {
+            $.ajax({
+                url: '@Url.Action("listarExperiencias", "SolicitudAdmin")',
+                type: 'POST',
+                async: false,
+                data: { id: '@Model.codigoSolicitud' },
+                success: function (result) {
+                    _experiencias_ = result;
+                    tabExperiencias.fnReloadData(_experiencias_);
+                }
+            });
+        };
+
+        tabExperiencias = $("#tabExperiencias").dataTable({
+            "info": false,
+            "bServerSide": false,
+            "data": _experiencias_,
+            //"order": [[1, "asc"]],
+            "columns": [
+                {
+                    "bSortable": false,
+                    "sClass": "center",
+                    "sWidth": "5%",
+                    "render": function (data, type, row) {                        
+                        return "";
+                    }
+                },
+            {
+                "sTitle": "Descripción",
+                "sClass": "center"
+            },
+            { "sTitle": "Empresa" },
+            { "sTitle": "Inicio" },
+            { "sTitle": "Fin" },
+            {
+                "sClass": "center",
+                "render": function (data, type, row) {
+                    return "";
+                }
+            },
+            ]
+        });
     </script>
 }

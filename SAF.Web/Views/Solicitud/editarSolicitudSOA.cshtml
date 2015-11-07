@@ -231,7 +231,7 @@
                 data: $("#frmRegistroSolicitudSOA").serialize(),
                 dataType: "json",
                 success: function (result) {
-                    mostrarNotificacion(result);
+                    mostrarNotificacion(result);                    
                 }
             });
         }
@@ -246,6 +246,7 @@
                     mostrarNotificacion(result);                    
                     if (result.Exito) {
                         $("#btnGuardarInfoSoaSolicitud").prop("disabled", true);
+                        $("#btnEnviarInfoSoaSolicitud").prop("disabled", true);
                     }
                 }
             });

@@ -7,6 +7,7 @@
     };
 
 function mostrarNotificacion(data) {
+    PNotify.removeAll();
     new PNotify({
         title: 'Respuesta Sistema!',
         type: (data.Exito) ? "success" : "error",

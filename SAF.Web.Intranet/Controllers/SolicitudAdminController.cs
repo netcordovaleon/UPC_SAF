@@ -199,8 +199,43 @@ namespace SAF.Web.Intranet.Controllers
                 infoSolicitud.ESTSOL = (int)Estado.Solicitud.Aprobado;
                 infoSolicitud.OBSSOL = "La solicitud del Auditor ha sido <strong>APROBADO</strong>. <br />Bienvenido al Sistema de Sociedades y Auditores!!!!";
                 modelEntity.SaveChanges();
+                scope.Complete();
             }
 
+        }
+
+        public JsonResult listarCapacitaciones(int id)
+        {
+            var especialidades = modelEntity.SAF_CARRERA.ToList();
+            var listado = modelEntity.SAF_SOLCAPACITACION.Where(x => x.CODSOL == id).ToList();
+
+            var data = listado.Select(c => new string[]{ 
+                c.CODSOLCAP.ToString(),
+                c.DESSOLCAP,
+                especialidades.FirstOrDefault(x=>x.CODCAR == c.CODCAR).NOMCAR,
+                c.FECINISOLCAP.HasValue ? c.FECINISOLCAP.Value.ToShortDateString():string.Empty,
+                c.FECFINSOLCAP.HasValue ? c.FECFINSOLCAP.Value.ToShortDateString():string.Empty,                
+                c.CODARC.HasValue ? c.CODARC.Value.ToString():string.Empty
+            }).ToArray();
+
+            return Json(data);
+        }
+
+        public JsonResult listarExperiencias(int id)
+        {
+            var empresas = modelEntity.SAF_EMPRESA.ToList();
+            var listado = modelEntity.SAF_SOLEXPERIENCIA.Where(x => x.CODSOL == id).ToList();
+
+            var data = listado.Select(c => new[] { 
+                c.CODSOLEXP.ToString(),
+                c.DESSOLEXP,
+                empresas.FirstOrDefault(x=>x.CODEMP== c.CODEMP).RAZSOCEMP,
+                c.FECINISOLEXP.HasValue ? c.FECINISOLEXP.Value.ToShortDateString():string.Empty,
+                c.FECFINSOLEXP.HasValue ? c.FECFINSOLEXP.Value.ToShortDateString():string.Empty,                
+                c.CODARC.HasValue ? c.CODARC.Value.ToString():string.Empty  
+            }).ToArray();
+
+            return Json(data);
         }
     }
 }

@@ -1421,6 +1421,12 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
         <Function Name="SP_SAF_CORTEPUBLICACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CODPUB" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_SAF_CREARSOLICITUDAUDITOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CODAUD" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SAF_CREARSOLICITUDSOA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CODSOA" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_SAF_INVITACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CODPUB" Type="int" Mode="In" />
           <Parameter Name="CODSERAUD" Type="int" Mode="In" />
@@ -3048,6 +3054,12 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
             <Parameter Name="NUMHOR" Mode="In" Type="Int32" />
             <Parameter Name="STRFECHAS" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="SP_SAF_CREARSOLICITUDAUDITOR" ReturnType="Collection(ModeloExtranetModel.SP_SAF_CREARSOLICITUDAUDITOR_Result)">
+            <Parameter Name="CODAUD" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SAF_CREARSOLICITUDSOA" ReturnType="Collection(ModeloExtranetModel.SP_SAF_CREARSOLICITUDSOA_Result)">
+            <Parameter Name="CODSOA" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="VW_SAF_SOLICITUD">
           <Key>
@@ -3623,6 +3635,16 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
         <ComplexType Name="SP_SAF_AGENDAREGISTRAR_Result">
           <Property Type="Int32" Name="RESULTADO" Nullable="false" />
           <Property Type="String" Name="MENSAJE" Nullable="false" MaxLength="44" />
+        </ComplexType>
+        <ComplexType Name="SP_SAF_CREARSOLICITUDAUDITOR_Result">
+          <Property Type="Int32" Name="RESULTADO" Nullable="false" />
+          <Property Type="String" Name="MENSAJE" Nullable="false" MaxLength="47" />
+          <Property Type="Int32" Name="CODIGO" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_SAF_CREARSOLICITUDSOA_Result">
+          <Property Type="Int32" Name="RESULTADO" Nullable="false" />
+          <Property Type="String" Name="MENSAJE" Nullable="false" MaxLength="47" />
+          <Property Type="Int32" Name="CODIGO" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -4523,6 +4545,24 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
               <ComplexTypeMapping TypeName="ModeloExtranetModel.SP_SAF_AGENDAREGISTRAR_Result">
                 <ScalarProperty Name="RESULTADO" ColumnName="RESULTADO" />
                 <ScalarProperty Name="MENSAJE" ColumnName="MENSAJE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SAF_CREARSOLICITUDAUDITOR" FunctionName="ModeloExtranetModel.Store.SP_SAF_CREARSOLICITUDAUDITOR">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloExtranetModel.SP_SAF_CREARSOLICITUDAUDITOR_Result">
+                <ScalarProperty Name="RESULTADO" ColumnName="RESULTADO" />
+                <ScalarProperty Name="MENSAJE" ColumnName="MENSAJE" />
+                <ScalarProperty Name="CODIGO" ColumnName="CODIGO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SAF_CREARSOLICITUDSOA" FunctionName="ModeloExtranetModel.Store.SP_SAF_CREARSOLICITUDSOA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloExtranetModel.SP_SAF_CREARSOLICITUDSOA_Result">
+                <ScalarProperty Name="RESULTADO" ColumnName="RESULTADO" />
+                <ScalarProperty Name="MENSAJE" ColumnName="MENSAJE" />
+                <ScalarProperty Name="CODIGO" ColumnName="CODIGO" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

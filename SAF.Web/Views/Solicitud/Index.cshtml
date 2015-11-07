@@ -111,8 +111,13 @@
                 async: false,
                 data: { id: id },
                 success: function (result) {
-                    if (result.Exito)
-                        window.location.href = '@Url.Action("crearNuevaSolicitud", "Solicitud", new { id = "_id_" })'.replace("_id_", result.Data);
+                    if (result.Exito) {
+                        if (result.Data.Tipo == 1)
+                            window.location.href = '@Url.Action("editarSolicitudSoa", "Solicitud", new { id = "_id_" })'.replace("_id_", result.Data.Codigo);
+                        else
+                            window.location.href = '@Url.Action("editarSolicitudAuditor", "Solicitud", new { id = "_id_" })'.replace("_id_", result.Data.Codigo);
+
+                    }
                     else
                         mostrarNotificacion(result);
                 }

@@ -212,6 +212,10 @@
                 data: { id: $("#codSolicitud").val() },
                 success: function (result) {
                     mostrarNotificacion(result);
+                    if (result.Exito) {
+                        $("#btnAceptarInfoSoaSolicitud").attr("disabled", true);
+                        $("#btnObservarInfoSoaSolicitud").attr("disabled", true);
+                    }
                 }
             });
         }
