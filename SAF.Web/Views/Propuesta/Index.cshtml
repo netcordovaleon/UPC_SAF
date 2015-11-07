@@ -1,0 +1,52 @@
+﻿@model SAF.Web.Models.PropuestaModel
+
+@{
+    ViewBag.PageTitle = "Propuesta";
+    ViewBag.PageDescription = "Propuesta";
+    ViewBag.PageDescription = "Elaboracion de Propuesta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-primary color-palette-box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Publicaciones</h3>
+            </div>
+            <div class="box-body">
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-4">
+                            @Html.LabelFor(c => c.CODPUB)
+                            @Html.DropDownListFor(c => c.CODPUB, Model.cboPublicaciones, "Seleccione", new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-8">
+                            <br />
+                            <button class="btn btn-primary" type="button" ><i class="fa fa-search"></i>&nbsp;Buscar</button>&nbsp;&nbsp;
+                            <button class="btn btn-info" type="button" ><i class="fa fa-file"></i>&nbsp;Elaborar Propuesta</button>&nbsp;&nbsp;
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <table id="tabPropuesta" class="table table-striped table-bordered" cellpadding="0" cellspacing="0" border="0"></table>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts {
+
+    <script type="text/javascript" language="javascript">
+
+    </script>
+}

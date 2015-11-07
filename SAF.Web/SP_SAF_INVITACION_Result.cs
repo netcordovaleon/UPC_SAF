@@ -25,5 +25,12 @@ namespace SAF.Web
         public Nullable<System.DateTime> FECACEPINV { get; set; }
         public string NOMCAR { get; set; }
         public string VALOR { get; set; }
+        public string DNIAUD { get; set; }
+        public string TELAUD { get; set; }
+        public string CELAUD { get; set; }
+        public string CORAUD { get; set; }
+        public string RUCSOA { get; set; }
+        public string RAZSOCSOA { get; set; }
+        public string DESBAS { get; set; }
     }
 }

@@ -29,10 +29,12 @@ namespace SAF.Web.Controllers
                 if (tipoUsuario == (int)Tipo.TipoUsuarioExtranet.Auditor)
                 {
                     Session["sessionCodigoResponsableLogin"] = modelEntity.SAF_AUDITOR.Where(c => c.NOMUSU == usuario).FirstOrDefault().CODAUD;
+                    Session["sessionNombreCompletoUsuario"] = string.Format("{0} {1}", modelEntity.SAF_AUDITOR.Where(c => c.NOMUSU == usuario).FirstOrDefault().NOMAUD, modelEntity.SAF_AUDITOR.Where(c => c.NOMUSU == usuario).FirstOrDefault().APEAUD);
                 }
                 else
                 {
                     Session["sessionCodigoResponsableLogin"] = modelEntity.SAF_SOA.Where(c => c.NOMUSU == usuario).FirstOrDefault().CODSOA;
+                    Session["sessionNombreCompletoUsuario"] = modelEntity.SAF_SOA.Where(c => c.NOMUSU == usuario).FirstOrDefault().RAZSOCSOA;
                 }
                 Session["sessionUsuario"] = usuario;
                 Session["sessionTipoUsuario"] = tipoUsuario;

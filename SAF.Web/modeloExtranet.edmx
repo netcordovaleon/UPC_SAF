@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ModeloExtranetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ModeloExtranetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="SAF_ARCHIVO">
           <Key>
             <PropertyRef Name="CODARC" />
@@ -1406,6 +1406,7 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
         </Function>
         <Function Name="SP_DISPONIBILIDADAUDITOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CODAUD" Type="int" Mode="In" />
+          <Parameter Name="CODSOA" Type="int" Mode="In" />
           <Parameter Name="FECINI" Type="varchar" Mode="In" />
           <Parameter Name="FECFIN" Type="varchar" Mode="In" />
         </Function>
@@ -3044,21 +3045,22 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
             <Parameter Name="CODPUB" Mode="In" Type="Int32" />
             <Parameter Name="CODSERAUD" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_DISPONIBILIDADAUDITOR" ReturnType="Collection(ModeloExtranetModel.SP_DISPONIBILIDADAUDITOR_Result)">
-            <Parameter Name="CODAUD" Mode="In" Type="Int32" />
-            <Parameter Name="FECINI" Mode="In" Type="String" />
-            <Parameter Name="FECFIN" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="SP_SAF_AGENDAREGISTRAR" ReturnType="Collection(ModeloExtranetModel.SP_SAF_AGENDAREGISTRAR_Result)">
             <Parameter Name="CODINV" Mode="In" Type="Int32" />
             <Parameter Name="NUMHOR" Mode="In" Type="Int32" />
             <Parameter Name="STRFECHAS" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_SAF_CREARSOLICITUDAUDITOR" ReturnType="Collection(ModeloExtranetModel.SP_SAF_CREARSOLICITUDAUDITOR_Result)">
-            <Parameter Name="CODAUD" Mode="In" Type="Int32" />
+          <Parameter Name="CODAUD" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_SAF_CREARSOLICITUDSOA" ReturnType="Collection(ModeloExtranetModel.SP_SAF_CREARSOLICITUDSOA_Result)">
+          <Parameter Name="CODSOA" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_DISPONIBILIDADAUDITOR" ReturnType="Collection(ModeloExtranetModel.SP_DISPONIBILIDADAUDITOR_Result)">
+            <Parameter Name="CODAUD" Mode="In" Type="Int32" />
             <Parameter Name="CODSOA" Mode="In" Type="Int32" />
+            <Parameter Name="FECINI" Mode="In" Type="String" />
+            <Parameter Name="FECFIN" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="VW_SAF_SOLICITUD">
@@ -3628,9 +3630,13 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <Property Type="DateTime" Name="FECACEPINV" Nullable="true" Precision="23" />
           <Property Type="String" Name="NOMCAR" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="VALOR" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="SP_DISPONIBILIDADAUDITOR_Result">
-          <Property Type="DateTime" Name="FECDIL" Nullable="true" Precision="23" />
+          <Property Type="String" Name="DNIAUD" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="TELAUD" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="CELAUD" Nullable="true" MaxLength="9" />
+          <Property Type="String" Name="CORAUD" Nullable="true" MaxLength="18" />
+          <Property Type="String" Name="RUCSOA" Nullable="true" MaxLength="21" />
+          <Property Type="String" Name="RAZSOCSOA" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="DESBAS" Nullable="true" MaxLength="300" />
         </ComplexType>
         <ComplexType Name="SP_SAF_AGENDAREGISTRAR_Result">
           <Property Type="Int32" Name="RESULTADO" Nullable="false" />
@@ -3645,6 +3651,9 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <Property Type="Int32" Name="RESULTADO" Nullable="false" />
           <Property Type="String" Name="MENSAJE" Nullable="false" MaxLength="47" />
           <Property Type="Int32" Name="CODIGO" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_DISPONIBILIDADAUDITOR_Result">
+          <Property Type="DateTime" Name="FECDIL" Nullable="true" Precision="23" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -4530,13 +4539,13 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
                 <ScalarProperty Name="FECACEPINV" ColumnName="FECACEPINV" />
                 <ScalarProperty Name="NOMCAR" ColumnName="NOMCAR" />
                 <ScalarProperty Name="VALOR" ColumnName="VALOR" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_DISPONIBILIDADAUDITOR" FunctionName="ModeloExtranetModel.Store.SP_DISPONIBILIDADAUDITOR" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ModeloExtranetModel.SP_DISPONIBILIDADAUDITOR_Result">
-                <ScalarProperty Name="FECDIL" ColumnName="FECDIL" />
+                <ScalarProperty Name="DNIAUD" ColumnName="DNIAUD" />
+                <ScalarProperty Name="TELAUD" ColumnName="TELAUD" />
+                <ScalarProperty Name="CELAUD" ColumnName="CELAUD" />
+                <ScalarProperty Name="CORAUD" ColumnName="CORAUD" />
+                <ScalarProperty Name="RUCSOA" ColumnName="RUCSOA" />
+                <ScalarProperty Name="RAZSOCSOA" ColumnName="RAZSOCSOA" />
+                <ScalarProperty Name="DESBAS" ColumnName="DESBAS" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -4563,6 +4572,13 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
                 <ScalarProperty Name="RESULTADO" ColumnName="RESULTADO" />
                 <ScalarProperty Name="MENSAJE" ColumnName="MENSAJE" />
                 <ScalarProperty Name="CODIGO" ColumnName="CODIGO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_DISPONIBILIDADAUDITOR" FunctionName="ModeloExtranetModel.Store.SP_DISPONIBILIDADAUDITOR" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloExtranetModel.SP_DISPONIBILIDADAUDITOR_Result">
+                <ScalarProperty Name="FECDIL" ColumnName="FECDIL" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

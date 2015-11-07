@@ -7,8 +7,8 @@
                 <img src="~/Content/Image/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                <p>@Session["sessionNombreCompletoUsuario"].ToString()</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> En linea</a>
             </div>
         </div>
         <!-- search form -->
@@ -23,7 +23,7 @@
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
-            <li class="header">MAIN NAVIGATION</li>
+            <li class="header">MENU PRINCIPAL</li>
 
             <li class="active treeview">
                 <a href="#">
@@ -31,21 +31,29 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> Inscripción</a></li>
-                    <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Actualización</a></li>
+                    <li><a href='@Url.Action("Index","Solicitud")'><i class="fa fa-circle-o"></i> Bandeja</a></li>
                 </ul>
             </li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-files-o"></i>
-                    <span>Publicacion</span>
+                    <span>Invitaciones</span>
                     <!--<span class="label label-primary pull-right">4</span>-->
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Cronogramas</a></li>
-                    <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Concursos</a></li>
-                    <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Respuestas Consultas</a></li>
+                    <li><a href='@Url.Action("Index","InvitacionAuditor")'><i class="fa fa-circle-o"></i> Realizar Invitacion</a></li>
+                    <li><a href='@Url.Action("Index","BandejaInvitaciones")'><i class="fa fa-circle-o"></i> Bandeja</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-edit"></i> <span>Propuesta</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href='@Url.Action("Index","Propuesta")'><i class="fa fa-circle-o"></i> Elaborar</a></li>
                 </ul>
             </li>
 

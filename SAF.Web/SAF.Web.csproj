@@ -171,11 +171,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\BandejaInvitacionesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\GeneralController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvitacionAuditorController.cs" />
     <Compile Include="Controllers\NotificacionController.cs" />
+    <Compile Include="Controllers\PropuestaController.cs" />
     <Compile Include="Controllers\SegController.cs" />
     <Compile Include="Controllers\SolicitudController.cs" />
     <Compile Include="Controllers\SolRegController.cs" />
@@ -203,6 +205,7 @@
     <Compile Include="Models\AccesoModel.cs" />
     <Compile Include="Models\AuditorModel.cs" />
     <Compile Include="Models\InvitacionModel.cs" />
+    <Compile Include="Models\PropuestaModel.cs" />
     <Compile Include="Models\SoaModel.cs" />
     <Compile Include="Models\SolicitudModel.cs" />
     <Compile Include="Models\SolRegModel.cs" />
@@ -578,6 +581,8 @@
     <Content Include="Views\InvitacionAuditor\Index.cshtml" />
     <Content Include="Views\InvitacionAuditor\_BusquedaAuditores.cshtml" />
     <Content Include="Views\InvitacionAuditor\_AgendaAuditor.cshtml" />
+    <Content Include="Views\BandejaInvitaciones\Index.cshtml" />
+    <Content Include="Views\Propuesta\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

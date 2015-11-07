@@ -114,6 +114,9 @@ namespace SAF.Web.Controllers
             var data = listado.Select(c => new string[] {
                 c.CODINV.ToString(),
                 c.NOMCOMAUD,
+                c.DNIAUD,
+                c.DESBAS,
+                c.PERSERAUD,
                 c.NOMCAR,
                 c.FECACEPINV.HasValue ? c.FECACEPINV.Value.ToShortDateString() : "",
                 c.VALOR,
@@ -129,7 +132,7 @@ namespace SAF.Web.Controllers
                 var invitacion = this.modelEntity.SAF_INVITACION.ToList().Where(c => c.CODINV == id).FirstOrDefault();
                 invitacion.ESTINV = (int)Estado.Invitacion.Enviada;
                 this.modelEntity.SaveChanges();
-                return Json(new MensajeRespuesta("Se envio la invitacion satisfactoriamente", false));
+                return Json(new MensajeRespuesta("Se envio la invitacion satisfactoriamente", true));
             }
             catch (Exception)
             {
@@ -142,23 +145,23 @@ namespace SAF.Web.Controllers
             try
             {
                 var invitacion = this.modelEntity.SAF_INVITACION.ToList().Where(c => c.CODINV == id).FirstOrDefault();
-                invitacion.ESTREG = (Estado.Auditoria.Inactivo).ToString();
+                invitacion.ESTREG = "0";//Estado.Auditoria.Inactivo.ToString();
                 this.modelEntity.SaveChanges();
-                return Json(new MensajeRespuesta("Se envio la invitacion satisfactoriamente", false));
+                return Json(new MensajeRespuesta("Se elimino la invitacion satisfactoriamente", true));
             }
             catch (Exception)
             {
-                return Json(new MensajeRespuesta("No se pudo enviar la invitacion", false));
+                return Json(new MensajeRespuesta("No se pudo eliminar la invitacion", false));
             }
         }
 
 
         public JsonResult ListadoDisponibilidadAuditor(int idAuditor,string fechaInicio, string fechaFin)
         {
-            var listado = this.modelEntity.SP_DISPONIBILIDADAUDITOR(idAuditor, fechaInicio, fechaFin).ToList();
+            var listado = this.modelEntity.SP_DISPONIBILIDADAUDITOR(idAuditor, (int)Session["sessionCodigoResponsableLogin"], fechaInicio, fechaFin).ToList();
 
             var data = listado.Select(c=> new string[]{
-                c.FECDIL.HasValue? c.FECDIL.Value.ToShortDateString() : ""
+                c.FECDIL.HasValue? c.FECDIL.Value.ToString("dd/MM/yyyy") : ""
             }).ToArray();
 
             return Json(data);

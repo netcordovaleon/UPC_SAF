@@ -86,6 +86,9 @@
                     }
                 },
                 { "sTitle": "Auditor" },
+                { "sTitle": "DNI" },
+                { "sTitle": "Entidad" },
+                { "sTitle": "Periodo" },
                 { "sTitle": "Cargo" },
                 { "sTitle": "Fecha Acepto Invitacion", "sClass": "center" },
                 { "sTitle": "Estado", "sClass": "center" },
@@ -94,7 +97,7 @@
                     "sClass": "center",
                     "sWidth": "5%",
                     "render": function (data, type, row) {
-                        if (row[5] == '@Convert.ToInt32(Estado.Invitacion.Elaboracion)')
+                        if (row[8] == '@Convert.ToInt32(Estado.Invitacion.Elaboracion)')
                             return '<center><button class="btn btn-danger" title="Eliminar" type="button" onclick="eliminarInvitacion(' + row[0] + ');"><i class="fa fa-trash"></i></button></center>';
                         else
                             return "";
@@ -105,9 +108,9 @@
                     "sClass": "center",
                     "sWidth": "5%",
                     "render": function (data, type, row) {
-                        if (row[5] == '@Convert.ToInt32(Estado.Invitacion.Elaboracion)')
+                        if (row[8] == '@Convert.ToInt32(Estado.Invitacion.Elaboracion)')
                             return '<center><button class="btn btn-success" title="Enviar" type="button" onclick="enviarInvitacion(' + row[0] + ');"><i class="fa fa-share"></i></button></center>';
-                        else if (row[5] == '@Convert.ToInt32(Estado.Invitacion.Aceptado)' || row[5] == '@Convert.ToInt32(Estado.Invitacion.Enviada)')
+                        else if (row[8] == '@Convert.ToInt32(Estado.Invitacion.Aceptado)' || row[5] == '@Convert.ToInt32(Estado.Invitacion.Enviada)')
                             return '<center><button class="btn btn-warning" title="Cancelar" type="button" onclick="cancelarInvitacion(' + row[0] + ');"><i class="fa fa-times"></i></button></center>';
                         else
                             return "";

@@ -160,23 +160,6 @@ namespace SAF.Web
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_INVITACION_Result>("SP_SAF_INVITACION", cODPUBParameter, cODSERAUDParameter);
         }
     
-        public virtual ObjectResult<SP_DISPONIBILIDADAUDITOR_Result> SP_DISPONIBILIDADAUDITOR(Nullable<int> cODAUD, string fECINI, string fECFIN)
-        {
-            var cODAUDParameter = cODAUD.HasValue ?
-                new ObjectParameter("CODAUD", cODAUD) :
-                new ObjectParameter("CODAUD", typeof(int));
-    
-            var fECINIParameter = fECINI != null ?
-                new ObjectParameter("FECINI", fECINI) :
-                new ObjectParameter("FECINI", typeof(string));
-    
-            var fECFINParameter = fECFIN != null ?
-                new ObjectParameter("FECFIN", fECFIN) :
-                new ObjectParameter("FECFIN", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_DISPONIBILIDADAUDITOR_Result>("SP_DISPONIBILIDADAUDITOR", cODAUDParameter, fECINIParameter, fECFINParameter);
-        }
-    
         public virtual ObjectResult<SP_SAF_AGENDAREGISTRAR_Result> SP_SAF_AGENDAREGISTRAR(Nullable<int> cODINV, Nullable<int> nUMHOR, string sTRFECHAS)
         {
             var cODINVParameter = cODINV.HasValue ?
@@ -210,6 +193,27 @@ namespace SAF.Web
                 new ObjectParameter("CODSOA", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_CREARSOLICITUDSOA_Result>("SP_SAF_CREARSOLICITUDSOA", cODSOAParameter);
+        }
+    
+        public virtual ObjectResult<SP_DISPONIBILIDADAUDITOR_Result> SP_DISPONIBILIDADAUDITOR(Nullable<int> cODAUD, Nullable<int> cODSOA, string fECINI, string fECFIN)
+        {
+            var cODAUDParameter = cODAUD.HasValue ?
+                new ObjectParameter("CODAUD", cODAUD) :
+                new ObjectParameter("CODAUD", typeof(int));
+    
+            var cODSOAParameter = cODSOA.HasValue ?
+                new ObjectParameter("CODSOA", cODSOA) :
+                new ObjectParameter("CODSOA", typeof(int));
+    
+            var fECINIParameter = fECINI != null ?
+                new ObjectParameter("FECINI", fECINI) :
+                new ObjectParameter("FECINI", typeof(string));
+    
+            var fECFINParameter = fECFIN != null ?
+                new ObjectParameter("FECFIN", fECFIN) :
+                new ObjectParameter("FECFIN", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_DISPONIBILIDADAUDITOR_Result>("SP_DISPONIBILIDADAUDITOR", cODAUDParameter, cODSOAParameter, fECINIParameter, fECFINParameter);
         }
     }
 }
