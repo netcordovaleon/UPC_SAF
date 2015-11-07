@@ -174,6 +174,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\GeneralController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InvitacionAuditorController.cs" />
     <Compile Include="Controllers\NotificacionController.cs" />
     <Compile Include="Controllers\SegController.cs" />
     <Compile Include="Controllers\SolicitudController.cs" />
@@ -201,6 +202,7 @@
     </Compile>
     <Compile Include="Models\AccesoModel.cs" />
     <Compile Include="Models\AuditorModel.cs" />
+    <Compile Include="Models\InvitacionModel.cs" />
     <Compile Include="Models\SoaModel.cs" />
     <Compile Include="Models\SolicitudModel.cs" />
     <Compile Include="Models\SolRegModel.cs" />
@@ -329,6 +331,30 @@
     <Compile Include="SAF_USUARIO.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_DISPONIBILIDADAUDITOR_Result.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_AGENDAREGISTRAR_Result.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_AUDITORAPTOINVITAR_Result.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_CORTEPUBLICACION_Result.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_INVITACION_Result.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_INVITARAUDITORES_Result.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_MEJOREQUIPO_Result.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_RESULTADOCORTE_Result.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
@@ -347,6 +373,8 @@
     <Content Include="Content\AdminLTE.css" />
     <Content Include="Content\AdminLTE.min.css" />
     <Content Include="Content\blue.css" />
+    <Content Include="Content\bootstrap-datepicker.css" />
+    <Content Include="Content\bootstrap-datepicker3.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap3-wysihtml5.min.css" />
     <Content Include="Content\dataTables.bootstrap.css" />
@@ -418,9 +446,13 @@
       <LastGenOutput>modeloExtranet.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\SAFWeb.pubxml" />
+    <Content Include="Scripts\ace-elements.min.js" />
+    <Content Include="Scripts\ace-extra.min.js" />
+    <Content Include="Scripts\ace.min.js" />
     <Content Include="Scripts\app.min.js" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-timepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap3-wysihtml5.all.min.js" />
@@ -448,6 +480,57 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ar.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.az.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.bg.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ca.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.cs.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.cy.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.da.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.de.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.el.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.es.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.et.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fa.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fi.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fr.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.gl.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.he.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hr.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hu.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.id.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.is.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.it.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ja.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ka.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kk.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kr.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.lt.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.lv.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.mk.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ms.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nb.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nl-BE.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nl.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.no.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pl.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pt-BR.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pt.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ro.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.rs-latin.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.rs.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ru.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sk.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sl.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sq.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sv.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sw.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.th.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.tr.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ua.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.vi.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.zh-CN.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.zh-TW.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\morris.min.js" />
@@ -486,6 +569,9 @@
     <Content Include="Views\Solicitud\editarSolicitudAuditor.cshtml" />
     <Content Include="Views\Solicitud\_capacitacion.cshtml" />
     <Content Include="Views\Solicitud\_experiencia.cshtml" />
+    <Content Include="Views\InvitacionAuditor\Index.cshtml" />
+    <Content Include="Views\InvitacionAuditor\_BusquedaAuditores.cshtml" />
+    <Content Include="Views\InvitacionAuditor\_AgendaAuditor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
