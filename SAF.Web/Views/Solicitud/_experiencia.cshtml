@@ -76,7 +76,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="button" id="btnGuardarExperiencia" class="btn btn-primary"><i class="fa fa-close"></i>&nbsp;Guardar</button>
+                <button type="button" id="btnGuardarExperiencia" class="btn btn-primary"><i class="fa fa-save"></i>&nbsp;Guardar</button>
             </div>
         </div>
     </div>
@@ -89,6 +89,9 @@
         if (resultText == "") return;
 
         var result = jQuery.parseJSON(resultText);
-        mostrarNotificacion(result);
+        if (result.Exito) {            
+            cargarExperiencias();
+            $("#dlgRegistroExperiencia").modal('hide');
+        }
     });
 </script>

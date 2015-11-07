@@ -170,14 +170,51 @@ namespace SAF.Web.Controllers
             }
         }
 
+        //public JsonResult crearNuevaSolicitud()
+        //{
+        //    if ((int)Session["sessionTipoUsuario"] == (int)Tipo.TipoUsuarioExtranet.Auditor)
+        //    {
+        //        var auditor = Session["sessionCodigoResponsableLogin"] as SAF_AUDITOR;
+
+        //    }
+            
+        //    var soa = Session["sessionCodigoResponsableLogin"] as SAF_SOA;
+        //    //crearSolicitudSoa()
+        //}
+
+        public void crearSolicitudSoa(SAF_SOA soa) { 
+
+        }
+
+        public void crearSolicitudAuditor(SAF_AUDITOR auditor)
+        {
+
+        }
         #region Capacitacion
+        public JsonResult listarCapacitaciones(int id)
+        {
+            var especialidades = modelEntity.SAF_CARRERA.ToList();
+            var listado = modelEntity.SAF_SOLCAPACITACION.Where(x => x.CODSOL == id).ToList();
+
+            var data = listado.Select(c => new string[]{ 
+                c.CODSOLCAP.ToString(),
+                c.DESSOLCAP,
+                especialidades.FirstOrDefault(x=>x.CODCAR == c.CODCAR).NOMCAR,
+                c.FECINISOLCAP.HasValue ? c.FECINISOLCAP.Value.ToShortDateString():string.Empty,
+                c.FECFINSOLCAP.HasValue ? c.FECFINSOLCAP.Value.ToShortDateString():string.Empty,                
+                c.CODARC.HasValue ? c.CODARC.Value.ToString():string.Empty
+            }).ToArray();
+
+            return Json(data);
+        }
+
         public PartialViewResult nuevaCapacitacion(int id)
         {
             var model = new CapacitacionModel();
             model.codSol = id;
             model.Universidades = (from c in modelEntity.SAF_UNIVERSIDAD.ToList() select new SelectListItem() { Text = c.RAZSOCUNI, Value = c.CODUNI.ToString() }).ToList();
-            model.Tipos = (from c in modelEntity.SAF_PARAMETRICA.Where(x=>x.CODTIPPAR == 8) select new SelectListItem() { Text = c.NOMPAR, Value = c.CODPAR.ToString() }).ToList();
-            model.Categorias = (from c in modelEntity.SAF_PARAMETRICA.Where(x => x.CODTIPPAR == 10) select new SelectListItem() { Text = c.NOMPAR, Value = c.CODPAR.ToString() }).ToList();
+            model.Tipos = (from c in modelEntity.SAF_PARAMETRICA.Where(x => x.CODTIPPAR == 8).ToList() select new SelectListItem() { Text = c.NOMPAR, Value = c.CODPAR.ToString() }).ToList();
+            model.Categorias = (from c in modelEntity.SAF_PARAMETRICA.Where(x => x.CODTIPPAR == 10).ToList() select new SelectListItem() { Text = c.NOMPAR, Value = c.CODPAR.ToString() }).ToList();
             model.Especialidades = (from c in modelEntity.SAF_CARRERA.ToList() select new SelectListItem() { Text = c.NOMCAR, Value = c.CODCAR.ToString() }).ToList();
             return PartialView("_capacitacion", model);
         }
@@ -186,6 +223,7 @@ namespace SAF.Web.Controllers
         {
             var capacitacion = modelEntity.SAF_SOLCAPACITACION.FirstOrDefault(x => x.CODSOLCAP == id);
             var model = new CapacitacionModel();
+            model.codSolCap = capacitacion.CODSOLCAP;
             model.desSolCap = capacitacion.DESSOLCAP;
             model.fechaInicioSolCap = string.Format("{0:dd/MM/yyyy}", capacitacion.FECINISOLCAP);
             model.fechaFinSolCap = string.Format("{0:dd/MM/yyyy}", capacitacion.FECFINSOLCAP);
@@ -198,15 +236,16 @@ namespace SAF.Web.Controllers
             model.nombreArchivoCapa = capacitacion.NOMBLABEL;
             model.codArchivoCapa = capacitacion.CODARC;
             model.Universidades = (from c in modelEntity.SAF_UNIVERSIDAD.ToList() select new SelectListItem() { Text = c.RAZSOCUNI, Value = c.CODUNI.ToString(), Selected = (c.CODUNI == capacitacion.CODUNI) }).ToList();
-            model.Tipos = (from c in modelEntity.SAF_PARAMETRICA.Where(x => x.CODTIPPAR == 8) select new SelectListItem() { Text = c.NOMPAR, Value = c.CODPAR.ToString(),Selected = (c.CODPAR == capacitacion.CODTIPCAPA) }).ToList();
-            model.Categorias = (from c in modelEntity.SAF_PARAMETRICA.Where(x => x.CODTIPPAR == 10) select new SelectListItem() { Text = c.NOMPAR, Value = c.CODPAR.ToString(), Selected = (c.CODPAR == capacitacion.CODCATCAPA) }).ToList();
+            model.Tipos = (from c in modelEntity.SAF_PARAMETRICA.Where(x => x.CODTIPPAR == 8).ToList() select new SelectListItem() { Text = c.NOMPAR, Value = c.CODPAR.ToString(), Selected = (c.CODPAR == capacitacion.CODTIPCAPA) }).ToList();
+            model.Categorias = (from c in modelEntity.SAF_PARAMETRICA.Where(x => x.CODTIPPAR == 10).ToList() select new SelectListItem() { Text = c.NOMPAR, Value = c.CODPAR.ToString(), Selected = (c.CODPAR == capacitacion.CODCATCAPA) }).ToList();
             model.Especialidades = (from c in modelEntity.SAF_CARRERA.ToList() select new SelectListItem() { Text = c.NOMCAR, Value = c.CODCAR.ToString(), Selected = (c.CODCAR == capacitacion.CODCAR) }).ToList();
             return PartialView("_capacitacion", model);
         }
 
         [HttpPost]
-        public string guardarCapacitacion(CapacitacionModel model) {
-            
+        public string guardarCapacitacion(CapacitacionModel model)
+        {
+
             try
             {
                 var capacitacion = new SAF_SOLCAPACITACION();
@@ -224,8 +263,8 @@ namespace SAF.Web.Controllers
                 var id = Archivo.RegistrarArchivo(capacitacion.CODARC, filebe);
 
                 capacitacion.DESSOLCAP = model.desSolCap;
-                capacitacion.FECINISOLCAP=string.IsNullOrEmpty(model.fechaInicioSolCap) ? new DateTime?():DateTime.Parse(model.fechaInicioSolCap);
-                capacitacion.FECFINSOLCAP = string.IsNullOrEmpty(model.fechaFinSolCap) ? new DateTime?() : DateTime.Parse(model.fechaFinSolCap); 
+                capacitacion.FECINISOLCAP = string.IsNullOrEmpty(model.fechaInicioSolCap) ? new DateTime?() : DateTime.Parse(model.fechaInicioSolCap);
+                capacitacion.FECFINSOLCAP = string.IsNullOrEmpty(model.fechaFinSolCap) ? new DateTime?() : DateTime.Parse(model.fechaFinSolCap);
                 capacitacion.NUMHORSOLCAP = model.numHorasSolCap;
                 capacitacion.FECREG = DateTime.Now;
                 capacitacion.USUREG = "SYSTEM";
@@ -248,15 +287,48 @@ namespace SAF.Web.Controllers
             }
 
         }
+
+        public JsonResult eliminarCapacitacion(int id)
+        {
+
+            try
+            {
+                var capacitacion = modelEntity.SAF_SOLCAPACITACION.FirstOrDefault(x => x.CODSOLCAP == id);
+                modelEntity.SAF_SOLCAPACITACION.Remove(capacitacion);
+                modelEntity.SaveChanges();
+                return Json(new MensajeRespuesta("Se eliminó la capacitación satisfactoriamente", true));
+            }
+            catch (Exception)
+            {
+                return Json(new MensajeRespuesta("No se pudo eliminar la capacitación", false));
+            }
+
+        }
         #endregion
 
         #region Experiencia
+        public JsonResult listarExperiencias(int id)
+        {
+            var empresas = modelEntity.SAF_EMPRESA.ToList();
+            var listado = modelEntity.SAF_SOLEXPERIENCIA.Where(x => x.CODSOL == id).ToList();
+
+            var data = listado.Select(c => new[] { 
+                c.CODSOLEXP.ToString(),
+                c.DESSOLEXP,
+                empresas.FirstOrDefault(x=>x.CODEMP== c.CODEMP).RAZSOCEMP,
+                c.FECINISOLEXP.HasValue ? c.FECINISOLEXP.Value.ToShortDateString():string.Empty,
+                c.FECFINSOLEXP.HasValue ? c.FECFINSOLEXP.Value.ToShortDateString():string.Empty,                
+                c.CODARC.HasValue ? c.CODARC.Value.ToString():string.Empty  
+            }).ToArray();
+
+            return Json(data);
+        }
         public PartialViewResult nuevaExperiencia(int id)
         {
             var model = new ExperienciaModel();
-            model.codSol = id;            
-            model.Empresas = (from c in modelEntity.SAF_EMPRESA select new SelectListItem() { Text = c.RAZSOCEMP, Value = c.CODEMP.ToString() }).ToList();
-            model.Tipos = (from c in modelEntity.SAF_PARAMETRICA.Where(x => x.CODTIPPAR == 7) select new SelectListItem() { Text = c.NOMPAR, Value = c.CODPAR.ToString() }).ToList();
+            model.codSol = id;
+            model.Empresas = (from c in modelEntity.SAF_EMPRESA.ToList() select new SelectListItem() { Text = c.RAZSOCEMP, Value = c.CODEMP.ToString() }).ToList();
+            model.Tipos = (from c in modelEntity.SAF_PARAMETRICA.Where(x => x.CODTIPPAR == 7).ToList() select new SelectListItem() { Text = c.NOMPAR, Value = c.CODPAR.ToString() }).ToList();
             return PartialView("_experiencia", model);
         }
 
@@ -264,6 +336,7 @@ namespace SAF.Web.Controllers
         {
             var experiencia = modelEntity.SAF_SOLEXPERIENCIA.FirstOrDefault(x => x.CODSOLEXP == id);
             var model = new ExperienciaModel();
+            model.codSolExp = experiencia.CODSOLEXP;
             model.descSolExp = experiencia.DESSOLEXP;
             model.fechaInicioSolExp = string.Format("{0:dd/MM/yyyy}", experiencia.FECINISOLEXP);
             model.fechaFinSolExp = string.Format("{0:dd/MM/yyyy}", experiencia.FECFINSOLEXP);
@@ -273,8 +346,8 @@ namespace SAF.Web.Controllers
             model.codTipExp = experiencia.CODTIPEXP;
             model.nombreArchivoExp = experiencia.NOMBLABEL;
             model.codArchivoExp = experiencia.CODARC;
-            model.Empresas = (from c in modelEntity.SAF_EMPRESA select new SelectListItem() { Text = c.RAZSOCEMP, Value = c.CODEMP.ToString() }).ToList();
-            model.Tipos = (from c in modelEntity.SAF_PARAMETRICA.Where(x => x.CODTIPPAR == 7) select new SelectListItem() { Text = c.NOMPAR, Value = c.CODPAR.ToString() }).ToList();
+            model.Empresas = (from c in modelEntity.SAF_EMPRESA.ToList() select new SelectListItem() { Text = c.RAZSOCEMP, Value = c.CODEMP.ToString() }).ToList();
+            model.Tipos = (from c in modelEntity.SAF_PARAMETRICA.Where(x => x.CODTIPPAR == 7).ToList() select new SelectListItem() { Text = c.NOMPAR, Value = c.CODPAR.ToString() }).ToList();
             return PartialView("_experiencia", model);
         }
 
@@ -317,6 +390,22 @@ namespace SAF.Web.Controllers
             catch (Exception)
             {
                 return JsonConvert.SerializeObject(new MensajeRespuesta("No se pudo guardar la experiencia", false));
+            }
+
+        }
+
+        public JsonResult eliminarExperiencia(int id)
+        {
+            try
+            {
+                var experiencia = modelEntity.SAF_SOLEXPERIENCIA.FirstOrDefault(x => x.CODSOLEXP == id);
+                modelEntity.SAF_SOLEXPERIENCIA.Remove(experiencia);
+                modelEntity.SaveChanges();
+                return Json(new MensajeRespuesta("Se eliminó la experiencia satisfactoriamente", true));
+            }
+            catch (Exception)
+            {
+                return Json(new MensajeRespuesta("No se pudo eliminar la experiencia", false));
             }
 
         }

@@ -150,6 +150,11 @@
                                                 <h3 class="box-title">Capacitaciones</h3>
                                             </div>
                                             <div class="box-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <button type="button" id="btnAgregarCapacitacion" class="btn btn-primary"><i class="fa fa-file"></i>&nbsp;Agregar</button>
+                                                    </div>
+                                                </div>
                                                 <table id="tabCapacitaciones" class="table table-striped table-bordered" cellpadding="0" cellspacing="0" border="0"></table>
                                             </div>
                                         </div>
@@ -163,6 +168,11 @@
                                                 <h3 class="box-title">Experiencias</h3>
                                             </div>
                                             <div class="box-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <button type="button" id="btnAgregarExperiencia" class="btn btn-primary"><i class="fa fa-file"></i>&nbsp;Agregar</button>
+                                                    </div>
+                                                </div>
                                                 <table id="tabExperiencias" class="table table-striped table-bordered" cellpadding="0" cellspacing="0" border="0"></table>
                                             </div>
                                         </div>
@@ -188,19 +198,22 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="modal fade" id="dlgRegistroCapacitacion" tabindex="-1" role="dialog" aria-hidden="true"></div>
+                                <div class="modal fade" id="dlgRegistroExperiencia" tabindex="-1" role="dialog" aria-hidden="true"></div>
 }
 @section scripts {
 
     <script type="text/javascript" language="javascript">
-    var tabCapacitaciones;
-    var _dataCapacitaciones_ = null;
-    var tabExperiencias;
-    var _dataExperiencias_ = null;
+        var tabCapacitaciones, _capacitaciones_;
+        var tabExperiencias, _experiencias_;
 
-    $("#nombreArchivo").fileInput({ file: $("#codArchivo").val(), fileName: "archivoCertificadoAuditor", ctrlCleanDelete: ["codArchivo"] });
+        $('#dlgRegistroCapacitacion').on('hidden.bs.modal', function () { $("#dlgRegistroCapacitacion").empty(); });
+        $('#dlgRegistroExperiencia').on('hidden.bs.modal', function () { $("#dlgRegistroExperiencia").empty(); });
+        $("#btnAgregarExperiencia").click(function () { agregarExperiencia() });
+        $("#btnAgregarCapacitacion").click(function () { agregarCapacitacion() });
+        $("#nombreArchivo").fileInput({ file: $("#codArchivo").val(), fileName: "archivoCertificadoAuditor", ctrlCleanDelete: ["codArchivo"] });
 
-    $(document).ready(function () {
+
         load();
         if (
            '@Model.estadoSolicitud' == '@Convert.ToInt32(Estado.Solicitud.Elaboracion)' ||
@@ -212,6 +225,9 @@
         } else {
             $("#btnEnviarInfoAuditorSolicitud").prop("disabled", true);
             $("#btnGuardarSolicitudInscripcionAuditor").prop("disabled", true);
+            $("#nombreArchivo").fileInput({ file: $("#codArchivo").val(), fileName: "archivoCertificadoAuditor", disabled: true });
+            $("#btnAgregarExperiencia").attr("disabled", true);
+            $("#btnAgregarCapacitacion").attr("disabled", true);
         }
 
         $("#btnGuardarSolicitudInscripcionAuditor").click(guardarSolicitudAuditor);
@@ -233,117 +249,213 @@
                     if (result.Exito) {
                         $("#btnGuardarSolicitudInscripcionAuditor").prop("disabled", true);
                         $("#btnEnviarInfoAuditorSolicitud").prop("disabled", true);
+                        $("#btnAgregarExperiencia").attr("disabled", true);
+                        $("#btnAgregarCapacitacion").attr("disabled", true);
+
                     }
                 }
             });
         }
-    });
-
-    function guardarSolicitudAuditor() {
-        $("#frmRegistroSolicitudAuditor").submit();
-    }
-
-    function load() {
-        $("#iRegistroSolicitudAuditor").load(function () {
 
 
-            var resultText = $("#iRegistroSolicitudAuditor").contents().find('body').html();
-            if (resultText == "") return;
-
-            var result = jQuery.parseJSON(resultText);
-            mostrarNotificacion(result);
-        });
-    }
-
-    function regresarListadoSolicitud() {
-        document.location = '@Url.Action("Index", "Solicitud")';
-    }
-
-    function listarCapacitaciones() {
-
-        if (tabCapacitaciones == undefined) {
-            tabCapacitaciones = $("#tabCapacitaciones").dataTable({
-                "info": false,
-                "bServerSide": false,
-                "data": _dataSolicitudes_,
-                //"order": [[1, "asc"]],
-                "columns": [
-                    {
-                        "bSortable": false,
-                        "sClass": "center",
-                        "sWidth": "5%",
-                        "render": function (data, type, row) {
-                            if ('@Convert.ToInt32(Session["sessionTipoUsuario"])' == '@Convert.ToInt32(Tipo.TipoUsuarioExtranet.SociedadAuditoria)')
-                                return '<center><button class="btn btn-primary" title="Abrir" type="button" onclick="editarSolicitudSOA(' + row[0] + ');"><i class="fa fa-search-plus"></i></button></center>';
-                            else
-                                return '<center><button class="btn btn-primary" title="Abrir" type="button" onclick="editarSolicitudAuditor(' + row[0] + ');"><i class="fa fa-search-plus"></i></button></center>';
-                        }
-                    },
-                    {
-                        "sTitle": "Nº Solicitud",
-                        "sClass": "center"
-                    },
-                    { "sTitle": "Tipo Solicitud" },
-                    { "sTitle": "Estado Solicitud" }
-                ]
-
-            });
+        function guardarSolicitudAuditor() {
+            $("#frmRegistroSolicitudAuditor").submit();
         }
 
-        $.ajax({
-            url: '@Url.Action("listarCapacitaciones", "Solicitud")',
-            type: 'POST',
-            async: false,
-            data: {id= '@Model.codigoSolicitud'},
-                success: function (result) {
-                    _dataSolicitudes_ = result;
-                    tabSolicitudes.fnReloadData(_dataSolicitudes_);
-                }
+        function load() {
+            $("#iRegistroSolicitudAuditor").load(function () {
+                var resultText = $("#iRegistroSolicitudAuditor").contents().find('body').html();
+                if (resultText == "") return;
+
+                var result = jQuery.parseJSON(resultText);
+                mostrarNotificacion(result);
             });
+            cargarCapacitaciones();
+            cargarExperiencias();
         }
 
-        function listarExperiencias() {
+        function regresarListadoSolicitud() {
+            document.location = '@Url.Action("Index", "Solicitud")';
+        }
 
-            if (tabExperiencias == undefined) {
-                tabExperiencias = $("#tabExperiencias").dataTable({
-                    "info": false,
-                    "bServerSide": false,
-                    "data": _dataSolicitudes_,
-                    //"order": [[1, "asc"]],
-                    "columns": [
-                        {
-                            "bSortable": false,
-                            "sClass": "center",
-                            "sWidth": "5%",
-                            "render": function (data, type, row) {
-                                if ('@Convert.ToInt32(Session["sessionTipoUsuario"])' == '@Convert.ToInt32(Tipo.TipoUsuarioExtranet.SociedadAuditoria)')
-                                    return '<center><button class="btn btn-primary" title="Abrir" type="button" onclick="editarSolicitudSOA(' + row[0] + ');"><i class="fa fa-search-plus"></i></button></center>';
-                                else
-                                    return '<center><button class="btn btn-primary" title="Abrir" type="button" onclick="editarSolicitudAuditor(' + row[0] + ');"><i class="fa fa-search-plus"></i></button></center>';
-                            }
-                        },
-                        {
-                            "sTitle": "Nº Solicitud",
-                            "sClass": "center"
-                        },
-                        { "sTitle": "Tipo Solicitud" },
-                        { "sTitle": "Estado Solicitud" }
-                    ]
-
-                });
-            }
-
+        function cargarCapacitaciones() {
             $.ajax({
-                url: '@Url.Action("listarExperiencias", "Solicitud")',
+                url: '@Url.Action("listarCapacitaciones", "Solicitud")',                
                 type: 'POST',
                 async: false,
-                data: {id= '@Model.codigoSolicitud'},
+                data: { id: '@Model.codigoSolicitud' },
                 success: function (result) {
-                    _dataSolicitudes_ = result;
-                    tabSolicitudes.fnReloadData(_dataSolicitudes_);
+                    _capacitaciones_ = result;
+                    tabCapacitaciones.fnReloadData(_capacitaciones_);
                 }
             });
-        }
+        };
+
+        var tabCapacitaciones = $("#tabCapacitaciones").dataTable({
+            "info": false,
+            "bServerSide": false,
+            "data": _capacitaciones_,
+            //"order": [[1, "asc"]],
+            "columns": [
+                {
+                    "bSortable": false,
+                    "sClass": "center",
+                    "sWidth": "5%",
+                    "render": function (data, type, row) {
+                        if ('@Model.estadoSolicitud' == '@Convert.ToInt32(Estado.Solicitud.Elaboracion)' ||
+                             '@Model.estadoSolicitud' == '@Convert.ToInt32(Estado.Solicitud.Observada)')
+                            return '<center><button class="btn btn-primary" title="Editar" type="button" onclick="editarCapacitacion(' + row[0] + ');"><i class="fa fa-edit"></i></button></center>';
+                        return "";
+                    }
+                },
+            {
+                "sTitle": "Descripción",
+                "sClass": "center"
+            },
+            { "sTitle": "Especialidad" },
+            { "sTitle": "Inicio" },
+            { "sTitle": "Fin" },
+            {
+                "sClass": "center",
+                "render": function (data, type, row) {
+                    if ('@Model.estadoSolicitud' == '@Convert.ToInt32(Estado.Solicitud.Elaboracion)' ||
+                         '@Model.estadoSolicitud' == '@Convert.ToInt32(Estado.Solicitud.Observada)')
+                        return '<center><button class="btn btn-danger" title="Eliminar" type="button" onclick="eliminarCapacitacion(' + row[0] + ');"><i class="fa fa-trash"></i></button></center>';
+                    return "";
+                }
+            },
+            ]
+        });
+
+        function agregarCapacitacion() {
+            $.ajax({
+                url: '@Url.Action("nuevaCapacitacion")',
+                data: { id: '@Model.codigoSolicitud' },
+                success: function (result) {
+                    $("#dlgRegistroCapacitacion").empty().html(result).modal().modal({ show: true, backdrop: 'static' });
+                }
+            });
+        };
+
+        function editarCapacitacion(id) {
+            $.ajax({
+                url: '@Url.Action("editarCapacitacion")',
+                data: { id: id },
+                success: function (result) {
+                    $("#dlgRegistroCapacitacion").empty().html(result).modal({ show: true, backdrop: 'static' });
+                }
+            });
+        };
+
+        function eliminarCapacitacion(id) {
+            bootbox.confirm(parametros.general.mensajeConfirmacion, function (result) {
+                confirmaEliminarCapacitacion(id);
+            });
+        };
+
+        function confirmaEliminarCapacitacion(id) {
+            $.ajax({
+                url: '@Url.Action("eliminarCapacitacion")',
+                type: 'POST',
+                async: false,
+                data: { id: id },
+                success: function (result) {
+                    mostrarNotificacion(result);
+                    if (result.Exito) cargarCapacitaciones();
+                }
+            });
+        };
+
+
+
+        //Experiencias
+        function cargarExperiencias() {
+            $.ajax({
+                url: '@Url.Action("listarExperiencias", "Solicitud")',                
+                type: 'POST',
+                async: false,
+                data: { id: '@Model.codigoSolicitud' },
+                success: function (result) {
+                    _experiencias_ = result;
+                    tabExperiencias.fnReloadData(_experiencias_);
+                }
+            });
+        };
+
+        var tabExperiencias = $("#tabExperiencias").dataTable({
+            "info": false,
+            "bServerSide": false,
+            "data": _experiencias_,
+            //"order": [[1, "asc"]],
+            "columns": [
+                {
+                    "bSortable": false,
+                    "sClass": "center",
+                    "sWidth": "5%",
+                    "render": function (data, type, row) {
+                        if ('@Model.estadoSolicitud' == '@Convert.ToInt32(Estado.Solicitud.Elaboracion)' ||
+                             '@Model.estadoSolicitud' == '@Convert.ToInt32(Estado.Solicitud.Observada)')
+                            return '<center><button class="btn btn-primary" title="Editar" type="button" onclick="editarExperiencia(' + row[0] + ');"><i class="fa fa-edit"></i></button></center>';
+                        return "";
+                    }
+                },
+            {
+                "sTitle": "Descripción",
+                "sClass": "center"
+            },
+            { "sTitle": "Empresa" },
+            { "sTitle": "Inicio" },
+            { "sTitle": "Fin" },
+            {
+                "sClass": "center",
+                "render": function (data, type, row) {
+                    if ('@Model.estadoSolicitud' == '@Convert.ToInt32(Estado.Solicitud.Elaboracion)' ||
+                         '@Model.estadoSolicitud' == '@Convert.ToInt32(Estado.Solicitud.Observada)')
+                        return '<center><button class="btn btn-danger" title="Eliminar" type="button" onclick="eliminarExperiencia(' + row[0] + ');"><i class="fa fa-trash"></i></button></center>';
+                    return "";
+                }
+            },
+            ]
+        });
+
+        function agregarExperiencia() {
+            $.ajax({
+                url: '@Url.Action("nuevaExperiencia")',
+                data: { id: '@Model.codigoSolicitud' },
+                success: function (result) {
+                    $("#dlgRegistroExperiencia").empty().html(result).modal().modal({ show: true, backdrop: 'static' });
+                }
+            });
+        };
+
+        function editarExperiencia(id) {
+            $.ajax({
+                url: '@Url.Action("editarExperiencia")',
+                data: { id: id },
+                success: function (result) {
+                    $("#dlgRegistroExperiencia").empty().html(result).modal({ show: true, backdrop: 'static' });
+                }
+            });
+        };
+
+        function eliminarExperiencia(id) {
+            bootbox.confirm(parametros.general.mensajeConfirmacion, function (result) {
+                confirmaEliminarExperiencia(id);
+            });
+        };
+
+        function confirmaEliminarExperiencia(id) {
+            $.ajax({
+                url: '@Url.Action("eliminarExperiencia")',
+                type: 'POST',
+                async: false,
+                data: { id: id },
+                success: function (result) {
+                    mostrarNotificacion(result);
+                    if (result.Exito) cargarExperiencias();
+                }
+            });
+        };
 
     </script>
 }
