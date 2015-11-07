@@ -12,6 +12,8 @@ namespace SAF.Web
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class ModeloExtranet : DbContext
     {
@@ -70,5 +72,126 @@ namespace SAF.Web
         public virtual DbSet<SAF_EXPERIENCIA> SAF_EXPERIENCIA { get; set; }
         public virtual DbSet<SAF_SOLCAPACITACION> SAF_SOLCAPACITACION { get; set; }
         public virtual DbSet<SAF_SOLEXPERIENCIA> SAF_SOLEXPERIENCIA { get; set; }
+    
+        public virtual int SP_CARGARDIALABORABLE(string aNIO)
+        {
+            var aNIOParameter = aNIO != null ?
+                new ObjectParameter("ANIO", aNIO) :
+                new ObjectParameter("ANIO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CARGARDIALABORABLE", aNIOParameter);
+        }
+    
+        public virtual ObjectResult<SP_SAF_AUDITORAPTOINVITAR_Result> SP_SAF_AUDITORAPTOINVITAR(Nullable<int> cODPUB, Nullable<int> cODSERAUD)
+        {
+            var cODPUBParameter = cODPUB.HasValue ?
+                new ObjectParameter("CODPUB", cODPUB) :
+                new ObjectParameter("CODPUB", typeof(int));
+    
+            var cODSERAUDParameter = cODSERAUD.HasValue ?
+                new ObjectParameter("CODSERAUD", cODSERAUD) :
+                new ObjectParameter("CODSERAUD", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_AUDITORAPTOINVITAR_Result>("SP_SAF_AUDITORAPTOINVITAR", cODPUBParameter, cODSERAUDParameter);
+        }
+    
+        public virtual ObjectResult<SP_SAF_CORTEPUBLICACION_Result> SP_SAF_CORTEPUBLICACION(Nullable<int> cODPUB)
+        {
+            var cODPUBParameter = cODPUB.HasValue ?
+                new ObjectParameter("CODPUB", cODPUB) :
+                new ObjectParameter("CODPUB", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_CORTEPUBLICACION_Result>("SP_SAF_CORTEPUBLICACION", cODPUBParameter);
+        }
+    
+        public virtual ObjectResult<SP_SAF_MEJOREQUIPO_Result> SP_SAF_MEJOREQUIPO(Nullable<int> cODPUB, Nullable<int> cODSERAUD)
+        {
+            var cODPUBParameter = cODPUB.HasValue ?
+                new ObjectParameter("CODPUB", cODPUB) :
+                new ObjectParameter("CODPUB", typeof(int));
+    
+            var cODSERAUDParameter = cODSERAUD.HasValue ?
+                new ObjectParameter("CODSERAUD", cODSERAUD) :
+                new ObjectParameter("CODSERAUD", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_MEJOREQUIPO_Result>("SP_SAF_MEJOREQUIPO", cODPUBParameter, cODSERAUDParameter);
+        }
+    
+        public virtual ObjectResult<SP_SAF_RESULTADOCORTE_Result> SP_SAF_RESULTADOCORTE(Nullable<int> cODPUB)
+        {
+            var cODPUBParameter = cODPUB.HasValue ?
+                new ObjectParameter("CODPUB", cODPUB) :
+                new ObjectParameter("CODPUB", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_RESULTADOCORTE_Result>("SP_SAF_RESULTADOCORTE", cODPUBParameter);
+        }
+    
+        public virtual ObjectResult<SP_SAF_INVITARAUDITORES_Result> SP_SAF_INVITARAUDITORES(Nullable<int> cODSOA, Nullable<int> cODPUB, Nullable<int> cODSERAUD, string sTRAUDITORCARGO)
+        {
+            var cODSOAParameter = cODSOA.HasValue ?
+                new ObjectParameter("CODSOA", cODSOA) :
+                new ObjectParameter("CODSOA", typeof(int));
+    
+            var cODPUBParameter = cODPUB.HasValue ?
+                new ObjectParameter("CODPUB", cODPUB) :
+                new ObjectParameter("CODPUB", typeof(int));
+    
+            var cODSERAUDParameter = cODSERAUD.HasValue ?
+                new ObjectParameter("CODSERAUD", cODSERAUD) :
+                new ObjectParameter("CODSERAUD", typeof(int));
+    
+            var sTRAUDITORCARGOParameter = sTRAUDITORCARGO != null ?
+                new ObjectParameter("STRAUDITORCARGO", sTRAUDITORCARGO) :
+                new ObjectParameter("STRAUDITORCARGO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_INVITARAUDITORES_Result>("SP_SAF_INVITARAUDITORES", cODSOAParameter, cODPUBParameter, cODSERAUDParameter, sTRAUDITORCARGOParameter);
+        }
+    
+        public virtual ObjectResult<SP_SAF_INVITACION_Result> SP_SAF_INVITACION(Nullable<int> cODPUB, Nullable<int> cODSERAUD)
+        {
+            var cODPUBParameter = cODPUB.HasValue ?
+                new ObjectParameter("CODPUB", cODPUB) :
+                new ObjectParameter("CODPUB", typeof(int));
+    
+            var cODSERAUDParameter = cODSERAUD.HasValue ?
+                new ObjectParameter("CODSERAUD", cODSERAUD) :
+                new ObjectParameter("CODSERAUD", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_INVITACION_Result>("SP_SAF_INVITACION", cODPUBParameter, cODSERAUDParameter);
+        }
+    
+        public virtual ObjectResult<SP_DISPONIBILIDADAUDITOR_Result> SP_DISPONIBILIDADAUDITOR(Nullable<int> cODAUD, string fECINI, string fECFIN)
+        {
+            var cODAUDParameter = cODAUD.HasValue ?
+                new ObjectParameter("CODAUD", cODAUD) :
+                new ObjectParameter("CODAUD", typeof(int));
+    
+            var fECINIParameter = fECINI != null ?
+                new ObjectParameter("FECINI", fECINI) :
+                new ObjectParameter("FECINI", typeof(string));
+    
+            var fECFINParameter = fECFIN != null ?
+                new ObjectParameter("FECFIN", fECFIN) :
+                new ObjectParameter("FECFIN", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_DISPONIBILIDADAUDITOR_Result>("SP_DISPONIBILIDADAUDITOR", cODAUDParameter, fECINIParameter, fECFINParameter);
+        }
+    
+        public virtual ObjectResult<SP_SAF_AGENDAREGISTRAR_Result> SP_SAF_AGENDAREGISTRAR(Nullable<int> cODINV, Nullable<int> nUMHOR, string sTRFECHAS)
+        {
+            var cODINVParameter = cODINV.HasValue ?
+                new ObjectParameter("CODINV", cODINV) :
+                new ObjectParameter("CODINV", typeof(int));
+    
+            var nUMHORParameter = nUMHOR.HasValue ?
+                new ObjectParameter("NUMHOR", nUMHOR) :
+                new ObjectParameter("NUMHOR", typeof(int));
+    
+            var sTRFECHASParameter = sTRFECHAS != null ?
+                new ObjectParameter("STRFECHAS", sTRFECHAS) :
+                new ObjectParameter("STRFECHAS", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_AGENDAREGISTRAR_Result>("SP_SAF_AGENDAREGISTRAR", cODINVParameter, nUMHORParameter, sTRFECHASParameter);
+        }
     }
 }

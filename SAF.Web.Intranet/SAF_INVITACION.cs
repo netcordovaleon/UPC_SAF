@@ -34,6 +34,7 @@ namespace SAF.Web.Intranet
         public Nullable<int> CODSERAUD { get; set; }
         public Nullable<int> CODPUB { get; set; }
         public Nullable<int> ESTINV { get; set; }
+        public Nullable<int> CODCAR { get; set; }
     
         public virtual SAF_AUDITOR SAF_AUDITOR { get; set; }
         public virtual SAF_SOA SAF_SOA { get; set; }

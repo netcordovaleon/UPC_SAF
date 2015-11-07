@@ -11,8 +11,14 @@
             <h4 class="modal-title">Busqueda Auditores Financieros</h4>
         </div>
         <div class="modal-body">
-            
 
+            <div class="callout callout-warning">
+                <h4><i class="icon fa fa-info"></i>&nbsp;Advertencia</h4>
+                <p>
+                    <i class="fa fa-info-circle"></i>&nbsp;<strong>Mejor Equipo:</strong> Son auditores que cuentan con mejor puntaje pero pueden tener un costo mayor por hora.<br />
+                    <i class="fa fa-info-circle"></i>&nbsp;<strong>Busqueda de Auditores:</strong> Son auditores que cumplen con los requisitos del servicio de Auditoria.
+                </p>
+            </div>
             <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active"><a href="#tabsMejorEquipo" aria-controls="home" role="tab" data-toggle="tab">Mejor Equipo</a></li>
                 <li role="presentation"><a href="#tabsAuditoresAptos" aria-controls="profile" role="tab" data-toggle="tab">Busqueda Auditores</a></li>
@@ -21,11 +27,11 @@
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="tabsMejorEquipo">
 
-                     
 
                     <table id="tabMejorEquipo" class="table table-striped table-bordered" cellpadding="0" cellspacing="0" border="0"></table>
 
-                     
+
+
 
                 </div>
                 <div role="tabpanel" class="tab-pane" id="tabsAuditoresAptos">
@@ -34,10 +40,11 @@
             </div>
 
 
-            
+
 
         </div>
         <div class="modal-footer">
+            <input type="button" class="btn btn-primary" id="btnInvitarAuditores" value="Invitar" />
             <input type="button" class="btn btn-default" id="btnCancelar" value="Cerrar" data-dismiss="modal" />
         </div>
     </div>
@@ -45,8 +52,8 @@
 <script type="text/javascript">
 
 
-    var tabMejorEquipo;
-    var tabAuditoresAptos;
+
+
 
 
     var _dataMejorEquipo_ = null;
@@ -54,36 +61,64 @@
 
 
     $(document).ready(function () {
+        $("#btnInvitarAuditores").click(invitarAuditores);
         listarMejorEquipo();
+        listarAuditoresAptos();
     });
+
+
+    function invitarAuditores() {
+        var codigosAuditorServicio = "";
+
+        $("input[name='chkAuditorServicio']:checked").each(function (i, v) {
+            if (codigosAuditorServicio == "")
+                codigosAuditorServicio = $(this).val();
+            else
+                codigosAuditorServicio = codigosAuditorServicio + "," + $(this).val();
+        });
+
+        $.ajax({
+            url: '@Url.Action("InvitarAuditores", "InvitacionAuditor")',
+            type: 'POST',
+            async: false,
+            data: {
+                idPub: $("#codigoPublicacionBusqueda").val(),
+                idSerAud: $("#codigoServicioAudBusqueda").val(),
+                strAudCargo: codigosAuditorServicio
+            },
+            success: function (result) {
+                mostrarNotificacion(result);
+                listarInvitaciones();
+            }
+        });
+    }
 
     function listarMejorEquipo() {
 
-        if (tabMejorEquipo == undefined) {
-            tabMejorEquipo = $("#tabMejorEquipo").dataTable({
-                "info": false,
-                "bServerSide": false,
-                "data": _dataMejorEquipo_,
-                "order": [[1, "asc"]],
-                "columns": [
-                    {
-                        "bSortable": false,
-                        "sClass": "center",
-                        "sWidth": "5%",
-                        "render": function (data, type, row) {
-                            return '<center><button class="btn btn-primary" title="Abrir" type="button" onclick="abrirPublicacion(' + row[0] + ');"><i class="fa fa-search-plus"></i></button></center>';
-                        }
-                    },
-                    { "sTitle": "Auditor" },
-                    { "sTitle": "Cargo" },
-                    { "sTitle": "Ptos. Experiencia", "sClass": "center" },
-                    { "sTitle": "Ptos. Capacitacion", "sClass": "center" },
-                    { "sTitle": "Ptos.q Totales", "sClass": "center" },
-                    { "sTitle": "Hrs. Disponible", "sClass": "center" }
-                ]
+        var tabMejorEquipo = $("#tabMejorEquipo").dataTable({
+            "info": false,
+            "bServerSide": false,
+            "data": _dataMejorEquipo_,
+            "order": [[1, "asc"]],
+            "columns": [
+                {
+                    "bSortable": false,
+                    "sClass": "center",
+                    "sWidth": "5%",
+                    "render": function (data, type, row) {
+                        return "<input type='checkbox' name='chkAuditorServicio' value='" + row[0] + "#" + row[7] + "' />"
+                    }
+                },
+                { "sTitle": "Auditor" },
+                { "sTitle": "Cargo" },
+                { "sTitle": "Ptos. Experiencia", "sClass": "center" },
+                { "sTitle": "Ptos. Capacitacion", "sClass": "center" },
+                { "sTitle": "Ptos.q Totales", "sClass": "center" },
+                { "sTitle": "Hrs. Disponible", "sClass": "center" }
+            ]
 
-            });
-        }
+        });
+
 
         $.ajax({
             url: '@Url.Action("ListarMejorEquipo", "InvitacionAuditor")',
@@ -93,6 +128,7 @@
             success: function (result) {
                 _dataMejorEquipo_ = result;
                 tabMejorEquipo.fnReloadData(_dataMejorEquipo_);
+                tabMejorEquipo.fnDraw();
             }
         });
     }
@@ -100,34 +136,34 @@
 
     function listarAuditoresAptos() {
 
-        if (tabAuditoresAptos == undefined) {
-            tabAuditoresAptos = $("#tabAuditoresAptos").dataTable({
-                "info": false,
-                "bServerSide": false,
-                "data": _dataAuditoresAptos_,
-                "order": [[1, "asc"]],
-                "columns": [
-                    {
-                        "bSortable": false,
-                        "sClass": "center",
-                        "sWidth": "5%",
-                        "render": function (data, type, row) {
-                            return '<center><button class="btn btn-primary" title="Abrir" type="button" onclick="abrirPublicacion(' + row[0] + ');"><i class="fa fa-search-plus"></i></button></center>';
-                        }
-                    },
-                    { "sTitle": "Auditor" },
-                    { "sTitle": "Cargo" },
-                    { "sTitle": "Ptos. Experiencia", "sClass": "center" },
-                    { "sTitle": "Ptos. Capacitacion", "sClass": "center" },
-                    { "sTitle": "Ptos.q Totales", "sClass": "center" },
-                    { "sTitle": "Hrs. Disponible", "sClass": "center" }
-                ]
 
-            });
-        }
+        var tabAuditoresAptos = $("#tabAuditoresAptos").dataTable({
+            "info": false,
+            "bServerSide": false,
+            "data": _dataAuditoresAptos_,
+            "order": [[1, "asc"]],
+            "columns": [
+                {
+                    "bSortable": false,
+                    "sClass": "center",
+                    "sWidth": "5%",
+                    "render": function (data, type, row) {
+                        return "<input type='checkbox' value='" + row[0] + "#" + row[7] + "' />"
+                    }
+                },
+                { "sTitle": "Auditor" },
+                { "sTitle": "Cargo" },
+                { "sTitle": "Ptos. Experiencia", "sClass": "center" },
+                { "sTitle": "Ptos. Capacitacion", "sClass": "center" },
+                { "sTitle": "Ptos.q Totales", "sClass": "center" },
+                { "sTitle": "Hrs. Disponible", "sVisible": false, "sClass": "center" }
+            ]
+
+        });
+
 
         $.ajax({
-            url: '@Url.Action("ListarMejorEquipo", "InvitacionAuditor")',
+            url: '@Url.Action("ListarAuditoresAptos", "InvitacionAuditor")',
             type: 'POST',
             async: false,
             data: { idPub: $("#codigoPublicacionBusqueda").val(), idSerAud: $("#codigoServicioAudBusqueda").val() },

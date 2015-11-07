@@ -48,8 +48,12 @@ namespace SAF.Configuracion.Enum
         {
             [Description("Elaboracion")]
             Elaboracion = 7,
-            [Description("Aprobado")]
-            Aprobado = 8
+            [Description("Aceptado")]
+            Aceptado = 8,
+            [Description("Enviada")]
+            Enviada = 30,
+            [Description("Cancelada")]
+            Cancelada = 31
         }
 
         public enum ConsultasPublicacion

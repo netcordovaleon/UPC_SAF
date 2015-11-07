@@ -9,9 +9,33 @@ namespace SAF.Web.Models
 {
     public class InvitacionModel
     {
+        #region BUSQUEDA DE AUDITORES
 
         public int codigoPublicacionBusqueda { get; set; }
         public int codigoServicioAudBusqueda { get; set; }
+
+        #endregion
+
+        #region REGISTRO DE FECHAS LABORALES
+
+        public int codigoInvitacionAgenda { get; set; }
+
+        [Display(Name = "N° Horas laborales")]
+        public int numeroHorasLaboral { get; set; }
+        public int codigoAuditorAgenda { get; set; }
+        [Display(Name = "Nombre Completo Auditor")]
+        public string nomCompletoAuditor { get; set; }
+        [Display(Name = "Cargo del Auditor invitado")]
+        public string cargoInvitacionAuditor { get; set; }
+
+        [Display(Name = "Fecha Inicial")]
+        public string fechaInicio { get; set; }
+        [Display(Name = "Fecha Final")]
+        public string fechaFinal { get; set; }
+
+        #endregion
+
+
 
 
         [Display(Name="Codigo Invitacion")]

@@ -22,6 +22,8 @@ namespace SAF.Web
         public int CODSERAUD { get; set; }
         public string PERSERAUD { get; set; }
         public Nullable<int> ESTINV { get; set; }
+        public Nullable<System.DateTime> FECACEPINV { get; set; }
+        public string NOMCAR { get; set; }
         public string VALOR { get; set; }
     }
 }

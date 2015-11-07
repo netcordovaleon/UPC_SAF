@@ -399,6 +399,7 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.SAF_DIALABORABLE' does not have a pr
           <Property Name="CODSERAUD" Type="int" />
           <Property Name="CODPUB" Type="int" />
           <Property Name="ESTINV" Type="int" />
+          <Property Name="CODCAR" Type="int" />
         </EntityType>
         <EntityType Name="SAF_INVITACIONDETALLE">
           <Key>
@@ -2062,6 +2063,7 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <NavigationProperty Name="SAF_INVITACIONDETALLE" Relationship="Self.R_34" FromRole="SAF_INVITACION" ToRole="SAF_INVITACIONDETALLE" />
           <NavigationProperty Name="SAF_SERVICIOAUDITORIA" Relationship="Self.R_36" FromRole="SAF_INVITACION" ToRole="SAF_SERVICIOAUDITORIA" />
           <NavigationProperty Name="SAF_PUBLICACION" Relationship="Self.R_37" FromRole="SAF_INVITACION" ToRole="SAF_PUBLICACION" />
+          <Property Name="CODCAR" Type="Int32" />
         </EntityType>
         <EntityType Name="SAF_INVITACIONDETALLE">
           <Key>
@@ -3781,6 +3783,7 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <EntitySetMapping Name="SAF_INVITACION">
             <EntityTypeMapping TypeName="modeloIntranet.SAF_INVITACION">
               <MappingFragment StoreEntitySet="SAF_INVITACION">
+                <ScalarProperty Name="CODCAR" ColumnName="CODCAR" />
                 <ScalarProperty Name="CODINV" ColumnName="CODINV" />
                 <ScalarProperty Name="NUMINV" ColumnName="NUMINV" />
                 <ScalarProperty Name="INDCANINV" ColumnName="INDCANINV" />

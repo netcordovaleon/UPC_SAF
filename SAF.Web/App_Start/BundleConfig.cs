@@ -74,7 +74,7 @@ namespace SAF.Web
                 "~/Scripts/jquery.knob.js", //check
                 "~/Scripts/moment.min.js",
                 "~/Scripts/daterangepicker.js",
-                "~/Scripts/bootstrap-datepicker.js",
+                
                 "~/Scripts/bootstrap3-wysihtml5.all.min.js",
                 "~/Scripts/jquery.slimscroll.min.js",
                 "~/Scripts/fastclick.min.js",
@@ -84,8 +84,18 @@ namespace SAF.Web
                 "~/Scripts/demo.js",
                 "~/Scripts/bootbox.js",
 
+                "~/Scripts/ace-elements.min.js",
+                "~/Scripts/ace.min.js",
+
                 "~/Scripts/jquery.dataTables.min.js",
                 "~/Scripts/dataTables.bootstrap.js",
+
+
+
+                "~/Scripts/bootstrap-datepicker.js",
+                "~/Scripts/locales/bootstrap-datepicker.es.js",
+                "~/Scripts/bootstrap-timepicker.js",
+
                 "~/Scripts/core.js"
                 ));
 
@@ -151,7 +161,8 @@ namespace SAF.Web
                 "~/Content/daterangepicker-bs3.css",
                 "~/Content/bootstrap3-wysihtml5.min.css",
                 "~/Content/pnotify.custom.min.css",
-                "~/Content/dataTables.bootstrap.css"
+                "~/Content/dataTables.bootstrap.css",
+                "~/Content/bootstrap-datepicker3.css"
                 
                 ));
 
