@@ -23,8 +23,8 @@
                         </div>
                         <div class="col-md-8">
                             <br />
-                            <button class="btn btn-primary" type="button" ><i class="fa fa-search"></i>&nbsp;Buscar</button>&nbsp;&nbsp;
-                            <button class="btn btn-info" type="button" ><i class="fa fa-file"></i>&nbsp;Elaborar Propuesta</button>&nbsp;&nbsp;
+                            <button class="btn btn-primary" type="button" id="btnBuscarPropuesta"><i class="fa fa-search"></i>&nbsp;Buscar</button>&nbsp;&nbsp;
+                            <button class="btn btn-info" type="button" id="btnAgregarPropuesta" ><i class="fa fa-file"></i>&nbsp;Elaborar Propuesta</button>&nbsp;&nbsp;
                         </div>
                     </div>
                 </div>
@@ -47,6 +47,65 @@
 @section scripts {
 
     <script type="text/javascript" language="javascript">
+
+        var _dataPropuesta_ = null;
+
+        var tabPropuesta = $("#tabPropuesta").dataTable({
+            "info": false,
+            "bServerSide": false,
+            "data": _dataPropuesta_,
+            "order": [[1, "asc"]],
+            "columns": [
+                {
+                    "bSortable": false,
+                    "sClass": "center",
+                    "sWidth": "5%",
+                    "render": function (data, type, row) {
+                        return '<center><button class="btn btn-primary" title="Agregar agenda" type="button" onclick="verPropuesta(' + row[0] + ');"><i class="fa fa-search"></i></button></center>';
+                    }
+                },
+                { "sTitle": "Entidad" },
+                { "sTitle": "Retribucion" },
+                { "sTitle": "IGV" },
+                { "sTitle": "Viaticos" },
+                { "sTitle": "Estado" }
+            ]
+
+        });
+
+        $(document).ready(function () {
+            listarPropuesta();
+            $("#btnAgregarPropuesta").click(agregarPropuesta);
+        });
+
+        function agregarPropuesta() {
+            $.ajax({
+                url: '@Url.Action("CrearPropuesta", "Propuesta")',
+                type: 'POST',
+                async: false,
+                data: { idPub: $("#CODPUB").val() },
+                success: function (result) {
+                    mostrarNotificacion(result);
+                }
+            });
+        }
+
+        function listarPropuesta() {
+            $.ajax({
+                url: '@Url.Action("ListadoPropuestas", "Propuesta")',
+                type: 'POST',
+                async: false,
+                data: {},
+                success: function (result) {
+                    _dataPropuesta_ = result;
+                    tabPropuesta.fnReloadData(_dataPropuesta_);
+                }
+            });
+        }
+
+        function verPropuesta(idPropuesta) {
+            document.location = '@Url.Action("VerPropuesta", "Propuesta")' + "?idPropuesta=" + idPropuesta;
+        }
 
     </script>
 }

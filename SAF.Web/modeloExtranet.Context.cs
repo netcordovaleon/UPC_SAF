@@ -72,6 +72,8 @@ namespace SAF.Web
         public virtual DbSet<SAF_EXPERIENCIA> SAF_EXPERIENCIA { get; set; }
         public virtual DbSet<SAF_SOLCAPACITACION> SAF_SOLCAPACITACION { get; set; }
         public virtual DbSet<SAF_SOLEXPERIENCIA> SAF_SOLEXPERIENCIA { get; set; }
+        public virtual DbSet<SAF_PROPEQUIPO> SAF_PROPEQUIPO { get; set; }
+        public virtual DbSet<SAF_PROPEQUIPODETALLE> SAF_PROPEQUIPODETALLE { get; set; }
     
         public virtual int SP_CARGARDIALABORABLE(string aNIO)
         {
@@ -214,6 +216,55 @@ namespace SAF.Web
                 new ObjectParameter("FECFIN", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_DISPONIBILIDADAUDITOR_Result>("SP_DISPONIBILIDADAUDITOR", cODAUDParameter, cODSOAParameter, fECINIParameter, fECFINParameter);
+        }
+    
+        public virtual ObjectResult<SP_SAF_CREARPROPUESTA_Result> SP_SAF_CREARPROPUESTA(Nullable<int> cODPUB, Nullable<int> cODSOA)
+        {
+            var cODPUBParameter = cODPUB.HasValue ?
+                new ObjectParameter("CODPUB", cODPUB) :
+                new ObjectParameter("CODPUB", typeof(int));
+    
+            var cODSOAParameter = cODSOA.HasValue ?
+                new ObjectParameter("CODSOA", cODSOA) :
+                new ObjectParameter("CODSOA", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_CREARPROPUESTA_Result>("SP_SAF_CREARPROPUESTA", cODPUBParameter, cODSOAParameter);
+        }
+    
+        public virtual ObjectResult<SP_SAF_PROPUESTAS_Result> SP_SAF_PROPUESTAS()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_PROPUESTAS_Result>("SP_SAF_PROPUESTAS");
+        }
+    
+        public virtual ObjectResult<SP_SAF_AUDITORIAS_Result> SP_SAF_AUDITORIAS(Nullable<int> cODPRO)
+        {
+            var cODPROParameter = cODPRO.HasValue ?
+                new ObjectParameter("CODPRO", cODPRO) :
+                new ObjectParameter("CODPRO", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_AUDITORIAS_Result>("SP_SAF_AUDITORIAS", cODPROParameter);
+        }
+    
+        public virtual ObjectResult<SP_SAF_EQUIPOAUDITORIA_Result> SP_SAF_EQUIPOAUDITORIA(Nullable<int> cODAUDITORIA)
+        {
+            var cODAUDITORIAParameter = cODAUDITORIA.HasValue ?
+                new ObjectParameter("CODAUDITORIA", cODAUDITORIA) :
+                new ObjectParameter("CODAUDITORIA", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_EQUIPOAUDITORIA_Result>("SP_SAF_EQUIPOAUDITORIA", cODAUDITORIAParameter);
+        }
+    
+        public virtual ObjectResult<SP_SAF_ASIGNARFECHASPROPUESTA_Result> SP_SAF_ASIGNARFECHASPROPUESTA(Nullable<int> cODPROEQU, string sTRFECHASASIGNAR)
+        {
+            var cODPROEQUParameter = cODPROEQU.HasValue ?
+                new ObjectParameter("CODPROEQU", cODPROEQU) :
+                new ObjectParameter("CODPROEQU", typeof(int));
+    
+            var sTRFECHASASIGNARParameter = sTRFECHASASIGNAR != null ?
+                new ObjectParameter("STRFECHASASIGNAR", sTRFECHASASIGNAR) :
+                new ObjectParameter("STRFECHASASIGNAR", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_ASIGNARFECHASPROPUESTA_Result>("SP_SAF_ASIGNARFECHASPROPUESTA", cODPROEQUParameter, sTRFECHASASIGNARParameter);
         }
     }
 }

@@ -51,6 +51,7 @@ namespace SAF.Web.Controllers
             var cargo = this.modelEntity.SAF_CARGO.ToList().Where(c => c.CODCAR == invitacion.CODCAR).FirstOrDefault();
             var model = new InvitacionModel();
             model.codigoInvitacionAgenda = idInvitacion;
+            model.codigoAuditorAgenda = auditor.CODAUD;
             model.nomCompletoAuditor = string.Format("{0} {1}", auditor.NOMAUD, auditor.APEAUD);
             model.cargoInvitacionAuditor = cargo.NOMCAR;
             model.numeroHorasLaboral = 8;
@@ -168,7 +169,7 @@ namespace SAF.Web.Controllers
         }
 
         public JsonResult ListadoFechasAsig(int idInvitacion) {
-            var listado = this.modelEntity.SAF_INVITACIONDETALLE.ToList().Where(c => c.CODINV == idInvitacion);
+            var listado = this.modelEntity.SAF_INVITACIONDETALLE.ToList().Where(c => c.CODINV == idInvitacion).OrderBy(c=>c.FECINVDET);
             var data = listado.Select(c => new string[]{
                 c.FECINVDET.HasValue ? c.FECINVDET.Value.ToShortDateString() : "",
                 c.NUMHORINVDET.GetValueOrDefault().ToString()

@@ -103,6 +103,8 @@
         <AssociationConnector Association="ModeloExtranetModel.FK_SAF_SOLCAPACITACION_SAF_PARAMETRICA" />
         <AssociationConnector Association="ModeloExtranetModel.FK_SAF_SOLCAPACITACION_SAF_PARAMETRICA1" />
         <AssociationConnector Association="ModeloExtranetModel.FK_SAF_SOLEXPERIENCIA_SAF_PARAMETRICA" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_PROPEQUIPO" Width="1.5" PointX="15.375" PointY="4.75" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_PROPEQUIPODETALLE" Width="1.5" PointX="10.375" PointY="14.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

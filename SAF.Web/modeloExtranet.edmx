@@ -65,6 +65,7 @@
           <Property Name="USUMOD" Type="varchar" MaxLength="50" />
           <Property Name="ESTREG" Type="char" MaxLength="1" />
           <Property Name="CODPRO" Type="int" />
+          <Property Name="CODSERAUD" Type="int" />
         </EntityType>
         <EntityType Name="SAF_BASE">
           <Key>
@@ -443,6 +444,35 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.SAF_DIALABORABLE' does not have a pr
           <Property Name="USUMOD" Type="varchar" MaxLength="50" />
           <Property Name="ESTREG" Type="char" MaxLength="1" />
         </EntityType>
+        <EntityType Name="SAF_PROPEQUIPO">
+          <Key>
+            <PropertyRef Name="CODPROEQU" />
+          </Key>
+          <Property Name="CODPROEQU" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODAUDITORIA" Type="int" />
+          <Property Name="CODAUD" Type="int" />
+          <Property Name="CODCAR" Type="int" />
+          <Property Name="CODINV" Type="int" />
+          <Property Name="FECREG" Type="datetime" />
+          <Property Name="FECMOD" Type="datetime" />
+          <Property Name="USUREG" Type="varchar" MaxLength="50" />
+          <Property Name="USUMOD" Type="varchar" MaxLength="50" />
+          <Property Name="ESTREG" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="SAF_PROPEQUIPODETALLE">
+          <Key>
+            <PropertyRef Name="CODPROEQUDET" />
+          </Key>
+          <Property Name="CODPROEQUDET" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODPROEQU" Type="int" />
+          <Property Name="FECPROEQUIDET" Type="date" />
+          <Property Name="HORPROEQUIDET" Type="int" />
+          <Property Name="FECREG" Type="datetime" />
+          <Property Name="FECMOD" Type="datetime" />
+          <Property Name="USUREG" Type="varchar" MaxLength="50" />
+          <Property Name="USUMOD" Type="varchar" MaxLength="50" />
+          <Property Name="ESTREG" Type="char" MaxLength="1" />
+        </EntityType>
         <EntityType Name="SAF_PROPUESTA">
           <Key>
             <PropertyRef Name="CODPRO" />
@@ -456,6 +486,21 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.SAF_DIALABORABLE' does not have a pr
           <Property Name="ESTREG" Type="char" MaxLength="1" />
           <Property Name="CODSOA" Type="int" />
           <Property Name="CODPUB" Type="int" />
+          <Property Name="INDREQFIRINT" Type="char" MaxLength="1" />
+          <Property Name="INDREQFIRPCAOB" Type="char" MaxLength="1" />
+          <Property Name="RETRECO" Type="numeric" Precision="19" Scale="2" />
+          <Property Name="IGVTOTAL" Type="numeric" Precision="19" Scale="2" />
+          <Property Name="RETRECOTOTAL" Type="numeric" Precision="19" Scale="2" />
+          <Property Name="MONTVIATICO" Type="numeric" Precision="19" Scale="2" />
+          <Property Name="CODARCFIRINT" Type="bigint" />
+          <Property Name="NOMBLABELFIRINT" Type="varchar" MaxLength="100" />
+          <Property Name="CODARCFIRPCAOB" Type="bigint" />
+          <Property Name="NOMBLABELFIRPCAOB" Type="varchar" MaxLength="100" />
+          <Property Name="RETRECOREQ" Type="numeric" Precision="19" Scale="2" />
+          <Property Name="IGVTOTALREQ" Type="numeric" Precision="19" Scale="2" />
+          <Property Name="RETRECOTOTALREQ" Type="numeric" Precision="19" Scale="2" />
+          <Property Name="MONTVIATICOREQ" Type="numeric" Precision="19" Scale="2" />
+          <Property Name="ESTPROP" Type="int" />
         </EntityType>
         <EntityType Name="SAF_PROVINCIA">
           <Key>
@@ -1415,18 +1460,32 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <Parameter Name="NUMHOR" Type="int" Mode="In" />
           <Parameter Name="STRFECHAS" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="SP_SAF_ASIGNARFECHASPROPUESTA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CODPROEQU" Type="int" Mode="In" />
+          <Parameter Name="STRFECHASASIGNAR" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="SP_SAF_AUDITORAPTOINVITAR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CODPUB" Type="int" Mode="In" />
           <Parameter Name="CODSERAUD" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_SAF_AUDITORIAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CODPRO" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_SAF_CORTEPUBLICACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CODPUB" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SAF_CREARPROPUESTA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CODPUB" Type="int" Mode="In" />
+          <Parameter Name="CODSOA" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_SAF_CREARSOLICITUDAUDITOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CODAUD" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_SAF_CREARSOLICITUDSOA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CODSOA" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SAF_EQUIPOAUDITORIA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CODAUDITORIA" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_SAF_INVITACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CODPUB" Type="int" Mode="In" />
@@ -1442,6 +1501,7 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <Parameter Name="CODPUB" Type="int" Mode="In" />
           <Parameter Name="CODSERAUD" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_SAF_PROPUESTAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_SAF_RESULTADOCORTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CODPUB" Type="int" Mode="In" />
         </Function>
@@ -1471,6 +1531,8 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <EntitySet Name="SAF_INVITACIONDETALLE" EntityType="Self.SAF_INVITACIONDETALLE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SAF_NOTIFICACION" EntityType="Self.SAF_NOTIFICACION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SAF_PARAMETRICA" EntityType="Self.SAF_PARAMETRICA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SAF_PROPEQUIPO" EntityType="Self.SAF_PROPEQUIPO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SAF_PROPEQUIPODETALLE" EntityType="Self.SAF_PROPEQUIPODETALLE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SAF_PROPUESTA" EntityType="Self.SAF_PROPUESTA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SAF_PROVINCIA" EntityType="Self.SAF_PROVINCIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SAF_PUBLICACION" EntityType="Self.SAF_PUBLICACION" Schema="dbo" store:Type="Tables" />
@@ -1826,6 +1888,7 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <Property Name="ESTREG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="CODPRO" Type="Int32" />
           <NavigationProperty Name="SAF_PROPUESTA" Relationship="Self.R_43" FromRole="SAF_AUDITORIA" ToRole="SAF_PROPUESTA" />
+          <Property Name="CODSERAUD" Type="Int32" />
         </EntityType>
         <EntityType Name="SAF_BASE">
           <Key>
@@ -2175,6 +2238,21 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <NavigationProperty Name="SAF_AUDITORIA" Relationship="Self.R_43" FromRole="SAF_PROPUESTA" ToRole="SAF_AUDITORIA" />
           <NavigationProperty Name="SAF_SOA" Relationship="Self.R_31" FromRole="SAF_PROPUESTA" ToRole="SAF_SOA" />
           <NavigationProperty Name="SAF_PUBLICACION" Relationship="Self.R_32" FromRole="SAF_PROPUESTA" ToRole="SAF_PUBLICACION" />
+          <Property Name="INDREQFIRINT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="INDREQFIRPCAOB" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="RETRECO" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="IGVTOTAL" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="RETRECOTOTAL" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="MONTVIATICO" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="CODARCFIRINT" Type="Int64" />
+          <Property Name="NOMBLABELFIRINT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CODARCFIRPCAOB" Type="Int64" />
+          <Property Name="NOMBLABELFIRPCAOB" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RETRECOREQ" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="IGVTOTALREQ" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="RETRECOTOTALREQ" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="MONTVIATICOREQ" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="ESTPROP" Type="Int32" />
         </EntityType>
         <EntityType Name="SAF_PUBLICACION">
           <Key>
@@ -3062,6 +3140,23 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
             <Parameter Name="FECINI" Mode="In" Type="String" />
             <Parameter Name="FECFIN" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="SP_SAF_CREARPROPUESTA" ReturnType="Collection(ModeloExtranetModel.SP_SAF_CREARPROPUESTA_Result)">
+            <Parameter Name="CODPUB" Mode="In" Type="Int32" />
+            <Parameter Name="CODSOA" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SAF_PROPUESTAS" ReturnType="Collection(ModeloExtranetModel.SP_SAF_PROPUESTAS_Result)" />
+          <FunctionImport Name="SP_SAF_AUDITORIAS" ReturnType="Collection(ModeloExtranetModel.SP_SAF_AUDITORIAS_Result)">
+          <Parameter Name="CODPRO" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SAF_EQUIPOAUDITORIA" ReturnType="Collection(ModeloExtranetModel.SP_SAF_EQUIPOAUDITORIA_Result)">
+          <Parameter Name="CODAUDITORIA" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="SAF_PROPEQUIPO" EntityType="ModeloExtranetModel.SAF_PROPEQUIPO" />
+          <EntitySet Name="SAF_PROPEQUIPODETALLE" EntityType="ModeloExtranetModel.SAF_PROPEQUIPODETALLE" />
+          <FunctionImport Name="SP_SAF_ASIGNARFECHASPROPUESTA" ReturnType="Collection(ModeloExtranetModel.SP_SAF_ASIGNARFECHASPROPUESTA_Result)">
+            <Parameter Name="CODPROEQU" Mode="In" Type="Int32" />
+            <Parameter Name="STRFECHASASIGNAR" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="VW_SAF_SOLICITUD">
           <Key>
@@ -3655,6 +3750,78 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
         <ComplexType Name="SP_DISPONIBILIDADAUDITOR_Result">
           <Property Type="DateTime" Name="FECDIL" Nullable="true" Precision="23" />
         </ComplexType>
+        <ComplexType Name="SP_SAF_CREARPROPUESTA_Result">
+          <Property Type="Int32" Name="RESULTADO" Nullable="false" />
+          <Property Type="String" Name="MENSAJE" Nullable="false" MaxLength="39" />
+        </ComplexType>
+        <ComplexType Name="SP_SAF_PROPUESTAS_Result">
+          <Property Type="Int32" Name="CODPRO" Nullable="false" />
+          <Property Type="Int32" Name="CODSOA" Nullable="true" />
+          <Property Type="String" Name="RAZSOCSOA" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="DESBAS" Nullable="true" MaxLength="300" />
+          <Property Type="Decimal" Name="RETRECOTOTAL" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="IGVTOTAL" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="MONTVIATICO" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Int32" Name="ESTPROP" Nullable="true" />
+          <Property Type="String" Name="VALOR" Nullable="true" />
+          <Property Type="String" Name="RUCSOA" Nullable="true" MaxLength="21" />
+          <Property Type="String" Name="NOMREPLEGSOA" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CELREPLEGSOA" Nullable="true" MaxLength="9" />
+          <Property Type="String" Name="CORREPLEGSOA" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="TOTRETECOBASREQ" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="TOTIGVBASREQ" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="TOTVIABASREQ" Nullable="false" Precision="19" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="SP_SAF_AUDITORIAS_Result">
+          <Property Type="Int32" Name="CODPRO" Nullable="true" />
+          <Property Type="Int32" Name="CODAUDITORIA" Nullable="false" />
+          <Property Type="String" Name="PERAUD" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="DESBAS" Nullable="true" MaxLength="300" />
+        </ComplexType>
+        <ComplexType Name="SP_SAF_EQUIPOAUDITORIA_Result">
+          <Property Type="Int32" Name="CODPROEQU" Nullable="false" />
+          <Property Type="Int32" Name="CODINV" Nullable="true" />
+          <Property Type="Int32" Name="CODAUD" Nullable="false" />
+          <Property Type="String" Name="NOMCOMAUD" Nullable="true" MaxLength="101" />
+          <Property Type="String" Name="DNIAUD" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="CELAUD" Nullable="true" MaxLength="9" />
+          <Property Type="String" Name="CORAUD" Nullable="true" MaxLength="18" />
+          <Property Type="String" Name="NOMCAR" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PERAUD" Nullable="true" MaxLength="150" />
+        </ComplexType>
+        <EntityType Name="SAF_PROPEQUIPO">
+          <Key>
+            <PropertyRef Name="CODPROEQU" />
+          </Key>
+          <Property Name="CODPROEQU" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODAUDITORIA" Type="Int32" />
+          <Property Name="CODAUD" Type="Int32" />
+          <Property Name="CODCAR" Type="Int32" />
+          <Property Name="CODINV" Type="Int32" />
+          <Property Name="FECREG" Type="DateTime" Precision="3" />
+          <Property Name="FECMOD" Type="DateTime" Precision="3" />
+          <Property Name="USUREG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USUMOD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESTREG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SAF_PROPEQUIPODETALLE">
+          <Key>
+            <PropertyRef Name="CODPROEQUDET" />
+          </Key>
+          <Property Name="CODPROEQUDET" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODPROEQU" Type="Int32" />
+          <Property Name="FECPROEQUIDET" Type="DateTime" Precision="0" />
+          <Property Name="HORPROEQUIDET" Type="Int32" />
+          <Property Name="FECREG" Type="DateTime" Precision="3" />
+          <Property Name="FECMOD" Type="DateTime" Precision="3" />
+          <Property Name="USUREG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USUMOD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESTREG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="SP_SAF_ASIGNARFECHASPROPUESTA_Result">
+          <Property Type="Int32" Name="RESULTADO" Nullable="false" />
+          <Property Type="String" Name="MENSAJE" Nullable="false" MaxLength="42" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3697,6 +3864,7 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <EntitySetMapping Name="SAF_AUDITORIA">
             <EntityTypeMapping TypeName="ModeloExtranetModel.SAF_AUDITORIA">
               <MappingFragment StoreEntitySet="SAF_AUDITORIA">
+                <ScalarProperty Name="CODSERAUD" ColumnName="CODSERAUD" />
                 <ScalarProperty Name="CODAUD" ColumnName="CODAUD" />
                 <ScalarProperty Name="PERAUD" ColumnName="PERAUD" />
                 <ScalarProperty Name="INDCUMCAPAUDAUD" ColumnName="INDCUMCAPAUDAUD" />
@@ -4024,6 +4192,21 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <EntitySetMapping Name="SAF_PROPUESTA">
             <EntityTypeMapping TypeName="ModeloExtranetModel.SAF_PROPUESTA">
               <MappingFragment StoreEntitySet="SAF_PROPUESTA">
+                <ScalarProperty Name="ESTPROP" ColumnName="ESTPROP" />
+                <ScalarProperty Name="MONTVIATICOREQ" ColumnName="MONTVIATICOREQ" />
+                <ScalarProperty Name="RETRECOTOTALREQ" ColumnName="RETRECOTOTALREQ" />
+                <ScalarProperty Name="IGVTOTALREQ" ColumnName="IGVTOTALREQ" />
+                <ScalarProperty Name="RETRECOREQ" ColumnName="RETRECOREQ" />
+                <ScalarProperty Name="NOMBLABELFIRPCAOB" ColumnName="NOMBLABELFIRPCAOB" />
+                <ScalarProperty Name="CODARCFIRPCAOB" ColumnName="CODARCFIRPCAOB" />
+                <ScalarProperty Name="NOMBLABELFIRINT" ColumnName="NOMBLABELFIRINT" />
+                <ScalarProperty Name="CODARCFIRINT" ColumnName="CODARCFIRINT" />
+                <ScalarProperty Name="MONTVIATICO" ColumnName="MONTVIATICO" />
+                <ScalarProperty Name="RETRECOTOTAL" ColumnName="RETRECOTOTAL" />
+                <ScalarProperty Name="IGVTOTAL" ColumnName="IGVTOTAL" />
+                <ScalarProperty Name="RETRECO" ColumnName="RETRECO" />
+                <ScalarProperty Name="INDREQFIRPCAOB" ColumnName="INDREQFIRPCAOB" />
+                <ScalarProperty Name="INDREQFIRINT" ColumnName="INDREQFIRINT" />
                 <ScalarProperty Name="CODPRO" ColumnName="CODPRO" />
                 <ScalarProperty Name="NUMPRO" ColumnName="NUMPRO" />
                 <ScalarProperty Name="FECREG" ColumnName="FECREG" />
@@ -4579,6 +4762,100 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
             <ResultMapping>
               <ComplexTypeMapping TypeName="ModeloExtranetModel.SP_DISPONIBILIDADAUDITOR_Result">
                 <ScalarProperty Name="FECDIL" ColumnName="FECDIL" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SAF_CREARPROPUESTA" FunctionName="ModeloExtranetModel.Store.SP_SAF_CREARPROPUESTA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloExtranetModel.SP_SAF_CREARPROPUESTA_Result">
+                <ScalarProperty Name="RESULTADO" ColumnName="RESULTADO" />
+                <ScalarProperty Name="MENSAJE" ColumnName="MENSAJE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SAF_PROPUESTAS" FunctionName="ModeloExtranetModel.Store.SP_SAF_PROPUESTAS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloExtranetModel.SP_SAF_PROPUESTAS_Result">
+                <ScalarProperty Name="CODPRO" ColumnName="CODPRO" />
+                <ScalarProperty Name="CODSOA" ColumnName="CODSOA" />
+                <ScalarProperty Name="RAZSOCSOA" ColumnName="RAZSOCSOA" />
+                <ScalarProperty Name="DESBAS" ColumnName="DESBAS" />
+                <ScalarProperty Name="RETRECOTOTAL" ColumnName="RETRECOTOTAL" />
+                <ScalarProperty Name="IGVTOTAL" ColumnName="IGVTOTAL" />
+                <ScalarProperty Name="MONTVIATICO" ColumnName="MONTVIATICO" />
+                <ScalarProperty Name="ESTPROP" ColumnName="ESTPROP" />
+                <ScalarProperty Name="VALOR" ColumnName="VALOR" />
+                <ScalarProperty Name="RUCSOA" ColumnName="RUCSOA" />
+                <ScalarProperty Name="NOMREPLEGSOA" ColumnName="NOMREPLEGSOA" />
+                <ScalarProperty Name="CELREPLEGSOA" ColumnName="CELREPLEGSOA" />
+                <ScalarProperty Name="CORREPLEGSOA" ColumnName="CORREPLEGSOA" />
+                <ScalarProperty Name="TOTRETECOBASREQ" ColumnName="TOTRETECOBASREQ" />
+                <ScalarProperty Name="TOTIGVBASREQ" ColumnName="TOTIGVBASREQ" />
+                <ScalarProperty Name="TOTVIABASREQ" ColumnName="TOTVIABASREQ" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SAF_AUDITORIAS" FunctionName="ModeloExtranetModel.Store.SP_SAF_AUDITORIAS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloExtranetModel.SP_SAF_AUDITORIAS_Result">
+                <ScalarProperty Name="CODPRO" ColumnName="CODPRO" />
+                <ScalarProperty Name="CODAUDITORIA" ColumnName="CODAUDITORIA" />
+                <ScalarProperty Name="PERAUD" ColumnName="PERAUD" />
+                <ScalarProperty Name="DESBAS" ColumnName="DESBAS" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SAF_EQUIPOAUDITORIA" FunctionName="ModeloExtranetModel.Store.SP_SAF_EQUIPOAUDITORIA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloExtranetModel.SP_SAF_EQUIPOAUDITORIA_Result">
+                <ScalarProperty Name="CODPROEQU" ColumnName="CODPROEQU" />
+                <ScalarProperty Name="CODINV" ColumnName="CODINV" />
+                <ScalarProperty Name="CODAUD" ColumnName="CODAUD" />
+                <ScalarProperty Name="NOMCOMAUD" ColumnName="NOMCOMAUD" />
+                <ScalarProperty Name="DNIAUD" ColumnName="DNIAUD" />
+                <ScalarProperty Name="CELAUD" ColumnName="CELAUD" />
+                <ScalarProperty Name="CORAUD" ColumnName="CORAUD" />
+                <ScalarProperty Name="NOMCAR" ColumnName="NOMCAR" />
+                <ScalarProperty Name="PERAUD" ColumnName="PERAUD" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="SAF_PROPEQUIPO">
+            <EntityTypeMapping TypeName="ModeloExtranetModel.SAF_PROPEQUIPO">
+              <MappingFragment StoreEntitySet="SAF_PROPEQUIPO">
+                <ScalarProperty Name="ESTREG" ColumnName="ESTREG" />
+                <ScalarProperty Name="USUMOD" ColumnName="USUMOD" />
+                <ScalarProperty Name="USUREG" ColumnName="USUREG" />
+                <ScalarProperty Name="FECMOD" ColumnName="FECMOD" />
+                <ScalarProperty Name="FECREG" ColumnName="FECREG" />
+                <ScalarProperty Name="CODINV" ColumnName="CODINV" />
+                <ScalarProperty Name="CODCAR" ColumnName="CODCAR" />
+                <ScalarProperty Name="CODAUD" ColumnName="CODAUD" />
+                <ScalarProperty Name="CODAUDITORIA" ColumnName="CODAUDITORIA" />
+                <ScalarProperty Name="CODPROEQU" ColumnName="CODPROEQU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SAF_PROPEQUIPODETALLE">
+            <EntityTypeMapping TypeName="ModeloExtranetModel.SAF_PROPEQUIPODETALLE">
+              <MappingFragment StoreEntitySet="SAF_PROPEQUIPODETALLE">
+                <ScalarProperty Name="ESTREG" ColumnName="ESTREG" />
+                <ScalarProperty Name="USUMOD" ColumnName="USUMOD" />
+                <ScalarProperty Name="USUREG" ColumnName="USUREG" />
+                <ScalarProperty Name="FECMOD" ColumnName="FECMOD" />
+                <ScalarProperty Name="FECREG" ColumnName="FECREG" />
+                <ScalarProperty Name="HORPROEQUIDET" ColumnName="HORPROEQUIDET" />
+                <ScalarProperty Name="FECPROEQUIDET" ColumnName="FECPROEQUIDET" />
+                <ScalarProperty Name="CODPROEQU" ColumnName="CODPROEQU" />
+                <ScalarProperty Name="CODPROEQUDET" ColumnName="CODPROEQUDET" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_SAF_ASIGNARFECHASPROPUESTA" FunctionName="ModeloExtranetModel.Store.SP_SAF_ASIGNARFECHASPROPUESTA" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloExtranetModel.SP_SAF_ASIGNARFECHASPROPUESTA_Result">
+                <ScalarProperty Name="RESULTADO" ColumnName="RESULTADO" />
+                <ScalarProperty Name="MENSAJE" ColumnName="MENSAJE" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

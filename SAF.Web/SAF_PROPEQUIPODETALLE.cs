@@ -12,20 +12,16 @@ namespace SAF.Web
     using System;
     using System.Collections.Generic;
     
-    public partial class SAF_AUDITORIA
+    public partial class SAF_PROPEQUIPODETALLE
     {
-        public int CODAUD { get; set; }
-        public string PERAUD { get; set; }
-        public string INDCUMCAPAUDAUD { get; set; }
-        public string INDCUMCAPMINHORAUD { get; set; }
+        public int CODPROEQUDET { get; set; }
+        public Nullable<int> CODPROEQU { get; set; }
+        public Nullable<System.DateTime> FECPROEQUIDET { get; set; }
+        public Nullable<int> HORPROEQUIDET { get; set; }
         public Nullable<System.DateTime> FECREG { get; set; }
         public Nullable<System.DateTime> FECMOD { get; set; }
         public string USUREG { get; set; }
         public string USUMOD { get; set; }
         public string ESTREG { get; set; }
-        public Nullable<int> CODPRO { get; set; }
-        public Nullable<int> CODSERAUD { get; set; }
-    
-        public virtual SAF_PROPUESTA SAF_PROPUESTA { get; set; }
     }
 }

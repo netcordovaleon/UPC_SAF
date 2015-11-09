@@ -204,6 +204,7 @@
     </Compile>
     <Compile Include="Models\AccesoModel.cs" />
     <Compile Include="Models\AuditorModel.cs" />
+    <Compile Include="Models\EquipoAuditoriaModel.cs" />
     <Compile Include="Models\InvitacionModel.cs" />
     <Compile Include="Models\PropuestaModel.cs" />
     <Compile Include="Models\SoaModel.cs" />
@@ -289,6 +290,12 @@
     <Compile Include="SAF_PARAMETRICA.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
+    <Compile Include="SAF_PROPEQUIPO.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_PROPEQUIPODETALLE.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
     <Compile Include="SAF_PROPUESTA.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
@@ -340,16 +347,28 @@
     <Compile Include="SP_SAF_AGENDAREGISTRAR_Result.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_SAF_ASIGNARFECHASPROPUESTA_Result.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_SAF_AUDITORAPTOINVITAR_Result.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_SAF_AUDITORIAS_Result.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_SAF_CORTEPUBLICACION_Result.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_CREARPROPUESTA_Result.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_SAF_CREARSOLICITUDAUDITOR_Result.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_SAF_CREARSOLICITUDSOA_Result.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_EQUIPOAUDITORIA_Result.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_SAF_INVITACION_Result.cs">
@@ -359,6 +378,9 @@
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_SAF_MEJOREQUIPO_Result.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_PROPUESTAS_Result.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_SAF_RESULTADOCORTE_Result.cs">
@@ -583,6 +605,8 @@
     <Content Include="Views\InvitacionAuditor\_AgendaAuditor.cshtml" />
     <Content Include="Views\BandejaInvitaciones\Index.cshtml" />
     <Content Include="Views\Propuesta\Index.cshtml" />
+    <Content Include="Views\Propuesta\VerPropuesta.cshtml" />
+    <Content Include="Views\Propuesta\_AsignarFechaEquipo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
