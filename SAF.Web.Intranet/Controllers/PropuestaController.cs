@@ -26,7 +26,7 @@ namespace SAF.Web.Intranet.Controllers
 
         public JsonResult ListadoPropuestasCalificar(int? idPub) {
 
-            var propuestas = this.modelEntity.SP_SAF_PROPUESTAS().Where(c => (c.CODPUB == idPub || idPub == null) && c.ESTPROP == (int)Estado.Propuesta.Enviada);
+            var propuestas = this.modelEntity.SP_SAF_PROPUESTAS().Where(c => (c.CODPUB == idPub || idPub == null) && (c.ESTPROP == (int)Estado.Propuesta.Enviada || c.ESTPROP == (int)Estado.Propuesta.Ganadora || c.ESTPROP == (int)Estado.Propuesta.Descalifica));
             var data = propuestas.Select(c => new string[] { 
                 c.CODPRO.ToString(),
                 string.Format("<strong>{0}</strong> - {1}", c.RUCSOA, c.RAZSOCSOA),
@@ -36,9 +36,26 @@ namespace SAF.Web.Intranet.Controllers
                 c.DESBAS,
                 c.RETRECO.ToString(),
                 c.IGVTOTAL.ToString(),
+                c.VALOR,
                 c.PUNTAJETOTAL.GetValueOrDefault().ToString()
             }).ToArray();
             return Json(data);
+        }
+
+        public JsonResult AsignarPropuestaComoGanadora(int idPropuesta)
+        {
+            try
+            {
+                var propuesta = this.modelEntity.SAF_PROPUESTA.Where(c => c.CODPRO == idPropuesta).FirstOrDefault();
+                propuesta.ESTPROP = (int)Estado.Propuesta.Ganadora;
+                this.modelEntity.SaveChanges();
+                return Json(new MensajeRespuesta("La propuesta se asigno como ganadora", true));
+            }
+            catch (Exception)
+            {
+                return Json(new MensajeRespuesta("La propuesta no se pudo asignar correctamente", false));
+            }
+
         }
     }
 }

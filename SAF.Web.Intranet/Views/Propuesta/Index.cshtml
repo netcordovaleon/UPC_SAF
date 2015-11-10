@@ -6,6 +6,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@Html.HiddenFor(c => c.CODPRO)
+
 <div class="callout callout-info">
     <h4><i class="icon fa fa-info"></i>&nbsp;Información</h4>
     <p>
@@ -88,21 +90,48 @@
                 { "sTitle": "Entidad" },
                 { "sTitle": "Retribucion" },
                 { "sTitle": "IGV" },
-                { "sTitle": "Puntaje", "sClass": "center" },
+                { "sTitle": "Estado" },
+                
+                {
+                    "sTitle": "Puntaje",
+                    "sClass": "center",
+                    "render": function (data, type, row) {
+                        return "<span class='valoresPropuesta' id='valProp" + row[0] + "' style='font-weight:bold; color:red; font-size:12px;'>" + data + "</span>";
+                    }
+                },
                 {
                     "sTitle": "Ganador",
                     "render": function (data, type, row) {
-                        return "<center><input type='radio' value = '" + row[0] + "' name='rdGanadorPropuesta' /></center>";
+                        return "<center><input type='radio' value='" + row[0] + "' name='rdGanadorPropuesta' onclick='javascript:seleccionarPropuesta(this.value);' /></center>";
                     }
                 },
-            ]
+            ],
+            "fnDrawCallback": function (oSettings) {
+                var mayorPropuesta = 0;
+                var idPropuestaGanadora = 0;
+                $(".valoresPropuesta").each(function () {
+                    if (parseInt($(this).text()) > mayorPropuesta){
+                        mayorPropuesta = parseInt($(this).text());
+                        idPropuestaGanadora = $(this).attr("id");
+                    }
+                });
+
+                $("#" + idPropuestaGanadora).append("<h4><i class='fa fa-star-o'></i></h4>");
+
+            }
+           
         });
 
 
         $(document).ready(function () {
             listarPropuestas();
             $("#btnBuscarPropuestas").click(listarPropuestas);
+            $("#btnDefinirGanador").click(asignarPropuestaGanadora);
         });
+
+        function seleccionarPropuesta(idProp) {
+            $("#CODPRO").val(idProp);
+        }
 
         function listarPropuestas() {
             $.ajax({
@@ -117,7 +146,18 @@
             });
         }
 
-
+        function asignarPropuestaGanadora() {
+            $.ajax({
+                url: '@Url.Action("AsignarPropuestaComoGanadora", "Propuesta")',
+                type: 'POST',
+                async: false,
+                data: { idPropuesta: $("#CODPRO").val() },
+                success: function (result) {
+                    mostrarNotificacion(result);
+                    listarPropuestas();
+                }
+            });
+        }
 
     </script>
 

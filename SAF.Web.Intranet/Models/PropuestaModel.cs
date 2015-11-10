@@ -11,6 +11,7 @@ namespace SAF.Web.Intranet.Models
 
         [Display(Name="Publicacion")]
         public int CODPUB { get; set; }
+        public int CODPRO { get; set; }
         public List<SelectListItem> cboPublicaciones { get; set; }
 
         public PropuestaModel() {
