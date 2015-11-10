@@ -41,5 +41,10 @@ namespace SAF.Web.Controllers
 
 
         }
+
+        public ActionResult Bandeja()
+        {
+            return View();
+        }
 	}
 }
