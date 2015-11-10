@@ -12,12 +12,16 @@ namespace SAF.Web.Intranet
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class SAF_PROPEQUIPODETALLE
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int CODPROEQUDET { get; set; }
+        public Nullable<int> CODPROEQU { get; set; }
+        public Nullable<System.DateTime> FECPROEQUIDET { get; set; }
+        public Nullable<int> HORPROEQUIDET { get; set; }
+        public Nullable<System.DateTime> FECREG { get; set; }
+        public Nullable<System.DateTime> FECMOD { get; set; }
+        public string USUREG { get; set; }
+        public string USUMOD { get; set; }
+        public string ESTREG { get; set; }
     }
 }

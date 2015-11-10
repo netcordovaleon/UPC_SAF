@@ -51,6 +51,7 @@
     <Compile Include="Constantes\Mensaje.cs" />
     <Compile Include="Constantes\MensajeRespuesta.cs" />
     <Compile Include="Enum\Tipo.cs" />
+    <Compile Include="Enum\TipoBandeja.cs" />
     <Compile Include="Enum\TipoMensaje.cs" />
     <Compile Include="Enum\Estado.cs" />
     <Compile Include="ExcepcionNegocio\ExcepcionNegocio.cs" />

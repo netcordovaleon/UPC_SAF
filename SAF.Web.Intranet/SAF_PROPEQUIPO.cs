@@ -7,20 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SAF.Web
+namespace SAF.Web.Intranet
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class SAF_NOTIFICACION
+    public partial class SAF_PROPEQUIPO
     {
-        public int CODNOT { get; set; }
-        public string USUEMI { get; set; }
-        public string USUREC { get; set; }
-        public string ASUNOT { get; set; }
-        public string DESNOT { get; set; }
-        public string INDNOT { get; set; }
-        public string ESTNOT { get; set; }
+        public int CODPROEQU { get; set; }
+        public Nullable<int> CODAUDITORIA { get; set; }
+        public Nullable<int> CODAUD { get; set; }
+        public Nullable<int> CODCAR { get; set; }
+        public Nullable<int> CODINV { get; set; }
         public Nullable<System.DateTime> FECREG { get; set; }
         public Nullable<System.DateTime> FECMOD { get; set; }
         public string USUREG { get; set; }

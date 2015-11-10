@@ -396,9 +396,6 @@
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>modeloExtranet.tt</DependentUpon>
-    </Compile>
     <Compile Include="VW_SAF_INVITACION.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
@@ -616,13 +613,13 @@
     <Content Include="Views\Propuesta\Index.cshtml" />
     <Content Include="Views\Propuesta\VerPropuesta.cshtml" />
     <Content Include="Views\Propuesta\_AsignarFechaEquipo.cshtml" />
+    <Content Include="Views\Notificacion\Bandeja.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Archivos\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\General\" />
-    <Folder Include="Views\Notificacion\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

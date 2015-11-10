@@ -275,6 +275,12 @@
     <Compile Include="SAF_PARAMETRICA.cs">
       <DependentUpon>modeloIntranet.tt</DependentUpon>
     </Compile>
+    <Compile Include="SAF_PROPEQUIPO.cs">
+      <DependentUpon>modeloIntranet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_PROPEQUIPODETALLE.cs">
+      <DependentUpon>modeloIntranet.tt</DependentUpon>
+    </Compile>
     <Compile Include="SAF_PROPUESTA.cs">
       <DependentUpon>modeloIntranet.tt</DependentUpon>
     </Compile>
@@ -327,9 +333,6 @@
       <DependentUpon>modeloIntranet.tt</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>modeloIntranet.tt</DependentUpon>
-    </Compile>
     <Compile Include="VW_SAF_INVITACION.cs">
       <DependentUpon>modeloIntranet.tt</DependentUpon>
     </Compile>

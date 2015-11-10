@@ -23,7 +23,6 @@
         <EntityTypeShape EntityType="modeloIntranet.SAF_FLUJO_DOCUMENTO" Width="1.5" PointX="10" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="modeloIntranet.SAF_INVITACION" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
         <EntityTypeShape EntityType="modeloIntranet.SAF_INVITACIONDETALLE" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="modeloIntranet.SAF_NOTIFICACION" Width="1.5" PointX="8.75" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="modeloIntranet.SAF_PARAMETRICA" Width="1.5" PointX="0.75" PointY="35.5" IsExpanded="true" />
         <EntityTypeShape EntityType="modeloIntranet.SAF_PROPUESTA" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="modeloIntranet.SAF_PUBLICACION" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
@@ -37,7 +36,6 @@
         <EntityTypeShape EntityType="modeloIntranet.SAF_TIPOSOLICITUD" Width="1.5" PointX="0.75" PointY="68" IsExpanded="true" />
         <EntityTypeShape EntityType="modeloIntranet.SAF_UNIVERSIDAD" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="modeloIntranet.SAF_USUARIO" Width="1.5" PointX="8.75" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="modeloIntranet.sysdiagrams" Width="1.5" PointX="10.75" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="modeloIntranet.SAF_DIALABORABLE" Width="1.5" PointX="10.75" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="modeloIntranet.VW_SAF_INVITACION" Width="1.5" PointX="12.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="modeloIntranet.VW_SAF_PUBLICACION" Width="1.5" PointX="12.75" PointY="6.375" IsExpanded="true" />
@@ -103,6 +101,9 @@
         <AssociationConnector Association="modeloIntranet.FK_SAF_SOLCAPACITACION_SAF_PARAMETRICA" />
         <AssociationConnector Association="modeloIntranet.FK_SAF_SOLCAPACITACION_SAF_PARAMETRICA1" />
         <AssociationConnector Association="modeloIntranet.FK_SAF_SOLEXPERIENCIA_SAF_PARAMETRICA" />
+        <EntityTypeShape EntityType="modeloIntranet.SAF_NOTIFICACION" Width="1.5" PointX="15.375" PointY="4.75" />
+        <EntityTypeShape EntityType="modeloIntranet.SAF_PROPEQUIPO" Width="1.5" PointX="15.375" PointY="8.75" />
+        <EntityTypeShape EntityType="modeloIntranet.SAF_PROPEQUIPODETALLE" Width="1.5" PointX="15.375" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -45,7 +45,6 @@ namespace SAF.Web
         public virtual DbSet<SAF_FLUJO_DOCUMENTO> SAF_FLUJO_DOCUMENTO { get; set; }
         public virtual DbSet<SAF_INVITACION> SAF_INVITACION { get; set; }
         public virtual DbSet<SAF_INVITACIONDETALLE> SAF_INVITACIONDETALLE { get; set; }
-        public virtual DbSet<SAF_NOTIFICACION> SAF_NOTIFICACION { get; set; }
         public virtual DbSet<SAF_PARAMETRICA> SAF_PARAMETRICA { get; set; }
         public virtual DbSet<SAF_PROPUESTA> SAF_PROPUESTA { get; set; }
         public virtual DbSet<SAF_PUBLICACION> SAF_PUBLICACION { get; set; }
@@ -58,7 +57,6 @@ namespace SAF.Web
         public virtual DbSet<SAF_TIPOSOLICITUD> SAF_TIPOSOLICITUD { get; set; }
         public virtual DbSet<SAF_UNIVERSIDAD> SAF_UNIVERSIDAD { get; set; }
         public virtual DbSet<SAF_USUARIO> SAF_USUARIO { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<SAF_DIALABORABLE> SAF_DIALABORABLE { get; set; }
         public virtual DbSet<VW_SAF_INVITACION> VW_SAF_INVITACION { get; set; }
         public virtual DbSet<VW_SAF_PUBLICACION> VW_SAF_PUBLICACION { get; set; }
@@ -74,6 +72,7 @@ namespace SAF.Web
         public virtual DbSet<SAF_SOLEXPERIENCIA> SAF_SOLEXPERIENCIA { get; set; }
         public virtual DbSet<SAF_PROPEQUIPO> SAF_PROPEQUIPO { get; set; }
         public virtual DbSet<SAF_PROPEQUIPODETALLE> SAF_PROPEQUIPODETALLE { get; set; }
+        public virtual DbSet<SAF_NOTIFICACION> SAF_NOTIFICACION { get; set; }
     
         public virtual int SP_CARGARDIALABORABLE(string aNIO)
         {
