@@ -96,8 +96,10 @@
     </div>
 }
 <script type="text/javascript" language="javascript">
+
     $("#nombreArchivoCapa").fileInput({ file: $("#codArchivoCapa").val(), fileName: "archivoCapaFile", ctrlCleanDelete: ["codArchivoCapa"] });
     $("#btnGuardarCapacitacion").click(function () { $("#frmRegistroCapacitacion").submit(); });
+
     $("#iRegistroCapacitacion").load(function () {
         var resultText = $("#iRegistroCapacitacion").contents().find('body').html();
         if (resultText == "") return;

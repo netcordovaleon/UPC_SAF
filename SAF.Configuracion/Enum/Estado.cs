@@ -75,5 +75,18 @@ namespace SAF.Configuracion.Enum
             [Description("Enviada")]
             Enviada = 29
         }
+
+        public enum Propuesta
+        {
+            [Description("Elaboracion")]
+            Elaboracion =    32,
+            [Description("Enviada")]
+            Enviada = 33,
+            [Description("Ganadora")]
+            Ganadora = 34,
+            [Description("Descalifica")]
+            Descalifica = 35
+        
+        }
     }
 }

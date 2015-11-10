@@ -164,9 +164,11 @@
     <Compile Include="Areas\Publicacion\AreasAreaRegistration.cs" />
     <Compile Include="Areas\Publicacion\Controllers\EvaluadorController.cs" />
     <Compile Include="Areas\Publicacion\Models\PublicacionViewModel.cs" />
+    <Compile Include="Controllers\AccesoController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\GeneralController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PropuestaController.cs" />
     <Compile Include="Controllers\SolicitudAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -187,9 +189,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>modeloIntranet.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccesoModel.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AuditorModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\PropuestaModel.cs" />
     <Compile Include="Models\SoaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SAF_ARCHIVO.cs">
@@ -314,6 +318,12 @@
       <DependentUpon>modeloIntranet.tt</DependentUpon>
     </Compile>
     <Compile Include="SAF_USUARIO.cs">
+      <DependentUpon>modeloIntranet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_ACCEDERSISTEMAADMIN_Result.cs">
+      <DependentUpon>modeloIntranet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_PROPUESTAS_Result.cs">
       <DependentUpon>modeloIntranet.tt</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
@@ -494,6 +504,8 @@
     <Content Include="Views\SolicitudAdmin\Index.cshtml" />
     <Content Include="Views\SolicitudAdmin\revisarSolicitudSOA.cshtml" />
     <Content Include="Views\SolicitudAdmin\revisarSolicitudAuditor.cshtml" />
+    <Content Include="Views\Acceso\Login.cshtml" />
+    <Content Include="Views\Propuesta\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

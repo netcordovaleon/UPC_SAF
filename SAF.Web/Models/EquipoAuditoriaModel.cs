@@ -9,5 +9,7 @@ namespace SAF.Web.Models
     {
         public int CODAUDITORIA { get; set; }
         public int CODPROEQU { get; set; }
+
+        public int codigoPropuestaAsigFecha { get; set; }
     }
 }

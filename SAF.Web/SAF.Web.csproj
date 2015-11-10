@@ -368,7 +368,16 @@
     <Compile Include="SP_SAF_CREARSOLICITUDSOA_Result.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_SAF_ELIMINARFECHASASIGINVITACION_Result.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_ELIMINARFECHASASIGPROP_Result.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_SAF_EQUIPOAUDITORIA_Result.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_FECHASINVITADAS_Result.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_SAF_INVITACION_Result.cs">

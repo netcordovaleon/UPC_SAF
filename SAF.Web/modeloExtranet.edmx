@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ModeloExtranetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ModeloExtranetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="SAF_ARCHIVO">
           <Key>
             <PropertyRef Name="CODARC" />
@@ -1484,8 +1484,19 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
         <Function Name="SP_SAF_CREARSOLICITUDSOA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CODSOA" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_SAF_ELIMINARFECHASASIGINVITACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CODINV" Type="int" Mode="In" />
+          <Parameter Name="STRCODINVDET" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_SAF_ELIMINARFECHASASIGPROP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CODPRO" Type="int" Mode="In" />
+          <Parameter Name="STRCODPROEQUDET" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="SP_SAF_EQUIPOAUDITORIA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CODAUDITORIA" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SAF_FECHASINVITADAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CODPROEQU" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_SAF_INVITACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CODPUB" Type="int" Mode="In" />
@@ -3157,6 +3168,17 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
             <Parameter Name="CODPROEQU" Mode="In" Type="Int32" />
             <Parameter Name="STRFECHASASIGNAR" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="SP_SAF_ELIMINARFECHASASIGPROP" ReturnType="Collection(ModeloExtranetModel.SP_SAF_ELIMINARFECHASASIGPROP_Result)">
+            <Parameter Name="CODPRO" Mode="In" Type="Int32" />
+            <Parameter Name="STRCODPROEQUDET" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SAF_FECHASINVITADAS" ReturnType="Collection(ModeloExtranetModel.SP_SAF_FECHASINVITADAS_Result)">
+          <Parameter Name="CODPROEQU" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SAF_ELIMINARFECHASASIGINVITACION" ReturnType="Collection(ModeloExtranetModel.SP_SAF_ELIMINARFECHASASIGINVITACION_Result)">
+            <Parameter Name="CODINV" Mode="In" Type="Int32" />
+            <Parameter Name="STRCODINVDET" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="VW_SAF_SOLICITUD">
           <Key>
@@ -3771,6 +3793,13 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <Property Type="Decimal" Name="TOTRETECOBASREQ" Nullable="false" Precision="19" Scale="2" />
           <Property Type="Decimal" Name="TOTIGVBASREQ" Nullable="false" Precision="19" Scale="2" />
           <Property Type="Decimal" Name="TOTVIABASREQ" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="RETRECO" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Int64" Name="CODARCFIRINT" Nullable="true" />
+          <Property Type="Int64" Name="CODARCFIRPCAOB" Nullable="true" />
+          <Property Type="String" Name="NOMBLABELFIRINT" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="NOMBLABELFIRPCAOB" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="INDREQFIRINT" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="INDREQFIRPCAOB" Nullable="true" MaxLength="1" />
         </ComplexType>
         <ComplexType Name="SP_SAF_AUDITORIAS_Result">
           <Property Type="Int32" Name="CODPRO" Nullable="true" />
@@ -3821,6 +3850,17 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
         <ComplexType Name="SP_SAF_ASIGNARFECHASPROPUESTA_Result">
           <Property Type="Int32" Name="RESULTADO" Nullable="false" />
           <Property Type="String" Name="MENSAJE" Nullable="false" MaxLength="42" />
+        </ComplexType>
+        <ComplexType Name="SP_SAF_ELIMINARFECHASASIGPROP_Result">
+          <Property Type="Int32" Name="RESULTADO" Nullable="false" />
+          <Property Type="String" Name="MENSAJE" Nullable="false" MaxLength="53" />
+        </ComplexType>
+        <ComplexType Name="SP_SAF_FECHASINVITADAS_Result">
+          <Property Type="DateTime" Name="FECINVDET" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="SP_SAF_ELIMINARFECHASASIGINVITACION_Result">
+          <Property Type="Int32" Name="RESULTADO" Nullable="false" />
+          <Property Type="String" Name="MENSAJE" Nullable="false" MaxLength="53" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -4792,6 +4832,13 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
                 <ScalarProperty Name="TOTRETECOBASREQ" ColumnName="TOTRETECOBASREQ" />
                 <ScalarProperty Name="TOTIGVBASREQ" ColumnName="TOTIGVBASREQ" />
                 <ScalarProperty Name="TOTVIABASREQ" ColumnName="TOTVIABASREQ" />
+                <ScalarProperty Name="RETRECO" ColumnName="RETRECO" />
+                <ScalarProperty Name="CODARCFIRINT" ColumnName="CODARCFIRINT" />
+                <ScalarProperty Name="CODARCFIRPCAOB" ColumnName="CODARCFIRPCAOB" />
+                <ScalarProperty Name="NOMBLABELFIRINT" ColumnName="NOMBLABELFIRINT" />
+                <ScalarProperty Name="NOMBLABELFIRPCAOB" ColumnName="NOMBLABELFIRPCAOB" />
+                <ScalarProperty Name="INDREQFIRINT" ColumnName="INDREQFIRINT" />
+                <ScalarProperty Name="INDREQFIRPCAOB" ColumnName="INDREQFIRPCAOB" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -4854,6 +4901,29 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <FunctionImportMapping FunctionImportName="SP_SAF_ASIGNARFECHASPROPUESTA" FunctionName="ModeloExtranetModel.Store.SP_SAF_ASIGNARFECHASPROPUESTA" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ModeloExtranetModel.SP_SAF_ASIGNARFECHASPROPUESTA_Result">
+                <ScalarProperty Name="RESULTADO" ColumnName="RESULTADO" />
+                <ScalarProperty Name="MENSAJE" ColumnName="MENSAJE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SAF_ELIMINARFECHASASIGPROP" FunctionName="ModeloExtranetModel.Store.SP_SAF_ELIMINARFECHASASIGPROP">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloExtranetModel.SP_SAF_ELIMINARFECHASASIGPROP_Result">
+                <ScalarProperty Name="RESULTADO" ColumnName="RESULTADO" />
+                <ScalarProperty Name="MENSAJE" ColumnName="MENSAJE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SAF_FECHASINVITADAS" FunctionName="ModeloExtranetModel.Store.SP_SAF_FECHASINVITADAS" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloExtranetModel.SP_SAF_FECHASINVITADAS_Result">
+                <ScalarProperty Name="FECINVDET" ColumnName="FECINVDET" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SAF_ELIMINARFECHASASIGINVITACION" FunctionName="ModeloExtranetModel.Store.SP_SAF_ELIMINARFECHASASIGINVITACION">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloExtranetModel.SP_SAF_ELIMINARFECHASASIGINVITACION_Result">
                 <ScalarProperty Name="RESULTADO" ColumnName="RESULTADO" />
                 <ScalarProperty Name="MENSAJE" ColumnName="MENSAJE" />
               </ComplexTypeMapping>

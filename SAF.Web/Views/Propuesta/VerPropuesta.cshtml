@@ -7,7 +7,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Html.HiddenFor(c=>c.CODPRO)
+@Html.HiddenFor(c => c.CODPRO)
 
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#tabsInfoSoa" aria-controls="home" role="tab" data-toggle="tab">Informacion de la Sociedad Auditoria</a></li>
@@ -143,11 +143,85 @@
             </div>
         </div>
 
+
+        <iframe id="iRegistroSustentoAdicional" name="RegistroSustentoAdicional" style="visibility:hidden; display: none;"></iframe>
+        @using (Html.BeginForm("guardarSustentoAdicional", "Propuesta", FormMethod.Post, new { autocomplete = "off", id = "frmPropuestaSustentoAdicional", role = "form", enctype = "multipart/form-data", target = "RegistroSustentoAdicional" }))
+        {
+            @Html.HiddenFor(c => c.codigoPropuestaSustento)
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-success color-palette-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"><i class="fa fa-copy"></i>&nbsp;Sustentos Adicionales</h3>
+                        </div>
+                        <div class="box-body">
+
+                            <div class="form-group">
+                                <div class="row">
+
+                                    @if (Model.INDREQFIRINT.Equals("S"))
+                                    {
+                                        <div class="col-md-4">
+                                            <div class="inline">
+                                                <h4><i class="fa fa-check-square-o">&nbsp;</i>&nbsp;Requiere Sustento Firma Internacional</h4>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    @if (Model.INDREQFIRPCAOB.Equals("S"))
+                                    {
+                                        <div class="col-md-4">
+                                            <div class="inline">
+                                                <h4><i class="fa fa-check-square-o">&nbsp;</i>&nbsp;Requiere Sustento PCAOB</h4>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(m => m.nombreArchivoFirmaInternacional)
+                                        <div class="input-group">
+                                            @Html.TextBoxFor(m => m.nombreArchivoFirmaInternacional, new { @class = "form-control", @readonly = "true" })
+                                        </div>
+                                        @Html.HiddenFor(m => m.codArchivoFirmaInternacional)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(m => m.nombreArchivoFirmaPCAOB)
+                                        <div class="input-group">
+                                            @Html.TextBoxFor(m => m.nombreArchivoFirmaPCAOB, new { @class = "form-control", @readonly = "true" })
+                                        </div>
+                                        @Html.HiddenFor(m => m.codArchivoFirmaPCAOB)
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="button" id="btnGrabarDocumentosAdicionales" class="btn btn-primary pull-right"><i class="fa fa-save"></i>&nbsp;Grabar Sustentos Adicionales</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 
 
     <div role="tabpanel" class="tab-pane" id="tabsAuditorias">
-        
+
 
         <div class="row">
             <div class="col-md-12">
@@ -188,12 +262,12 @@
                         </div>
 
                         @*<div class="form-group">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <button type="button" id="btnGrabarFechasAuditor" class="btn btn-primary pull-right"><i class="fa fa-calendar"></i>&nbsp;Asignar fechas Propuesta</button>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="button" id="btnGrabarFechasAuditor" class="btn btn-primary pull-right"><i class="fa fa-calendar"></i>&nbsp;Asignar fechas Propuesta</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>*@
+                            </div>*@
 
                     </div>
                 </div>
@@ -209,7 +283,7 @@
 <div class="form-group">
     <div class="row">
         <div class="col-md-12">
-            <button class="btn btn-success" type="button"><i class="fa fa-check"></i>&nbsp;Presentar Propuesta</button>
+            <button class="btn btn-success" type="button" id="btnPresentarPropuesta"><i class="fa fa-check"></i>&nbsp;Presentar Propuesta</button>
             <button class="btn btn-primary" id="btnRegresar" type="button"><i class="fa fa-chevron-left"></i>&nbsp;Regresar</button>
         </div>
     </div>
@@ -222,107 +296,159 @@
     <script type="text/javascript" language="javascript">
 
 
-        var _dataAuditorias_ = null;
-        var _dataEquipoAuditoria_ = null;
+    $("#nombreArchivoFirmaInternacional").fileInput({ file: $("#codArchivoFirmaInternacional").val(), fileName: "archivoFirmaInternacional", ctrlCleanDelete: ["codArchivoFirmaInternacional"] });
+    $("#nombreArchivoFirmaPCAOB").fileInput({ file: $("#codArchivoFirmaPCAOB").val(), fileName: "archivoFirmaPCAOB", ctrlCleanDelete: ["codArchivoFirmaPCAOB"] });
 
-        var tabAuditorias = $("#tabAuditorias").dataTable({
-            "info": false,
-            "bServerSide": false,
-            "data": _dataAuditorias_,
-            "order": [[1, "asc"]],
-            "columns": [
-                {
-                    "sTitle": "Equipo",
-                    "bSortable": false,
-                    "sClass": "center",
-                    "sWidth": "5%",
-                    "render": function (data, type, row) {
-                        return '<center><button class="btn btn-primary" title="Ver Equipo" type="button" onclick="verEquipoAuditoria(' + row[0] + ');"><i class="fa fa-search"></i></button></center>';
-                    }
+    $("#iRegistroSustentoAdicional").load(function () {
+        var resultText = $("#iRegistroSustentoAdicional").contents().find('body').html();
+        if (resultText == "") return;
+
+        var result = jQuery.parseJSON(resultText);
+        mostrarNotificacion(result);
+        if (result.Exito) {
+            //cargarCapacitaciones();
+            //$("#dlgRegistroCapacitacion").modal('hide');
+        }
+    });
+
+    var _dataAuditorias_ = null;
+    var _dataEquipoAuditoria_ = null;
+
+    var tabAuditorias = $("#tabAuditorias").dataTable({
+        "info": false,
+        "bServerSide": false,
+        "data": _dataAuditorias_,
+        "order": [[1, "asc"]],
+        "columns": [
+            {
+                "sTitle": "Equipo",
+                "bSortable": false,
+                "sClass": "center",
+                "sWidth": "5%",
+                "render": function (data, type, row) {
+                    return '<center><button class="btn btn-primary" title="Ver Equipo" type="button" onclick="verEquipoAuditoria(' + row[0] + ');"><i class="fa fa-search"></i></button></center>';
+                }
+            },
+            { "sTitle": "Periodo" },
+            { "sTitle": "Entidad" }
+        ]
+    });
+
+    var tabEquipoAuditoria = $("#tabEquipoAuditoria").dataTable({
+        "info": false,
+        "bServerSide": false,
+        "data": _dataAuditorias_,
+        "order": [[1, "asc"]],
+        "columns": [
+            {
+                "sTitle": "Equipo",
+                "bSortable": false,
+                "sClass": "center",
+                "sWidth": "5%",
+                "render": function (data, type, row) {
+                    return '<center><button class="btn btn-warning" title="Asignar Fechas" type="button" onclick="popupAsignarFechaEquipoAuditoria(' + row[0] + ');"><i class="fa fa-calendar"></i></button></center>';
+                }
+            },
+
+            { "sTitle": "Periodo" },
+            { "sTitle": "DNI" },
+            { "sTitle": "Auditor" },
+            { "sTitle": "Cargo" },
+            { "sTitle": "Celular" },
+            { "sTitle": "Correo" }
+
+        ]
+    });
+
+    $(document).ready(function () {
+        listarAuditorias();
+        $("#btnRegresar").click(regresarPropuestas);
+        $("#btnGrabarRetribucionEconomica").click(registrarRetribucionEconomica);
+        $("#btnGrabarDocumentosAdicionales").click(function () { $("#frmPropuestaSustentoAdicional").submit(); });
+        $("#btnPresentarPropuesta").click(function () {
+            bootbox.confirm(parametros.general.mensajeConfirmacion, function (result) {
+                if(result)
+                    presentarPropuesta();
+            });
+        });
+        $("#RETRECO").keyup(calcularRetribucion)
+    });
+
+    function regresarPropuestas() {
+        document.location = '@Url.Action("Index","Propuesta")';
+    }
+
+    function calcularRetribucion() {
+        var retribucion = parseFloat($("#RETRECO").val());
+        var igv = (retribucion * 0.18);
+        var retribucionTotal = (retribucion + igv);
+        $("#IGVTOTAL").val(igv.toFixed(2));
+        $("#RETRECOTOTAL").val(retribucionTotal.toFixed(2));
+    }
+
+    function listarAuditorias() {
+        $.ajax({
+            url: '@Url.Action("ListarAuditorias", "Propuesta")',
+            type: 'POST',
+            async: false,
+            data: { idPropuesta: $("#CODPRO").val() },
+            success: function (result) {
+                _dataAuditorias_ = result;
+                tabAuditorias.fnReloadData(_dataAuditorias_);
+            }
+        });
+    }
+
+    function verEquipoAuditoria(idAuditoria) {
+        $.ajax({
+            url: '@Url.Action("VerEquipoAuditoria", "Propuesta")',
+            type: 'POST',
+            async: false,
+            data: { idAuditoria: idAuditoria },
+            success: function (result) {
+                _dataEquipoAuditoria_ = result;
+                tabEquipoAuditoria.fnReloadData(_dataEquipoAuditoria_);
+            }
+        });
+    }
+
+    function popupAsignarFechaEquipoAuditoria(id) {
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("AsignarFechaEquipoPropuesta", "Propuesta")',
+            data: { idPropuesta: $("#CODPRO").val(), idEquipo: id },
+            success: function (result) {
+                $("#modalAsignaFechasAuditor").empty().html(result).modal();
+            }
+        });
+    }
+
+    function registrarRetribucionEconomica() {
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GrabarRetribucionEconomica", "Propuesta")',
+                data: {
+                    idProp: $("#CODPRO").val(),
+                    retribucion: $("#RETRECO").val(),
+                    igv: $("#IGVTOTAL").val(),
+                    totalretrib: $("#RETRECOTOTAL").val(),
+                    viatico: $("#MONTVIATICO").val()
                 },
-                { "sTitle": "Periodo" },
-                { "sTitle": "Entidad" }
-            ]
-        });
-
-        var tabEquipoAuditoria = $("#tabEquipoAuditoria").dataTable({
-            "info": false,
-            "bServerSide": false,
-            "data": _dataAuditorias_,
-            "order": [[1, "asc"]],
-            "columns": [
-                {
-                    "sTitle": "Equipo",
-                    "bSortable": false,
-                    "sClass": "center",
-                    "sWidth": "5%",
-                    "render": function (data, type, row) {
-                        return '<center><button class="btn btn-warning" title="Asignar Fechas" type="button" onclick="popupAsignarFechaEquipoAuditoria(' + row[0] + ');"><i class="fa fa-calendar"></i></button></center>';
-                    }
-                },
-                
-                { "sTitle": "Periodo" },
-                { "sTitle": "DNI" },
-                { "sTitle": "Auditor" },
-                { "sTitle": "Cargo" },
-                { "sTitle": "Celular" },
-                { "sTitle": "Correo" }
-                
-            ]
-        });
-
-        $(document).ready(function () {
-            listarAuditorias();
-            $("#btnRegresar").click(regresarPropuestas);
-            $("#RETRECO").keyup(calcularRetribucion)
-        });
-
-        function regresarPropuestas() {
-            document.location = '@Url.Action("Index","Propuesta")';
+                success: function (result) {
+                    mostrarNotificacion(result);
+                }
+            });
         }
 
-        function calcularRetribucion() {
-            var retribucion = parseFloat($("#RETRECO").val());
-            var igv = (retribucion * 0.18);
-            var retribucionTotal = (retribucion + igv);
-            $("#IGVTOTAL").val(igv.toFixed(2));
-            $("#RETRECOTOTAL").val(retribucionTotal.toFixed(2));
-        }
-
-        function listarAuditorias() {
+        function presentarPropuesta() {
             $.ajax({
-                url: '@Url.Action("ListarAuditorias", "Propuesta")',
                 type: 'POST',
-                async: false,
+                url: '@Url.Action("PresentarPropuesta", "Propuesta")',
                 data: { idPropuesta: $("#CODPRO").val() },
                 success: function (result) {
-                    _dataAuditorias_ = result;
-                    tabAuditorias.fnReloadData(_dataAuditorias_);
-                }
-            });
-        }
-
-        function verEquipoAuditoria(idAuditoria) {
-            $.ajax({
-                url: '@Url.Action("VerEquipoAuditoria", "Propuesta")',
-                type: 'POST',
-                async: false,
-                data: { idAuditoria: idAuditoria },
-                success: function (result) {
-                    _dataEquipoAuditoria_ = result;
-                    tabEquipoAuditoria.fnReloadData(_dataEquipoAuditoria_);
-                }
-            });
-        }
-
-        function popupAsignarFechaEquipoAuditoria(id) {
-
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("AsignarFechaEquipoPropuesta", "Propuesta")',
-                data: { idEquipo: id },
-                success: function (result) {
-                    $("#modalAsignaFechasAuditor").empty().html(result).modal();
+                    mostrarNotificacion(result);
                 }
             });
         }

@@ -12,7 +12,7 @@ namespace SAF.Web.Models
 
 
 
-
+        public int codigoPropuestaSustento { get; set; }
 
         public int CODPRO { get; set; }
         public string NUMPRO { get; set; }
@@ -46,10 +46,23 @@ namespace SAF.Web.Models
         public decimal RETRECOTOTAL { get; set; }
         [Display(Name = "Viaticos")]
         public decimal MONTVIATICO { get; set; }
-        
 
-            
-            
+
+
+        [Display(Name = "Archivo Sustento Firma Internacional")]
+        public string nombreArchivoFirmaInternacional { get; set; }
+        public long? codArchivoFirmaInternacional { get; set; }
+
+        [Display(Name = "Archivo Sustento Firma PCAOB")]
+        public string nombreArchivoFirmaPCAOB { get; set; }
+        public long? codArchivoFirmaPCAOB { get; set; }
+
+
+        public string INDREQFIRINT { get; set; }
+        public string INDREQFIRPCAOB { get; set; }
+
+        public HttpPostedFileBase archivoFirmaInternacional { get; set; }
+        public HttpPostedFileBase archivoFirmaPCAOB { get; set; }
             
 
         public List<SelectListItem> cboPublicaciones { get; set; }

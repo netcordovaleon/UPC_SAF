@@ -65,6 +65,7 @@
           <Property Name="USUMOD" Type="varchar" MaxLength="50" />
           <Property Name="ESTREG" Type="char" MaxLength="1" />
           <Property Name="CODPRO" Type="int" />
+          <Property Name="CODSERAUD" Type="int" />
         </EntityType>
         <EntityType Name="SAF_BASE">
           <Key>
@@ -456,6 +457,21 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.SAF_DIALABORABLE' does not have a pr
           <Property Name="ESTREG" Type="char" MaxLength="1" />
           <Property Name="CODSOA" Type="int" />
           <Property Name="CODPUB" Type="int" />
+          <Property Name="INDREQFIRINT" Type="char" MaxLength="1" />
+          <Property Name="INDREQFIRPCAOB" Type="char" MaxLength="1" />
+          <Property Name="RETRECO" Type="numeric" Precision="19" Scale="2" />
+          <Property Name="IGVTOTAL" Type="numeric" Precision="19" Scale="2" />
+          <Property Name="RETRECOTOTAL" Type="numeric" Precision="19" Scale="2" />
+          <Property Name="MONTVIATICO" Type="numeric" Precision="19" Scale="2" />
+          <Property Name="CODARCFIRINT" Type="bigint" />
+          <Property Name="NOMBLABELFIRINT" Type="varchar" MaxLength="100" />
+          <Property Name="CODARCFIRPCAOB" Type="bigint" />
+          <Property Name="NOMBLABELFIRPCAOB" Type="varchar" MaxLength="100" />
+          <Property Name="RETRECOREQ" Type="numeric" Precision="19" Scale="2" />
+          <Property Name="IGVTOTALREQ" Type="numeric" Precision="19" Scale="2" />
+          <Property Name="RETRECOTOTALREQ" Type="numeric" Precision="19" Scale="2" />
+          <Property Name="MONTVIATICOREQ" Type="numeric" Precision="19" Scale="2" />
+          <Property Name="ESTPROP" Type="int" />
         </EntityType>
         <EntityType Name="SAF_PROVINCIA">
           <Key>
@@ -1401,6 +1417,11 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="SP_ACCEDERSISTEMAADMIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NOMUSU" Type="varchar" Mode="In" />
+          <Parameter Name="PASUSU" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_SAF_PROPUESTAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="modeloIntranetStoreContainer">
           <EntitySet Name="SAF_ARCHIVO" EntityType="Self.SAF_ARCHIVO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SAF_AUDITOR" EntityType="Self.SAF_AUDITOR" Schema="dbo" store:Type="Tables" />
@@ -1782,6 +1803,7 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <Property Name="ESTREG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="CODPRO" Type="Int32" />
           <NavigationProperty Name="SAF_PROPUESTA" Relationship="Self.R_43" FromRole="SAF_AUDITORIA" ToRole="SAF_PROPUESTA" />
+          <Property Name="CODSERAUD" Type="Int32" />
         </EntityType>
         <EntityType Name="SAF_BASE">
           <Key>
@@ -2131,6 +2153,21 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <NavigationProperty Name="SAF_AUDITORIA" Relationship="Self.R_43" FromRole="SAF_PROPUESTA" ToRole="SAF_AUDITORIA" />
           <NavigationProperty Name="SAF_SOA" Relationship="Self.R_31" FromRole="SAF_PROPUESTA" ToRole="SAF_SOA" />
           <NavigationProperty Name="SAF_PUBLICACION" Relationship="Self.R_32" FromRole="SAF_PROPUESTA" ToRole="SAF_PUBLICACION" />
+          <Property Name="INDREQFIRINT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="INDREQFIRPCAOB" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="RETRECO" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="IGVTOTAL" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="RETRECOTOTAL" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="MONTVIATICO" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="CODARCFIRINT" Type="Int64" />
+          <Property Name="NOMBLABELFIRINT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CODARCFIRPCAOB" Type="Int64" />
+          <Property Name="NOMBLABELFIRPCAOB" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RETRECOREQ" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="IGVTOTALREQ" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="RETRECOTOTALREQ" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="MONTVIATICOREQ" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="ESTPROP" Type="Int32" />
         </EntityType>
         <EntityType Name="SAF_PUBLICACION">
           <Key>
@@ -3052,6 +3089,11 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
             <End Role="SAF_PARAMETRICA" EntitySet="SAF_PARAMETRICA" />
             <End Role="SAF_SOLEXPERIENCIA" EntitySet="SAF_SOLEXPERIENCIA" />
           </AssociationSet>
+          <FunctionImport Name="SP_ACCEDERSISTEMAADMIN" ReturnType="Collection(modeloIntranet.SP_ACCEDERSISTEMAADMIN_Result)">
+            <Parameter Name="NOMUSU" Mode="In" Type="String" />
+            <Parameter Name="PASUSU" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SAF_PROPUESTAS" ReturnType="Collection(modeloIntranet.SP_SAF_PROPUESTAS_Result)" />
         </EntityContainer>
         <EntityType Name="SAF_ARCHIVO">
           <Key>
@@ -3481,6 +3523,37 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="SP_ACCEDERSISTEMAADMIN_Result">
+          <Property Type="Int32" Name="EXITO" Nullable="false" />
+          <Property Type="String" Name="MENSAJE" Nullable="false" MaxLength="16" />
+        </ComplexType>
+        <ComplexType Name="SP_SAF_PROPUESTAS_Result">
+          <Property Type="Int32" Name="CODPRO" Nullable="false" />
+          <Property Type="Int32" Name="CODSOA" Nullable="true" />
+          <Property Type="String" Name="RUCSOA" Nullable="true" MaxLength="21" />
+          <Property Type="String" Name="RAZSOCSOA" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="NOMREPLEGSOA" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CELREPLEGSOA" Nullable="true" MaxLength="9" />
+          <Property Type="String" Name="CORREPLEGSOA" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DESBAS" Nullable="true" MaxLength="300" />
+          <Property Type="Decimal" Name="RETRECOTOTAL" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="IGVTOTAL" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="MONTVIATICO" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="RETRECO" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Int32" Name="ESTPROP" Nullable="true" />
+          <Property Type="Int64" Name="CODARCFIRINT" Nullable="true" />
+          <Property Type="Int64" Name="CODARCFIRPCAOB" Nullable="true" />
+          <Property Type="String" Name="NOMBLABELFIRINT" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="NOMBLABELFIRPCAOB" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="INDREQFIRINT" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="INDREQFIRPCAOB" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="TOTRETECOBASREQ" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="TOTIGVBASREQ" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="TOTVIABASREQ" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="String" Name="VALOR" Nullable="true" />
+          <Property Type="Int32" Name="CODPUB" Nullable="true" />
+          <Property Type="Int32" Name="PUNTAJETOTAL" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3523,6 +3596,7 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <EntitySetMapping Name="SAF_AUDITORIA">
             <EntityTypeMapping TypeName="modeloIntranet.SAF_AUDITORIA">
               <MappingFragment StoreEntitySet="SAF_AUDITORIA">
+                <ScalarProperty Name="CODSERAUD" ColumnName="CODSERAUD" />
                 <ScalarProperty Name="CODAUD" ColumnName="CODAUD" />
                 <ScalarProperty Name="PERAUD" ColumnName="PERAUD" />
                 <ScalarProperty Name="INDCUMCAPAUDAUD" ColumnName="INDCUMCAPAUDAUD" />
@@ -3850,6 +3924,21 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <EntitySetMapping Name="SAF_PROPUESTA">
             <EntityTypeMapping TypeName="modeloIntranet.SAF_PROPUESTA">
               <MappingFragment StoreEntitySet="SAF_PROPUESTA">
+                <ScalarProperty Name="ESTPROP" ColumnName="ESTPROP" />
+                <ScalarProperty Name="MONTVIATICOREQ" ColumnName="MONTVIATICOREQ" />
+                <ScalarProperty Name="RETRECOTOTALREQ" ColumnName="RETRECOTOTALREQ" />
+                <ScalarProperty Name="IGVTOTALREQ" ColumnName="IGVTOTALREQ" />
+                <ScalarProperty Name="RETRECOREQ" ColumnName="RETRECOREQ" />
+                <ScalarProperty Name="NOMBLABELFIRPCAOB" ColumnName="NOMBLABELFIRPCAOB" />
+                <ScalarProperty Name="CODARCFIRPCAOB" ColumnName="CODARCFIRPCAOB" />
+                <ScalarProperty Name="NOMBLABELFIRINT" ColumnName="NOMBLABELFIRINT" />
+                <ScalarProperty Name="CODARCFIRINT" ColumnName="CODARCFIRINT" />
+                <ScalarProperty Name="MONTVIATICO" ColumnName="MONTVIATICO" />
+                <ScalarProperty Name="RETRECOTOTAL" ColumnName="RETRECOTOTAL" />
+                <ScalarProperty Name="IGVTOTAL" ColumnName="IGVTOTAL" />
+                <ScalarProperty Name="RETRECO" ColumnName="RETRECO" />
+                <ScalarProperty Name="INDREQFIRPCAOB" ColumnName="INDREQFIRPCAOB" />
+                <ScalarProperty Name="INDREQFIRINT" ColumnName="INDREQFIRINT" />
                 <ScalarProperty Name="CODPRO" ColumnName="CODPRO" />
                 <ScalarProperty Name="NUMPRO" ColumnName="NUMPRO" />
                 <ScalarProperty Name="FECREG" ColumnName="FECREG" />
@@ -4281,6 +4370,45 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_ACCEDERSISTEMAADMIN" FunctionName="modeloIntranet.Store.SP_ACCEDERSISTEMAADMIN">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="modeloIntranet.SP_ACCEDERSISTEMAADMIN_Result">
+                <ScalarProperty Name="EXITO" ColumnName="EXITO" />
+                <ScalarProperty Name="MENSAJE" ColumnName="MENSAJE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SAF_PROPUESTAS" FunctionName="modeloIntranet.Store.SP_SAF_PROPUESTAS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="modeloIntranet.SP_SAF_PROPUESTAS_Result">
+                <ScalarProperty Name="CODPRO" ColumnName="CODPRO" />
+                <ScalarProperty Name="CODSOA" ColumnName="CODSOA" />
+                <ScalarProperty Name="RUCSOA" ColumnName="RUCSOA" />
+                <ScalarProperty Name="RAZSOCSOA" ColumnName="RAZSOCSOA" />
+                <ScalarProperty Name="NOMREPLEGSOA" ColumnName="NOMREPLEGSOA" />
+                <ScalarProperty Name="CELREPLEGSOA" ColumnName="CELREPLEGSOA" />
+                <ScalarProperty Name="CORREPLEGSOA" ColumnName="CORREPLEGSOA" />
+                <ScalarProperty Name="DESBAS" ColumnName="DESBAS" />
+                <ScalarProperty Name="RETRECOTOTAL" ColumnName="RETRECOTOTAL" />
+                <ScalarProperty Name="IGVTOTAL" ColumnName="IGVTOTAL" />
+                <ScalarProperty Name="MONTVIATICO" ColumnName="MONTVIATICO" />
+                <ScalarProperty Name="RETRECO" ColumnName="RETRECO" />
+                <ScalarProperty Name="ESTPROP" ColumnName="ESTPROP" />
+                <ScalarProperty Name="CODARCFIRINT" ColumnName="CODARCFIRINT" />
+                <ScalarProperty Name="CODARCFIRPCAOB" ColumnName="CODARCFIRPCAOB" />
+                <ScalarProperty Name="NOMBLABELFIRINT" ColumnName="NOMBLABELFIRINT" />
+                <ScalarProperty Name="NOMBLABELFIRPCAOB" ColumnName="NOMBLABELFIRPCAOB" />
+                <ScalarProperty Name="INDREQFIRINT" ColumnName="INDREQFIRINT" />
+                <ScalarProperty Name="INDREQFIRPCAOB" ColumnName="INDREQFIRPCAOB" />
+                <ScalarProperty Name="TOTRETECOBASREQ" ColumnName="TOTRETECOBASREQ" />
+                <ScalarProperty Name="TOTIGVBASREQ" ColumnName="TOTIGVBASREQ" />
+                <ScalarProperty Name="TOTVIABASREQ" ColumnName="TOTVIABASREQ" />
+                <ScalarProperty Name="VALOR" ColumnName="VALOR" />
+                <ScalarProperty Name="CODPUB" ColumnName="CODPUB" />
+                <ScalarProperty Name="PUNTAJETOTAL" ColumnName="PUNTAJETOTAL" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

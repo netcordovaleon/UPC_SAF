@@ -12,6 +12,8 @@ namespace SAF.Web.Intranet
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class SI_SOCAUDEntities : DbContext
     {
@@ -70,5 +72,23 @@ namespace SAF.Web.Intranet
         public virtual DbSet<SAF_EXPERIENCIA> SAF_EXPERIENCIA { get; set; }
         public virtual DbSet<SAF_SOLCAPACITACION> SAF_SOLCAPACITACION { get; set; }
         public virtual DbSet<SAF_SOLEXPERIENCIA> SAF_SOLEXPERIENCIA { get; set; }
+    
+        public virtual ObjectResult<SP_ACCEDERSISTEMAADMIN_Result> SP_ACCEDERSISTEMAADMIN(string nOMUSU, string pASUSU)
+        {
+            var nOMUSUParameter = nOMUSU != null ?
+                new ObjectParameter("NOMUSU", nOMUSU) :
+                new ObjectParameter("NOMUSU", typeof(string));
+    
+            var pASUSUParameter = pASUSU != null ?
+                new ObjectParameter("PASUSU", pASUSU) :
+                new ObjectParameter("PASUSU", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_ACCEDERSISTEMAADMIN_Result>("SP_ACCEDERSISTEMAADMIN", nOMUSUParameter, pASUSUParameter);
+        }
+    
+        public virtual ObjectResult<SP_SAF_PROPUESTAS_Result> SP_SAF_PROPUESTAS()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_PROPUESTAS_Result>("SP_SAF_PROPUESTAS");
+        }
     }
 }

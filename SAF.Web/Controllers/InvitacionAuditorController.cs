@@ -169,18 +169,18 @@ namespace SAF.Web.Controllers
         }
 
         public JsonResult ListadoFechasAsig(int idInvitacion) {
-            var listado = this.modelEntity.SAF_INVITACIONDETALLE.ToList().Where(c => c.CODINV == idInvitacion).OrderBy(c=>c.FECINVDET);
+            var listado = this.modelEntity.SAF_INVITACIONDETALLE.ToList().Where(c => c.CODINV == idInvitacion && c.ESTREG == "1").OrderBy(c=>c.FECINVDET);
             var data = listado.Select(c => new string[]{
                 c.FECINVDET.HasValue ? c.FECINVDET.Value.ToShortDateString() : "",
-                c.NUMHORINVDET.GetValueOrDefault().ToString()
+                c.CODINVDET.ToString()
             }).ToArray();
             return Json(data);
         }
 
-        public JsonResult RegistrarFechasAgendaAuditor(int idInvitacion, int numHora, string fechas) {
+        public JsonResult RegistrarFechasAgendaAuditor(int idInvitacion, string fechas) {
             try
             {
-                var resultado = this.modelEntity.SP_SAF_AGENDAREGISTRAR(idInvitacion, numHora, fechas).FirstOrDefault();
+                var resultado = this.modelEntity.SP_SAF_AGENDAREGISTRAR(idInvitacion, 8, fechas).FirstOrDefault(); // por defecto 8
                 if (resultado.RESULTADO.Equals(1))
                     return Json(new MensajeRespuesta(resultado.MENSAJE, true));
                 else
@@ -189,6 +189,22 @@ namespace SAF.Web.Controllers
             catch (Exception)
             {
                 return Json(new MensajeRespuesta("No se pudo registrar las fechas", false));
+            }
+        }
+
+        public JsonResult EliminarFechasAgenda(int idInvitacion, string fechasAgendaAuditor) {
+            try
+            {
+                var resultado = this.modelEntity.SP_SAF_ELIMINARFECHASASIGINVITACION(idInvitacion, fechasAgendaAuditor).FirstOrDefault();
+                if (resultado.RESULTADO.Equals(1))
+                    return Json(new MensajeRespuesta(resultado.MENSAJE, true));
+                else
+                    return Json(new MensajeRespuesta("No se puede eliminar las fechas", false));
+            }
+            catch (Exception)
+            {
+                
+                return Json(new MensajeRespuesta("Se produjo un error al eliminar las fechas de la agenda", false));
             }
         }
     }

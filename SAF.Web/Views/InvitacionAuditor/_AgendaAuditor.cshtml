@@ -168,9 +168,7 @@
 
 
         </div>
-        @*<div class="modal-footer">
-            <input type="button" class="btn btn-default" id="btnCancelarRegAgenda" value="Cerrar" data-dismiss="modal" />
-        </div>*@
+ 
     </div>
 </div>
 
@@ -187,6 +185,8 @@
     $(document).ready(function () {
         listarFechasAsignadasAuditor();
         $("#btnRegistrarAgenda").click(registrarAgendaAuditor);
+        $("#btnEliminarFechaAsignada").click(eliminarFechasAgendaAuditor);
+        
         $("#btnBusquedaDisponibilidad").click(listarDisponibilidadAuditor);
         $('#fechaInicio').datepicker({
             format: "dd/mm/yyyy"
@@ -232,12 +232,12 @@
 
             { "sTitle": "Fechas Asignadas" },
             {
-                "sTitle": "<center><input type='checkbox' id='chkSeleccionarTodo' onclick='javascript:seleccionarTodasFechas();' /></center>",
+                "sTitle": "<center><input type='checkbox' id='chkSeleccionarTodoAsig' onclick='javascript:seleccionarTodasFechasAsignadas();' /></center>",
                 "bSortable": false,
                 "sClass": "center",
                 "sWidth": "5%",
                 "render": function (data, type, row) {
-                    return "<center><input type='checkbox' name='chkDiaAsignado' value = '" + row[0] + "' /></center>";
+                    return "<center><input type='checkbox' name='chkDiaAsignado' value = '" + row[1] + "' /></center>";
                 }
             }
 
@@ -279,6 +279,14 @@
         }
     }
 
+    function seleccionarTodasFechasAsignadas() {
+        if ($("#chkSeleccionarTodoAsig").is(":checked")) {
+            $("input[name='chkDiaAsignado']").prop("checked", true);
+        } else {
+            $("input[name='chkDiaAsignado']").prop("checked", false);
+        }
+    }
+
 
     function registrarAgendaAuditor() {
         var fechasSeleccionadas = "";
@@ -296,8 +304,33 @@
             async: false,
             data: {
                 idInvitacion: $("#codigoInvitacionAgenda").val(),
-                numHora: $("#numeroHorasLaboral").val(),
                 fechas: fechasSeleccionadas
+            },
+            success: function (result) {
+                mostrarNotificacion(result);
+                listarDisponibilidadAuditor();
+                listarFechasAsignadasAuditor();
+            }
+        });
+    }
+
+    function eliminarFechasAgendaAuditor() {
+        var fechasAgendaAuditor = "";
+
+        $("input[name='chkDiaAsignado']:checked").each(function (i, v) {
+            if (fechasAgendaAuditor == "")
+                fechasAgendaAuditor = $(this).val();
+            else
+                fechasAgendaAuditor = fechasAgendaAuditor + "," + $(this).val();
+        });
+
+        $.ajax({
+            url: '@Url.Action("EliminarFechasAgenda", "InvitacionAuditor")',
+            type: 'POST',
+            async: false,
+            data: {
+                idInvitacion: $("#codigoInvitacionAgenda").val(),
+                fechasAgendaAuditor: fechasAgendaAuditor
             },
             success: function (result) {
                 mostrarNotificacion(result);

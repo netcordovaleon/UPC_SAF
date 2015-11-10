@@ -266,5 +266,40 @@ namespace SAF.Web
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_ASIGNARFECHASPROPUESTA_Result>("SP_SAF_ASIGNARFECHASPROPUESTA", cODPROEQUParameter, sTRFECHASASIGNARParameter);
         }
+    
+        public virtual ObjectResult<SP_SAF_ELIMINARFECHASASIGPROP_Result> SP_SAF_ELIMINARFECHASASIGPROP(Nullable<int> cODPRO, string sTRCODPROEQUDET)
+        {
+            var cODPROParameter = cODPRO.HasValue ?
+                new ObjectParameter("CODPRO", cODPRO) :
+                new ObjectParameter("CODPRO", typeof(int));
+    
+            var sTRCODPROEQUDETParameter = sTRCODPROEQUDET != null ?
+                new ObjectParameter("STRCODPROEQUDET", sTRCODPROEQUDET) :
+                new ObjectParameter("STRCODPROEQUDET", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_ELIMINARFECHASASIGPROP_Result>("SP_SAF_ELIMINARFECHASASIGPROP", cODPROParameter, sTRCODPROEQUDETParameter);
+        }
+    
+        public virtual ObjectResult<SP_SAF_FECHASINVITADAS_Result> SP_SAF_FECHASINVITADAS(Nullable<int> cODPROEQU)
+        {
+            var cODPROEQUParameter = cODPROEQU.HasValue ?
+                new ObjectParameter("CODPROEQU", cODPROEQU) :
+                new ObjectParameter("CODPROEQU", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_FECHASINVITADAS_Result>("SP_SAF_FECHASINVITADAS", cODPROEQUParameter);
+        }
+    
+        public virtual ObjectResult<SP_SAF_ELIMINARFECHASASIGINVITACION_Result> SP_SAF_ELIMINARFECHASASIGINVITACION(Nullable<int> cODINV, string sTRCODINVDET)
+        {
+            var cODINVParameter = cODINV.HasValue ?
+                new ObjectParameter("CODINV", cODINV) :
+                new ObjectParameter("CODINV", typeof(int));
+    
+            var sTRCODINVDETParameter = sTRCODINVDET != null ?
+                new ObjectParameter("STRCODINVDET", sTRCODINVDET) :
+                new ObjectParameter("STRCODINVDET", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_ELIMINARFECHASASIGINVITACION_Result>("SP_SAF_ELIMINARFECHASASIGINVITACION", cODINVParameter, sTRCODINVDETParameter);
+        }
     }
 }

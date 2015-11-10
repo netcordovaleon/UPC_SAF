@@ -28,6 +28,21 @@ namespace SAF.Web.Intranet
         public string ESTREG { get; set; }
         public Nullable<int> CODSOA { get; set; }
         public Nullable<int> CODPUB { get; set; }
+        public string INDREQFIRINT { get; set; }
+        public string INDREQFIRPCAOB { get; set; }
+        public Nullable<decimal> RETRECO { get; set; }
+        public Nullable<decimal> IGVTOTAL { get; set; }
+        public Nullable<decimal> RETRECOTOTAL { get; set; }
+        public Nullable<decimal> MONTVIATICO { get; set; }
+        public Nullable<long> CODARCFIRINT { get; set; }
+        public string NOMBLABELFIRINT { get; set; }
+        public Nullable<long> CODARCFIRPCAOB { get; set; }
+        public string NOMBLABELFIRPCAOB { get; set; }
+        public Nullable<decimal> RETRECOREQ { get; set; }
+        public Nullable<decimal> IGVTOTALREQ { get; set; }
+        public Nullable<decimal> RETRECOTOTALREQ { get; set; }
+        public Nullable<decimal> MONTVIATICOREQ { get; set; }
+        public Nullable<int> ESTPROP { get; set; }
     
         public virtual ICollection<SAF_AUDITORIA> SAF_AUDITORIA { get; set; }
         public virtual SAF_SOA SAF_SOA { get; set; }
