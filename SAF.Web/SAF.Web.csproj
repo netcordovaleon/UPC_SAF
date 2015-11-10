@@ -612,10 +612,10 @@
     <Content Include="Views\InvitacionAuditor\Index.cshtml" />
     <Content Include="Views\InvitacionAuditor\_BusquedaAuditores.cshtml" />
     <Content Include="Views\InvitacionAuditor\_AgendaAuditor.cshtml" />
-    <Content Include="Views\BandejaInvitaciones\Index.cshtml" />
     <Content Include="Views\Propuesta\Index.cshtml" />
     <Content Include="Views\Propuesta\VerPropuesta.cshtml" />
     <Content Include="Views\Propuesta\_AsignarFechaEquipo.cshtml" />
+    <Content Include="Views\BandejaInvitaciones\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
