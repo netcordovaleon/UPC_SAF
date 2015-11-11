@@ -2,3 +2,7 @@
 .register-page {
   background: rgba(210, 214, 222, 0.27);
 }
+
+.message-recibe {
+    font-weight: bold;
+}

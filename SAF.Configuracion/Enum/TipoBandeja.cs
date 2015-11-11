@@ -10,6 +10,6 @@ namespace SAF.Configuracion.Enum
     public static class TIPOBANDEJA
     {
         public const string BANDEJA_RECIBIDOS = "R";
-        public const string BANDEJA_PAPELERA = "E";
+        public const string BANDEJA_PAPELERA = "P";
     }
 }
