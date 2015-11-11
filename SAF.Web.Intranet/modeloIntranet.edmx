@@ -421,9 +421,12 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.SAF_DIALABORABLE' does not have a pr
             <PropertyRef Name="CODNOT" />
           </Key>
           <Property Name="CODNOT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="USUNOTREC" Type="varchar" MaxLength="50" />
+          <Property Name="USUEMI" Type="varchar" MaxLength="50" />
+          <Property Name="USUREC" Type="varchar" MaxLength="50" />
+          <Property Name="ASUNOT" Type="varchar" MaxLength="200" />
           <Property Name="DESNOT" Type="varchar(max)" />
-          <Property Name="INDLEIDO" Type="char" MaxLength="1" />
+          <Property Name="INDNOT" Type="char" MaxLength="1" />
+          <Property Name="ESTNOT" Type="char" MaxLength="1" />
           <Property Name="FECREG" Type="datetime" />
           <Property Name="FECMOD" Type="datetime" />
           <Property Name="USUREG" Type="varchar" MaxLength="50" />
@@ -1421,6 +1424,10 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <Parameter Name="NOMUSU" Type="varchar" Mode="In" />
           <Parameter Name="PASUSU" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="SP_SAF_ASIGNARGANADORPROPUESTA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CODPRO" Type="int" Mode="In" />
+          <Parameter Name="CODPUB" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_SAF_PROPUESTAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="modeloIntranetStoreContainer">
           <EntitySet Name="SAF_ARCHIVO" EntityType="Self.SAF_ARCHIVO" Schema="dbo" store:Type="Tables" />
@@ -2115,6 +2122,11 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <Property Name="USUREG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="USUMOD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ESTREG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="USUEMI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USUREC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ASUNOT" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="INDNOT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ESTNOT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="SAF_PARAMETRICA">
           <Key>
@@ -3094,6 +3106,10 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
             <Parameter Name="PASUSU" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_SAF_PROPUESTAS" ReturnType="Collection(modeloIntranet.SP_SAF_PROPUESTAS_Result)" />
+          <FunctionImport Name="SP_SAF_ASIGNARGANADORPROPUESTA" ReturnType="Collection(modeloIntranet.SP_SAF_ASIGNARGANADORPROPUESTA_Result)">
+            <Parameter Name="CODPRO" Mode="In" Type="Int32" />
+            <Parameter Name="CODPUB" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="SAF_ARCHIVO">
           <Key>
@@ -3554,6 +3570,10 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <Property Type="Int32" Name="CODPUB" Nullable="true" />
           <Property Type="Int32" Name="PUNTAJETOTAL" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="SP_SAF_ASIGNARGANADORPROPUESTA_Result">
+          <Property Type="Int32" Name="RESULTADO" Nullable="false" />
+          <Property Type="String" Name="MENSAJE" Nullable="false" MaxLength="39" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3894,10 +3914,13 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <EntitySetMapping Name="SAF_NOTIFICACION">
             <EntityTypeMapping TypeName="modeloIntranet.SAF_NOTIFICACION">
               <MappingFragment StoreEntitySet="SAF_NOTIFICACION">
+                <ScalarProperty Name="ESTNOT" ColumnName="ESTNOT" />
+                <ScalarProperty Name="INDNOT" ColumnName="INDNOT" />
+                <ScalarProperty Name="ASUNOT" ColumnName="ASUNOT" />
+                <ScalarProperty Name="USUREC" ColumnName="USUREC" />
+                <ScalarProperty Name="USUEMI" ColumnName="USUEMI" />
                 <ScalarProperty Name="CODNOT" ColumnName="CODNOT" />
-                <ScalarProperty Name="USUNOTREC" ColumnName="USUNOTREC" />
                 <ScalarProperty Name="DESNOT" ColumnName="DESNOT" />
-                <ScalarProperty Name="INDLEIDO" ColumnName="INDLEIDO" />
                 <ScalarProperty Name="FECREG" ColumnName="FECREG" />
                 <ScalarProperty Name="FECMOD" ColumnName="FECMOD" />
                 <ScalarProperty Name="USUREG" ColumnName="USUREG" />
@@ -4406,6 +4429,14 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
                 <ScalarProperty Name="VALOR" ColumnName="VALOR" />
                 <ScalarProperty Name="CODPUB" ColumnName="CODPUB" />
                 <ScalarProperty Name="PUNTAJETOTAL" ColumnName="PUNTAJETOTAL" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SAF_ASIGNARGANADORPROPUESTA" FunctionName="modeloIntranet.Store.SP_SAF_ASIGNARGANADORPROPUESTA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="modeloIntranet.SP_SAF_ASIGNARGANADORPROPUESTA_Result">
+                <ScalarProperty Name="RESULTADO" ColumnName="RESULTADO" />
+                <ScalarProperty Name="MENSAJE" ColumnName="MENSAJE" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

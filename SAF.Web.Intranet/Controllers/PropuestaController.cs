@@ -37,23 +37,26 @@ namespace SAF.Web.Intranet.Controllers
                 c.RETRECO.ToString(),
                 c.IGVTOTAL.ToString(),
                 c.VALOR,
-                c.PUNTAJETOTAL.GetValueOrDefault().ToString()
+                c.PUNTAJETOTAL.GetValueOrDefault().ToString(),
+                c.ESTPROP.GetValueOrDefault().ToString(),
+                c.CODPUB.GetValueOrDefault().ToString()
             }).ToArray();
             return Json(data);
         }
 
-        public JsonResult AsignarPropuestaComoGanadora(int idPropuesta)
+        public JsonResult AsignarPropuestaComoGanadora(int idPropuesta, int idPublicacion)
         {
             try
             {
-                var propuesta = this.modelEntity.SAF_PROPUESTA.Where(c => c.CODPRO == idPropuesta).FirstOrDefault();
-                propuesta.ESTPROP = (int)Estado.Propuesta.Ganadora;
-                this.modelEntity.SaveChanges();
-                return Json(new MensajeRespuesta("La propuesta se asigno como ganadora", true));
+                var result = this.modelEntity.SP_SAF_ASIGNARGANADORPROPUESTA(idPropuesta, idPublicacion).FirstOrDefault();
+                if (result.RESULTADO.Equals(0))
+                    return Json(new MensajeRespuesta(result.MENSAJE, false));
+                else
+                    return Json(new MensajeRespuesta(result.MENSAJE, true));
             }
             catch (Exception)
             {
-                return Json(new MensajeRespuesta("La propuesta no se pudo asignar correctamente", false));
+                return Json(new MensajeRespuesta("Ocurrio un error inesperado al asignar la propuesta", false));
             }
 
         }

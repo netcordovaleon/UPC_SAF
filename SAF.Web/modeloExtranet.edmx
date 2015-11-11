@@ -421,9 +421,12 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.SAF_DIALABORABLE' does not have a pr
             <PropertyRef Name="CODNOT" />
           </Key>
           <Property Name="CODNOT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="USUNOTREC" Type="varchar" MaxLength="50" />
+          <Property Name="USUEMI" Type="varchar" MaxLength="50" />
+          <Property Name="USUREC" Type="varchar" MaxLength="50" />
+          <Property Name="ASUNOT" Type="varchar" MaxLength="200" />
           <Property Name="DESNOT" Type="varchar(max)" />
-          <Property Name="INDLEIDO" Type="char" MaxLength="1" />
+          <Property Name="INDNOT" Type="char" MaxLength="1" />
+          <Property Name="ESTNOT" Type="char" MaxLength="1" />
           <Property Name="FECREG" Type="datetime" />
           <Property Name="FECMOD" Type="datetime" />
           <Property Name="USUREG" Type="varchar" MaxLength="50" />
@@ -2198,20 +2201,6 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <Property Name="CODINV" Type="Int32" />
           <NavigationProperty Name="SAF_INVITACION" Relationship="Self.R_34" FromRole="SAF_INVITACIONDETALLE" ToRole="SAF_INVITACION" />
         </EntityType>
-        <EntityType Name="SAF_NOTIFICACION">
-          <Key>
-            <PropertyRef Name="CODNOT" />
-          </Key>
-          <Property Name="CODNOT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="USUNOTREC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DESNOT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="INDLEIDO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="FECREG" Type="DateTime" Precision="3" />
-          <Property Name="FECMOD" Type="DateTime" Precision="3" />
-          <Property Name="USUREG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="USUMOD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ESTREG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-        </EntityType>
         <EntityType Name="SAF_PARAMETRICA">
           <Key>
             <PropertyRef Name="CODPAR" />
@@ -2868,7 +2857,6 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <EntitySet Name="SAF_FLUJO_DOCUMENTO" EntityType="Self.SAF_FLUJO_DOCUMENTO" />
           <EntitySet Name="SAF_INVITACION" EntityType="Self.SAF_INVITACION" />
           <EntitySet Name="SAF_INVITACIONDETALLE" EntityType="Self.SAF_INVITACIONDETALLE" />
-          <EntitySet Name="SAF_NOTIFICACION" EntityType="Self.SAF_NOTIFICACION" />
           <EntitySet Name="SAF_PARAMETRICA" EntityType="Self.SAF_PARAMETRICA" />
           <EntitySet Name="SAF_PROPUESTA" EntityType="Self.SAF_PROPUESTA" />
           <EntitySet Name="SAF_PUBLICACION" EntityType="Self.SAF_PUBLICACION" />
@@ -3179,6 +3167,7 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
             <Parameter Name="CODINV" Mode="In" Type="Int32" />
             <Parameter Name="STRCODINVDET" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="SAF_NOTIFICACION" EntityType="ModeloExtranetModel.SAF_NOTIFICACION" />
         </EntityContainer>
         <EntityType Name="VW_SAF_SOLICITUD">
           <Key>
@@ -3862,6 +3851,23 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <Property Type="Int32" Name="RESULTADO" Nullable="false" />
           <Property Type="String" Name="MENSAJE" Nullable="false" MaxLength="53" />
         </ComplexType>
+        <EntityType Name="SAF_NOTIFICACION">
+          <Key>
+            <PropertyRef Name="CODNOT" />
+          </Key>
+          <Property Name="CODNOT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USUEMI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USUREC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ASUNOT" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DESNOT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="INDNOT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ESTNOT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FECREG" Type="DateTime" Precision="3" />
+          <Property Name="FECMOD" Type="DateTime" Precision="3" />
+          <Property Name="USUREG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USUMOD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESTREG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4196,21 +4202,6 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
                 <ScalarProperty Name="USUMOD" ColumnName="USUMOD" />
                 <ScalarProperty Name="ESTREG" ColumnName="ESTREG" />
                 <ScalarProperty Name="CODINV" ColumnName="CODINV" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SAF_NOTIFICACION">
-            <EntityTypeMapping TypeName="ModeloExtranetModel.SAF_NOTIFICACION">
-              <MappingFragment StoreEntitySet="SAF_NOTIFICACION">
-                <ScalarProperty Name="CODNOT" ColumnName="CODNOT" />
-                <ScalarProperty Name="USUNOTREC" ColumnName="USUNOTREC" />
-                <ScalarProperty Name="DESNOT" ColumnName="DESNOT" />
-                <ScalarProperty Name="INDLEIDO" ColumnName="INDLEIDO" />
-                <ScalarProperty Name="FECREG" ColumnName="FECREG" />
-                <ScalarProperty Name="FECMOD" ColumnName="FECMOD" />
-                <ScalarProperty Name="USUREG" ColumnName="USUREG" />
-                <ScalarProperty Name="USUMOD" ColumnName="USUMOD" />
-                <ScalarProperty Name="ESTREG" ColumnName="ESTREG" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4929,6 +4920,24 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="SAF_NOTIFICACION">
+            <EntityTypeMapping TypeName="ModeloExtranetModel.SAF_NOTIFICACION">
+              <MappingFragment StoreEntitySet="SAF_NOTIFICACION">
+                <ScalarProperty Name="ESTREG" ColumnName="ESTREG" />
+                <ScalarProperty Name="USUMOD" ColumnName="USUMOD" />
+                <ScalarProperty Name="USUREG" ColumnName="USUREG" />
+                <ScalarProperty Name="FECMOD" ColumnName="FECMOD" />
+                <ScalarProperty Name="FECREG" ColumnName="FECREG" />
+                <ScalarProperty Name="ESTNOT" ColumnName="ESTNOT" />
+                <ScalarProperty Name="INDNOT" ColumnName="INDNOT" />
+                <ScalarProperty Name="DESNOT" ColumnName="DESNOT" />
+                <ScalarProperty Name="ASUNOT" ColumnName="ASUNOT" />
+                <ScalarProperty Name="USUREC" ColumnName="USUREC" />
+                <ScalarProperty Name="USUEMI" ColumnName="USUEMI" />
+                <ScalarProperty Name="CODNOT" ColumnName="CODNOT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

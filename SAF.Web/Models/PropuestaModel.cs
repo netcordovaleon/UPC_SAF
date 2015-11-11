@@ -49,6 +49,8 @@ namespace SAF.Web.Models
 
 
 
+        public Nullable<int> ESTPRO { get; set; }
+
         [Display(Name = "Archivo Sustento Firma Internacional")]
         public string nombreArchivoFirmaInternacional { get; set; }
         public long? codArchivoFirmaInternacional { get; set; }

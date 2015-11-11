@@ -45,7 +45,6 @@ namespace SAF.Web
         public virtual DbSet<SAF_FLUJO_DOCUMENTO> SAF_FLUJO_DOCUMENTO { get; set; }
         public virtual DbSet<SAF_INVITACION> SAF_INVITACION { get; set; }
         public virtual DbSet<SAF_INVITACIONDETALLE> SAF_INVITACIONDETALLE { get; set; }
-        public virtual DbSet<SAF_NOTIFICACION> SAF_NOTIFICACION { get; set; }
         public virtual DbSet<SAF_PARAMETRICA> SAF_PARAMETRICA { get; set; }
         public virtual DbSet<SAF_PROPUESTA> SAF_PROPUESTA { get; set; }
         public virtual DbSet<SAF_PUBLICACION> SAF_PUBLICACION { get; set; }
@@ -74,6 +73,7 @@ namespace SAF.Web
         public virtual DbSet<SAF_SOLEXPERIENCIA> SAF_SOLEXPERIENCIA { get; set; }
         public virtual DbSet<SAF_PROPEQUIPO> SAF_PROPEQUIPO { get; set; }
         public virtual DbSet<SAF_PROPEQUIPODETALLE> SAF_PROPEQUIPODETALLE { get; set; }
+        public virtual DbSet<SAF_NOTIFICACION> SAF_NOTIFICACION { get; set; }
     
         public virtual int SP_CARGARDIALABORABLE(string aNIO)
         {

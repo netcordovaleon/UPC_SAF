@@ -1,4 +1,6 @@
-﻿<aside class="main-sidebar">
+﻿@using SAF.Configuracion.Enum;
+
+<aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
         <!-- Sidebar user panel -->
@@ -42,8 +44,15 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href='@Url.Action("Index","InvitacionAuditor")'><i class="fa fa-circle-o"></i> Realizar Invitacion</a></li>
-                    <li><a href='@Url.Action("Index","BandejaInvitaciones")'><i class="fa fa-circle-o"></i> Bandeja</a></li>
+                    @if (Convert.ToInt32(Session["sessionTipoUsuario"]) == (int)Tipo.TipoUsuarioExtranet.Auditor)
+                    {
+                        <li><a href='@Url.Action("Index","BandejaInvitaciones")'><i class="fa fa-circle-o"></i> Bandeja</a></li>
+                    }
+                    else
+                    {
+                        <li><a href='@Url.Action("Index","InvitacionAuditor")'><i class="fa fa-circle-o"></i> Invitar Auditores</a></li>
+                    }
+                    
                 </ul>
             </li>
 
@@ -53,11 +62,11 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href='@Url.Action("Index","Propuesta")'><i class="fa fa-circle-o"></i> Elaborar</a></li>
+                    <li><a href='@Url.Action("Index","Propuesta")'><i class="fa fa-circle-o"></i> Elaboracion</a></li>
                 </ul>
             </li>
 
-            <li class="treeview">
+            @*<li class="treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
@@ -188,7 +197,7 @@
             <li class="header">LABELS</li>
             <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
             <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-            <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+            <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>*@
         </ul>
     </section>
     <!-- /.sidebar -->

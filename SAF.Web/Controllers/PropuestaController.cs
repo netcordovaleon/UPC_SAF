@@ -41,7 +41,7 @@ namespace SAF.Web.Controllers
             }
             catch (Exception)
             {
-                return Json(new MensajeRespuesta("Se produjo un error no controlado al crear la propuesta", true));
+                return Json(new MensajeRespuesta("Se produjo un error no controlado al crear la propuesta", false));
             }
         }
 
@@ -86,6 +86,7 @@ namespace SAF.Web.Controllers
             model.nombreArchivoFirmaPCAOB = propuesta.NOMBLABELFIRPCAOB;
             model.INDREQFIRINT = propuesta.INDREQFIRINT;
             model.INDREQFIRPCAOB = propuesta.INDREQFIRPCAOB;
+            model.ESTPRO = propuesta.ESTPROP;
             return View(model);
         }
 

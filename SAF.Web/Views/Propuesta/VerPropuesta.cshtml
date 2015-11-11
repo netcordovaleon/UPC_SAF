@@ -1,4 +1,5 @@
-﻿@model SAF.Web.Models.PropuestaModel
+﻿@using SAF.Configuracion.Enum;
+@model SAF.Web.Models.PropuestaModel
 
 @{
     ViewBag.PageTitle = "Propuesta";
@@ -8,6 +9,7 @@
 }
 
 @Html.HiddenFor(c => c.CODPRO)
+@Html.HiddenFor(c => c.ESTPRO)
 
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#tabsInfoSoa" aria-controls="home" role="tab" data-toggle="tab">Informacion de la Sociedad Auditoria</a></li>
@@ -294,141 +296,151 @@
 @section scripts {
 
     <script type="text/javascript" language="javascript">
-
-
-    $("#nombreArchivoFirmaInternacional").fileInput({ file: $("#codArchivoFirmaInternacional").val(), fileName: "archivoFirmaInternacional", ctrlCleanDelete: ["codArchivoFirmaInternacional"] });
-    $("#nombreArchivoFirmaPCAOB").fileInput({ file: $("#codArchivoFirmaPCAOB").val(), fileName: "archivoFirmaPCAOB", ctrlCleanDelete: ["codArchivoFirmaPCAOB"] });
-
-    $("#iRegistroSustentoAdicional").load(function () {
-        var resultText = $("#iRegistroSustentoAdicional").contents().find('body').html();
-        if (resultText == "") return;
-
-        var result = jQuery.parseJSON(resultText);
-        mostrarNotificacion(result);
-        if (result.Exito) {
-            //cargarCapacitaciones();
-            //$("#dlgRegistroCapacitacion").modal('hide');
+        var editarPropuesta = false;
+        if ('@Model.ESTPRO' == '@Convert.ToInt32(Estado.Propuesta.Elaboracion)') {
+            editarPropuesta = true;
         }
-    });
 
-    var _dataAuditorias_ = null;
-    var _dataEquipoAuditoria_ = null;
+        $("#nombreArchivoFirmaInternacional").fileInput({ file: $("#codArchivoFirmaInternacional").val(), fileName: "archivoFirmaInternacional", ctrlCleanDelete: ["codArchivoFirmaInternacional"] });
+        $("#nombreArchivoFirmaPCAOB").fileInput({ file: $("#codArchivoFirmaPCAOB").val(), fileName: "archivoFirmaPCAOB", ctrlCleanDelete: ["codArchivoFirmaPCAOB"] });
 
-    var tabAuditorias = $("#tabAuditorias").dataTable({
-        "info": false,
-        "bServerSide": false,
-        "data": _dataAuditorias_,
-        "order": [[1, "asc"]],
-        "columns": [
-            {
-                "sTitle": "Equipo",
-                "bSortable": false,
-                "sClass": "center",
-                "sWidth": "5%",
-                "render": function (data, type, row) {
-                    return '<center><button class="btn btn-primary" title="Ver Equipo" type="button" onclick="verEquipoAuditoria(' + row[0] + ');"><i class="fa fa-search"></i></button></center>';
-                }
-            },
-            { "sTitle": "Periodo" },
-            { "sTitle": "Entidad" }
-        ]
-    });
+        $("#iRegistroSustentoAdicional").load(function () {
+            var resultText = $("#iRegistroSustentoAdicional").contents().find('body').html();
+            if (resultText == "") return;
 
-    var tabEquipoAuditoria = $("#tabEquipoAuditoria").dataTable({
-        "info": false,
-        "bServerSide": false,
-        "data": _dataAuditorias_,
-        "order": [[1, "asc"]],
-        "columns": [
-            {
-                "sTitle": "Equipo",
-                "bSortable": false,
-                "sClass": "center",
-                "sWidth": "5%",
-                "render": function (data, type, row) {
-                    return '<center><button class="btn btn-warning" title="Asignar Fechas" type="button" onclick="popupAsignarFechaEquipoAuditoria(' + row[0] + ');"><i class="fa fa-calendar"></i></button></center>';
-                }
-            },
+            var result = jQuery.parseJSON(resultText);
+            mostrarNotificacion(result);
+            if (result.Exito) {
+                //cargarCapacitaciones();
+                //$("#dlgRegistroCapacitacion").modal('hide');
+            }
+        });
 
-            { "sTitle": "Periodo" },
-            { "sTitle": "DNI" },
-            { "sTitle": "Auditor" },
-            { "sTitle": "Cargo" },
-            { "sTitle": "Celular" },
-            { "sTitle": "Correo" }
+        var _dataAuditorias_ = null;
+        var _dataEquipoAuditoria_ = null;
 
-        ]
-    });
+        var tabAuditorias = $("#tabAuditorias").dataTable({
+            "info": false,
+            "bServerSide": false,
+            "data": _dataAuditorias_,
+            "order": [[1, "asc"]],
+            "columns": [
+                {
+                    "sTitle": "Equipo",
+                    "bSortable": false,
+                    "sClass": "center",
+                    "sWidth": "5%",
+                    "render": function (data, type, row) {
+                        return '<center><button class="btn btn-primary" title="Ver Equipo" type="button" onclick="verEquipoAuditoria(' + row[0] + ');"><i class="fa fa-search"></i></button></center>';
+                    }
+                },
+                { "sTitle": "Periodo" },
+                { "sTitle": "Entidad" }
+            ]
+        });
 
-    $(document).ready(function () {
-        listarAuditorias();
-        $("#btnRegresar").click(regresarPropuestas);
-        $("#btnGrabarRetribucionEconomica").click(registrarRetribucionEconomica);
-        $("#btnGrabarDocumentosAdicionales").click(function () { $("#frmPropuestaSustentoAdicional").submit(); });
-        $("#btnPresentarPropuesta").click(function () {
-            bootbox.confirm(parametros.general.mensajeConfirmacion, function (result) {
-                if(result)
-                    presentarPropuesta();
+        var tabEquipoAuditoria = $("#tabEquipoAuditoria").dataTable({
+            "info": false,
+            "bServerSide": false,
+            "data": _dataAuditorias_,
+            "order": [[1, "asc"]],
+            "columns": [
+                {
+                    "sTitle": "Equipo",
+                    "bSortable": false,
+                    "sClass": "center",
+                    "sWidth": "5%",
+                    "render": function (data, type, row) {
+                        return '<center><button class="btn btn-warning" title="Asignar Fechas" type="button" onclick="popupAsignarFechaEquipoAuditoria(' + row[0] + ');"><i class="fa fa-calendar"></i></button></center>';
+                    }
+                },
+
+                { "sTitle": "Periodo" },
+                { "sTitle": "DNI" },
+                { "sTitle": "Auditor" },
+                { "sTitle": "Cargo" },
+                { "sTitle": "Celular" },
+                { "sTitle": "Correo" }
+
+            ]
+        });
+
+        $(document).ready(function () {
+
+            if (!editarPropuesta) {
+                $("#btnPresentarPropuesta").hide();
+                $("#btnGrabarDocumentosAdicionales").hide();
+                $("#btnGrabarRetribucionEconomica").hide();
+            }
+
+            listarAuditorias();
+            $("#btnRegresar").click(regresarPropuestas);
+            $("#btnGrabarRetribucionEconomica").click(registrarRetribucionEconomica);
+            $("#btnGrabarDocumentosAdicionales").click(function () { $("#frmPropuestaSustentoAdicional").submit(); });
+            $("#btnPresentarPropuesta").click(function () {
+                bootbox.confirm(parametros.general.mensajeConfirmacion, function (result) {
+                    if (result)
+                        presentarPropuesta();
+                });
             });
+            $("#RETRECO").keyup(calcularRetribucion)
         });
-        $("#RETRECO").keyup(calcularRetribucion)
-    });
 
-    function regresarPropuestas() {
-        document.location = '@Url.Action("Index","Propuesta")';
-    }
+        function regresarPropuestas() {
+            document.location = '@Url.Action("Index","Propuesta")';
+        }
 
-    function calcularRetribucion() {
-        var retribucion = parseFloat($("#RETRECO").val());
-        var igv = (retribucion * 0.18);
-        var retribucionTotal = (retribucion + igv);
-        $("#IGVTOTAL").val(igv.toFixed(2));
-        $("#RETRECOTOTAL").val(retribucionTotal.toFixed(2));
-    }
+        function calcularRetribucion() {
+            var retribucion = parseFloat($("#RETRECO").val());
+            var igv = (retribucion * 0.18);
+            var retribucionTotal = (retribucion + igv);
+            $("#IGVTOTAL").val(igv.toFixed(2));
+            $("#RETRECOTOTAL").val(retribucionTotal.toFixed(2));
+        }
 
-    function listarAuditorias() {
-        $.ajax({
-            url: '@Url.Action("ListarAuditorias", "Propuesta")',
-            type: 'POST',
-            async: false,
-            data: { idPropuesta: $("#CODPRO").val() },
-            success: function (result) {
-                _dataAuditorias_ = result;
-                tabAuditorias.fnReloadData(_dataAuditorias_);
-            }
-        });
-    }
+        function listarAuditorias() {
+            $.ajax({
+                url: '@Url.Action("ListarAuditorias", "Propuesta")',
+                type: 'POST',
+                async: false,
+                data: { idPropuesta: $("#CODPRO").val() },
+                success: function (result) {
+                    _dataAuditorias_ = result;
+                    tabAuditorias.fnReloadData(_dataAuditorias_);
+                }
+            });
+        }
 
-    function verEquipoAuditoria(idAuditoria) {
-        $.ajax({
-            url: '@Url.Action("VerEquipoAuditoria", "Propuesta")',
-            type: 'POST',
-            async: false,
-            data: { idAuditoria: idAuditoria },
-            success: function (result) {
-                _dataEquipoAuditoria_ = result;
-                tabEquipoAuditoria.fnReloadData(_dataEquipoAuditoria_);
-            }
-        });
-    }
+        function verEquipoAuditoria(idAuditoria) {
+            $.ajax({
+                url: '@Url.Action("VerEquipoAuditoria", "Propuesta")',
+                type: 'POST',
+                async: false,
+                data: { idAuditoria: idAuditoria },
+                success: function (result) {
+                    _dataEquipoAuditoria_ = result;
+                    tabEquipoAuditoria.fnReloadData(_dataEquipoAuditoria_);
+                }
+            });
+        }
 
-    function popupAsignarFechaEquipoAuditoria(id) {
+        function popupAsignarFechaEquipoAuditoria(id) {
 
-        $.ajax({
-            type: 'POST',
-            url: '@Url.Action("AsignarFechaEquipoPropuesta", "Propuesta")',
-            data: { idPropuesta: $("#CODPRO").val(), idEquipo: id },
-            success: function (result) {
-                $("#modalAsignaFechasAuditor").empty().html(result).modal();
-            }
-        });
-    }
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("AsignarFechaEquipoPropuesta", "Propuesta")',
+                data: { idPropuesta: $("#CODPRO").val(), idEquipo: id },
+                success: function (result) {
+                    $("#modalAsignaFechasAuditor").empty().html(result).modal();
+                }
+            });
+        }
 
-    function registrarRetribucionEconomica() {
+        function registrarRetribucionEconomica() {
 
-        $.ajax({
-            type: 'POST',
-            url: '@Url.Action("GrabarRetribucionEconomica", "Propuesta")',
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GrabarRetribucionEconomica", "Propuesta")',
                 data: {
                     idProp: $("#CODPRO").val(),
                     retribucion: $("#RETRECO").val(),

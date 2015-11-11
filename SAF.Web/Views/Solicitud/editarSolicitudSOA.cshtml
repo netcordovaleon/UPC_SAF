@@ -51,10 +51,12 @@
                             <div class="col-md-4">
                                 @Html.LabelFor(c => c.rucSoa)
                                 @Html.TextBoxFor(c => c.rucSoa, new { @class = "form-control", @readonly = "true" })
+                                @Html.ValidationMessageFor(c => c.rucSoa)
                             </div>
                             <div class="col-md-8">
                                 @Html.LabelFor(c => c.razSocSoa)
                                 @Html.TextBoxFor(c => c.razSocSoa, new { @class = "form-control", @readonly = "true" })
+                                @Html.ValidationMessageFor(c => c.razSocSoa)
                             </div>
                         </div>
                     </div>
@@ -64,6 +66,7 @@
                             <div class="col-md-12">
                                 @Html.LabelFor(c => c.misSoa)
                                 @Html.TextAreaFor(c => c.misSoa, new { @class = "form-control", @rows = "4" })
+                                @Html.ValidationMessageFor(c => c.misSoa)
                             </div>
                         </div>
                     </div>
@@ -72,6 +75,7 @@
                             <div class="col-md-12">
                                 @Html.LabelFor(c => c.visSoa)
                                 @Html.TextAreaFor(c => c.visSoa, new { @class = "form-control", @rows = "4" })
+                                @Html.ValidationMessageFor(c => c.visSoa)
                             </div>
                         </div>
                     </div>
@@ -92,24 +96,29 @@
                             <div class="col-md-4">
                                 @Html.LabelFor(c => c.nomRepLegSoa)
                                 @Html.TextBoxFor(c => c.nomRepLegSoa, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(c => c.nomRepLegSoa)
                             </div>
                             <div class="col-md-4">
                                 @Html.LabelFor(c => c.apeRepLegSoa)
                                 @Html.TextBoxFor(c => c.apeRepLegSoa, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(c => c.apeRepLegSoa)
                             </div>
                             <div class="col-md-4">
                                 @Html.LabelFor(c => c.corRepLegSoa)
                                 @Html.TextBoxFor(c => c.corRepLegSoa, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(c => c.corRepLegSoa)
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
                                 @Html.LabelFor(c => c.celRepLegSoa)
                                 @Html.TextBoxFor(c => c.celRepLegSoa, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(c => c.celRepLegSoa)
                             </div>
                             <div class="col-md-4">
                                 @Html.LabelFor(c => c.telRepLegSoa)
                                 @Html.TextBoxFor(c => c.telRepLegSoa, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(c => c.telRepLegSoa)
                             </div>
                         </div>
 
@@ -204,15 +213,29 @@
                 $("#estadoSolicitud").val() == '@Convert.ToInt32(Estado.Solicitud.Elaboracion)' ||
                 $("#estadoSolicitud").val() == '@Convert.ToInt32(Estado.Solicitud.Observada)'
                 ) {
-                $("#btnGuardarInfoSoaSolicitud").prop("disabled", false);
-                $("#btnEnviarInfoSoaSolicitud").prop("disabled", false);
+                //$("#btnGuardarInfoSoaSolicitud").prop("disabled", false);
+                //$("#btnEnviarInfoSoaSolicitud").prop("disabled", false);
+
+                $("#btnGuardarInfoSoaSolicitud").show();
+                $("#btnEnviarInfoSoaSolicitud").show();
 
             } else {
-                $("#btnGuardarInfoSoaSolicitud").prop("disabled", true);
-                $("#btnEnviarInfoSoaSolicitud").prop("disabled", true);
+                $("#btnGuardarInfoSoaSolicitud").hide();
+                $("#btnEnviarInfoSoaSolicitud").hide();
+                //$("#btnGuardarInfoSoaSolicitud").prop("disabled", true);
+                //$("#btnEnviarInfoSoaSolicitud").prop("disabled", true);
             }
 
-            $("#btnGuardarInfoSoaSolicitud").click(guardarSolicitudSOA);
+            $("#btnGuardarInfoSoaSolicitud").click(function () {
+
+                bootbox.confirm(parametros.general.mensajeConfirmacion, function (result) {
+                    if (result)
+                        guardarSolicitudSOA();
+                });
+                
+
+
+            });
             $("#btnCancelarInfoSoaSolicitud").click(regresarListadoSolicitud);
             $("#btnEnviarInfoSoaSolicitud").click(function () {
                 bootbox.confirm(parametros.general.mensajeConfirmacion, function (result) {
@@ -223,6 +246,9 @@
 
 
         function guardarSolicitudSOA() {
+
+            if (!$("#frmRegistroSolicitudSOA").isValid()) { return; }
+
             $("#firIntSoa").val($("#chkFirmaInternacional").is(":checked") ? "S" : "N");
             $("#firPcaobSoa").val($("#chkFirmaPCAOB").is(":checked") ? "S" : "N");
             $.ajax({

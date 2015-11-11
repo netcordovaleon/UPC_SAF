@@ -49,9 +49,14 @@
                             <small>@ViewBag.PageDescription</small>
                         }
                     </h1>
+
+
                     <ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li class="active">Dashboard</li>
+                        <li><a href="#"><i class="fa fa-dashboard"></i> @ViewBag.PageTitle</a></li>
+                        @if (ViewBag.PageDescription != null)
+                        {
+                            <li class="active">@ViewBag.PageDescription</li>
+                        }
                     </ol>
 
                 </section>
@@ -68,11 +73,11 @@
     </div>
 
     <script type="text/javascript">
-    var sistema = {
-        url: {
-            descargaArchivo: '@Url.Action("DescargarArchivo", "General", new {area = "", id = "_id_"})',
-        }
-    };
+        var sistema = {
+            url: {
+                descargaArchivo: '@Url.Action("DescargarArchivo", "General", new {area = "", id = "_id_"})',
+            }
+        };
     </script>
 
 
@@ -91,21 +96,39 @@
         }
 
         function contarNotificaciones() {
-            $.ajax({
+            @*$.ajax({
                 url: '@Url.Action("ContarNoLeidas", "Notificacion", new { area = "" })',
                 success: function (result) {
                     if (result.exito) {
                         actualizarContador(result.total);
                     }
                 }
+            });*@
+        }
+
+
+        function contarCorreos() {
+            $.ajax({
+                url: '@Url.Action("ContarNotificacionesUsuario", "General", new { area = "" })',
+                success: function (result) {
+                    $("#contadorNotificacion").text(result);
+                }
             });
         }
+
         //#endregion
 
         //#region Load
-        $(function () {
-            contarNotificaciones();
+        //$(function () {
+        //    contarNotificaciones();
+        //    //contarCorreos();
+        //});
+
+        $(document).ready(function () {
+            contarCorreos();
+            setInterval(contarCorreos, 6000);
         });
+        //setInterval(contarCorreos(), 5000);
         //#endregion
     </script>
 
@@ -125,8 +148,6 @@
             };
             $.connection.hub.start().done(function () {
                 notificacionHubConnect = true;
- 
-                console.log("-->" +'@Session["sessionUsuario"].ToString()');
             });
         });
 

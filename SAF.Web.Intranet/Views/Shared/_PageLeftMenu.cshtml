@@ -31,9 +31,21 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href='@Url.Action("Index", "SolicitudAdmin")'><i class="fa fa-circle-o"></i> Bandeja</a></li>
+                    <li><a href='@Url.Action("Index", "SolicitudAdmin", new { Area = "" })'><i class="fa fa-circle-o"></i> Bandeja</a></li>
                 </ul>
             </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>Publicaciones</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href='@Url.Action("Bandeja", "Evaluador", new { Area = "Publicacion" })'><i class="fa fa-circle-o"></i> Bandeja</a></li>
+                </ul>
+            </li>
+
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-files-o"></i>
@@ -42,7 +54,7 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href='@Url.Action("Index","Propuesta")'><i class="fa fa-circle-o"></i> Calificacion</a></li>
+                    <li><a href='@Url.Action("Index", "Propuesta", new { Area = "" })'><i class="fa fa-circle-o"></i> Calificacion</a></li>
                 </ul>
             </li>
 

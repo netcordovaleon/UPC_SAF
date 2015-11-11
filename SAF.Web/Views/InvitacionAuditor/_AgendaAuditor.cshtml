@@ -298,6 +298,15 @@
                 fechasSeleccionadas = fechasSeleccionadas + "#" + $(this).val();
         });
 
+        if (fechasSeleccionadas == "") {
+            new PNotify({
+                title: 'Respuesta Sistema!',
+                type: "error",
+                text: "Debe seleccionar al una fecha"
+            });
+            return
+        }
+
         $.ajax({
             url: '@Url.Action("RegistrarFechasAgendaAuditor", "InvitacionAuditor")',
             type: 'POST',
@@ -323,6 +332,15 @@
             else
                 fechasAgendaAuditor = fechasAgendaAuditor + "," + $(this).val();
         });
+
+        if (fechasAgendaAuditor == "") {
+            new PNotify({
+                title: 'Respuesta Sistema!',
+                type: "error",
+                text: "Debe seleccionar al una fecha"
+            });
+            return
+        }
 
         $.ajax({
             url: '@Url.Action("EliminarFechasAgenda", "InvitacionAuditor")',

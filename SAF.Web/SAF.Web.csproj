@@ -185,6 +185,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\Archivo.cs" />
+    <Compile Include="Helper\Compare.cs" />
     <Compile Include="Hubs\NotificacionHub.cs" />
     <Compile Include="Hubs\NotificacionProceso.cs" />
     <Compile Include="modeloExtranet.Context.cs">
@@ -452,6 +453,7 @@
     <Content Include="Content\morris.css" />
     <Content Include="Content\pnotify.custom.css" />
     <Content Include="Content\pnotify.custom.min.css" />
+    <Content Include="Content\saf.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\skin-blue-light.css" />
     <Content Include="Content\skin-blue-light.min.css" />

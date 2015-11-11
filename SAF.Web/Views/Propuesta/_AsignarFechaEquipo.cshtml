@@ -98,6 +98,12 @@
     var _dataFechasAsignadas_ = null;
 
     $(document).ready(function () {
+
+        if (!editarPropuesta) {
+            $("#btnAsignarFechas").hide();
+            $("#btnEliminarFechas").hide();
+        }
+
         listarFechasInvitadas();
         listarFechasAsignadas();
         $("#btnAsignarFechas").click(asignarFechas);
@@ -177,6 +183,16 @@
             else
                 fechasSeleccionadas = fechasSeleccionadas + "#" + $(this).val();
         });
+
+        if (fechasSeleccionadas == "") {
+            new PNotify({
+                title: 'Respuesta Sistema!',
+                type: "error",
+                text: "Debe seleccionar al una fecha"
+            });
+            return
+        }
+
 
         $.ajax({
             url: '@Url.Action("asignarFechasPropuesta", "Propuesta")',

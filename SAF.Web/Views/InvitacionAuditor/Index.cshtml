@@ -26,14 +26,21 @@
 
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-md-4">
-                            @Html.LabelFor(c => c.CODPUB)
-                            @Html.DropDownListFor(c => c.CODPUB, Model.cboPublicaciones, "Seleccione", new { @class = "form-control" })
-                        </div>
-                        <div class="col-md-4">
-                            @Html.LabelFor(c => c.CODSERAUD)
-                            @Html.DropDownListFor(c => c.CODSERAUD, Model.cboServiciosAuditoria, "Seleccione", new { @class = "form-control" })
-                        </div>
+                        @using (Html.BeginForm("", "", FormMethod.Post, new { id = "frmBusquedaAuditores" }))
+                        {
+                            <div class="col-md-4">
+                                @Html.LabelFor(c => c.CODPUB)
+                                @Html.DropDownListFor(c => c.CODPUB, Model.cboPublicaciones, "Seleccione", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(c => c.CODPUB)
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(c => c.CODSERAUD)
+                                @Html.DropDownListFor(c => c.CODSERAUD, Model.cboServiciosAuditoria, "Seleccione", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(c => c.CODSERAUD)
+                            </div>
+
+                        }
+
                         <div class="col-md-4">
                             <br />
                             <button class="btn btn-primary" type="button" id="btnBuscarInvitaciones"><i class="fa fa-search"></i>&nbsp;Buscar Invitaciones</button>
@@ -134,6 +141,8 @@
         $('#modalBusquedaAuditor').on('hidden.bs.modal', function () { $("#modalBusquedaAuditor").empty(); });
 
         function popupBuscarAuditores() {
+
+            if (!$("#frmBusquedaAuditores").isValid()) { return; }
 
             $.ajax({
                 type: 'POST',

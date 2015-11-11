@@ -90,5 +90,18 @@ namespace SAF.Web.Intranet
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_PROPUESTAS_Result>("SP_SAF_PROPUESTAS");
         }
+    
+        public virtual ObjectResult<SP_SAF_ASIGNARGANADORPROPUESTA_Result> SP_SAF_ASIGNARGANADORPROPUESTA(Nullable<int> cODPRO, Nullable<int> cODPUB)
+        {
+            var cODPROParameter = cODPRO.HasValue ?
+                new ObjectParameter("CODPRO", cODPRO) :
+                new ObjectParameter("CODPRO", typeof(int));
+    
+            var cODPUBParameter = cODPUB.HasValue ?
+                new ObjectParameter("CODPUB", cODPUB) :
+                new ObjectParameter("CODPUB", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_ASIGNARGANADORPROPUESTA_Result>("SP_SAF_ASIGNARGANADORPROPUESTA", cODPROParameter, cODPUBParameter);
+        }
     }
 }

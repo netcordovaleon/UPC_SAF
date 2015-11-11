@@ -23,5 +23,10 @@ namespace SAF.Web.Intranet
         public string USUREG { get; set; }
         public string USUMOD { get; set; }
         public string ESTREG { get; set; }
+        public string USUEMI { get; set; }
+        public string USUREC { get; set; }
+        public string ASUNOT { get; set; }
+        public string INDNOT { get; set; }
+        public string ESTNOT { get; set; }
     }
 }

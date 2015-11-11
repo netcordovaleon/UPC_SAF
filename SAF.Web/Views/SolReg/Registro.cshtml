@@ -30,7 +30,8 @@
         </h1>
     </section>
 
-
+@using (Html.BeginForm("", "", FormMethod.Post, new { autocomplete = "off", id = "frmRegistroSolicitud", role = "form" }))
+{
     <div class="wrapper">
 
         <section class="content">
@@ -73,10 +74,12 @@
                                         <div class="col-md-4">
                                             @Html.LabelFor(c => c.soa.rucSoa)
                                             @Html.TextBoxFor(c => c.soa.rucSoa, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(c => c.soa.rucSoa)
                                         </div>
                                         <div class="col-md-8">
                                             @Html.LabelFor(c => c.soa.razSocSoa)
                                             @Html.TextBoxFor(c => c.soa.razSocSoa, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(c => c.soa.razSocSoa)
                                         </div>
                                     </div>
                                 </div>
@@ -86,6 +89,7 @@
                                         <div class="col-md-12">
                                             @Html.LabelFor(c => c.soa.misSoa)
                                             @Html.TextAreaFor(c => c.soa.misSoa, new { @class = "form-control", @rows = "4" })
+                                            @Html.ValidationMessageFor(c => c.soa.misSoa)
                                         </div>
                                     </div>
                                 </div>
@@ -94,6 +98,7 @@
                                         <div class="col-md-12">
                                             @Html.LabelFor(c => c.soa.visSoa)
                                             @Html.TextAreaFor(c => c.soa.visSoa, new { @class = "form-control", @rows = "4" })
+                                            @Html.ValidationMessageFor(c => c.soa.visSoa)
                                         </div>
                                     </div>
                                 </div>
@@ -113,15 +118,18 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             @Html.LabelFor(c => c.soa.nomUsu)
-                                            @Html.TextBoxFor(c => c.soa.nomUsu, new { @class = "form-control" })
+                                            @Html.TextBoxFor(c => c.soa.nomUsu, new { @class = "form-control", @readonly = "true" })
+                                            @Html.ValidationMessageFor(c => c.soa.nomUsu)
                                         </div>
                                         <div class="col-md-4">
                                             @Html.LabelFor(c => c.soa.pasUsu)
                                             @Html.PasswordFor(c => c.soa.pasUsu, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(c => c.soa.pasUsu)
                                         </div>
                                         <div class="col-md-4">
                                             @Html.LabelFor(c => c.soa.repPasUsu)
                                             @Html.PasswordFor(c => c.soa.repPasUsu, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(c => c.soa.repPasUsu)
                                         </div>
                                     </div>
                                 </div>
@@ -145,14 +153,26 @@
                                         <div class="col-md-4">
                                             @Html.LabelFor(c => c.auditor.dniAud)
                                             @Html.TextBoxFor(c => c.auditor.dniAud, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(c => c.auditor.dniAud)
                                         </div>
                                         <div class="col-md-4">
                                             @Html.LabelFor(c => c.auditor.fecNacAud)
-                                            @Html.TextBoxFor(c => c.auditor.fecNacAud, new { @class = "form-control" })
+
+
+                                            <div class="input-group date">
+                                                @Html.TextBoxFor(c => c.auditor.fecNacAud, new { @class = "form-control" })
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar bigger-110"></i>
+                                                </span>
+                                            </div>
+                                            @Html.ValidationMessageFor(c => c.auditor.fecNacAud)
+
+
                                         </div>
                                         <div class="col-md-4">
                                             @Html.LabelFor(c => c.auditor.sexAud)
                                             @Html.TextBoxFor(c => c.auditor.sexAud, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(c => c.auditor.sexAud)
                                         </div>
                                     </div>
                                 </div>
@@ -162,10 +182,12 @@
                                         <div class="col-md-4">
                                             @Html.LabelFor(c => c.auditor.nomAud)
                                             @Html.TextBoxFor(c => c.auditor.nomAud, new { @class = "form-control", @rows = "4" })
+                                            @Html.ValidationMessageFor(c => c.auditor.nomAud)
                                         </div>
                                         <div class="col-md-8">
                                             @Html.LabelFor(c => c.auditor.apeComAud)
                                             @Html.TextBoxFor(c => c.auditor.apeComAud, new { @class = "form-control", @rows = "4" })
+                                            @Html.ValidationMessageFor(c => c.auditor.apeComAud)
                                         </div>
                                     </div>
                                 </div>
@@ -174,14 +196,17 @@
                                         <div class="col-md-4">
                                             @Html.LabelFor(c => c.auditor.codDeparAud)
                                             @Html.DropDownListFor(c => c.auditor.codDeparAud, Model.auditor.cboDepartamento, "Seleccione", new { @class = "form-control", @rows = "4" })
+                                            @Html.ValidationMessageFor(c => c.auditor.codDeparAud)
                                         </div>
                                         <div class="col-md-4">
                                             @Html.LabelFor(c => c.auditor.codProvAud)
                                             @Html.DropDownListFor(c => c.auditor.codProvAud,Model.auditor.cboProvincia, "Seleccione", new { @class = "form-control", @rows = "4" })
+                                            @Html.ValidationMessageFor(c => c.auditor.codProvAud)
                                         </div>
                                         <div class="col-md-4">
                                             @Html.LabelFor(c => c.auditor.codDisAud)
                                             @Html.DropDownListFor(c => c.auditor.codDisAud,Model.auditor.cboDistrito, "Seleccione", new { @class = "form-control", @rows = "4" })
+                                            @Html.ValidationMessageFor(c => c.auditor.codDisAud)
                                         </div>
                                     </div>
                                 </div>
@@ -190,14 +215,17 @@
                                         <div class="col-md-4">
                                             @Html.LabelFor(c => c.auditor.corAud)
                                             @Html.TextBoxFor(c => c.auditor.corAud, new { @class = "form-control", @rows = "4" })
+                                            @Html.ValidationMessageFor(c => c.auditor.corAud)
                                         </div>
                                         <div class="col-md-4">
                                             @Html.LabelFor(c => c.auditor.telAud)
                                             @Html.TextBoxFor(c => c.auditor.telAud, new { @class = "form-control", @rows = "4" })
+                                            @Html.ValidationMessageFor(c => c.auditor.telAud)
                                         </div>
                                         <div class="col-md-4">
                                             @Html.LabelFor(c => c.auditor.celAud)
                                             @Html.TextBoxFor(c => c.auditor.celAud, new { @class = "form-control", @rows = "4" })
+                                            @Html.ValidationMessageFor(c => c.auditor.celAud)
                                         </div>
                                     </div>
                                 </div>
@@ -217,15 +245,18 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             @Html.LabelFor(c => c.auditor.nomUsu)
-                                            @Html.TextBoxFor(c => c.auditor.nomUsu, new { @class = "form-control" })
+                                            @Html.TextBoxFor(c => c.auditor.nomUsu, new { @class = "form-control", @readonly = "true" })
+                                            @Html.ValidationMessageFor(c => c.auditor.nomUsu)
                                         </div>
                                         <div class="col-md-4">
                                             @Html.LabelFor(c => c.auditor.pasUsu)
                                             @Html.PasswordFor(c => c.auditor.pasUsu, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(c => c.auditor.pasUsu)
                                         </div>
                                         <div class="col-md-4">
                                             @Html.LabelFor(c => c.auditor.repPasUsu)
                                             @Html.PasswordFor(c => c.auditor.repPasUsu, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(c => c.auditor.repPasUsu)
                                         </div>
                                     </div>
                                 </div>
@@ -260,19 +291,31 @@
 
     </div>
 
+}
 
 
     @Scripts.Render("~/Scripts/Login")
     <script type="text/javascript" language="javascript">
 
         $(document).ready(function () {
+
+
+            $('#auditor_fecNacAud').datepicker({
+                format: "dd/mm/yyyy"
+            }).next().on(ace.click_event, function () {
+                $(this).prev().focus();
+            });
+
             $("#solicitud_codTipSol").change(seleccionTipoSolicitud);
             $("#soa_rucSoa").blur(ingresarUsuarioSOA);
             $("#auditor_dniAud").blur(ingresarUsuarioAuditor);
             $("#btnGuardarSolicitud").click(function () {
-                 bootbox.confirm(parametros.general.mensajeConfirmacion, function (result) {
-                    guardarSolicitud();
-                });
+                if ($("#frmRegistroSolicitud").isValid()) {
+                    bootbox.confirm(parametros.general.mensajeConfirmacion, function (result) {
+                        if (result)
+                            guardarSolicitud();
+                    });
+                }
             });
             $("#btnCancelarSolicitud").click(cancelarSolicitud);
         });
@@ -296,17 +339,20 @@
         }
 
         function guardarSolicitud() {
-            var obj = jsonObject();
-            $.ajax({
-                type: "POST",
-                url: '@Url.Action("GrabarSolicitudRegistro", "SolReg")',
-                data: JSON.stringify(obj),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (result) {
-                    mostrarNotificacion(result);
-                }
-            });
+
+            
+                var obj = jsonObject();
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GrabarSolicitudRegistro", "SolReg")',
+                    data: JSON.stringify(obj),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        mostrarNotificacion(result);
+                    }
+                });
+             
         }
 
         function cancelarSolicitud() {

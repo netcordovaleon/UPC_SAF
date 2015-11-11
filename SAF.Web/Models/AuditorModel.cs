@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SAF.Configuracion.Constantes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -18,28 +19,55 @@ namespace SAF.Web.Models
 
         [Display(Name="Codigo Auditor")]
         public int codAud { get; set; }
+
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Nombre")]
         public string nomAud { get; set; }
+
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Apellidos")]
         public string apeComAud { get; set; }
+
+
+        [MaxLength(8, ErrorMessage = "Debe tener solo 8 digitos")]
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "DNI")]
         public string dniAud { get; set; }
         [Display(Name = "Celular")]
+
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         public string celAud { get; set; }
+
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Telefono")]
         public string telAud { get; set; }
+
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Direccion")]
         public string dirAud { get; set; }
+
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Departamento")]
         public Nullable<int> codDeparAud { get; set; }
+
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Provincia")]
         public Nullable<int> codProvAud { get; set; }
+
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Distrito")]
         public Nullable<int> codDisAud { get; set; }
+
+        [RegularExpression(@"^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = Mensaje.MensajeCampoDebeSerCorreo)]
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Correo")]
         public string corAud { get; set; }
+
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Sexo")]
         public string sexAud { get; set; }
+
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Fecha Nacimiento")]
         public string fecNacAud { get; set; }
         [Display(Name = "Auditor")]
@@ -48,16 +76,29 @@ namespace SAF.Web.Models
         public string indEsEsp { get; set; }
         [Display(Name = "Socio")]
         public string indEsSoc { get; set; }
+
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "N° Certificado")]
         public string codCerAud { get; set; }
+
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Archivo Certificado")]
         public byte[] arcCerAud { get; set; }
+
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Usuario")]
         public string nomUsu { get; set; }
+
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Contraseña")]
         public string pasUsu { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Compare("pasUsu")]
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Repetir Contraseña")]
         public string repPasUsu { get; set; }
+
+
         [Display(Name = "Archivo")]
         public string nombreArchivo { get; set; }
 

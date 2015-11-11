@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SAF.Configuracion.Constantes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -50,11 +51,14 @@ namespace SAF.Web.Models
         public string FECMAXPREPROINV { get; set; }
         public Nullable<int> CODSOA { get; set; }
         public Nullable<int> CODAUD { get; set; }
+
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Serv. Auditoria")]
         public Nullable<int> CODSERAUD { get; set; }
 
+        [Required(ErrorMessage= Mensaje.MensajeCampoRequerido)]
         [Display(Name="Publicacion")]
-        public Nullable<int> CODPUB { get; set; }
+        public string CODPUB { get; set; }
 
         public string ESTINV { get; set; }
 
