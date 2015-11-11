@@ -19,7 +19,6 @@ namespace SAF.Entidad
         public Nullable<System.DateTime> FECINISOLCAP { get; set; }
         public Nullable<System.DateTime> FECFINSOLCAP { get; set; }
         public Nullable<int> NUMHORSOLCAP { get; set; }
-        public byte[] ARCCAP { get; set; }
         public Nullable<System.DateTime> FECREG { get; set; }
         public Nullable<System.DateTime> FECMOD { get; set; }
         public string USUREG { get; set; }
@@ -28,8 +27,15 @@ namespace SAF.Entidad
         public Nullable<int> CODSOL { get; set; }
         public Nullable<int> CODUNI { get; set; }
         public Nullable<int> CODCAR { get; set; }
+        public Nullable<int> CODTIPCAPA { get; set; }
+        public Nullable<int> CODCATCAPA { get; set; }
+        public Nullable<long> CODARC { get; set; }
+        public string NOMBLABEL { get; set; }
     
+        public virtual SAF_ARCHIVO SAF_ARCHIVO { get; set; }
         public virtual SAF_CARRERA SAF_CARRERA { get; set; }
+        public virtual SAF_PARAMETRICA SAF_PARAMETRICA { get; set; }
+        public virtual SAF_PARAMETRICA SAF_PARAMETRICA1 { get; set; }
         public virtual SAF_SOLICITUD SAF_SOLICITUD { get; set; }
         public virtual SAF_UNIVERSIDAD SAF_UNIVERSIDAD { get; set; }
     }

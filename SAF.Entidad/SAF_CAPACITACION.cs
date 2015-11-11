@@ -24,17 +24,19 @@ namespace SAF.Entidad
         public string USUREG { get; set; }
         public string USUMOD { get; set; }
         public string ESTREG { get; set; }
-        public byte[] ARCCAP { get; set; }
         public Nullable<int> CODAUD { get; set; }
         public Nullable<int> CODUNI { get; set; }
         public Nullable<int> CODCAR { get; set; }
         public Nullable<int> CODTIPCAPA { get; set; }
         public Nullable<int> CODCATCAPA { get; set; }
+        public Nullable<long> CODARC { get; set; }
+        public string NOMBLABEL { get; set; }
     
+        public virtual SAF_ARCHIVO SAF_ARCHIVO { get; set; }
         public virtual SAF_AUDITOR SAF_AUDITOR { get; set; }
-        public virtual SAF_UNIVERSIDAD SAF_UNIVERSIDAD { get; set; }
-        public virtual SAF_CARRERA SAF_CARRERA { get; set; }
         public virtual SAF_PARAMETRICA SAF_PARAMETRICA { get; set; }
         public virtual SAF_PARAMETRICA SAF_PARAMETRICA1 { get; set; }
+        public virtual SAF_UNIVERSIDAD SAF_UNIVERSIDAD { get; set; }
+        public virtual SAF_CARRERA SAF_CARRERA { get; set; }
     }
 }

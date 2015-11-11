@@ -17,12 +17,12 @@ namespace SAF.Web
         public SAF_AUDITOR()
         {
             this.SAF_DIAOCUPADO = new HashSet<SAF_DIAOCUPADO>();
-            this.SAF_INVITACION = new HashSet<SAF_INVITACION>();
-            this.SAF_CORTE_AUDITOR = new HashSet<SAF_CORTE_AUDITOR>();
-            this.SAF_CORTE_AUDITOR_CARGO = new HashSet<SAF_CORTE_AUDITOR_CARGO>();
             this.SAF_SOLICITUD = new HashSet<SAF_SOLICITUD>();
+            this.SAF_INVITACION = new HashSet<SAF_INVITACION>();
             this.SAF_EXPERIENCIA = new HashSet<SAF_EXPERIENCIA>();
+            this.SAF_CORTE_AUDITOR = new HashSet<SAF_CORTE_AUDITOR>();
             this.SAF_CAPACITACION = new HashSet<SAF_CAPACITACION>();
+            this.SAF_CORTE_AUDITOR_CARGO = new HashSet<SAF_CORTE_AUDITOR_CARGO>();
         }
     
         public int CODAUD { get; set; }
@@ -54,11 +54,11 @@ namespace SAF.Web
         public string NOMBLABEL { get; set; }
     
         public virtual ICollection<SAF_DIAOCUPADO> SAF_DIAOCUPADO { get; set; }
-        public virtual ICollection<SAF_INVITACION> SAF_INVITACION { get; set; }
-        public virtual ICollection<SAF_CORTE_AUDITOR> SAF_CORTE_AUDITOR { get; set; }
-        public virtual ICollection<SAF_CORTE_AUDITOR_CARGO> SAF_CORTE_AUDITOR_CARGO { get; set; }
         public virtual ICollection<SAF_SOLICITUD> SAF_SOLICITUD { get; set; }
+        public virtual ICollection<SAF_INVITACION> SAF_INVITACION { get; set; }
         public virtual ICollection<SAF_EXPERIENCIA> SAF_EXPERIENCIA { get; set; }
+        public virtual ICollection<SAF_CORTE_AUDITOR> SAF_CORTE_AUDITOR { get; set; }
         public virtual ICollection<SAF_CAPACITACION> SAF_CAPACITACION { get; set; }
+        public virtual ICollection<SAF_CORTE_AUDITOR_CARGO> SAF_CORTE_AUDITOR_CARGO { get; set; }
     }
 }

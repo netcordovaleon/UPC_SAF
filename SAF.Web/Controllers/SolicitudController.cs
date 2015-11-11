@@ -120,6 +120,9 @@ namespace SAF.Web.Controllers
                 infoAuditor.CODCERAUD = model.codCerAud;
                 infoAuditor.CODARC = id;
                 infoAuditor.NOMBLABEL = model.nombreArchivo;
+                infoAuditor.CORAUD = model.corAud;
+                infoAuditor.CELAUD = model.celAud;
+                infoAuditor.TELAUD = model.telAud;
                 modelEntity.SaveChanges();
                 return JsonConvert.SerializeObject(new MensajeRespuesta("Se completo la informacion del Auditor Financiero", true));
             }

@@ -16,7 +16,6 @@ namespace SAF.Entidad
     {
         public int CODSOLEXP { get; set; }
         public string DESSOLEXP { get; set; }
-        public Nullable<int> TIPEMPSOLEXP { get; set; }
         public Nullable<System.DateTime> FECINISOLEXP { get; set; }
         public Nullable<System.DateTime> FECFINSOLEXP { get; set; }
         public Nullable<int> NUMHORSOLEXP { get; set; }
@@ -27,8 +26,13 @@ namespace SAF.Entidad
         public string ESTREG { get; set; }
         public Nullable<int> CODSOL { get; set; }
         public Nullable<int> CODEMP { get; set; }
+        public Nullable<int> CODTIPEXP { get; set; }
+        public Nullable<long> CODARC { get; set; }
+        public string NOMBLABEL { get; set; }
     
+        public virtual SAF_ARCHIVO SAF_ARCHIVO { get; set; }
         public virtual SAF_EMPRESA SAF_EMPRESA { get; set; }
+        public virtual SAF_PARAMETRICA SAF_PARAMETRICA { get; set; }
         public virtual SAF_SOLICITUD SAF_SOLICITUD { get; set; }
     }
 }

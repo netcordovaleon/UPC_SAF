@@ -27,7 +27,6 @@ namespace SAF.Web.Intranet
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<SAF_AUDITOR> SAF_AUDITOR { get; set; }
         public virtual DbSet<SAF_AUDITORIA> SAF_AUDITORIA { get; set; }
         public virtual DbSet<SAF_BASE> SAF_BASE { get; set; }
         public virtual DbSet<SAF_BASEENTREGABLE> SAF_BASEENTREGABLE { get; set; }
@@ -45,7 +44,6 @@ namespace SAF.Web.Intranet
         public virtual DbSet<SAF_FLUJO_DOCUMENTO> SAF_FLUJO_DOCUMENTO { get; set; }
         public virtual DbSet<SAF_INVITACION> SAF_INVITACION { get; set; }
         public virtual DbSet<SAF_INVITACIONDETALLE> SAF_INVITACIONDETALLE { get; set; }
-        public virtual DbSet<SAF_NOTIFICACION> SAF_NOTIFICACION { get; set; }
         public virtual DbSet<SAF_PARAMETRICA> SAF_PARAMETRICA { get; set; }
         public virtual DbSet<SAF_PROPUESTA> SAF_PROPUESTA { get; set; }
         public virtual DbSet<SAF_PUBLICACION> SAF_PUBLICACION { get; set; }
@@ -72,6 +70,8 @@ namespace SAF.Web.Intranet
         public virtual DbSet<SAF_EXPERIENCIA> SAF_EXPERIENCIA { get; set; }
         public virtual DbSet<SAF_SOLCAPACITACION> SAF_SOLCAPACITACION { get; set; }
         public virtual DbSet<SAF_SOLEXPERIENCIA> SAF_SOLEXPERIENCIA { get; set; }
+        public virtual DbSet<SAF_NOTIFICACION> SAF_NOTIFICACION { get; set; }
+        public virtual DbSet<SAF_AUDITOR> SAF_AUDITOR { get; set; }
     
         public virtual ObjectResult<SP_ACCEDERSISTEMAADMIN_Result> SP_ACCEDERSISTEMAADMIN(string nOMUSU, string pASUSU)
         {

@@ -15,8 +15,9 @@ namespace SAF.Web.Intranet.Helper
             modelEntity.SAF_NOTIFICACION.Add(new SAF_NOTIFICACION(){
                 DESNOT = body,       
                 FECREG = DateTime.Now,
-                INDLEIDO = "N",
-                USUNOTREC = infoAuditor.NOMUSU
+                USUEMI = "SYSTEM",
+                INDNOT = "N",
+                USUREC = infoAuditor.NOMUSU
             });
             modelEntity.SaveChanges();
         }
@@ -29,8 +30,9 @@ namespace SAF.Web.Intranet.Helper
                 {
                     DESNOT = body,
                     FECREG = DateTime.Now,
-                    INDLEIDO = "N",
-                    USUNOTREC = item.NOMUSU
+                    INDNOT = "N",
+                    USUEMI = "SYSTEM",
+                    USUREC = item.NOMUSU
                 });
                 modelEntity.SaveChanges();                
             }   

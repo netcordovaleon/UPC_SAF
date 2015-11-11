@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e3aa0c0ff14c47cc8c0d6e207427b1c8" Name="Diagram1">
-        <EntityTypeShape EntityType="modeloIntranet.SAF_AUDITOR" Width="1.5" PointX="0.75" PointY="18.75" IsExpanded="true" />
         <EntityTypeShape EntityType="modeloIntranet.SAF_AUDITORIA" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="modeloIntranet.SAF_BASE" Width="1.5" PointX="1.5" PointY="42.25" IsExpanded="true" />
         <EntityTypeShape EntityType="modeloIntranet.SAF_BASEENTREGABLE" Width="1.5" PointX="3.75" PointY="44.125" IsExpanded="true" />
@@ -23,7 +22,6 @@
         <EntityTypeShape EntityType="modeloIntranet.SAF_FLUJO_DOCUMENTO" Width="1.5" PointX="10" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="modeloIntranet.SAF_INVITACION" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
         <EntityTypeShape EntityType="modeloIntranet.SAF_INVITACIONDETALLE" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="modeloIntranet.SAF_NOTIFICACION" Width="1.5" PointX="8.75" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="modeloIntranet.SAF_PARAMETRICA" Width="1.5" PointX="0.75" PointY="35.5" IsExpanded="true" />
         <EntityTypeShape EntityType="modeloIntranet.SAF_PROPUESTA" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="modeloIntranet.SAF_PUBLICACION" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
@@ -42,11 +40,6 @@
         <EntityTypeShape EntityType="modeloIntranet.VW_SAF_INVITACION" Width="1.5" PointX="12.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="modeloIntranet.VW_SAF_PUBLICACION" Width="1.5" PointX="12.75" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="modeloIntranet.VW_SAF_SOLICITUD" Width="1.5" PointX="12.75" PointY="11.375" IsExpanded="true" />
-        <AssociationConnector Association="modeloIntranet.FK__SAF_DIAOC__CODAU__151B244E" ManuallyRouted="false" />
-        <AssociationConnector Association="modeloIntranet.R_3" ManuallyRouted="false" />
-        <AssociationConnector Association="modeloIntranet.R_35" ManuallyRouted="false" />
-        <AssociationConnector Association="modeloIntranet.R_49" ManuallyRouted="false" />
-        <AssociationConnector Association="modeloIntranet.R_53" ManuallyRouted="false" />
         <AssociationConnector Association="modeloIntranet.R_43" ManuallyRouted="false" />
         <AssociationConnector Association="modeloIntranet.R_16" ManuallyRouted="false" />
         <AssociationConnector Association="modeloIntranet.R_17" ManuallyRouted="false" />
@@ -82,8 +75,6 @@
         <EntityTypeShape EntityType="modeloIntranet.SAF_CAPACITACION" Width="1.5" PointX="9" PointY="24.25" />
         <EntityTypeShape EntityType="modeloIntranet.SAF_EXPERIENCIA" Width="1.5" PointX="6" PointY="26.5" />
         <EntityTypeShape EntityType="modeloIntranet.SAF_SOLCAPACITACION" Width="1.5" PointX="14.25" PointY="16.25" />
-        <AssociationConnector Association="modeloIntranet.R_4" />
-        <AssociationConnector Association="modeloIntranet.R_5" />
         <AssociationConnector Association="modeloIntranet.FK_SAF_CAPACITACION_SAF_PARAMETRICA" />
         <AssociationConnector Association="modeloIntranet.FK_SAF_CAPACITACION_SAF_PARAMETRICA1" />
         <AssociationConnector Association="modeloIntranet.R_7" />
@@ -103,6 +94,15 @@
         <AssociationConnector Association="modeloIntranet.FK_SAF_SOLCAPACITACION_SAF_PARAMETRICA" />
         <AssociationConnector Association="modeloIntranet.FK_SAF_SOLCAPACITACION_SAF_PARAMETRICA1" />
         <AssociationConnector Association="modeloIntranet.FK_SAF_SOLEXPERIENCIA_SAF_PARAMETRICA" />
+        <EntityTypeShape EntityType="modeloIntranet.SAF_NOTIFICACION" Width="1.5" PointX="15.375" PointY="4.75" />
+        <EntityTypeShape EntityType="modeloIntranet.SAF_AUDITOR" Width="1.5" PointX="0.75" PointY="22.625" />
+        <AssociationConnector Association="modeloIntranet.FK__SAF_DIAOC__CODAU__151B244E" />
+        <AssociationConnector Association="modeloIntranet.R_3" />
+        <AssociationConnector Association="modeloIntranet.R_35" />
+        <AssociationConnector Association="modeloIntranet.R_4" />
+        <AssociationConnector Association="modeloIntranet.R_49" />
+        <AssociationConnector Association="modeloIntranet.R_5" />
+        <AssociationConnector Association="modeloIntranet.R_53" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

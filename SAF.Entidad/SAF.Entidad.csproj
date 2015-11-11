@@ -64,6 +64,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SAFModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="SAF_ARCHIVO.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_ASISTENCIA.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="SAF_AUDITOR.cs">
       <DependentUpon>SAFModel.tt</DependentUpon>
     </Compile>
@@ -100,6 +106,18 @@
     <Compile Include="SAF_CRONOGRAMA.cs">
       <DependentUpon>SAFModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SAF_DEPARTAMENTO.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_DIALABORABLE.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_DIAOCUPADO.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_DISTRITO.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="SAF_DOCUMENTO.cs">
       <DependentUpon>SAFModel.tt</DependentUpon>
     </Compile>
@@ -110,6 +128,9 @@
       <DependentUpon>SAFModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SAF_EXPERIENCIA.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_FALTAJUSTIFICA.cs">
       <DependentUpon>SAFModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SAF_FLUJO_DOCUMENTO.cs">
@@ -127,7 +148,16 @@
     <Compile Include="SAF_PARAMETRICA.cs">
       <DependentUpon>SAFModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SAF_PROPEQUIPO.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_PROPEQUIPODETALLE.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="SAF_PROPUESTA.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_PROVINCIA.cs">
       <DependentUpon>SAFModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SAF_PUBLICACION.cs">
@@ -184,7 +214,13 @@
     <Compile Include="SP_SAF_RESULTADOCORTE_Result.cs">
       <DependentUpon>SAFModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="VW_SAF_AUDITORIAEQUIPO.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="VW_SAF_INVITACION.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_SAF_PROPUESTAEJECUCION.cs">
       <DependentUpon>SAFModel.tt</DependentUpon>
     </Compile>
     <Compile Include="VW_SAF_PUBLICACION.cs">

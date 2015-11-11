@@ -124,29 +124,37 @@ namespace SAF.Web.Models
         public int? codSolCap { get; set; }
 
         [Display(Name = "Descripción")]
+        [Required(ErrorMessage=Mensaje.MensajeCampoRequerido)]
         public string desSolCap { get; set; }
 
         [Display(Name = "Fecha Inicio")]
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         public string fechaInicioSolCap { get; set; }
 
         [Display(Name = "Fecha Fin")]
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         public string fechaFinSolCap { get; set; }
 
         [Display(Name = "Horas")]
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         public int? numHorasSolCap { get; set; }  
       
         public int? codSol { get; set; }
 
         [Display(Name = "Universidad")]
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         public int? codUni { get; set; }
 
         [Display(Name = "Especialidad")]
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         public int? codCar { get; set; }
 
         [Display(Name = "Tipo")]
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         public int? codTipCapa { get; set; }
 
         [Display(Name = "Categoría")]
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         public int? codCatCapa { get; set; }
 
         [Display(Name = "Archivo")]
@@ -164,22 +172,29 @@ namespace SAF.Web.Models
     public class ExperienciaModel
     {
         public int?  codSolExp{ get; set; }
+        [Required(ErrorMessage=Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Descripción")]
         public string descSolExp { get; set; }
 
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Fecha Inicio")]
         public string fechaInicioSolExp { get; set; }
 
+
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Fecha Fin")]
         public string fechaFinSolExp { get; set; }
 
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Horas")]
         public int? numHorasSolExp { get; set; }
         public int? codSol { get; set; }
 
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Empresa")]
         public int? codEmpresa { get; set; }
 
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Tipo")]
         public int? codTipExp { get; set; }
         public long? codArchivoExp { get; set; }

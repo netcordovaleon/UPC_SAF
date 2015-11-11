@@ -19,6 +19,9 @@ namespace SAF.Entidad
             this.SAF_CAPACITACION = new HashSet<SAF_CAPACITACION>();
             this.SAF_CAPACITACION1 = new HashSet<SAF_CAPACITACION>();
             this.SAF_EXPERIENCIA = new HashSet<SAF_EXPERIENCIA>();
+            this.SAF_SOLCAPACITACION = new HashSet<SAF_SOLCAPACITACION>();
+            this.SAF_SOLCAPACITACION1 = new HashSet<SAF_SOLCAPACITACION>();
+            this.SAF_SOLEXPERIENCIA = new HashSet<SAF_SOLEXPERIENCIA>();
         }
     
         public int CODPAR { get; set; }
@@ -35,5 +38,8 @@ namespace SAF.Entidad
         public virtual ICollection<SAF_CAPACITACION> SAF_CAPACITACION { get; set; }
         public virtual ICollection<SAF_CAPACITACION> SAF_CAPACITACION1 { get; set; }
         public virtual ICollection<SAF_EXPERIENCIA> SAF_EXPERIENCIA { get; set; }
+        public virtual ICollection<SAF_SOLCAPACITACION> SAF_SOLCAPACITACION { get; set; }
+        public virtual ICollection<SAF_SOLCAPACITACION> SAF_SOLCAPACITACION1 { get; set; }
+        public virtual ICollection<SAF_SOLEXPERIENCIA> SAF_SOLEXPERIENCIA { get; set; }
     }
 }

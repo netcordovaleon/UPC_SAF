@@ -34,11 +34,12 @@ namespace SAF.Entidad
         public Nullable<int> CODSERAUD { get; set; }
         public Nullable<int> CODPUB { get; set; }
         public Nullable<int> ESTINV { get; set; }
+        public Nullable<int> CODCAR { get; set; }
     
-        public virtual SAF_AUDITOR SAF_AUDITOR { get; set; }
         public virtual SAF_SOA SAF_SOA { get; set; }
         public virtual ICollection<SAF_INVITACIONDETALLE> SAF_INVITACIONDETALLE { get; set; }
         public virtual SAF_SERVICIOAUDITORIA SAF_SERVICIOAUDITORIA { get; set; }
         public virtual SAF_PUBLICACION SAF_PUBLICACION { get; set; }
+        public virtual SAF_AUDITOR SAF_AUDITOR { get; set; }
     }
 }

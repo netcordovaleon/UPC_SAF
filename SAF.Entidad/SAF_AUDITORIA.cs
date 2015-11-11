@@ -24,6 +24,7 @@ namespace SAF.Entidad
         public string USUMOD { get; set; }
         public string ESTREG { get; set; }
         public Nullable<int> CODPRO { get; set; }
+        public Nullable<int> CODSERAUD { get; set; }
     
         public virtual SAF_PROPUESTA SAF_PROPUESTA { get; set; }
     }

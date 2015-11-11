@@ -27,7 +27,10 @@ namespace SAF.Entidad
         public Nullable<int> CODAUD { get; set; }
         public Nullable<int> CODEMP { get; set; }
         public Nullable<int> CODTIPEXP { get; set; }
+        public Nullable<long> CODARC { get; set; }
+        public string NOMBLABEL { get; set; }
     
+        public virtual SAF_ARCHIVO SAF_ARCHIVO { get; set; }
         public virtual SAF_AUDITOR SAF_AUDITOR { get; set; }
         public virtual SAF_EMPRESA SAF_EMPRESA { get; set; }
         public virtual SAF_PARAMETRICA SAF_PARAMETRICA { get; set; }

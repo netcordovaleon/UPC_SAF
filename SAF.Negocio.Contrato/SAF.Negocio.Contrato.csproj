@@ -43,11 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="General\ISafAsistenciaLogic.cs" />
     <Compile Include="General\ISafAuditorLogic.cs" />
     <Compile Include="General\ISafConsultaLogic.cs" />
     <Compile Include="General\ISafCronoEntidadLogic.cs" />
     <Compile Include="General\ISafCronogramaLogic.cs" />
     <Compile Include="General\ISafEntidadLogic.cs" />
+    <Compile Include="General\ISafFaltaJustificadaLogic.cs" />
     <Compile Include="General\ISafInvitacionLogic.cs" />
     <Compile Include="General\ISafNotificacionLogic.cs" />
     <Compile Include="General\ISafPublicacionLogic.cs" />
@@ -60,7 +62,9 @@
     <Compile Include="General\IServicioSociedadAuditorREST.cs" />
     <Compile Include="General\ISpSafInvitacionLogic.cs" />
     <Compile Include="General\ISpSafResultadoCorteLogic.cs" />
+    <Compile Include="General\IVwSafAuditoriaEquipoLogic.cs" />
     <Compile Include="General\IVwSafInvitacionLogic.cs" />
+    <Compile Include="General\IVwSafPropuestaEjecucionLogic.cs" />
     <Compile Include="General\IVwSafPublicacionLogic.cs" />
     <Compile Include="IConcursoPublicoMeritoLogic.cs" />
     <Compile Include="IGestionSociedadAuditorLogic.cs" />

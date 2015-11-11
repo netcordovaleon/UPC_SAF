@@ -27,7 +27,6 @@ namespace SAF.Web
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<SAF_AUDITOR> SAF_AUDITOR { get; set; }
         public virtual DbSet<SAF_AUDITORIA> SAF_AUDITORIA { get; set; }
         public virtual DbSet<SAF_BASE> SAF_BASE { get; set; }
         public virtual DbSet<SAF_BASEENTREGABLE> SAF_BASEENTREGABLE { get; set; }
@@ -74,6 +73,7 @@ namespace SAF.Web
         public virtual DbSet<SAF_PROPEQUIPO> SAF_PROPEQUIPO { get; set; }
         public virtual DbSet<SAF_PROPEQUIPODETALLE> SAF_PROPEQUIPODETALLE { get; set; }
         public virtual DbSet<SAF_NOTIFICACION> SAF_NOTIFICACION { get; set; }
+        public virtual DbSet<SAF_AUDITOR> SAF_AUDITOR { get; set; }
     
         public virtual int SP_CARGARDIALABORABLE(string aNIO)
         {

@@ -18,12 +18,14 @@
                         <div class="form-group">
                             @Html.LabelFor(c => c.codCatCapa)
                             @Html.DropDownListFor(c => c.codCatCapa, Model.Categorias, "Seleccione", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(c => c.codCatCapa)
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             @Html.LabelFor(c => c.codTipCapa)
                             @Html.DropDownListFor(c => c.codTipCapa, Model.Tipos, "Seleccione", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(c => c.codTipCapa)
                         </div>
                     </div>
                 </div>
@@ -32,6 +34,7 @@
                         <div class="form-group">
                             @Html.LabelFor(c => c.codUni)
                             @Html.DropDownListFor(c => c.codUni, Model.Universidades, "Seleccione", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(c => c.codUni)
                         </div>
                     </div>
                 </div>
@@ -40,6 +43,7 @@
                         <div class="form-group">
                             @Html.LabelFor(c => c.codCar)
                             @Html.DropDownListFor(c => c.codCar, Model.Especialidades, "Seleccione", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(c => c.codCar)
                         </div>
                     </div>
                 </div>
@@ -48,6 +52,7 @@
                         <div class="form-group">
                             @Html.LabelFor(m => m.desSolCap)
                             @Html.TextBoxFor(m => m.desSolCap, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(c => c.desSolCap)
                         </div>
                     </div>
                 </div>
@@ -59,6 +64,7 @@
                                 @Html.TextBoxFor(m => m.fechaInicioSolCap, new { @class = "form-control" })
                                 <span class="input-group-addon"><i class="fa fa-calendar bigger-110"></i></span>
                             </div>
+                            @Html.ValidationMessageFor(c => c.fechaInicioSolCap)
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -68,6 +74,7 @@
                                 @Html.TextBoxFor(m => m.fechaFinSolCap, new { @class = "form-control" })
                                 <span class="input-group-addon"><i class="fa fa-calendar bigger-110"></i></span>
                             </div>
+                            @Html.ValidationMessageFor(c => c.fechaFinSolCap)
                         </div>
                     </div>
                 </div>
@@ -84,6 +91,7 @@
                     <div class="col-md-4">
                         @Html.LabelFor(c => c.numHorasSolCap)
                         @Html.TextBoxFor(c => c.numHorasSolCap, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(c => c.numHorasSolCap)
                     </div>
                 </div>
 
@@ -97,8 +105,33 @@
 }
 <script type="text/javascript" language="javascript">
 
+    $(document).ready(function () {
+        $('#fechaInicioSolCap').datepicker({
+            format: "dd/mm/yyyy"
+        }).next().on(ace.click_event, function () {
+            $(this).prev().focus();
+        });
+
+        $('#fechaFinSolCap').datepicker({
+            format: "dd/mm/yyyy"
+        }).next().on(ace.click_event, function () {
+            $(this).prev().focus();
+        });
+    });
+
     $("#nombreArchivoCapa").fileInput({ file: $("#codArchivoCapa").val(), fileName: "archivoCapaFile", ctrlCleanDelete: ["codArchivoCapa"] });
-    $("#btnGuardarCapacitacion").click(function () { $("#frmRegistroCapacitacion").submit(); });
+    $("#btnGuardarCapacitacion").click(function () {
+        //$("#frmRegistroCapacitacion").removeData("validator");
+        //$("#frmRegistroCapacitacion").removeData("unobtrusiveValidation");
+        //$.validator.unobtrusive.parse("#frmRegistroCapacitacion");
+
+
+
+        $("#frmRegistroCapacitacion").updateValidation();
+        if ($("#frmRegistroCapacitacion").isValid()){
+            $("#frmRegistroCapacitacion").submit();
+        }
+    });
 
     $("#iRegistroCapacitacion").load(function () {
         var resultText = $("#iRegistroCapacitacion").contents().find('body').html();

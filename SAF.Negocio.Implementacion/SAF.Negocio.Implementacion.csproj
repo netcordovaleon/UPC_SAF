@@ -45,11 +45,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConcursoPublicoMeritoLogic.cs" />
+    <Compile Include="General\SafAsistenciaLogic.cs" />
     <Compile Include="General\SafAuditorLogic.cs" />
     <Compile Include="General\SafConsultaLogic.cs" />
     <Compile Include="General\SafCronoEntidadLogic.cs" />
     <Compile Include="General\SafCronogramaLogic.cs" />
     <Compile Include="General\SafEntidadLogic.cs" />
+    <Compile Include="General\SafFaltaJustificadaLogic.cs" />
     <Compile Include="General\SafInvitacionLogic.cs" />
     <Compile Include="General\SafNotificacionLogic.cs" />
     <Compile Include="General\SafPublicacionLogic.cs" />
@@ -59,7 +61,9 @@
     <Compile Include="General\SafSolicitudLogic.cs" />
     <Compile Include="General\SpSafInvitacionLogic.cs" />
     <Compile Include="General\SpSafResultadoCorteLogic.cs" />
+    <Compile Include="General\VwSafAuditoriaEquipoLogic.cs" />
     <Compile Include="General\VwSafInvitacionLogic.cs" />
+    <Compile Include="General\VwSafPropuestaEjecucionLogic.cs" />
     <Compile Include="General\VwSafPublicacionLogic.cs" />
     <Compile Include="GestionSociedadAuditorLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

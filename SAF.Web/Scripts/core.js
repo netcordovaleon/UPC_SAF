@@ -236,3 +236,24 @@ $.fn.isValid = function (hasTabs) {
         return false;
     }
 };
+
+
+$.fn.updateValidation = function () {
+    var form = this.closest("form").removeData("validator").removeData("unobtrusiveValidation");
+    $.validator.unobtrusive.parse(form);
+    return this;
+};
+
+$.fn.cleanValidation = function () {
+    $(this).find(".field-validation-error").each(function () {
+        $(this).removeClass("field-validation-error").addClass("field-validation-valid");
+    });
+    $(this).find(".input-validation-error").each(function () {
+        $(this).removeClass("input-validation-error").addClass("valid");
+    });
+    $(this).find(".validation-summary-errors").each(function () {
+        $(this).find("ul").empty();
+        $(this).removeClass("validation-summary-errors").addClass("validation-summary-valid");
+    });
+    $(this).updateValidation();
+};

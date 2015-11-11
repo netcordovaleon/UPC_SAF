@@ -43,7 +43,7 @@
       <HintPath>..\SAF.Configuracion\Dll\System.Linq.Dynamic.dll</HintPath>
     </Reference>
     <Reference Include="System.Transactions" />
-    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="SafAsistenciaData.cs" />
+    <Compile Include="SafFaltaJustificadaData.cs" />
     <Compile Include="SafInvitacionData.cs" />
     <Compile Include="SpSafCortePublicacionData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,7 +81,9 @@
     <Compile Include="SpSafInvitacionData.cs" />
     <Compile Include="SpSafMejorEquipoData.cs" />
     <Compile Include="SpSafResultadoCorteData.cs" />
+    <Compile Include="VwSafAuditoriaEquipoData.cs" />
     <Compile Include="VwSafInvitacionData.cs" />
+    <Compile Include="VwSafPropuestaEjecucionData.cs" />
     <Compile Include="VwSafPublicacionData.cs" />
     <Compile Include="VwSafSolicitudData.cs" />
   </ItemGroup>

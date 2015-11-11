@@ -15,9 +15,12 @@ namespace SAF.Entidad
     public partial class SAF_NOTIFICACION
     {
         public int CODNOT { get; set; }
-        public string USUNOTREC { get; set; }
+        public string USUEMI { get; set; }
+        public string USUREC { get; set; }
+        public string ASUNOT { get; set; }
         public string DESNOT { get; set; }
-        public string INDLEIDO { get; set; }
+        public string INDNOT { get; set; }
+        public string ESTNOT { get; set; }
         public Nullable<System.DateTime> FECREG { get; set; }
         public Nullable<System.DateTime> FECMOD { get; set; }
         public string USUREG { get; set; }

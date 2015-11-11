@@ -85,6 +85,7 @@ namespace SAF.Web
                 "~/Scripts/core.js"*/
                 "~/Scripts/jQuery-2.1.4.min.js",
                 "~/Scripts/jquery-ui.min.js",
+                "~/Scripts/jquery.validate*",
                 "~/Scripts/bootstrap.min.js",
                 "~/Scripts/raphael-min.js",
                 "~/Scripts/morris.min.js", //check
@@ -104,16 +105,16 @@ namespace SAF.Web
                 "~/Scripts/demo.js",
                 "~/Scripts/bootbox.js",
 
-                "~/Scripts/ace-elements.min.js",
+
                 "~/Scripts/ace.min.js",
+                "~/Scripts/ace-elements.min.js",
+                
 
                 "~/Scripts/jquery.dataTables.min.js",
                 "~/Scripts/dataTables.bootstrap.js",
 
 
-
-                "~/Scripts/jquery.validate.min.js",
-                "~/Scripts/jquery.validate.unobtrusive.min.js",
+                 
 
 
                 "~/Scripts/bootstrap-datepicker.js",

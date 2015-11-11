@@ -27,11 +27,9 @@ namespace SAF.Entidad
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<SAF_AUDITOR> SAF_AUDITOR { get; set; }
         public virtual DbSet<SAF_AUDITORIA> SAF_AUDITORIA { get; set; }
         public virtual DbSet<SAF_BASE> SAF_BASE { get; set; }
         public virtual DbSet<SAF_BASEENTREGABLE> SAF_BASEENTREGABLE { get; set; }
-        public virtual DbSet<SAF_CAPACITACION> SAF_CAPACITACION { get; set; }
         public virtual DbSet<SAF_CARRERA> SAF_CARRERA { get; set; }
         public virtual DbSet<SAF_CONSULTA> SAF_CONSULTA { get; set; }
         public virtual DbSet<SAF_CRONOENTIDAD> SAF_CRONOENTIDAD { get; set; }
@@ -42,7 +40,6 @@ namespace SAF.Entidad
         public virtual DbSet<SAF_FLUJO_DOCUMENTO> SAF_FLUJO_DOCUMENTO { get; set; }
         public virtual DbSet<SAF_INVITACION> SAF_INVITACION { get; set; }
         public virtual DbSet<SAF_INVITACIONDETALLE> SAF_INVITACIONDETALLE { get; set; }
-        public virtual DbSet<SAF_NOTIFICACION> SAF_NOTIFICACION { get; set; }
         public virtual DbSet<SAF_PROPUESTA> SAF_PROPUESTA { get; set; }
         public virtual DbSet<SAF_PUBLICACION> SAF_PUBLICACION { get; set; }
         public virtual DbSet<SAF_SERAUDCARCAP> SAF_SERAUDCARCAP { get; set; }
@@ -50,8 +47,6 @@ namespace SAF.Entidad
         public virtual DbSet<SAF_SERAUDCARGO> SAF_SERAUDCARGO { get; set; }
         public virtual DbSet<SAF_SERVICIOAUDITORIA> SAF_SERVICIOAUDITORIA { get; set; }
         public virtual DbSet<SAF_SOA> SAF_SOA { get; set; }
-        public virtual DbSet<SAF_SOLCAPACITACION> SAF_SOLCAPACITACION { get; set; }
-        public virtual DbSet<SAF_SOLEXPERIENCIA> SAF_SOLEXPERIENCIA { get; set; }
         public virtual DbSet<SAF_SOLICITUD> SAF_SOLICITUD { get; set; }
         public virtual DbSet<SAF_TIPOPARAMETRICA> SAF_TIPOPARAMETRICA { get; set; }
         public virtual DbSet<SAF_TIPOSOLICITUD> SAF_TIPOSOLICITUD { get; set; }
@@ -63,8 +58,25 @@ namespace SAF.Entidad
         public virtual DbSet<SAF_CARGO> SAF_CARGO { get; set; }
         public virtual DbSet<SAF_CORTE_AUDITOR> SAF_CORTE_AUDITOR { get; set; }
         public virtual DbSet<SAF_CORTE_AUDITOR_CARGO> SAF_CORTE_AUDITOR_CARGO { get; set; }
-        public virtual DbSet<SAF_EXPERIENCIA> SAF_EXPERIENCIA { get; set; }
         public virtual DbSet<VW_SAF_INVITACION> VW_SAF_INVITACION { get; set; }
+        public virtual DbSet<SAF_ASISTENCIA> SAF_ASISTENCIA { get; set; }
+        public virtual DbSet<SAF_FALTAJUSTIFICA> SAF_FALTAJUSTIFICA { get; set; }
+        public virtual DbSet<SAF_NOTIFICACION> SAF_NOTIFICACION { get; set; }
+        public virtual DbSet<SAF_ARCHIVO> SAF_ARCHIVO { get; set; }
+        public virtual DbSet<SAF_AUDITOR> SAF_AUDITOR { get; set; }
+        public virtual DbSet<SAF_CAPACITACION> SAF_CAPACITACION { get; set; }
+        public virtual DbSet<SAF_DEPARTAMENTO> SAF_DEPARTAMENTO { get; set; }
+        public virtual DbSet<SAF_DIAOCUPADO> SAF_DIAOCUPADO { get; set; }
+        public virtual DbSet<SAF_DISTRITO> SAF_DISTRITO { get; set; }
+        public virtual DbSet<SAF_EXPERIENCIA> SAF_EXPERIENCIA { get; set; }
+        public virtual DbSet<SAF_PROPEQUIPO> SAF_PROPEQUIPO { get; set; }
+        public virtual DbSet<SAF_PROPEQUIPODETALLE> SAF_PROPEQUIPODETALLE { get; set; }
+        public virtual DbSet<SAF_PROVINCIA> SAF_PROVINCIA { get; set; }
+        public virtual DbSet<SAF_SOLCAPACITACION> SAF_SOLCAPACITACION { get; set; }
+        public virtual DbSet<SAF_SOLEXPERIENCIA> SAF_SOLEXPERIENCIA { get; set; }
+        public virtual DbSet<SAF_DIALABORABLE> SAF_DIALABORABLE { get; set; }
+        public virtual DbSet<VW_SAF_PROPUESTAEJECUCION> VW_SAF_PROPUESTAEJECUCION { get; set; }
+        public virtual DbSet<VW_SAF_AUDITORIAEQUIPO> VW_SAF_AUDITORIAEQUIPO { get; set; }
     
         public virtual ObjectResult<SP_SAF_CORTEPUBLICACION_Result> SP_SAF_CORTEPUBLICACION(Nullable<int> cODPUB)
         {

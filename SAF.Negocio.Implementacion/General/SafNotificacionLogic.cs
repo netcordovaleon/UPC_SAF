@@ -55,7 +55,7 @@ namespace SAF.Negocio.Implementacion
 
         public int ContadorNotificacionNoLeida(string usuario)
         {
-            var result = this._safNotificacionData.GetMany(c => c.USUNOTREC == usuario);
+            var result = this._safNotificacionData.GetMany(c => c.USUREC == usuario);
             return Convert.ToInt32(result.Count());
         }
 

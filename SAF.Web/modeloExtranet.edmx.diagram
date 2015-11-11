@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="f6e1803bc63f431ab7dff2d43a8a10dd" Name="Diagram1" ZoomLevel="96">
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_AUDITOR" Width="1.5" PointX="0.75" PointY="18.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ModeloExtranetModel.SAF_AUDITORIA" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ModeloExtranetModel.SAF_BASE" Width="1.5" PointX="1.5" PointY="42.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ModeloExtranetModel.SAF_BASEENTREGABLE" Width="1.5" PointX="3.75" PointY="44.125" IsExpanded="true" />
@@ -39,10 +38,6 @@
         <EntityTypeShape EntityType="ModeloExtranetModel.SAF_DIALABORABLE" Width="1.5" PointX="10.75" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ModeloExtranetModel.VW_SAF_INVITACION" Width="1.5" PointX="12.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ModeloExtranetModel.VW_SAF_PUBLICACION" Width="1.5" PointX="12.75" PointY="6.375" IsExpanded="true" />
-        <AssociationConnector Association="ModeloExtranetModel.FK__SAF_DIAOC__CODAU__151B244E" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.R_35" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.R_49" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.R_53" ManuallyRouted="false" />
         <AssociationConnector Association="ModeloExtranetModel.R_43" ManuallyRouted="false" />
         <AssociationConnector Association="ModeloExtranetModel.R_16" ManuallyRouted="false" />
         <AssociationConnector Association="ModeloExtranetModel.R_17" ManuallyRouted="false" />
@@ -69,7 +64,6 @@
         <AssociationConnector Association="ModeloExtranetModel.R_19" ManuallyRouted="false" />
         <EntityTypeShape EntityType="ModeloExtranetModel.VW_SAF_SOLICITUD" Width="1.5" PointX="13.375" PointY="11.75" />
         <EntityTypeShape EntityType="ModeloExtranetModel.SAF_SOLICITUD" Width="1.5" PointX="6" PointY="35.75" />
-        <AssociationConnector Association="ModeloExtranetModel.R_3" />
         <AssociationConnector Association="ModeloExtranetModel.R_2" />
         <AssociationConnector Association="ModeloExtranetModel.R_1" />
         <EntityTypeShape EntityType="ModeloExtranetModel.SAF_DEPARTAMENTO" Width="1.5" PointX="15.375" PointY="1.125" />
@@ -81,8 +75,6 @@
         <EntityTypeShape EntityType="ModeloExtranetModel.SAF_CAPACITACION" Width="1.5" PointX="3" PointY="20.25" />
         <EntityTypeShape EntityType="ModeloExtranetModel.SAF_EXPERIENCIA" Width="1.5" PointX="6" PointY="28.5" />
         <EntityTypeShape EntityType="ModeloExtranetModel.SAF_SOLCAPACITACION" Width="1.5" PointX="8.25" PointY="24" />
-        <AssociationConnector Association="ModeloExtranetModel.R_4" />
-        <AssociationConnector Association="ModeloExtranetModel.R_5" />
         <AssociationConnector Association="ModeloExtranetModel.FK_SAF_CAPACITACION_SAF_PARAMETRICA" />
         <AssociationConnector Association="ModeloExtranetModel.FK_SAF_CAPACITACION_SAF_PARAMETRICA1" />
         <AssociationConnector Association="ModeloExtranetModel.R_7" />
@@ -105,6 +97,14 @@
         <EntityTypeShape EntityType="ModeloExtranetModel.SAF_PROPEQUIPO" Width="1.5" PointX="15.375" PointY="4.75" />
         <EntityTypeShape EntityType="ModeloExtranetModel.SAF_PROPEQUIPODETALLE" Width="1.5" PointX="10.375" PointY="14.75" />
         <EntityTypeShape EntityType="ModeloExtranetModel.SAF_NOTIFICACION" Width="1.5" PointX="15.375" PointY="8.75" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_AUDITOR" Width="1.5" PointX="0.75" PointY="23.25" />
+        <AssociationConnector Association="ModeloExtranetModel.FK__SAF_DIAOC__CODAU__151B244E" />
+        <AssociationConnector Association="ModeloExtranetModel.R_3" />
+        <AssociationConnector Association="ModeloExtranetModel.R_35" />
+        <AssociationConnector Association="ModeloExtranetModel.R_4" />
+        <AssociationConnector Association="ModeloExtranetModel.R_49" />
+        <AssociationConnector Association="ModeloExtranetModel.R_5" />
+        <AssociationConnector Association="ModeloExtranetModel.R_53" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

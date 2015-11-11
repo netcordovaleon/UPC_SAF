@@ -30,9 +30,9 @@ namespace SAF.Web
         public Nullable<long> CODARC { get; set; }
         public string NOMBLABEL { get; set; }
     
-        public virtual SAF_AUDITOR SAF_AUDITOR { get; set; }
         public virtual SAF_EMPRESA SAF_EMPRESA { get; set; }
         public virtual SAF_PARAMETRICA SAF_PARAMETRICA { get; set; }
         public virtual SAF_ARCHIVO SAF_ARCHIVO { get; set; }
+        public virtual SAF_AUDITOR SAF_AUDITOR { get; set; }
     }
 }

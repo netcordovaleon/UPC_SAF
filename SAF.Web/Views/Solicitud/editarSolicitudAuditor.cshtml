@@ -46,15 +46,18 @@
                                                     <div class="row">
                                                         <div class="col-md-4">
                                                             @Html.LabelFor(c => c.dniAud)
-                                                            @Html.TextBoxFor(c => c.dniAud, new { @class = "form-control" })
+                                                            @Html.TextBoxFor(c => c.dniAud, new { @class = "form-control", @readonly = "true" })
+                                                            @Html.ValidationMessageFor(c => c.dniAud)
                                                         </div>
                                                         <div class="col-md-4">
                                                             @Html.LabelFor(c => c.fecNacAud)
-                                                            @Html.TextBoxFor(c => c.fecNacAud, new { @class = "form-control" })
+                                                            @Html.TextBoxFor(c => c.fecNacAud, new { @class = "form-control", @readonly = "true" })
+                                                            @Html.ValidationMessageFor(c => c.fecNacAud)
                                                         </div>
                                                         <div class="col-md-4">
                                                             @Html.LabelFor(c => c.sexAud)
-                                                            @Html.TextBoxFor(c => c.sexAud, new { @class = "form-control" })
+                                                            @Html.TextBoxFor(c => c.sexAud, new { @class = "form-control", @readonly = "true" })
+                                                            @Html.ValidationMessageFor(c => c.sexAud)
                                                         </div>
                                                     </div>
                                                 </div>
@@ -63,11 +66,13 @@
                                                     <div class="row">
                                                         <div class="col-md-4">
                                                             @Html.LabelFor(c => c.nomAud)
-                                                            @Html.TextBoxFor(c => c.nomAud, new { @class = "form-control", @rows = "4" })
+                                                            @Html.TextBoxFor(c => c.nomAud, new { @class = "form-control", @readonly = "true" })
+                                                            @Html.ValidationMessageFor(c => c.nomAud)
                                                         </div>
                                                         <div class="col-md-8">
                                                             @Html.LabelFor(c => c.apeComAud)
-                                                            @Html.TextBoxFor(c => c.apeComAud, new { @class = "form-control", @rows = "4" })
+                                                            @Html.TextBoxFor(c => c.apeComAud, new { @class = "form-control", @readonly = "true" })
+                                                            @Html.ValidationMessageFor(c => c.apeComAud)
                                                         </div>
                                                     </div>
                                                 </div>
@@ -75,15 +80,18 @@
                                                     <div class="row">
                                                         <div class="col-md-4">
                                                             @Html.LabelFor(c => c.codDeparAud)
-                                                            @Html.DropDownListFor(c => c.codDeparAud, Model.cboDepartamento, "Seleccione", new { @class = "form-control", @rows = "4" })
+                                                            @Html.DropDownListFor(c => c.codDeparAud, Model.cboDepartamento, "Seleccione", new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(c => c.codDeparAud)
                                                         </div>
                                                         <div class="col-md-4">
                                                             @Html.LabelFor(c => c.codProvAud)
-                                                            @Html.DropDownListFor(c => c.codProvAud, Model.cboProvincia, "Seleccione", new { @class = "form-control", @rows = "4" })
+                                                            @Html.DropDownListFor(c => c.codProvAud, Model.cboProvincia, "Seleccione", new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(c => c.codProvAud)
                                                         </div>
                                                         <div class="col-md-4">
                                                             @Html.LabelFor(c => c.codDisAud)
-                                                            @Html.DropDownListFor(c => c.codDisAud, Model.cboDistrito, "Seleccione", new { @class = "form-control", @rows = "4" })
+                                                            @Html.DropDownListFor(c => c.codDisAud, Model.cboDistrito, "Seleccione", new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(c => c.codDisAud)
                                                         </div>
                                                     </div>
                                                 </div>
@@ -91,15 +99,18 @@
                                                     <div class="row">
                                                         <div class="col-md-4">
                                                             @Html.LabelFor(c => c.corAud)
-                                                            @Html.TextBoxFor(c => c.corAud, new { @class = "form-control", @rows = "4" })
+                                                            @Html.TextBoxFor(c => c.corAud, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(c => c.corAud)
                                                         </div>
                                                         <div class="col-md-4">
                                                             @Html.LabelFor(c => c.telAud)
-                                                            @Html.TextBoxFor(c => c.telAud, new { @class = "form-control", @rows = "4" })
+                                                            @Html.TextBoxFor(c => c.telAud, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(c => c.telAud)
                                                         </div>
                                                         <div class="col-md-4">
                                                             @Html.LabelFor(c => c.celAud)
-                                                            @Html.TextBoxFor(c => c.celAud, new { @class = "form-control", @rows = "4" })
+                                                            @Html.TextBoxFor(c => c.celAud, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(c => c.celAud)
                                                         </div>
                                                     </div>
                                                 </div>
@@ -122,6 +133,7 @@
                                                         <div class="col-md-4">
                                                             @Html.LabelFor(c => c.codCerAud)
                                                             @Html.TextBoxFor(c => c.codCerAud, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(c => c.codCerAud)
                                                         </div>
 
                                                         <div class="col-md-4">
@@ -204,9 +216,12 @@
 @section scripts {
 
     <script type="text/javascript" language="javascript">
-        var tabCapacitaciones, _capacitaciones_;
-        var tabExperiencias, _experiencias_;
-
+        var _capacitaciones_= null;
+        var  _experiencias_ = null;
+        /*
+        tabCapacitaciones
+        tabExperiencias
+        */
         $('#dlgRegistroCapacitacion').on('hidden.bs.modal', function () { $("#dlgRegistroCapacitacion").empty(); });
         $('#dlgRegistroExperiencia').on('hidden.bs.modal', function () { $("#dlgRegistroExperiencia").empty(); });
         $("#btnAgregarExperiencia").click(function () { agregarExperiencia() });
@@ -230,7 +245,15 @@
             $("#btnAgregarCapacitacion").attr("disabled", true);
         }
 
-        $("#btnGuardarSolicitudInscripcionAuditor").click(guardarSolicitudAuditor);
+        $("#btnGuardarSolicitudInscripcionAuditor").click(function () {
+            bootbox.confirm(parametros.general.mensajeConfirmacion, function (result) {
+                if (result)
+                    guardarSolicitudAuditor();
+            });
+  
+
+        });
+
         $("#btnRegresar").click(regresarListadoSolicitud);
         $("#btnEnviarInfoAuditorSolicitud").click(function () {
             bootbox.confirm(parametros.general.mensajeConfirmacion, function (result) {
@@ -280,7 +303,7 @@
 
         function cargarCapacitaciones() {
             $.ajax({
-                url: '@Url.Action("listarCapacitaciones", "Solicitud")',                
+                url: '@Url.Action("listarCapacitaciones", "Solicitud")',
                 type: 'POST',
                 async: false,
                 data: { id: '@Model.codigoSolicitud' },
@@ -291,7 +314,7 @@
             });
         };
 
-        tabCapacitaciones = $("#tabCapacitaciones").dataTable({
+        var tabCapacitaciones = $("#tabCapacitaciones").dataTable({
             "info": false,
             "bServerSide": false,
             "data": _capacitaciones_,
@@ -371,7 +394,7 @@
         //Experiencias
         function cargarExperiencias() {
             $.ajax({
-                url: '@Url.Action("listarExperiencias", "Solicitud")',                
+                url: '@Url.Action("listarExperiencias", "Solicitud")',
                 type: 'POST',
                 async: false,
                 data: { id: '@Model.codigoSolicitud' },
@@ -382,7 +405,7 @@
             });
         };
 
-        tabExperiencias = $("#tabExperiencias").dataTable({
+        var tabExperiencias = $("#tabExperiencias").dataTable({
             "info": false,
             "bServerSide": false,
             "data": _experiencias_,
