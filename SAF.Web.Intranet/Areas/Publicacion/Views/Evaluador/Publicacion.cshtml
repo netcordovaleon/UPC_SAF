@@ -1,0 +1,163 @@
+﻿
+@using SAF.Configuracion.Enum;
+@using SAF.Configuracion.Constantes;
+
+
+@model SAF.Web.Intranet.Areas.Publicacion.Models.PublicacionViewModel
+@{
+    ViewBag.PageTitle = "Publicacion";
+    ViewBag.PageDescription = "Publicacion";
+    ViewBag.PageDescription = "Editar Informacion";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="callout callout-info">
+    <h4><i class="icon fa fa-info"></i>&nbsp;Informacion</h4>
+    <p>
+        Cuando realice un cambio en la publicacion se notificar a todos los usuarios del Sistema <strong>Auditores Financieros</strong> y <strong>Sociedades de Auditoria</strong>
+    </p>
+</div>
+@using (Html.BeginForm("", "", FormMethod.Post, new { id = "frmRegistroPublicacion" }))
+{
+    @Html.HiddenFor(c => c.CodigoPublicacion)
+    @Html.HiddenFor(c => c.estadoPublicacion)
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary color-palette-box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Informacion de la Publicacion</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(c => c.FechaMaximaPublicacionConcurso)
+                                <div class="input-group date">
+                                    @Html.TextBoxFor(c => c.FechaMaximaPublicacionConcurso, new { @class = "form-control" })
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar bigger-110"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(c => c.FechaMaximaCreacionConsulta)
+                                <div class="input-group date">
+                                    @Html.TextBoxFor(c => c.FechaMaximaCreacionConsulta, new { @class = "form-control" })
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar bigger-110"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(c => c.FechaMaximaResponderConsultas)
+                                <div class="input-group date">
+                                    @Html.TextBoxFor(c => c.FechaMaximaResponderConsultas, new { @class = "form-control" })
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar bigger-110"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(c => c.FechaMaximaPresentacionPropuestas)
+                                <div class="input-group date">
+                                    @Html.TextBoxFor(c => c.FechaMaximaPresentacionPropuestas, new { @class = "form-control" })
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar bigger-110"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-12">
+
+                @if (Model.estadoPublicacion == Convert.ToInt32(Estado.Publicacion.Elaboracion)) { 
+                    <button type="button" id="btnGrabarPublicacion" class="btn btn-success"><i class="fa fa-save"></i>&nbsp; Grabar</button>
+                }
+                <button type="button" id="btnRegresar" class="btn btn-info"><i class="fa fa-chevron-left"></i>&nbsp; Regresar</button>
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts {
+
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            $("#btnRegresar").click(regresarBandeja);
+            $("#btnGrabarPublicacion").click(grabarPublicacion);
+
+            $('#FechaMaximaPublicacionConcurso').datepicker({
+                format: "dd/mm/yyyy"
+            }).next().on(ace.click_event, function () {
+                $(this).prev().focus();
+            });
+
+            $('#FechaMaximaCreacionConsulta').datepicker({
+                format: "dd/mm/yyyy"
+            }).next().on(ace.click_event, function () {
+                $(this).prev().focus();
+            });
+
+            $('#FechaMaximaResponderConsultas').datepicker({
+                format: "dd/mm/yyyy"
+            }).next().on(ace.click_event, function () {
+                $(this).prev().focus();
+            });
+
+            $('#FechaMaximaPresentacionPropuestas').datepicker({
+                format: "dd/mm/yyyy"
+            }).next().on(ace.click_event, function () {
+                $(this).prev().focus();
+            });
+        });
+
+        function regresarBandeja() {
+            document.location = '@Url.Action("Bandeja", "Evaluador", new { Area = "Publicacion" })';
+        }
+
+        function grabarPublicacion() {
+            if (!$("#frmRegistroPublicacion").isValid()) { return; }
+
+            bootbox.confirm(parametros.general.mensajeConfirmacion, function (result) {
+
+                if (result) {
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("grabarRegistroSolicitudSOA", "Evaluador", new { Area = "Publicacion" })',
+                        data: $("#frmRegistroPublicacion").serialize(),
+                        dataType: "json",
+                        success: function (result) {
+                            mostrarNotificacion(result);
+                        }
+                    });
+                }
+                    
+            });
+
+
+
+        }
+
+    </script>
+}

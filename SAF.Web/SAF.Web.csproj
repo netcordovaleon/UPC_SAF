@@ -186,6 +186,7 @@
     </Compile>
     <Compile Include="Helper\Archivo.cs" />
     <Compile Include="Helper\Compare.cs" />
+    <Compile Include="Helper\NotificacionAdmin.cs" />
     <Compile Include="Hubs\NotificacionHub.cs" />
     <Compile Include="Hubs\NotificacionProceso.cs" />
     <Compile Include="modeloExtranet.Context.cs">

@@ -197,7 +197,8 @@
             $("#btnObservarSolicitud").click(observarSolicitud);
             $("#btnAceptarSolicitud").click(function () {
                 bootbox.confirm(parametros.general.mensajeConfirmacion, function (result) {
-                    aceptarSolicitudAuditor();
+                    if (result)
+                        aceptarSolicitudAuditor();
                 });
             });
             $("#btnRegresar").click(regresar);

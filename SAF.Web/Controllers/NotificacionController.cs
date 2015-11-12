@@ -41,7 +41,7 @@ namespace SAF.Web.Controllers
         public JsonResult mensaje()
         {
             var agenteNotificacion = new NotificacionAgente();
-            return Json(agenteNotificacion.mensaje());
+            return Json(agenteNotificacion.mensaje(Session["sessionUsuario"].ToString()));
         }
 
 

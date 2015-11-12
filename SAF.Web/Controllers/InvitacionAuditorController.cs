@@ -131,6 +131,11 @@ namespace SAF.Web.Controllers
             try
             {
                 var invitacion = this.modelEntity.SAF_INVITACION.ToList().Where(c => c.CODINV == id).FirstOrDefault();
+
+                var noti = new Helper.NotificacionAdmin();
+                var mensaje = "La sociedad <strong>" + Session["sessionNombreCompletoUsuario"].ToString() + "</strong> identificado con el RUC " + Session["sessionUsuario"].ToString() + " le ha enviado una invitacion para pertenecer a su equipo de Auditoria";
+                noti.grabarNotificacionAuditor((int)invitacion.CODAUD, Notificacion.asuntoInvitacion, mensaje);
+
                 invitacion.ESTINV = (int)Estado.Invitacion.Enviada;
                 this.modelEntity.SaveChanges();
                 return Json(new MensajeRespuesta("Se envio la invitacion satisfactoriamente", true));

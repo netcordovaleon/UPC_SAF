@@ -71,7 +71,7 @@ namespace SAF.Web.Intranet
                 "~/Scripts/jquery.knob.js", //check
                 "~/Scripts/moment.min.js",
                 "~/Scripts/daterangepicker.js",
-                "~/Scripts/bootstrap-datepicker.js",
+                //"~/Scripts/bootstrap-datepicker.js",
                 "~/Scripts/bootstrap3-wysihtml5.all.min.js",
                 "~/Scripts/jquery.slimscroll.min.js",
                 "~/Scripts/fastclick.min.js",
@@ -80,6 +80,16 @@ namespace SAF.Web.Intranet
                 "~/Scripts/pnotify.custom.min.js",
                 "~/Scripts/demo.js",
                 "~/Scripts/bootbox.js",
+
+
+                "~/Scripts/ace.min.js",
+                "~/Scripts/ace-elements.min.js",
+
+                "~/Scripts/bootstrap-datepicker.js",
+                "~/Scripts/locales/bootstrap-datepicker.es.js",
+                "~/Scripts/bootstrap-timepicker.js",
+
+
 
                 "~/Scripts/jquery.dataTables.min.js",
                 "~/Scripts/dataTables.bootstrap.js",

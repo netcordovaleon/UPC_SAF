@@ -55,6 +55,10 @@ namespace SAF.Web.Controllers
             try
             {
                 var invitacion = this.modelEntity.SAF_INVITACION.Where(c => c.CODINV == id).FirstOrDefault();
+                var noti = new Helper.NotificacionAdmin();
+                var mensaje = "El auditor <strong>" + Session["sessionNombreCompletoUsuario"].ToString() + "</strong> identificado con el DNI " + Session["sessionUsuario"].ToString() + " ACEPTO su invitacion";
+                noti.grabarNotificacionAuditor((int)invitacion.CODSOA, Notificacion.asuntoInvitacionAceptada, mensaje);
+
                 invitacion.ESTINV = (int)Estado.Invitacion.Aceptado;
                 invitacion.FECACEPINV = DateTime.Now;
                 modelEntity.SaveChanges();
@@ -71,6 +75,11 @@ namespace SAF.Web.Controllers
             try
             {
                 var invitacion = this.modelEntity.SAF_INVITACION.Where(c => c.CODINV == id).FirstOrDefault();
+
+                var noti = new Helper.NotificacionAdmin();
+                var mensaje = "El auditor <strong>" + Session["sessionNombreCompletoUsuario"].ToString() + "</strong> identificado con el DNI " + Session["sessionUsuario"].ToString() + " CANCELO su invitacion";
+                noti.grabarNotificacionAuditor((int)invitacion.CODSOA, Notificacion.asuntoInvitacionCancelado, mensaje);
+
                 invitacion.ESTINV = (int)Estado.Invitacion.Cancelada;
                 invitacion.INDCANINV = "A";
                 modelEntity.SaveChanges();
