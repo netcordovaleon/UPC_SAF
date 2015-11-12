@@ -453,12 +453,14 @@
     <Content Include="Content\morris.css" />
     <Content Include="Content\pnotify.custom.css" />
     <Content Include="Content\pnotify.custom.min.css" />
+    <Content Include="Content\prettify.css" />
     <Content Include="Content\saf.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\skin-blue-light.css" />
     <Content Include="Content\skin-blue-light.min.css" />
     <Content Include="Content\skin-blue.css" />
     <Content Include="Content\skin-blue.min.css" />
+    <Content Include="Content\gantt.css" />
     <Content Include="Content\_all-skins.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -505,6 +507,7 @@
     <Content Include="Scripts\demo.js" />
     <Content Include="Scripts\fastclick.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\gantt\prettify.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jQuery-2.1.4.min.js" />
@@ -522,6 +525,12 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\gantt\dataDays.js" />
+    <Content Include="Scripts\gantt\dataDaysEnh.js" />
+    <Content Include="Scripts\gantt\dataHours.js" />
+    <Content Include="Scripts\gantt\jquery.cookie.js" />
+    <Content Include="Scripts\gantt\jquery.fn.gantt.js" />
+    <Content Include="Scripts\gantt\jquery.fn.gantt.min.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.ar.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.az.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.bg.js" />

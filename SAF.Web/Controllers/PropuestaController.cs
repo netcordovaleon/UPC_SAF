@@ -110,10 +110,11 @@ namespace SAF.Web.Controllers
         }
 
         [HttpPost]
-        public string guardarSustentoAdicional(PropuestaModel model) {
+        public string guardarSustentoAdicional(PropuestaModel model)
+        {
             try
             {
-                var propuesta = this.modelEntity.SAF_PROPUESTA.Where(c=>c.CODPRO == model.codigoPropuestaSustento).FirstOrDefault();
+                var propuesta = this.modelEntity.SAF_PROPUESTA.Where(c => c.CODPRO == model.codigoPropuestaSustento).FirstOrDefault();
 
                 var filebeFirInter = new FileBe();
 
@@ -126,7 +127,7 @@ namespace SAF.Web.Controllers
 
                 var filebeFirPCAOB = new FileBe();
 
-                if (model.archivoFirmaPCAOB!= null)
+                if (model.archivoFirmaPCAOB != null)
                 {
                     filebeFirPCAOB.NarcCodigo = model.codArchivoFirmaPCAOB;
                     filebeFirPCAOB.CarcNombre = model.nombreArchivoFirmaPCAOB;
@@ -152,7 +153,7 @@ namespace SAF.Web.Controllers
             {
                 return JsonConvert.SerializeObject(new MensajeRespuesta("No se pudo guardar la sustentacion adicional", false));
             }
-            
+
         }
 
         public JsonResult ListarAuditorias(int idPropuesta)
@@ -202,7 +203,7 @@ namespace SAF.Web.Controllers
 
         public JsonResult listadoFechasAsignadas(int idEquipo)
         {
-            var fechasAsignadas = this.modelEntity.SAF_PROPEQUIPODETALLE.ToList().Where(c => c.CODPROEQU == idEquipo && c.ESTREG == "1").OrderBy(c=>c.FECPROEQUIDET);
+            var fechasAsignadas = this.modelEntity.SAF_PROPEQUIPODETALLE.ToList().Where(c => c.CODPROEQU == idEquipo && c.ESTREG == "1").OrderBy(c => c.FECPROEQUIDET);
             var data = fechasAsignadas.Select(c => new string[] { 
                 c.FECPROEQUIDET.Value.ToString("dd/MM/yyyy"),
                 c.CODPROEQUDET.ToString()
@@ -223,7 +224,8 @@ namespace SAF.Web.Controllers
             }
         }
 
-        public JsonResult EliminarFechaAsignadas(int idPropuesta, string fechasAsignadas) {
+        public JsonResult EliminarFechaAsignadas(int idPropuesta, string fechasAsignadas)
+        {
             var result = this.modelEntity.SP_SAF_ELIMINARFECHASASIGPROP(idPropuesta, fechasAsignadas).FirstOrDefault();
             if (result.RESULTADO.Equals(1))
                 return Json(new MensajeRespuesta(result.MENSAJE, true));
@@ -232,7 +234,8 @@ namespace SAF.Web.Controllers
         }
 
 
-        public JsonResult PresentarPropuesta(int idPropuesta) {
+        public JsonResult PresentarPropuesta(int idPropuesta)
+        {
             try
             {
                 var propuesta = this.modelEntity.SAF_PROPUESTA.Where(c => c.CODPRO == idPropuesta).FirstOrDefault();
@@ -248,5 +251,12 @@ namespace SAF.Web.Controllers
 
         #endregion
 
+        #region Auditoria - Gantt
+        //public JsonResult ObtenerGanttAuditoria(int id)
+        //{
+        //    //var equipo = modelEntity.SAF_PROPEQUIPO.Where()
+        //    //var detalle = modelEntity.SAF_PROPEQUIPODETALLE.Where(x=>x.)
+        //}
+        #endregion
     }
 }

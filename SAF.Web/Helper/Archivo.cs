@@ -60,8 +60,8 @@ namespace SAF.Web.Helper
 
             try
             {
-                if (!Archivo.FileEquals(ruta1, stream))
-                {
+                //if (!Archivo.FileEquals(ruta1, stream))
+                //{
                     //archivo.CARC_USR_CODIGO = HttpContext.Current.Session["User"].ToString();
                     archivo.NOMBLABEL = Path.GetFileName(file.FileName);
                     modelEntity.SaveChanges();
@@ -70,7 +70,7 @@ namespace SAF.Web.Helper
 
                     var ruta2 = Path.Combine(Config.RutaArchivo, string.Format("{0}_{1}", archivo.CODARC, file.FileName));
                     file.SaveAs(ruta2);
-                }
+                //}
             }
             catch
             {
