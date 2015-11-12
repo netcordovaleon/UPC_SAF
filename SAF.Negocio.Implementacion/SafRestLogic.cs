@@ -28,6 +28,9 @@ namespace SAF.Negocio.Implementacion
         private readonly ISafAuditorLogic _safAuditorLogic;
         private readonly ISafSoaLogic _safSoaLogic;
 
+
+        private readonly ISafNotificacionLogic _notificacionLogic;
+
         private readonly IVwSafPublicacionLogic _vwSafPublicacionLogic;
 
         private readonly ISafAsistenciaLogic _safAsistenciaLogic;
@@ -46,6 +49,8 @@ namespace SAF.Negocio.Implementacion
 
             this._safAuditorLogic = new SafAuditorLogic();
             this._safSoaLogic = new SafSoaLogic();
+
+            this._notificacionLogic = new SafNotificacionLogic();
 
             this._vwSafPublicacionLogic = new VwSafPublicacionLogic();
 
@@ -193,6 +198,26 @@ namespace SAF.Negocio.Implementacion
 	        {
                 return new MensajeRespuesta(Mensaje.MensajeErrorNoControlado, false);
 	        }
+        }
+
+
+        public IEnumerable<NotificacionDTO> ListarNotificaciones(string usuario)
+        {
+           var lista = this._notificacionLogic.ListarNotificaciones(usuario);
+            var result = (from c in lista select new NotificacionDTO(){ ASUNOT = c.ASUNOT, DESNOT = c.DESNOT, CODNOT = c.CODNOT });
+            return result;
+        }
+
+        public NotificacionDTO GetNotificacion(int idNotificacion)
+        {
+            var noti = this._notificacionLogic.GetNotificacion(idNotificacion);
+            noti.INDNOT = "L";
+            this._notificacionLogic.Actualizar(noti);
+
+            var result = new NotificacionDTO();
+            result.ASUNOT = noti.ASUNOT;
+            result.DESNOT = noti.DESNOT;
+            return result;
         }
     }
 }

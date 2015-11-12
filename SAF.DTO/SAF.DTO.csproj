@@ -47,6 +47,7 @@
     <Compile Include="CronoEntidadDTO.cs" />
     <Compile Include="CronogramaDTO.cs" />
     <Compile Include="InvitacionViewDTO.cs" />
+    <Compile Include="NotificacionDTO.cs" />
     <Compile Include="PropuestaEjecucionDTO.cs" />
     <Compile Include="PublicacionDTO.cs" />
     <Compile Include="PublicacionViewDTO.cs" />

@@ -64,5 +64,17 @@ namespace SAF.Negocio.Implementacion
         {
             throw new NotImplementedException();
         }
+
+
+        public IEnumerable<SAF_NOTIFICACION> ListarNotificaciones(string usuario)
+        {
+            var result = this._safNotificacionData.GetMany(c => c.USUREC == usuario && c.ESTNOT == "R" && c.INDNOT == "R");
+            return result;
+        }
+
+        public SAF_NOTIFICACION GetNotificacion(int idNotificacion)
+        {
+            return this._safNotificacionData.GetById(idNotificacion);
+        }
     }
 }

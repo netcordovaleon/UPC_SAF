@@ -7,18 +7,22 @@ using System.Threading.Tasks;
 
 namespace SAF.DTO
 {
+    [DataContract]
     public class NotificacionDTO
     {
-        [DataMember(Name = "CodigoNotificacion", Order = 1)]
+        [DataMember(Name = "CodigoNotificacion")]
         public int CODNOT { get; set; }
-        [DataMember(Name = "UsuarioRecibeNotificacion", Order = 2)]
-        public string USUNOTREC { get; set; }
-        [DataMember(Name = "AsuntoNotificacion", Order = 3)]
+        [DataMember(Name = "UsuEmision")]
+        public string USUEMI { get; set; }
+        [DataMember(Name = "UsuRecepcion")]
+        public string USUREC { get; set; }
+        [DataMember(Name = "Asunto")]
         public string ASUNOT { get; set; }
-        [DataMember(Name = "DescripcionNotificacion", Order = 4)]
+        [DataMember(Name = "Descripcion")]
         public string DESNOT { get; set; }
-        [DataMember(Name = "IndNoLeido", Order = 5)]
-        public string INDLEIDO { get; set; }
- 
+        [DataMember(Name = "IndNotificacion")]
+        public string INDNOT { get; set; }
+        [DataMember(Name = "EstadoNotificacion")]
+        public string ESTNOT { get; set; }
     }
 }

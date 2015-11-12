@@ -42,6 +42,8 @@ namespace SAF.Negocio.Contrato
         
         #endregion
 
+        #region :: ASISTENCIA
+
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetPropuestasEjec?idSoa={idSoa}")]
         IEnumerable<PropuestaEjecucionDTO> listarPropuestasEjecucion(int idSoa);
@@ -58,8 +60,18 @@ namespace SAF.Negocio.Contrato
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "InsertAsistencia?strIdsEquipo={strIdsEquipo}")]
         MensajeRespuesta grabarAsistencia(string strIdsEquipo);
-        #region :: LISTADO DE CONCURSO EJECUCION
+        #endregion
 
+
+        #region NOTIFICACION
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetNotificaciones?usuario={usuario}")]
+        IEnumerable<NotificacionDTO> ListarNotificaciones(string usuario);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetNotificacion?idNotificacion={idNotificacion}")]
+        NotificacionDTO GetNotificacion(int idNotificacion);
 
         #endregion
     }

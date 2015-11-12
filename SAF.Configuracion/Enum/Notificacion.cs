@@ -14,10 +14,10 @@ namespace SAF.Configuracion.Enum
         public const string asuntoCambiosConcurso = "Cambios en la Convocatoria";
 
 
-        public const string bodySolicitudObservada = "Su solicitud fue observada <strong>" + DateTime.Now.ToLongDateString() + "</strong>";
-        public const string bodySolicitudAceptada = "Su solicitud fue aceptada <strong>" + DateTime.Now.ToLongDateString() + "</strong>";
+        public const string bodySolicitudObservada = "Su solicitud fue observada";
+        public const string bodySolicitudAceptada = "Su solicitud fue aceptada";
 
-        public const string bodyCambiosConcurso = "Se realizaron cambios en el concurso " + DateTime.Now.ToLongDateString() + ": <br/>";
+        public const string bodyCambiosConcurso = "Se realizaron cambios en el concurso";
         
 
     }

@@ -15,5 +15,10 @@ namespace SAF.Negocio.Contrato
     public interface ISafNotificacionLogic : IFacadeOperacionCRUD<SAF_NOTIFICACION>
     {
         int ContadorNotificacionNoLeida(string usuario);
+        IEnumerable<SAF_NOTIFICACION> ListarNotificaciones(string usuario);
+
+        SAF_NOTIFICACION GetNotificacion(int idNotificacion);
+
+
     }
 }
