@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SI_SOCAUDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SI_SOCAUDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="SAF_ARCHIVO">
           <Key>
             <PropertyRef Name="CODARC" />
@@ -31,6 +31,7 @@
           <Property Name="FECMOD" Type="datetime" />
           <Property Name="USUREG" Type="varchar" MaxLength="50" />
           <Property Name="USUMOD" Type="varchar" MaxLength="50" />
+          <Property Name="ESTREG" Type="char" MaxLength="1" />
         </EntityType>
         <EntityType Name="SAF_AUDITOR">
           <Key>
@@ -388,6 +389,7 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.SAF_DIALABORABLE' does not have a pr
           <Property Name="FECMOD" Type="datetime" />
           <Property Name="USUREG" Type="varchar" MaxLength="50" />
           <Property Name="USUMOD" Type="varchar" MaxLength="50" />
+          <Property Name="ESTREG" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="SAF_FLUJO_DOCUMENTO">
           <Key>
@@ -2048,8 +2050,6 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
             <Parameter Name="CODPUB" Mode="In" Type="Int32" />
             <Parameter Name="CODSERAUD" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="SAF_ASISTENCIA" EntityType="SI_SOCAUDModel.SAF_ASISTENCIA" />
-          <EntitySet Name="SAF_FALTAJUSTIFICA" EntityType="SI_SOCAUDModel.SAF_FALTAJUSTIFICA" />
           <EntitySet Name="SAF_NOTIFICACION" EntityType="SI_SOCAUDModel.SAF_NOTIFICACION" />
           <EntitySet Name="SAF_ARCHIVO" EntityType="SI_SOCAUDModel.SAF_ARCHIVO" />
           <EntitySet Name="SAF_AUDITOR" EntityType="SI_SOCAUDModel.SAF_AUDITOR" />
@@ -2079,10 +2079,6 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <AssociationSet Name="FK_SAF_SOLEXPERIENCIA_SAF_ARCHIVO" Association="SI_SOCAUDModel.FK_SAF_SOLEXPERIENCIA_SAF_ARCHIVO">
             <End Role="SAF_ARCHIVO" EntitySet="SAF_ARCHIVO" />
             <End Role="SAF_SOLEXPERIENCIA" EntitySet="SAF_SOLEXPERIENCIA" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SAF_ASIST__CODPR__58D1301D" Association="SI_SOCAUDModel.FK__SAF_ASIST__CODPR__58D1301D">
-            <End Role="SAF_PROPEQUIPO" EntitySet="SAF_PROPEQUIPO" />
-            <End Role="SAF_ASISTENCIA" EntitySet="SAF_ASISTENCIA" />
           </AssociationSet>
           <AssociationSet Name="FK__SAF_DIAOC__CODAU__151B244E" Association="SI_SOCAUDModel.FK__SAF_DIAOC__CODAU__151B244E">
             <End Role="SAF_AUDITOR" EntitySet="SAF_AUDITOR" />
@@ -2152,10 +2148,6 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
             <End Role="SAF_PARAMETRICA" EntitySet="SAF_PARAMETRICA" />
             <End Role="SAF_EXPERIENCIA" EntitySet="SAF_EXPERIENCIA" />
           </AssociationSet>
-          <AssociationSet Name="FK__SAF_FALTA__CODPR__5D95E53A" Association="SI_SOCAUDModel.FK__SAF_FALTA__CODPR__5D95E53A">
-            <End Role="SAF_PROPEQUIPO" EntitySet="SAF_PROPEQUIPO" />
-            <End Role="SAF_FALTAJUSTIFICA" EntitySet="SAF_FALTAJUSTIFICA" />
-          </AssociationSet>
           <AssociationSet Name="FK_SAF_SOLCAPACITACION_SAF_PARAMETRICA" Association="SI_SOCAUDModel.FK_SAF_SOLCAPACITACION_SAF_PARAMETRICA">
             <End Role="SAF_PARAMETRICA" EntitySet="SAF_PARAMETRICA" />
             <End Role="SAF_SOLCAPACITACION" EntitySet="SAF_SOLCAPACITACION" />
@@ -2182,6 +2174,16 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           </AssociationSet>
           <EntitySet Name="VW_SAF_PROPUESTAEJECUCION" EntityType="SI_SOCAUDModel.VW_SAF_PROPUESTAEJECUCION" />
           <EntitySet Name="VW_SAF_AUDITORIAEQUIPO" EntityType="SI_SOCAUDModel.VW_SAF_AUDITORIAEQUIPO" />
+          <EntitySet Name="SAF_ASISTENCIA" EntityType="SI_SOCAUDModel.SAF_ASISTENCIA" />
+          <EntitySet Name="SAF_FALTAJUSTIFICA" EntityType="SI_SOCAUDModel.SAF_FALTAJUSTIFICA" />
+          <AssociationSet Name="FK__SAF_ASIST__CODPR__58D1301D" Association="SI_SOCAUDModel.FK__SAF_ASIST__CODPR__58D1301D">
+            <End Role="SAF_PROPEQUIPO" EntitySet="SAF_PROPEQUIPO" />
+            <End Role="SAF_ASISTENCIA" EntitySet="SAF_ASISTENCIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SAF_FALTA__CODPR__5D95E53A" Association="SI_SOCAUDModel.FK__SAF_FALTA__CODPR__5D95E53A">
+            <End Role="SAF_PROPEQUIPO" EntitySet="SAF_PROPEQUIPO" />
+            <End Role="SAF_FALTAJUSTIFICA" EntitySet="SAF_FALTAJUSTIFICA" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="SAF_AUDITORIA">
           <Key>
@@ -3169,34 +3171,6 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <Property Type="Int32" Name="TOTALPUNT" Nullable="true" />
           <Property Type="Int32" Name="DISPON" Nullable="true" />
         </ComplexType>
-        <EntityType Name="SAF_ASISTENCIA">
-          <Key>
-            <PropertyRef Name="CODASIS" />
-          </Key>
-          <Property Name="CODASIS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CODPROEQU" Type="Int32" />
-          <Property Name="FECASIS" Type="DateTime" Precision="3" />
-          <Property Name="COMENTASIS" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="FECREG" Type="DateTime" Precision="3" />
-          <Property Name="FECMOD" Type="DateTime" Precision="3" />
-          <Property Name="USUREG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="USUMOD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="SAF_PROPEQUIPO" Relationship="SI_SOCAUDModel.FK__SAF_ASIST__CODPR__58D1301D" FromRole="SAF_ASISTENCIA" ToRole="SAF_PROPEQUIPO" />
-        </EntityType>
-        <EntityType Name="SAF_FALTAJUSTIFICA">
-          <Key>
-            <PropertyRef Name="CODFALJUS" />
-          </Key>
-          <Property Name="CODFALJUS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CODPROEQU" Type="Int32" />
-          <Property Name="FECFALJUS" Type="DateTime" Precision="3" />
-          <Property Name="COMENTFALJUS" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="FECREG" Type="DateTime" Precision="3" />
-          <Property Name="FECMOD" Type="DateTime" Precision="3" />
-          <Property Name="USUREG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="USUMOD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="SAF_PROPEQUIPO" Relationship="SI_SOCAUDModel.FK__SAF_FALTA__CODPR__5D95E53A" FromRole="SAF_FALTAJUSTIFICA" ToRole="SAF_PROPEQUIPO" />
-        </EntityType>
         <EntityType Name="SAF_NOTIFICACION">
           <Key>
             <PropertyRef Name="CODNOT" />
@@ -3525,18 +3499,6 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SAF_ASIST__CODPR__58D1301D">
-          <End Type="SI_SOCAUDModel.SAF_PROPEQUIPO" Role="SAF_PROPEQUIPO" Multiplicity="0..1" />
-          <End Type="SI_SOCAUDModel.SAF_ASISTENCIA" Role="SAF_ASISTENCIA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SAF_PROPEQUIPO">
-              <PropertyRef Name="CODPROEQU" />
-            </Principal>
-            <Dependent Role="SAF_ASISTENCIA">
-              <PropertyRef Name="CODPROEQU" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__SAF_DIAOC__CODAU__151B244E">
           <End Type="SI_SOCAUDModel.SAF_AUDITOR" Role="SAF_AUDITOR" Multiplicity="0..1" />
           <End Type="SI_SOCAUDModel.SAF_DIAOCUPADO" Role="SAF_DIAOCUPADO" Multiplicity="*" />
@@ -3741,18 +3703,6 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SAF_FALTA__CODPR__5D95E53A">
-          <End Type="SI_SOCAUDModel.SAF_PROPEQUIPO" Role="SAF_PROPEQUIPO" Multiplicity="0..1" />
-          <End Type="SI_SOCAUDModel.SAF_FALTAJUSTIFICA" Role="SAF_FALTAJUSTIFICA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SAF_PROPEQUIPO">
-              <PropertyRef Name="CODPROEQU" />
-            </Principal>
-            <Dependent Role="SAF_FALTAJUSTIFICA">
-              <PropertyRef Name="CODPROEQU" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SAF_SOLCAPACITACION_SAF_PARAMETRICA">
           <End Type="SI_SOCAUDModel.SAF_PARAMETRICA" Role="SAF_PARAMETRICA" Multiplicity="0..1" />
           <End Type="SI_SOCAUDModel.SAF_SOLCAPACITACION" Role="SAF_SOLCAPACITACION" Multiplicity="*" />
@@ -3849,6 +3799,60 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
           <Property Name="NOMCOMAUD" Type="String" MaxLength="101" FixedLength="false" Unicode="false" />
           <Property Name="NOMCAR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="SAF_ASISTENCIA">
+          <Key>
+            <PropertyRef Name="CODASIS" />
+          </Key>
+          <Property Name="CODASIS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODPROEQU" Type="Int32" />
+          <Property Name="FECASIS" Type="DateTime" Precision="3" />
+          <Property Name="COMENTASIS" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="FECREG" Type="DateTime" Precision="3" />
+          <Property Name="FECMOD" Type="DateTime" Precision="3" />
+          <Property Name="USUREG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USUMOD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESTREG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="SAF_PROPEQUIPO" Relationship="SI_SOCAUDModel.FK__SAF_ASIST__CODPR__58D1301D" FromRole="SAF_ASISTENCIA" ToRole="SAF_PROPEQUIPO" />
+        </EntityType>
+        <EntityType Name="SAF_FALTAJUSTIFICA">
+          <Key>
+            <PropertyRef Name="CODFALJUS" />
+          </Key>
+          <Property Name="CODFALJUS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODPROEQU" Type="Int32" />
+          <Property Name="FECFALJUS" Type="DateTime" Precision="3" />
+          <Property Name="COMENTFALJUS" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="FECREG" Type="DateTime" Precision="3" />
+          <Property Name="FECMOD" Type="DateTime" Precision="3" />
+          <Property Name="USUREG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USUMOD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESTREG" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="SAF_PROPEQUIPO" Relationship="SI_SOCAUDModel.FK__SAF_FALTA__CODPR__5D95E53A" FromRole="SAF_FALTAJUSTIFICA" ToRole="SAF_PROPEQUIPO" />
+        </EntityType>
+        <Association Name="FK__SAF_ASIST__CODPR__58D1301D">
+          <End Type="SI_SOCAUDModel.SAF_PROPEQUIPO" Role="SAF_PROPEQUIPO" Multiplicity="0..1" />
+          <End Type="SI_SOCAUDModel.SAF_ASISTENCIA" Role="SAF_ASISTENCIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SAF_PROPEQUIPO">
+              <PropertyRef Name="CODPROEQU" />
+            </Principal>
+            <Dependent Role="SAF_ASISTENCIA">
+              <PropertyRef Name="CODPROEQU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SAF_FALTA__CODPR__5D95E53A">
+          <End Type="SI_SOCAUDModel.SAF_PROPEQUIPO" Role="SAF_PROPEQUIPO" Multiplicity="0..1" />
+          <End Type="SI_SOCAUDModel.SAF_FALTAJUSTIFICA" Role="SAF_FALTAJUSTIFICA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SAF_PROPEQUIPO">
+              <PropertyRef Name="CODPROEQU" />
+            </Principal>
+            <Dependent Role="SAF_FALTAJUSTIFICA">
+              <PropertyRef Name="CODPROEQU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4508,34 +4512,6 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="SAF_ASISTENCIA">
-            <EntityTypeMapping TypeName="SI_SOCAUDModel.SAF_ASISTENCIA">
-              <MappingFragment StoreEntitySet="SAF_ASISTENCIA">
-                <ScalarProperty Name="USUMOD" ColumnName="USUMOD" />
-                <ScalarProperty Name="USUREG" ColumnName="USUREG" />
-                <ScalarProperty Name="FECMOD" ColumnName="FECMOD" />
-                <ScalarProperty Name="FECREG" ColumnName="FECREG" />
-                <ScalarProperty Name="COMENTASIS" ColumnName="COMENTASIS" />
-                <ScalarProperty Name="FECASIS" ColumnName="FECASIS" />
-                <ScalarProperty Name="CODPROEQU" ColumnName="CODPROEQU" />
-                <ScalarProperty Name="CODASIS" ColumnName="CODASIS" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SAF_FALTAJUSTIFICA">
-            <EntityTypeMapping TypeName="SI_SOCAUDModel.SAF_FALTAJUSTIFICA">
-              <MappingFragment StoreEntitySet="SAF_FALTAJUSTIFICA">
-                <ScalarProperty Name="USUMOD" ColumnName="USUMOD" />
-                <ScalarProperty Name="USUREG" ColumnName="USUREG" />
-                <ScalarProperty Name="FECMOD" ColumnName="FECMOD" />
-                <ScalarProperty Name="FECREG" ColumnName="FECREG" />
-                <ScalarProperty Name="COMENTFALJUS" ColumnName="COMENTFALJUS" />
-                <ScalarProperty Name="FECFALJUS" ColumnName="FECFALJUS" />
-                <ScalarProperty Name="CODPROEQU" ColumnName="CODPROEQU" />
-                <ScalarProperty Name="CODFALJUS" ColumnName="CODFALJUS" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SAF_NOTIFICACION">
             <EntityTypeMapping TypeName="SI_SOCAUDModel.SAF_NOTIFICACION">
               <MappingFragment StoreEntitySet="SAF_NOTIFICACION">
@@ -4813,6 +4789,36 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
                 <ScalarProperty Name="CODCAR" ColumnName="CODCAR" />
                 <ScalarProperty Name="CODAUD" ColumnName="CODAUD" />
                 <ScalarProperty Name="CODPROEQU" ColumnName="CODPROEQU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SAF_ASISTENCIA">
+            <EntityTypeMapping TypeName="SI_SOCAUDModel.SAF_ASISTENCIA">
+              <MappingFragment StoreEntitySet="SAF_ASISTENCIA">
+                <ScalarProperty Name="ESTREG" ColumnName="ESTREG" />
+                <ScalarProperty Name="USUMOD" ColumnName="USUMOD" />
+                <ScalarProperty Name="USUREG" ColumnName="USUREG" />
+                <ScalarProperty Name="FECMOD" ColumnName="FECMOD" />
+                <ScalarProperty Name="FECREG" ColumnName="FECREG" />
+                <ScalarProperty Name="COMENTASIS" ColumnName="COMENTASIS" />
+                <ScalarProperty Name="FECASIS" ColumnName="FECASIS" />
+                <ScalarProperty Name="CODPROEQU" ColumnName="CODPROEQU" />
+                <ScalarProperty Name="CODASIS" ColumnName="CODASIS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SAF_FALTAJUSTIFICA">
+            <EntityTypeMapping TypeName="SI_SOCAUDModel.SAF_FALTAJUSTIFICA">
+              <MappingFragment StoreEntitySet="SAF_FALTAJUSTIFICA">
+                <ScalarProperty Name="ESTREG" ColumnName="ESTREG" />
+                <ScalarProperty Name="USUMOD" ColumnName="USUMOD" />
+                <ScalarProperty Name="USUREG" ColumnName="USUREG" />
+                <ScalarProperty Name="FECMOD" ColumnName="FECMOD" />
+                <ScalarProperty Name="FECREG" ColumnName="FECREG" />
+                <ScalarProperty Name="COMENTFALJUS" ColumnName="COMENTFALJUS" />
+                <ScalarProperty Name="FECFALJUS" ColumnName="FECFALJUS" />
+                <ScalarProperty Name="CODPROEQU" ColumnName="CODPROEQU" />
+                <ScalarProperty Name="CODFALJUS" ColumnName="CODFALJUS" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

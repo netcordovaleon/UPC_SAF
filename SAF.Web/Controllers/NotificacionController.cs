@@ -67,6 +67,14 @@ namespace SAF.Web.Controllers
             return Json(data);
         }
 
+        public JsonResult ContadorMensajesBandeja() {
+            IEnumerable<SAF_NOTIFICACION> mensajes = new List<SAF_NOTIFICACION>();
+            mensajes = modelEntity.SAF_NOTIFICACION.ToList().Where(c => c.USUREC == Session["sessionUsuario"].ToString());
+            var cantidadNoLeidos = mensajes.Where(c => c.INDNOT == "R").Count();
+            var cantidadEliminados = mensajes.Where(c => c.ESTNOT == "P").Count();
+            return Json(new { cantNoLeidos = cantidadNoLeidos, cantEliminado = cantidadEliminados });
+        }
+
         private string GetReciveNota(DateTime? fecha)
         {
             var time = (DateTime.Now - fecha.GetValueOrDefault());

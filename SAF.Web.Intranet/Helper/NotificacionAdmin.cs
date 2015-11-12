@@ -10,13 +10,29 @@ namespace SAF.Web.Intranet.Helper
 
         SI_SOCAUDEntities modelEntity = new SI_SOCAUDEntities();
 
-        public void grabarNotificacion(int idAuditor, string asunto, string body) {
+        public void grabarNotificacionAuditor(int idAuditor, string asunto, string body) {
             var infoAuditor = this.modelEntity.SAF_AUDITOR.Where(c => c.CODAUD == idAuditor).FirstOrDefault();
             modelEntity.SAF_NOTIFICACION.Add(new SAF_NOTIFICACION(){
                 DESNOT = body,       
                 FECREG = DateTime.Now,
                 USUEMI = "SYSTEM",
-                INDNOT = "N",
+                INDNOT = "R",
+                ESTNOT = "R",
+                USUREC = infoAuditor.NOMUSU
+            });
+            modelEntity.SaveChanges();
+        }
+
+        public void grabarNotificacionSOA(int idSOA, string asunto, string body)
+        {
+            var infoAuditor = this.modelEntity.SAF_SOA.Where(c => c.CODSOA == idSOA).FirstOrDefault();
+            modelEntity.SAF_NOTIFICACION.Add(new SAF_NOTIFICACION()
+            {
+                DESNOT = body,
+                FECREG = DateTime.Now,
+                USUEMI = "SYSTEM",
+                INDNOT = "R",
+                ESTNOT = "R",
                 USUREC = infoAuditor.NOMUSU
             });
             modelEntity.SaveChanges();
@@ -30,7 +46,8 @@ namespace SAF.Web.Intranet.Helper
                 {
                     DESNOT = body,
                     FECREG = DateTime.Now,
-                    INDNOT = "N",
+                    INDNOT = "R",
+                    ESTNOT = "R",
                     USUEMI = "SYSTEM",
                     USUREC = item.NOMUSU
                 });

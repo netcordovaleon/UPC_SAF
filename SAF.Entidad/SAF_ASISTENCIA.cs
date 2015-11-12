@@ -22,6 +22,7 @@ namespace SAF.Entidad
         public Nullable<System.DateTime> FECMOD { get; set; }
         public string USUREG { get; set; }
         public string USUMOD { get; set; }
+        public string ESTREG { get; set; }
     
         public virtual SAF_PROPEQUIPO SAF_PROPEQUIPO { get; set; }
     }

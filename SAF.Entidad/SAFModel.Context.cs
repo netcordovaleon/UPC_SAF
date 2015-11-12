@@ -59,8 +59,6 @@ namespace SAF.Entidad
         public virtual DbSet<SAF_CORTE_AUDITOR> SAF_CORTE_AUDITOR { get; set; }
         public virtual DbSet<SAF_CORTE_AUDITOR_CARGO> SAF_CORTE_AUDITOR_CARGO { get; set; }
         public virtual DbSet<VW_SAF_INVITACION> VW_SAF_INVITACION { get; set; }
-        public virtual DbSet<SAF_ASISTENCIA> SAF_ASISTENCIA { get; set; }
-        public virtual DbSet<SAF_FALTAJUSTIFICA> SAF_FALTAJUSTIFICA { get; set; }
         public virtual DbSet<SAF_NOTIFICACION> SAF_NOTIFICACION { get; set; }
         public virtual DbSet<SAF_ARCHIVO> SAF_ARCHIVO { get; set; }
         public virtual DbSet<SAF_AUDITOR> SAF_AUDITOR { get; set; }
@@ -77,6 +75,8 @@ namespace SAF.Entidad
         public virtual DbSet<SAF_DIALABORABLE> SAF_DIALABORABLE { get; set; }
         public virtual DbSet<VW_SAF_PROPUESTAEJECUCION> VW_SAF_PROPUESTAEJECUCION { get; set; }
         public virtual DbSet<VW_SAF_AUDITORIAEQUIPO> VW_SAF_AUDITORIAEQUIPO { get; set; }
+        public virtual DbSet<SAF_ASISTENCIA> SAF_ASISTENCIA { get; set; }
+        public virtual DbSet<SAF_FALTAJUSTIFICA> SAF_FALTAJUSTIFICA { get; set; }
     
         public virtual ObjectResult<SP_SAF_CORTEPUBLICACION_Result> SP_SAF_CORTEPUBLICACION(Nullable<int> cODPUB)
         {

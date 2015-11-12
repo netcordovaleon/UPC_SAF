@@ -63,8 +63,6 @@
         <AssociationConnector Association="SI_SOCAUDModel.R_52" />
         <EntityTypeShape EntityType="SI_SOCAUDModel.VW_SAF_INVITACION" Width="1.5" PointX="14.375" PointY="14.75" />
         <AssociationConnector Association="SI_SOCAUDModel.FK_SAF_SERAUDCARGO_SAF_CARGO" />
-        <EntityTypeShape EntityType="SI_SOCAUDModel.SAF_ASISTENCIA" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="SI_SOCAUDModel.SAF_FALTAJUSTIFICA" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="SI_SOCAUDModel.SAF_NOTIFICACION" Width="1.5" PointX="14.75" PointY="0.75" />
         <EntityTypeShape EntityType="SI_SOCAUDModel.SAF_ARCHIVO" Width="1.5" PointX="16.25" PointY="26.375" />
         <EntityTypeShape EntityType="SI_SOCAUDModel.SAF_AUDITOR" Width="1.5" PointX="1" PointY="17.625" />
@@ -83,7 +81,6 @@
         <AssociationConnector Association="SI_SOCAUDModel.FK_SAF_EXPERIENCIA_SAF_ARCHIVO" />
         <AssociationConnector Association="SI_SOCAUDModel.FK_SAF_SOLCAPACITACION_SAF_ARCHIVO" />
         <AssociationConnector Association="SI_SOCAUDModel.FK_SAF_SOLEXPERIENCIA_SAF_ARCHIVO" />
-        <AssociationConnector Association="SI_SOCAUDModel.FK__SAF_ASIST__CODPR__58D1301D" />
         <AssociationConnector Association="SI_SOCAUDModel.FK__SAF_DIAOC__CODAU__151B244E" />
         <AssociationConnector Association="SI_SOCAUDModel.R_3" />
         <AssociationConnector Association="SI_SOCAUDModel.R_35" />
@@ -101,7 +98,6 @@
         <AssociationConnector Association="SI_SOCAUDModel.R_10" />
         <AssociationConnector Association="SI_SOCAUDModel.R_6" />
         <AssociationConnector Association="SI_SOCAUDModel.FK_SAF_EXPERIENCIA_SAF_PARAMETRICA" />
-        <AssociationConnector Association="SI_SOCAUDModel.FK__SAF_FALTA__CODPR__5D95E53A" />
         <AssociationConnector Association="SI_SOCAUDModel.FK_SAF_SOLCAPACITACION_SAF_PARAMETRICA" />
         <AssociationConnector Association="SI_SOCAUDModel.FK_SAF_SOLCAPACITACION_SAF_PARAMETRICA1" />
         <AssociationConnector Association="SI_SOCAUDModel.FK_SAF_SOLEXPERIENCIA_SAF_PARAMETRICA" />
@@ -110,6 +106,10 @@
         <AssociationConnector Association="SI_SOCAUDModel.R_9" />
         <EntityTypeShape EntityType="SI_SOCAUDModel.VW_SAF_PROPUESTAEJECUCION" Width="1.5" PointX="15.375" PointY="5.75" />
         <EntityTypeShape EntityType="SI_SOCAUDModel.VW_SAF_AUDITORIAEQUIPO" Width="1.5" PointX="5.375" PointY="15.75" />
+        <EntityTypeShape EntityType="SI_SOCAUDModel.SAF_ASISTENCIA" Width="1.5" PointX="3" PointY="2.125" />
+        <EntityTypeShape EntityType="SI_SOCAUDModel.SAF_FALTAJUSTIFICA" Width="1.5" PointX="3" PointY="52.75" />
+        <AssociationConnector Association="SI_SOCAUDModel.FK__SAF_ASIST__CODPR__58D1301D" />
+        <AssociationConnector Association="SI_SOCAUDModel.FK__SAF_FALTA__CODPR__5D95E53A" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

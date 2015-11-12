@@ -50,6 +50,7 @@
     <Compile Include="Constantes\Indicador.cs" />
     <Compile Include="Constantes\Mensaje.cs" />
     <Compile Include="Constantes\MensajeRespuesta.cs" />
+    <Compile Include="Enum\Notificacion.cs" />
     <Compile Include="Enum\Tipo.cs" />
     <Compile Include="Enum\TIPOBANDEJA.cs" />
     <Compile Include="Enum\TipoMensaje.cs" />

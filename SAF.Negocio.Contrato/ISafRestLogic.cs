@@ -41,5 +41,26 @@ namespace SAF.Negocio.Contrato
         IEnumerable<ConsultaDTO> listarConsulta(int idSoa, int idPub);
         
         #endregion
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetPropuestasEjec?idSoa={idSoa}")]
+        IEnumerable<PropuestaEjecucionDTO> listarPropuestasEjecucion(int idSoa);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetEquipoAuditoria?idAuditoria={idAuditoria}")]
+        IEnumerable<AuditoriaEquipoDTO> listarEquipoAuditoria(int idAuditoria);
+
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "InsertJustificacion?strIdsEquipo={strIdsEquipo}&observacion={observacion}")]
+        MensajeRespuesta grabarJustificacionFalta(string strIdsEquipo, string observacion);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "InsertAsistencia?strIdsEquipo={strIdsEquipo}")]
+        MensajeRespuesta grabarAsistencia(string strIdsEquipo);
+        #region :: LISTADO DE CONCURSO EJECUCION
+
+
+        #endregion
     }
 }

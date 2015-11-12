@@ -116,6 +116,11 @@ namespace SAF.Web.Intranet.Controllers
         public ActionResult observarSolicitudSoa(SoaModel model)
         {
             var infoSolicitud = modelEntity.SAF_SOLICITUD.Where(c => c.CODSOL == model.codSolicitud).FirstOrDefault();
+
+
+            Helper.NotificacionAdmin noti = new Helper.NotificacionAdmin();
+            noti.grabarNotificacionSOA(infoSolicitud.CODSOA.Value, Notificacion.asuntoSolicitudObservada, Notificacion.bodySolicitudObservada);
+
             infoSolicitud.OBSSOL = model.observacionSolicitud;
             infoSolicitud.ESTSOL = (int)Estado.Solicitud.Observada;
             modelEntity.SaveChanges();
@@ -125,6 +130,10 @@ namespace SAF.Web.Intranet.Controllers
         public ActionResult observarSolicitudAuditor(AuditorModel model)
         {
             var infoSolicitud = modelEntity.SAF_SOLICITUD.Where(c => c.CODSOL == model.codigoSolicitud).FirstOrDefault();
+
+            Helper.NotificacionAdmin noti = new Helper.NotificacionAdmin();
+            noti.grabarNotificacionSOA(infoSolicitud.CODAUD.Value, Notificacion.asuntoSolicitudObservada, Notificacion.bodySolicitudObservada);
+
             infoSolicitud.OBSSOL = model.observacionSolicitud;
             infoSolicitud.ESTSOL = (int)Estado.Solicitud.Observada;
             modelEntity.SaveChanges();

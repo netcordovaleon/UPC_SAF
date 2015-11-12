@@ -30,7 +30,7 @@ namespace SAF.Web.Controllers
         public JsonResult ContarNotificacionesUsuario() {
             if (Session["sessionUsuario"] != null) { 
             string usu = Session["sessionUsuario"].ToString();
-            var cantidadNotificaciones = modelEntity.SAF_NOTIFICACION.Where(c => c.USUREC == usu).Count();
+            var cantidadNotificaciones = modelEntity.SAF_NOTIFICACION.Where(c => c.USUREC == usu && c.INDNOT == "R" && c.ESTNOT == "R").Count();
 
             return Json(cantidadNotificaciones, JsonRequestBehavior.AllowGet);
             }

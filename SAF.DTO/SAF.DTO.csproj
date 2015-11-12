@@ -42,10 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuditorDTO.cs" />
+    <Compile Include="AuditoriaEquipoDTO.cs" />
     <Compile Include="InvitacionDTO.cs" />
     <Compile Include="CronoEntidadDTO.cs" />
     <Compile Include="CronogramaDTO.cs" />
     <Compile Include="InvitacionViewDTO.cs" />
+    <Compile Include="PropuestaEjecucionDTO.cs" />
     <Compile Include="PublicacionDTO.cs" />
     <Compile Include="PublicacionViewDTO.cs" />
     <Compile Include="ResultadoCorteSpDTO.cs" />

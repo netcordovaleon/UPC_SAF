@@ -23,7 +23,7 @@
 
             <div class="box box-solid">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Folders</h3>
+                    <h3 class="box-title">Bandejas</h3>
 
                     <div class="box-tools">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse">
@@ -42,7 +42,7 @@
                         <li>
                             <a href="javascript:void(0);" onclick="javascript:ListarNotificaciones('P', 1);">
                                 <i class="fa fa-trash-o"></i> Papelera
-                                <span class="label label-warning pull-right">0</span>
+                                <span class="label label-warning pull-right" id="lblNotaEliminado">0</span>
                             </a>
                         </li>
                     </ul>
@@ -55,7 +55,7 @@
         <div class="col-md-9">
             <div class="box box-primary" id="listadoNotificacion">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Mensajes</h3>
+                    <h3 class="box-title">Bandeja de Mensajes</h3>
 
                     <div class="box-tools pull-right">
                         <div class="has-feedback">
@@ -140,12 +140,16 @@
                 if (data[4] == "1") {
                     $(row).addClass('message-recibe');
                 }
+                if (data[5] == "0") {
+                    $(row).addClass('message-delete');
+                }
             }
 
         });
 
         $(document).ready(function () {
             ListarNotificaciones('R', 0);
+            actualizarContador();
         });
 
         function ListarNotificaciones(bandeja, id) {
@@ -161,7 +165,23 @@
                 success: function (result) {
                     _dataNotificacion_ = result;
                     tbNotificaciones.fnReloadData(_dataNotificacion_);
-                    $("#lblNotaNueva").text(tbNotificaciones.api().rows(".message-recibe")[0].length);
+                    actualizarContador();
+                    //$("#lblNotaNueva").text(tbNotificaciones.api().rows(".message-recibe")[0].length);
+                    //$("#lblNotaEliminado").text((tbNotificaciones.api().rows(".message-delete")[0].length))
+
+                }
+            });
+        }
+
+        function actualizarContador() {
+            $.ajax({
+                url: '@Url.Action("ContadorMensajesBandeja", "Notificacion")',
+                type: 'POST',
+                async: false,
+                data: {},
+                success: function (result) {
+                    $("#lblNotaNueva").text(result.cantNoLeidos);
+                    $("#lblNotaEliminado").text(result.cantEliminado);
                 }
             });
         }
