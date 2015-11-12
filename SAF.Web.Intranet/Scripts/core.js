@@ -196,3 +196,61 @@ $.extend($.fn.dataTable.defaults, {
     "bProcessing": true,
     "bAutoWidth": false
 });
+
+
+
+$.fn.datepicker.defaults.format = "dd/mm/yyyy";
+$.fn.datepicker.defaults.todayBtn = 'linked';
+$.fn.datepicker.defaults.language = "es";
+$.fn.datepicker.defaults.autoclose = true;
+$.fn.datepicker.defaults.todayHighlight = true;
+
+$.fn.isValid = function (hasTabs) {
+    var form = this.closest('form');
+    if (hasTabs) {
+        form.data("validator").settings.ignore = '.tab-pane';
+    }
+    if (form.valid()) {
+        return true;
+    } else {
+        var located;
+        var ctrl;
+        $(form).find('.input-validation-error:visible').each(function (index, ictrl) {
+            located = true;
+            ctrl = ictrl;
+            return false;
+        });
+        if (!located && hasTabs) {
+            $(form).find('.input-validation-error:hidden').each(function (index, ictrl) {
+                var tab = $(ictrl).closest('.tab-pane');
+                $('.nav-tabs a[href="#' + tab.attr("id") + '"]').tab('show');
+                ctrl = ictrl;
+                return false;
+            });
+        }
+        $('html, body').animate({ scrollTop: $(ctrl).offset().top - 75 }, 'slow');
+        $(ctrl).focus();
+        return false;
+    }
+};
+
+
+$.fn.updateValidation = function () {
+    var form = this.closest("form").removeData("validator").removeData("unobtrusiveValidation");
+    $.validator.unobtrusive.parse(form);
+    return this;
+};
+
+$.fn.cleanValidation = function () {
+    $(this).find(".field-validation-error").each(function () {
+        $(this).removeClass("field-validation-error").addClass("field-validation-valid");
+    });
+    $(this).find(".input-validation-error").each(function () {
+        $(this).removeClass("input-validation-error").addClass("valid");
+    });
+    $(this).find(".validation-summary-errors").each(function () {
+        $(this).find("ul").empty();
+        $(this).removeClass("validation-summary-errors").addClass("validation-summary-valid");
+    });
+    $(this).updateValidation();
+};

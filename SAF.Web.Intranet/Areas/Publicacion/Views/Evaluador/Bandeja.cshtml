@@ -109,6 +109,11 @@
         listarPublicacion();
     });
 
+
+    function abrirPublicacion(id) {
+        document.location = '@Url.Action("Publicacion", "Evaluador", new { Area = "Publicacion" })' + "?idPub=" + id;
+    }
+
     function listarPublicacion() {
         $.ajax({
             url: '@Url.Action("ListarPublicaciones", "Evaluador", new { Area = "Publicacion" })',

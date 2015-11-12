@@ -196,7 +196,8 @@
             $("#btnObservarInfoSoaSolicitud").click(observarSolicitudSOA);
             $("#btnAceptarInfoSoaSolicitud").click(function () {
                 bootbox.confirm(parametros.general.mensajeConfirmacion, function (result) {
-                    aceptarSolicitudSOA();
+                    if(result)
+                        aceptarSolicitudSOA();
                 });
             });
             $("#btnRegresar").click(regresar);

@@ -13,7 +13,7 @@ namespace SAF.Configuracion.Enum
         public const string asuntoInvitacion = "Invitacion Auditoria";
         public const string asuntoInvitacionAceptada = "Invitacion Auditoria Aceptada";
         public const string asuntoInvitacionCancelado = "Invitacion Auditoria Cancelada";
-        public const string asuntoCambiosConcurso = "Cambios en la Convocatoria";
+        public const string asuntoCambiosConcurso = "Cambios en la Publicacion convocatoria";
 
 
         public const string bodySolicitudObservada = "Su solicitud fue observada";
