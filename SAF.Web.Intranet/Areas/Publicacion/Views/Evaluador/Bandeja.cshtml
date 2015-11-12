@@ -1,9 +1,10 @@
-﻿
-@{ 
+﻿@using SAF.Configuracion.Enum;
+
+@{
     ViewBag.PageTitle = "Publicaciones";
     ViewBag.PageDescription = "Publicaciones";
     ViewBag.PageDescription = "Bandeja de Publicaciones";
-    
+
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -35,90 +36,113 @@
 </div>
 
 
- <div class="modal fade" id="modalResultadoCortePublicacion" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div class="modal fade" id="modalResultadoCortePublicacion" tabindex="-1" role="dialog" aria-hidden="true"></div>
 
 @section scripts {
 
     <script type="text/javascript">
 
-        var tabPublicacion;
-        var _dataPublicacion_ = null;
+
+    var _dataPublicacion_ = null;
 
 
-        $(document).ready(function () {
-            listarPublicacion();
-        });
- 
-        function listarPublicacion() {
+    var tabPublicacion = $("#tabPublicacion").dataTable({
+        "info": false,
+        "bServerSide": false,
+        "data": _dataPublicacion_,
+        "order": [[1, "asc"]],
+        "columns": [
+            {
+                "bSortable": false,
+                "sClass": "center",
+                "sWidth": "5%",
+                "render": function (data, type, row) {
+                    return '<center><button class="btn btn-primary" title="Abrir" type="button" onclick="abrirPublicacion(' + row[0] + ');"><i class="fa fa-search-plus"></i></button></center>';
+                }
+            },
+            { "sTitle": "Nº Publicacion" },
+            { "sTitle": "Entidad" },
+            {
+                "sTitle": "Estado",
+                "sClass": "center"
+            },
+            {
+                "bSortable": false,
+                "sClass": "center",
+                "sWidth": "5%",
+                "render": function (data, type, row) {
+                    if (row[4] == '@Convert.ToInt32(Estado.Publicacion.Elaboracion)')
+                        return '<center><button class="btn btn-success" title="Publicar" type="button" onclick="publicarPublicacion(' + row[0] + ');"><i class="fa fa-check-circle"></i></button></center>';
+                    else
+                        return ""
+                }
+            },
+                {
+                    "bSortable": false,
+                    "sClass": "center",
+                    "sWidth": "5%",
+                    "render": function (data, type, row) {
+                        if (row[4] == '@Convert.ToInt32(Estado.Publicacion.Publicado)')
+                            return '<center><button class="btn" title="Ver Auditores" type="button" onclick="verCortePublicacion(' + row[0] + ');"><i class="fa fa-users"></i></button></center>';
+                        else
+                            return ""
+                    }
+                },
+                {
+                    "bSortable": false,
+                    "sClass": "center",
+                    "sWidth": "5%",
+                    "render": function (data, type, row) {
+                        if (row[4] == '@Convert.ToInt32(Estado.Publicacion.Publicado)')
+                            return "";
+                        else
+                            return '<center><button class="btn btn-danger" title="Eliminar" type="button" onclick="eliminarPublicacion(' + row[0] + ');"><i class="fa fa-trash"></i></button></center>';
+                    }
+                }
+        ]
 
-            if (tabPublicacion == undefined) {
-                tabPublicacion = $("#tabPublicacion").dataTable({
-                    "info": false,
-                    "bServerSide": false,
-                    "data": _dataPublicacion_,
-                    "order": [[1, "asc"]],
-                    "columns": [
-                        {
-                            "bSortable": false,
-                            "sClass": "center",
-                            "sWidth": "5%",
-                            "render": function (data, type, row) {
-                                return '<center><button class="btn btn-primary" title="Abrir" type="button" onclick="abrirPublicacion(' + row[0] + ');"><i class="fa fa-search-plus"></i></button></center>';
-                            }
-                        },
-                        { "sTitle": "Nº Publicacion" },
-                        { "sTitle": "Entidad" },
-                        {
-                            "sTitle": "Estado",
-                            "sClass": "center"
-                        },
-                        {
-                            "bSortable": false,
-                            "sClass": "center",
-                            "sWidth": "5%",
-                            "render": function (data, type, row) {
-                                return '<center><button class="btn btn-success" title="Publicar" type="button" onclick="publicarPublicacion(' + row[0] + ');"><i class="fa fa-check-circle"></i></button></center>';
-                            }
-                        },
-                        {
-                            "bSortable": false,
-                            "sClass": "center",
-                            "sWidth": "5%",
-                            "render": function (data, type, row) {
-                                return '<center><button class="btn" title="Ver Auditores" type="button" onclick="verCortePublicacion(' + row[0] + ');"><i class="fa fa-users"></i></button></center>';
-                            }
-                        },
-                        {
-                            "bSortable": false,
-                            "sClass": "center",
-                            "sWidth": "5%",
-                            "render": function (data, type, row) {
-                                return '<center><button class="btn btn-danger" title="Eliminar" type="button" onclick="eliminarPublicacion(' + row[0] + ');"><i class="fa fa-trash"></i></button></center>';
-                            }
-                        }
-                    ]
+    });
 
-                });
+
+
+    $(document).ready(function () {
+        listarPublicacion();
+    });
+
+    function listarPublicacion() {
+        $.ajax({
+            url: '@Url.Action("ListarPublicaciones", "Evaluador", new { Area = "Publicacion" })',
+            type: 'POST',
+            async: false,
+            data: {},
+            success: function (result) {
+                _dataPublicacion_ = result;
+                tabPublicacion.fnReloadData(_dataPublicacion_);
             }
+        });
+    }
 
-            $.ajax({
-                url: '@Url.Action("ListarPublicaciones", "Evaluador", new { Area = "Publicacion" })',
+    function publicarPublicacion(id) {
+        $.ajax({
+            url: '@Url.Action("PublicarPublicacion", "Evaluador", new { Area = "Publicacion" })',
                 type: 'POST',
                 async: false,
-                data: {},
+                data: { id: id },
                 success: function (result) {
-                    _dataPublicacion_ = result;
-                    tabPublicacion.fnReloadData(_dataPublicacion_);
+                    if (result.Exito) {
+                        listarPublicacion();
+                    }
+                    mostrarNotificacion(result);
                 }
             });
         }
 
-        function publicarPublicacion(id) {
+        function eliminarPublicacion() {
             $.ajax({
-                url: '@Url.Action("PublicarPublicacion", "Evaluador", new { Area = "Publicacion" })',
+                url: '@Url.Action("EliminarPublicacion", "Evaluador", new { Area = "Publicacion" })',
                 type: 'POST',
                 async: false,
-                data: { id : id },
+                data: { id: id },
                 success: function (result) {
                     if (result.Exito) {
                         listarPublicacion();
@@ -131,15 +155,14 @@
         function verCortePublicacion(id) {
             $.ajax({
                 url: '@Url.Action("VerResultadoCortePublicacion", "Evaluador", new { Area = "Publicacion" })',
-                type: 'POST',
-                async: false,
-                data: { id: id },
-                success: function (result) {
-                    $("#modalResultadoCortePublicacion").empty().html(result).modal();
-                }
-            });
-        }
+            type: 'POST',
+            async: false,
+            data: { id: id },
+            success: function (result) {
+                $("#modalResultadoCortePublicacion").empty().html(result).modal();
+            }
+        });
+    }
 
     </script>
-
 }
