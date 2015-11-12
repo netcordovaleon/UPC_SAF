@@ -86,7 +86,9 @@ namespace SAF.Web
                 "~/Scripts/jQuery-2.1.4.min.js",
                 "~/Scripts/jquery-ui.min.js",
                 "~/Scripts/jquery.validate*",
+                "~/Scripts/gantt/jquery.fn.gantt.min.js",
                 "~/Scripts/bootstrap.min.js",
+                "~/Scripts/gantt/prettify.js",
                 "~/Scripts/raphael-min.js",
                 "~/Scripts/morris.min.js", //check
                 "~/Scripts/jquery.sparkline.min.js", //check
@@ -171,7 +173,9 @@ namespace SAF.Web
                 ));
 
             bundles.Add(new StyleBundle("~/Content/Layout").Include(
+                "~/Content/gantt.css",
                 "~/Content/bootstrap.min.css",
+                "~/Content/prettify.css",
                 "~/Content/font-awesome.min.css",
                 "~/Content/ionicons.min.css",
                 "~/Content/AdminLTE.css",
