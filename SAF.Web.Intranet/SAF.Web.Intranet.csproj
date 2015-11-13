@@ -459,6 +459,7 @@
     <Content Include="Reports\Datasets\dsPropuesta.xsc">
       <DependentUpon>dsPropuesta.xsd</DependentUpon>
     </Content>
+    <Content Include="Reports\binReport.rar" />
     <None Include="Reports\Datasets\dsPropuesta.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
