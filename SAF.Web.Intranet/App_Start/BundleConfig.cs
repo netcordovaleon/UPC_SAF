@@ -62,6 +62,7 @@ namespace SAF.Web.Intranet
             bundles.Add(new ScriptBundle("~/Scripts/Layout").Include(
                 "~/Scripts/jQuery-2.1.4.min.js",
                 "~/Scripts/jquery-ui.min.js",
+                "~/Scripts/jquery.validate*",
                 "~/Scripts/bootstrap.min.js",
                 "~/Scripts/raphael-min.js",
                 "~/Scripts/morris.min.js", //check

@@ -15,11 +15,13 @@ namespace SAF.Web.Helper
             modelEntity.SAF_NOTIFICACION.Add(new SAF_NOTIFICACION()
             {
                 DESNOT = body,
+                ASUNOT = asunto,
                 FECREG = DateTime.Now,
                 USUEMI = "SYSTEM",
                 INDNOT = "R",
                 ESTNOT = "R",
-                USUREC = infoAuditor.NOMUSU
+                USUREC = infoAuditor.NOMUSU,
+                ESTREG = "1"
             });
             modelEntity.SaveChanges();
         }
@@ -30,11 +32,13 @@ namespace SAF.Web.Helper
             modelEntity.SAF_NOTIFICACION.Add(new SAF_NOTIFICACION()
             {
                 DESNOT = body,
+                ASUNOT = asunto,
                 FECREG = DateTime.Now,
                 USUEMI = "SYSTEM",
                 INDNOT = "R",
                 ESTNOT = "R",
-                USUREC = infoAuditor.NOMUSU
+                USUREC = infoAuditor.NOMUSU,
+                ESTREG = "1"
             });
             modelEntity.SaveChanges();
         }
@@ -47,11 +51,13 @@ namespace SAF.Web.Helper
                 modelEntity.SAF_NOTIFICACION.Add(new SAF_NOTIFICACION()
                 {
                     DESNOT = body,
+                    ASUNOT = asunto,
                     FECREG = DateTime.Now,
                     INDNOT = "R",
                     ESTNOT = "R",
                     USUEMI = "SYSTEM",
-                    USUREC = item.NOMUSU
+                    USUREC = item.NOMUSU,
+                    ESTREG = "1"
                 });
                 modelEntity.SaveChanges();
             }
@@ -63,11 +69,13 @@ namespace SAF.Web.Helper
                 modelEntity.SAF_NOTIFICACION.Add(new SAF_NOTIFICACION()
                 {
                     DESNOT = body,
+                    ASUNOT = asunto,
                     FECREG = DateTime.Now,
                     INDNOT = "R",
                     ESTNOT = "R",
                     USUEMI = "SYSTEM",
-                    USUREC = item.NOMUSU
+                    USUREC = item.NOMUSU,
+                    ESTREG = "1"
                 });
                 modelEntity.SaveChanges();
             }
