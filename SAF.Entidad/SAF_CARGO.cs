@@ -16,8 +16,8 @@ namespace SAF.Entidad
     {
         public SAF_CARGO()
         {
-            this.SAF_CORTE_AUDITOR_CARGO = new HashSet<SAF_CORTE_AUDITOR_CARGO>();
             this.SAF_SERAUDCARGO = new HashSet<SAF_SERAUDCARGO>();
+            this.SAF_CORTE_AUDITOR_CARGO = new HashSet<SAF_CORTE_AUDITOR_CARGO>();
         }
     
         public int CODCAR { get; set; }
@@ -28,7 +28,7 @@ namespace SAF.Entidad
         public string USUMOD { get; set; }
         public string ESTREG { get; set; }
     
-        public virtual ICollection<SAF_CORTE_AUDITOR_CARGO> SAF_CORTE_AUDITOR_CARGO { get; set; }
         public virtual ICollection<SAF_SERAUDCARGO> SAF_SERAUDCARGO { get; set; }
+        public virtual ICollection<SAF_CORTE_AUDITOR_CARGO> SAF_CORTE_AUDITOR_CARGO { get; set; }
     }
 }

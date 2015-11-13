@@ -18,19 +18,19 @@ namespace SAF.Web
         public string NUMINV { get; set; }
         public Nullable<System.DateTime> FECMAXPREPROINV { get; set; }
         public int CODAUD { get; set; }
-        public string NOMCOMAUD { get; set; }
-        public int CODSERAUD { get; set; }
-        public string PERSERAUD { get; set; }
-        public Nullable<int> ESTINV { get; set; }
-        public Nullable<System.DateTime> FECACEPINV { get; set; }
-        public string NOMCAR { get; set; }
-        public string VALOR { get; set; }
         public string DNIAUD { get; set; }
+        public string NOMCOMAUD { get; set; }
         public string TELAUD { get; set; }
         public string CELAUD { get; set; }
         public string CORAUD { get; set; }
         public string RUCSOA { get; set; }
         public string RAZSOCSOA { get; set; }
+        public int CODSERAUD { get; set; }
         public string DESBAS { get; set; }
+        public string PERSERAUD { get; set; }
+        public Nullable<int> ESTINV { get; set; }
+        public Nullable<System.DateTime> FECACEPINV { get; set; }
+        public string NOMCAR { get; set; }
+        public string VALOR { get; set; }
     }
 }

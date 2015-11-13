@@ -257,7 +257,8 @@
         $("#btnRegresar").click(regresarListadoSolicitud);
         $("#btnEnviarInfoAuditorSolicitud").click(function () {
             bootbox.confirm(parametros.general.mensajeConfirmacion, function (result) {
-                enviarSolicitudRegistroAuditor();
+                if(result)
+                    enviarSolicitudRegistroAuditor();
             });
         });
 

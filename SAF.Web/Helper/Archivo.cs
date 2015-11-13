@@ -120,13 +120,15 @@ namespace SAF.Web.Helper
         {
             if (filebe.FileData != null)
             {
-                if (!filebe.NarcCodigo.HasValue)
-                {
-                    var arc = InsertarArchivo(filebe.FileData);
-                    filebe.NarcCodigo = arc.CODARC;
-                }
-                else
-                    ReemplazarArchivo(filebe.NarcCodigo.Value, filebe.FileData);
+                var arc = InsertarArchivo(filebe.FileData);
+                filebe.NarcCodigo = arc.CODARC;
+                //if (!filebe.NarcCodigo.HasValue)
+                //{
+                //    var arc = InsertarArchivo(filebe.FileData);
+                //    filebe.NarcCodigo = arc.CODARC;
+                //}
+                //else
+                    //ReemplazarArchivo(filebe.NarcCodigo.Value, filebe.FileData);
             }
             return filebe.NarcCodigo.HasValue ? filebe.NarcCodigo : id;
         }

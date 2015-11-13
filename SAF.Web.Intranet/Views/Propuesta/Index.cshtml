@@ -8,6 +8,7 @@
 }
 
 @Html.HiddenFor(c => c.CODPRO)
+@Html.HiddenFor(c => c.CodigoPublicacion)
 
 <div class="callout callout-info">
     <h4><i class="icon fa fa-info"></i>&nbsp;Información</h4>
@@ -142,8 +143,9 @@
         });
 
         function seleccionarPropuesta(idProp, idPub) {
+            
             $("#CODPRO").val(idProp);
-
+            $("#CodigoPublicacion").val(idPub);
         }
 
         function listarPropuestas() {
@@ -164,7 +166,7 @@
                 url: '@Url.Action("AsignarPropuestaComoGanadora", "Propuesta")',
                 type: 'POST',
                 async: false,
-                data: { idPropuesta: $("#CODPRO").val(), idPublicacion: $("").val() },
+                data: { idPropuesta: $("#CODPRO").val(), idPublicacion: $("#CodigoPublicacion").val() },
                 success: function (result) {
                     mostrarNotificacion(result);
                     listarPropuestas();

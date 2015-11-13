@@ -16,8 +16,8 @@ namespace SAF.Web
     {
         public SAF_EMPRESA()
         {
-            this.SAF_EXPERIENCIA = new HashSet<SAF_EXPERIENCIA>();
             this.SAF_SOLEXPERIENCIA = new HashSet<SAF_SOLEXPERIENCIA>();
+            this.SAF_EXPERIENCIA = new HashSet<SAF_EXPERIENCIA>();
         }
     
         public int CODEMP { get; set; }
@@ -29,7 +29,7 @@ namespace SAF.Web
         public string USUMOD { get; set; }
         public string ESTREG { get; set; }
     
-        public virtual ICollection<SAF_EXPERIENCIA> SAF_EXPERIENCIA { get; set; }
         public virtual ICollection<SAF_SOLEXPERIENCIA> SAF_SOLEXPERIENCIA { get; set; }
+        public virtual ICollection<SAF_EXPERIENCIA> SAF_EXPERIENCIA { get; set; }
     }
 }

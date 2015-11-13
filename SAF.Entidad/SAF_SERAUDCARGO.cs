@@ -31,9 +31,9 @@ namespace SAF.Entidad
         public Nullable<int> CODSERAUD { get; set; }
         public Nullable<int> CODCAR { get; set; }
     
+        public virtual SAF_CARGO SAF_CARGO { get; set; }
         public virtual ICollection<SAF_SERAUDCARCAP> SAF_SERAUDCARCAP { get; set; }
         public virtual ICollection<SAF_SERAUDCAREXP> SAF_SERAUDCAREXP { get; set; }
         public virtual SAF_SERVICIOAUDITORIA SAF_SERVICIOAUDITORIA { get; set; }
-        public virtual SAF_CARGO SAF_CARGO { get; set; }
     }
 }

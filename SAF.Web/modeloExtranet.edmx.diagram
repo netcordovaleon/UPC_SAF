@@ -4,100 +4,62 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f6e1803bc63f431ab7dff2d43a8a10dd" Name="Diagram1" ZoomLevel="96">
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_AUDITORIA" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_BASE" Width="1.5" PointX="1.5" PointY="42.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_BASEENTREGABLE" Width="1.5" PointX="3.75" PointY="44.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_CARGO" Width="1.5" PointX="3.75" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_CARRERA" Width="1.5" PointX="0.75" PointY="27" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_CONSULTA" Width="1.5" PointX="6" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_CORTE_AUDITOR" Width="1.5" PointX="6" PointY="20.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_CORTE_AUDITOR_CARGO" Width="1.5" PointX="6" PointY="15.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_CRONOENTIDAD" Width="1.5" PointX="1.5" PointY="51.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_CRONOGRAMA" Width="1.5" PointX="1.5" PointY="56.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_DIAOCUPADO" Width="1.5" PointX="3" PointY="36.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_DOCUMENTO" Width="1.5" PointX="7.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_EMPRESA" Width="1.5" PointX="3.75" PointY="39.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_ENTIDADES" Width="1.5" PointX="1.5" PointY="60.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_FLUJO_DOCUMENTO" Width="1.5" PointX="10" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_INVITACION" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_INVITACIONDETALLE" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_PARAMETRICA" Width="1.5" PointX="0.75" PointY="35.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_PROPUESTA" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_PUBLICACION" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_SERAUDCARCAP" Width="1.5" PointX="11.25" PointY="18.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_SERAUDCAREXP" Width="1.5" PointX="11.25" PointY="21.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_SERAUDCARGO" Width="1.5" PointX="9" PointY="19.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_SERVICIOAUDITORIA" Width="1.5" PointX="0.75" PointY="30.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_SOA" Width="1.5" PointX="0.75" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_TIPOPARAMETRICA" Width="1.5" PointX="1.5" PointY="48" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_TIPOSOLICITUD" Width="1.5" PointX="0.75" PointY="68" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_UNIVERSIDAD" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_USUARIO" Width="1.5" PointX="8.75" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.sysdiagrams" Width="1.5" PointX="10.75" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_DIALABORABLE" Width="1.5" PointX="10.75" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.VW_SAF_INVITACION" Width="1.5" PointX="12.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.VW_SAF_PUBLICACION" Width="1.5" PointX="12.75" PointY="6.375" IsExpanded="true" />
-        <AssociationConnector Association="ModeloExtranetModel.R_43" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.R_16" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.R_17" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.R_18" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.R_44" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.FK_SAF_SERAUDCARGO_SAF_CARGO" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.R_51" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.R_27" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.R_28" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.R_50" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.R_52" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.R_14" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.R_15" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.R_38" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.R_33" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.R_34" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.R_36" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.R_37" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.R_45" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.R_31" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.R_32" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.R_21" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.R_20" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloExtranetModel.R_19" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.VW_SAF_SOLICITUD" Width="1.5" PointX="13.375" PointY="11.75" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_SOLICITUD" Width="1.5" PointX="6" PointY="35.75" />
-        <AssociationConnector Association="ModeloExtranetModel.R_2" />
-        <AssociationConnector Association="ModeloExtranetModel.R_1" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_DEPARTAMENTO" Width="1.5" PointX="15.375" PointY="1.125" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_DISTRITO" Width="1.5" PointX="19.875" PointY="1.125" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_PROVINCIA" Width="1.5" PointX="17.625" PointY="1" />
-        <AssociationConnector Association="ModeloExtranetModel.FK__SAF_PROVI__CODDE__1EA48E88" />
-        <AssociationConnector Association="ModeloExtranetModel.FK__SAF_DISTR__CODPR__236943A5" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_ARCHIVO" Width="1.5" PointX="8.375" PointY="14.75" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_CAPACITACION" Width="1.5" PointX="3" PointY="20.25" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_EXPERIENCIA" Width="1.5" PointX="6" PointY="28.5" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_SOLCAPACITACION" Width="1.5" PointX="8.25" PointY="24" />
-        <AssociationConnector Association="ModeloExtranetModel.FK_SAF_CAPACITACION_SAF_PARAMETRICA" />
-        <AssociationConnector Association="ModeloExtranetModel.FK_SAF_CAPACITACION_SAF_PARAMETRICA1" />
-        <AssociationConnector Association="ModeloExtranetModel.R_7" />
-        <AssociationConnector Association="ModeloExtranetModel.R_8" />
-        <AssociationConnector Association="ModeloExtranetModel.R_13" />
-        <AssociationConnector Association="ModeloExtranetModel.R_6" />
-        <AssociationConnector Association="ModeloExtranetModel.FK_SAF_EXPERIENCIA_SAF_PARAMETRICA" />
-        <AssociationConnector Association="ModeloExtranetModel.R_11" />
-        <AssociationConnector Association="ModeloExtranetModel.R_12" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_SOLEXPERIENCIA" Width="1.5" PointX="8.25" PointY="37.125" />
-        <AssociationConnector Association="ModeloExtranetModel.R_10" />
-        <AssociationConnector Association="ModeloExtranetModel.R_9" />
+      <Diagram DiagramId="f6e1803bc63f431ab7dff2d43a8a10dd" Name="Diagram1" ZoomLevel="10">
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_ARCHIVO" Width="1.5" PointX="3" PointY="6.5" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_ASISTENCIA" Width="1.5" PointX="15" PointY="5.125" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_AUDITOR" Width="1.5" PointX="0.75" PointY="23.875" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_AUDITORIA" Width="1.5" PointX="25" PointY="27.25" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_BASE" Width="1.5" PointX="15.25" PointY="18.375" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_BASEENTREGABLE" Width="1.5" PointX="17.5" PointY="24.375" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_CAPACITACION" Width="1.5" PointX="5.25" PointY="16.5" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_CARGO" Width="1.5" PointX="17.5" PointY="28.375" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_CARRERA" Width="1.5" PointX="3" PointY="20.375" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_CONSULTA" Width="1.5" PointX="19.75" PointY="26.25" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_CORTE_AUDITOR" Width="1.5" PointX="22.75" PointY="20.625" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_CORTE_AUDITOR_CARGO" Width="1.5" PointX="19.75" PointY="21" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_CRONOENTIDAD" Width="1.5" PointX="13" PointY="18.75" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_CRONOGRAMA" Width="1.5" PointX="10.75" PointY="19.125" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_DEPARTAMENTO" Width="1.5" PointX="7.75" PointY="1.125" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_DIAOCUPADO" Width="1.5" PointX="3" PointY="26.375" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_DISTRITO" Width="1.5" PointX="12.25" PointY="1.125" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_DOCUMENTO" Width="1.5" PointX="17.75" PointY="1.375" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_EMPRESA" Width="1.5" PointX="3" PointY="2.75" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_ENTIDADES" Width="1.5" PointX="10.75" PointY="12" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_EXPERIENCIA" Width="1.5" PointX="5.25" PointY="10.875" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_FALTAJUSTIFICA" Width="1.5" PointX="15" PointY="8.875" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_FLUJO_DOCUMENTO" Width="1.5" PointX="20" PointY="1" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_INVITACION" Width="1.5" PointX="19.75" PointY="30.375" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_INVITACIONDETALLE" Width="1.5" PointX="22" PointY="33.5" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_NOTIFICACION" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_PARAMETRICA" Width="1.5" PointX="3" PointY="11.125" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_PROPEQUIPO" Width="1.5" PointX="12.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_PROPEQUIPODETALLE" Width="1.5" PointX="9.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_PROPUESTA" Width="1.5" PointX="22.75" PointY="25.75" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_PROVINCIA" Width="1.5" PointX="10" PointY="1" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_PUBLICACION" Width="1.5" PointX="17.5" PointY="14.125" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_SERAUDCARCAP" Width="1.5" PointX="22" PointY="10.875" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_SERAUDCAREXP" Width="1.5" PointX="22" PointY="14.375" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_SERAUDCARGO" Width="1.5" PointX="19.75" PointY="15.75" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_SERVICIOAUDITORIA" Width="1.5" PointX="17.5" PointY="19.5" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_SOA" Width="1.5" PointX="0.75" PointY="35.75" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_SOLCAPACITACION" Width="1.5" PointX="5.25" PointY="4.5" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_SOLEXPERIENCIA" Width="1.5" PointX="8.25" PointY="10.875" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_SOLICITUD" Width="1.5" PointX="3" PointY="30.625" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_TIPOPARAMETRICA" Width="1.5" PointX="0.75" PointY="11.875" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_TIPOSOLICITUD" Width="1.5" PointX="0.75" PointY="32.25" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_UNIVERSIDAD" Width="1.5" PointX="3" PointY="16.75" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_USUARIO" Width="1.5" PointX="12.75" PointY="12.75" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_DIALABORABLE" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.VW_SAF_AUDITORIAEQUIPO" Width="1.5" PointX="14.75" PointY="12.75" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.VW_SAF_INVITACION" Width="1.5" PointX="7.75" PointY="16.75" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.VW_SAF_PROPUESTAEJECUCION" Width="1.5" PointX="17.75" PointY="5.75" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.VW_SAF_PUBLICACION" Width="1.5" PointX="17.75" PointY="8.75" />
+        <EntityTypeShape EntityType="ModeloExtranetModel.VW_SAF_SOLICITUD" Width="1.5" PointX="19.75" PointY="5.75" />
         <AssociationConnector Association="ModeloExtranetModel.FK_SAF_CAPACITACION_SAF_ARCHIVO" />
         <AssociationConnector Association="ModeloExtranetModel.FK_SAF_EXPERIENCIA_SAF_ARCHIVO" />
         <AssociationConnector Association="ModeloExtranetModel.FK_SAF_SOLCAPACITACION_SAF_ARCHIVO" />
         <AssociationConnector Association="ModeloExtranetModel.FK_SAF_SOLEXPERIENCIA_SAF_ARCHIVO" />
-        <AssociationConnector Association="ModeloExtranetModel.FK_SAF_SOLCAPACITACION_SAF_PARAMETRICA" />
-        <AssociationConnector Association="ModeloExtranetModel.FK_SAF_SOLCAPACITACION_SAF_PARAMETRICA1" />
-        <AssociationConnector Association="ModeloExtranetModel.FK_SAF_SOLEXPERIENCIA_SAF_PARAMETRICA" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_PROPEQUIPO" Width="1.5" PointX="15.375" PointY="4.75" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_PROPEQUIPODETALLE" Width="1.5" PointX="10.375" PointY="14.75" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_NOTIFICACION" Width="1.5" PointX="15.375" PointY="8.75" />
-        <EntityTypeShape EntityType="ModeloExtranetModel.SAF_AUDITOR" Width="1.5" PointX="0.75" PointY="23.25" />
+        <AssociationConnector Association="ModeloExtranetModel.FK__SAF_ASIST__CODPR__02FC7413" />
         <AssociationConnector Association="ModeloExtranetModel.FK__SAF_DIAOC__CODAU__151B244E" />
         <AssociationConnector Association="ModeloExtranetModel.R_3" />
         <AssociationConnector Association="ModeloExtranetModel.R_35" />
@@ -105,6 +67,49 @@
         <AssociationConnector Association="ModeloExtranetModel.R_49" />
         <AssociationConnector Association="ModeloExtranetModel.R_5" />
         <AssociationConnector Association="ModeloExtranetModel.R_53" />
+        <AssociationConnector Association="ModeloExtranetModel.R_43" />
+        <AssociationConnector Association="ModeloExtranetModel.R_16" />
+        <AssociationConnector Association="ModeloExtranetModel.R_17" />
+        <AssociationConnector Association="ModeloExtranetModel.R_18" />
+        <AssociationConnector Association="ModeloExtranetModel.R_44" />
+        <AssociationConnector Association="ModeloExtranetModel.FK_SAF_CAPACITACION_SAF_PARAMETRICA" />
+        <AssociationConnector Association="ModeloExtranetModel.FK_SAF_CAPACITACION_SAF_PARAMETRICA1" />
+        <AssociationConnector Association="ModeloExtranetModel.R_7" />
+        <AssociationConnector Association="ModeloExtranetModel.R_8" />
+        <AssociationConnector Association="ModeloExtranetModel.FK_SAF_SERAUDCARGO_SAF_CARGO" />
+        <AssociationConnector Association="ModeloExtranetModel.R_51" />
+        <AssociationConnector Association="ModeloExtranetModel.R_13" />
+        <AssociationConnector Association="ModeloExtranetModel.R_27" />
+        <AssociationConnector Association="ModeloExtranetModel.R_28" />
+        <AssociationConnector Association="ModeloExtranetModel.R_50" />
+        <AssociationConnector Association="ModeloExtranetModel.R_52" />
+        <AssociationConnector Association="ModeloExtranetModel.R_14" />
+        <AssociationConnector Association="ModeloExtranetModel.R_15" />
+        <AssociationConnector Association="ModeloExtranetModel.FK__SAF_PROVI__CODDE__245D67DE" />
+        <AssociationConnector Association="ModeloExtranetModel.FK__SAF_DISTR__CODPR__160F4887" />
+        <AssociationConnector Association="ModeloExtranetModel.R_38" />
+        <AssociationConnector Association="ModeloExtranetModel.R_10" />
+        <AssociationConnector Association="ModeloExtranetModel.R_6" />
+        <AssociationConnector Association="ModeloExtranetModel.FK_SAF_EXPERIENCIA_SAF_PARAMETRICA" />
+        <AssociationConnector Association="ModeloExtranetModel.FK__SAF_FALTA__CODPR__1AD3FDA4" />
+        <AssociationConnector Association="ModeloExtranetModel.R_33" />
+        <AssociationConnector Association="ModeloExtranetModel.R_34" />
+        <AssociationConnector Association="ModeloExtranetModel.R_36" />
+        <AssociationConnector Association="ModeloExtranetModel.R_37" />
+        <AssociationConnector Association="ModeloExtranetModel.FK_SAF_SOLCAPACITACION_SAF_PARAMETRICA" />
+        <AssociationConnector Association="ModeloExtranetModel.FK_SAF_SOLCAPACITACION_SAF_PARAMETRICA1" />
+        <AssociationConnector Association="ModeloExtranetModel.FK_SAF_SOLEXPERIENCIA_SAF_PARAMETRICA" />
+        <AssociationConnector Association="ModeloExtranetModel.R_45" />
+        <AssociationConnector Association="ModeloExtranetModel.R_31" />
+        <AssociationConnector Association="ModeloExtranetModel.R_32" />
+        <AssociationConnector Association="ModeloExtranetModel.R_21" />
+        <AssociationConnector Association="ModeloExtranetModel.R_20" />
+        <AssociationConnector Association="ModeloExtranetModel.R_19" />
+        <AssociationConnector Association="ModeloExtranetModel.R_2" />
+        <AssociationConnector Association="ModeloExtranetModel.R_11" />
+        <AssociationConnector Association="ModeloExtranetModel.R_12" />
+        <AssociationConnector Association="ModeloExtranetModel.R_9" />
+        <AssociationConnector Association="ModeloExtranetModel.R_1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

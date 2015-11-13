@@ -14,5 +14,6 @@ namespace SAF.Negocio.Contrato
 {
     public interface ISafSoaLogic : IFacadeOperacionCRUD<SAF_SOA> {
         bool AccederSoa(string usuario, string password);
+        SAF_SOA InformacionPorUsuario(string usuario);
     }
 }

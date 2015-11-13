@@ -62,7 +62,6 @@ namespace SAF.Negocio.Contrato
         MensajeRespuesta grabarAsistencia(string strIdsEquipo);
         #endregion
 
-
         #region NOTIFICACION
 
         [OperationContract]
@@ -74,5 +73,10 @@ namespace SAF.Negocio.Contrato
         NotificacionDTO GetNotificacion(int idNotificacion);
 
         #endregion
+
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "ObtenerSoaPorUsuario?usuario={usuario}")]
+        SoaDTO ObtenerSoaPorUsuario(string usuario);
     }
 }

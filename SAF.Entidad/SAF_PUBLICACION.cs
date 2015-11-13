@@ -17,10 +17,10 @@ namespace SAF.Entidad
         public SAF_PUBLICACION()
         {
             this.SAF_CONSULTA = new HashSet<SAF_CONSULTA>();
-            this.SAF_INVITACION = new HashSet<SAF_INVITACION>();
-            this.SAF_PROPUESTA = new HashSet<SAF_PROPUESTA>();
             this.SAF_CORTE_AUDITOR = new HashSet<SAF_CORTE_AUDITOR>();
             this.SAF_CORTE_AUDITOR_CARGO = new HashSet<SAF_CORTE_AUDITOR_CARGO>();
+            this.SAF_INVITACION = new HashSet<SAF_INVITACION>();
+            this.SAF_PROPUESTA = new HashSet<SAF_PROPUESTA>();
         }
     
         public int CODPUB { get; set; }
@@ -39,9 +39,9 @@ namespace SAF.Entidad
     
         public virtual SAF_BASE SAF_BASE { get; set; }
         public virtual ICollection<SAF_CONSULTA> SAF_CONSULTA { get; set; }
-        public virtual ICollection<SAF_INVITACION> SAF_INVITACION { get; set; }
-        public virtual ICollection<SAF_PROPUESTA> SAF_PROPUESTA { get; set; }
         public virtual ICollection<SAF_CORTE_AUDITOR> SAF_CORTE_AUDITOR { get; set; }
         public virtual ICollection<SAF_CORTE_AUDITOR_CARGO> SAF_CORTE_AUDITOR_CARGO { get; set; }
+        public virtual ICollection<SAF_INVITACION> SAF_INVITACION { get; set; }
+        public virtual ICollection<SAF_PROPUESTA> SAF_PROPUESTA { get; set; }
     }
 }

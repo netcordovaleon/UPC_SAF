@@ -7,17 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SAF.Web
+namespace SAF.Entidad
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class SP_SAF_AUDITORIAS_Result
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public Nullable<int> CODPRO { get; set; }
+        public int CODAUDITORIA { get; set; }
+        public string PERAUD { get; set; }
+        public string DESBAS { get; set; }
     }
 }

@@ -67,5 +67,11 @@ namespace SAF.Negocio.Implementacion
         {
             throw new NotImplementedException();
         }
+
+
+        public SAF_SOA InformacionPorUsuario(string usuario)
+        {
+            return this._safSoaData.GetMany(c => c.NOMUSU == usuario).FirstOrDefault();
+        }
     }
 }

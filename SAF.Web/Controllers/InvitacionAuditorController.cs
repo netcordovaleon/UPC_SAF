@@ -87,7 +87,8 @@ namespace SAF.Web.Controllers
                 c.EXPPUNT.GetValueOrDefault().ToString(),
                 c.CAPAPUNT.GetValueOrDefault().ToString(),
                 c.TOTALPUNT.GetValueOrDefault().ToString(),
-                "0"
+                "0",
+                c.CODCAR.GetValueOrDefault().ToString()
             });
 
             return Json(data);
@@ -131,6 +132,12 @@ namespace SAF.Web.Controllers
             try
             {
                 var invitacion = this.modelEntity.SAF_INVITACION.ToList().Where(c => c.CODINV == id).FirstOrDefault();
+
+                var detalleInvitacion = this.modelEntity.SAF_INVITACIONDETALLE.ToList().Where(c => c.CODINV == id);
+                if (!detalleInvitacion.Any())
+                {
+                    return Json(new MensajeRespuesta("Debe asignar al menos una fecha", false));
+                }
 
                 var noti = new Helper.NotificacionAdmin();
                 var mensaje = "La sociedad <strong>" + Session["sessionNombreCompletoUsuario"].ToString() + "</strong> identificado con el RUC " + Session["sessionUsuario"].ToString() + " le ha enviado una invitacion para pertenecer a su equipo de Auditoria";

@@ -119,6 +119,7 @@
         "columns": [
             { "sTitle": "Fecha" },
             {
+                "sTitle": "<center><input type='checkbox' id='chkTodasFechasInv' onclick='seleccionarTodasInvitados();' /></center>",
                 "bSortable": false,
                 "sClass": "center",
                 "sWidth": "5%",
@@ -137,6 +138,7 @@
         "columns": [
             { "sTitle": "Fecha" },
             {
+                "sTitle": "<center><input type='checkbox' id='chkTodasFechasAsig' onclick='seleccionarTodasAsignadas();' /></center>",
                 "bSortable": false,
                 "sClass": "center",
                 "sWidth": "5%",
@@ -146,6 +148,22 @@
             }
         ]
     });
+
+    function seleccionarTodasAsignadas() {
+        if ($("#chkTodasFechasAsig").is(":checked")) {
+            $("input[name='chkDiaAsignado']").prop("checked", true);
+        } else {
+            $("input[name='chkDiaAsignado']").prop("checked", false);
+        }
+    }
+
+    function seleccionarTodasInvitados() {
+        if ($("#chkTodasFechasInv").is(":checked")) {
+            $("input[name='chkDiaInvitado']").prop("checked", true);
+        } else{
+            $("input[name='chkDiaInvitado']").prop("checked", false);
+        }
+    }
 
     function listarFechasInvitadas() {
         $.ajax({

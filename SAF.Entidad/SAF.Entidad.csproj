@@ -199,16 +199,67 @@
     <Compile Include="SAF_USUARIO.cs">
       <DependentUpon>SAFModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_ACCEDERSISTEMAADMIN_Result.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_AGENDAREGISTRAR_Result.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_ASIGNARFECHASPROPUESTA_Result.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_ASIGNARGANADORPROPUESTA_Result.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_SAF_AUDITORAPTOINVITAR_Result.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_AUDITORIAS_Result.cs">
       <DependentUpon>SAFModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_SAF_CORTEPUBLICACION_Result.cs">
       <DependentUpon>SAFModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_SAF_CREARPROPUESTA_Result.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_CREARSOLICITUDAUDITOR_Result.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_CREARSOLICITUDSOA_Result.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_DETALLEEQUIPOPORAUDITORIA_Result.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_ELIMINARFECHASASIGINVITACION_Result.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_ELIMINARFECHASASIGPROP_Result.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_ENVIOPROPUESTA_Result.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_EQUIPOAUDITORIA_Result.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_EQUIPOAUDITORIA_RPT_Result.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_SAF_INVITACION_Result.cs">
       <DependentUpon>SAFModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_SAF_INVITARAUDITORES_Result.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_SAF_MEJOREQUIPO_Result.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_PROPUESTAS_Result.cs">
+      <DependentUpon>SAFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_PROPUESTA_RPT_Result.cs">
       <DependentUpon>SAFModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_SAF_RESULTADOCORTE_Result.cs">

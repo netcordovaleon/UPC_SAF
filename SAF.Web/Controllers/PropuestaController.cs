@@ -45,9 +45,9 @@ namespace SAF.Web.Controllers
             }
         }
 
-        public JsonResult ListadoPropuestas()
+        public JsonResult ListadoPropuestas(int? idPub)
         {
-            var propuestas = this.modelEntity.SP_SAF_PROPUESTAS().ToList();
+            var propuestas = this.modelEntity.SP_SAF_PROPUESTAS().ToList().Where(c => c.CODPUB == idPub.GetValueOrDefault());
             propuestas = propuestas.Where(c => c.CODSOA == (int)Session["sessionCodigoResponsableLogin"]).ToList();
             var data = propuestas.Select(c => new string[] { 
                 c.CODPRO.ToString(),

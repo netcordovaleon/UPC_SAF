@@ -34,12 +34,12 @@ namespace SAF.Web
         public string USUMOD { get; set; }
         public string ESTREG { get; set; }
     
-        public virtual SAF_TIPOPARAMETRICA SAF_TIPOPARAMETRICA { get; set; }
         public virtual ICollection<SAF_CAPACITACION> SAF_CAPACITACION { get; set; }
         public virtual ICollection<SAF_CAPACITACION> SAF_CAPACITACION1 { get; set; }
         public virtual ICollection<SAF_EXPERIENCIA> SAF_EXPERIENCIA { get; set; }
         public virtual ICollection<SAF_SOLCAPACITACION> SAF_SOLCAPACITACION { get; set; }
         public virtual ICollection<SAF_SOLCAPACITACION> SAF_SOLCAPACITACION1 { get; set; }
         public virtual ICollection<SAF_SOLEXPERIENCIA> SAF_SOLEXPERIENCIA { get; set; }
+        public virtual SAF_TIPOPARAMETRICA SAF_TIPOPARAMETRICA { get; set; }
     }
 }

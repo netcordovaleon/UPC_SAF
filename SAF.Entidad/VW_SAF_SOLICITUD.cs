@@ -23,10 +23,10 @@ namespace SAF.Entidad
         public string USUMOD { get; set; }
         public string ESTREG { get; set; }
         public Nullable<int> CODTIPSOL { get; set; }
+        public string NOMTIPSOL { get; set; }
         public Nullable<int> ESTSOL { get; set; }
         public Nullable<int> CODSOA { get; set; }
         public Nullable<int> CODAUD { get; set; }
-        public string NOMTIPSOL { get; set; }
         public string NOMESTSOL { get; set; }
     }
 }

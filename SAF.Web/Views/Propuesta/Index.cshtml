@@ -76,6 +76,7 @@
         $(document).ready(function () {
             listarPropuesta();
             $("#btnAgregarPropuesta").click(agregarPropuesta);
+            $("#btnBuscarPropuesta").click(listarPropuesta);
         });
 
         function agregarPropuesta() {
@@ -86,6 +87,7 @@
                 data: { idPub: $("#CODPUB").val() },
                 success: function (result) {
                     mostrarNotificacion(result);
+                    listarPropuesta();
                 }
             });
         }
@@ -95,13 +97,15 @@
                 url: '@Url.Action("ListadoPropuestas", "Propuesta")',
                 type: 'POST',
                 async: false,
-                data: {},
+                data: { idPub: $("#CODPUB").val() },
                 success: function (result) {
                     _dataPropuesta_ = result;
                     tabPropuesta.fnReloadData(_dataPropuesta_);
                 }
             });
         }
+
+        
 
         function verPropuesta(idPropuesta) {
             document.location = '@Url.Action("VerPropuesta", "Propuesta")' + "?idPropuesta=" + idPropuesta;

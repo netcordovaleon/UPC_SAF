@@ -450,8 +450,8 @@
             var retribucion = parseFloat($("#RETRECO").val());
             var igv = (retribucion * 0.18);
             var retribucionTotal = (retribucion + igv);
-            $("#IGVTOTAL").val(igv.toFixed(2));
-            $("#RETRECOTOTAL").val(retribucionTotal.toFixed(2));
+            $("#IGVTOTAL").val(parseInt(igv)); 
+            $("#RETRECOTOTAL").val(parseInt(retribucionTotal));
         }
 
         function listarAuditorias() {

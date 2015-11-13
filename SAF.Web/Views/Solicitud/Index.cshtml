@@ -100,7 +100,8 @@
 
         function crearNuevaSolicitud() {
             bootbox.confirm(parametros.general.mensajeConfirmacion, function (result) {
-                confirmaNuevaSolicitud();
+                if(result)
+                    confirmaNuevaSolicitud();
             });
         };
 

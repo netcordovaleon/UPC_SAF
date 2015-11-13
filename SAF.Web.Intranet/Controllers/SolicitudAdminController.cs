@@ -132,7 +132,7 @@ namespace SAF.Web.Intranet.Controllers
             var infoSolicitud = modelEntity.SAF_SOLICITUD.Where(c => c.CODSOL == model.codigoSolicitud).FirstOrDefault();
 
             Helper.NotificacionAdmin noti = new Helper.NotificacionAdmin();
-            noti.grabarNotificacionSOA(infoSolicitud.CODAUD.Value, Notificacion.asuntoSolicitudObservada, Notificacion.bodySolicitudObservada);
+            noti.grabarNotificacionAuditor(infoSolicitud.CODAUD.Value, Notificacion.asuntoSolicitudObservada, Notificacion.bodySolicitudObservada);
 
             infoSolicitud.OBSSOL = model.observacionSolicitud;
             infoSolicitud.ESTSOL = (int)Estado.Solicitud.Observada;

@@ -218,6 +218,9 @@
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
     <Compile Include="SAF_ARCHIVOPartial.cs" />
+    <Compile Include="SAF_ASISTENCIA.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
     <Compile Include="SAF_AUDITOR.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
@@ -276,6 +279,9 @@
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
     <Compile Include="SAF_EXPERIENCIA.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAF_FALTAJUSTIFICA.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
     <Compile Include="SAF_FLUJO_DOCUMENTO.cs">
@@ -344,13 +350,22 @@
     <Compile Include="SAF_USUARIO.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_ACCEDERSISTEMAADMIN_Result.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_DISPONIBILIDADAUDITOR_Result.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_ACEPTARINVITACION_Result.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_SAF_AGENDAREGISTRAR_Result.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_SAF_ASIGNARFECHASPROPUESTA_Result.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_ASIGNARGANADORPROPUESTA_Result.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_SAF_AUDITORAPTOINVITAR_Result.cs">
@@ -380,7 +395,13 @@
     <Compile Include="SP_SAF_ELIMINARFECHASASIGPROP_Result.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_SAF_ENVIOPROPUESTA_Result.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_SAF_EQUIPOAUDITORIA_Result.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_EQUIPOAUDITORIA_RPT_Result.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_SAF_FECHASINVITADAS_Result.cs">
@@ -398,14 +419,20 @@
     <Compile Include="SP_SAF_PROPUESTAS_Result.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_SAF_PROPUESTA_RPT_Result.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_SAF_RESULTADOCORTE_Result.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="sysdiagrams.cs">
+    <Compile Include="VW_SAF_AUDITORIAEQUIPO.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
     <Compile Include="VW_SAF_INVITACION.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_SAF_PROPUESTAEJECUCION.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
     <Compile Include="VW_SAF_PUBLICACION.cs">
@@ -635,6 +662,7 @@
     <Content Include="Views\Propuesta\_AsignarFechaEquipo.cshtml" />
     <Content Include="Views\BandejaInvitaciones\Index.cshtml" />
     <Content Include="Views\Notificacion\Bandeja.cshtml" />
+    <Content Include="Views\BandejaInvitaciones\_DetalleInvitacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -219,5 +219,18 @@ namespace SAF.Negocio.Implementacion
             result.DESNOT = noti.DESNOT;
             return result;
         }
+
+
+        public SoaDTO ObtenerSoaPorUsuario(string usuario)
+        {
+            var infoSOA = this._safSoaLogic.InformacionPorUsuario(usuario);
+
+            var result = new SoaDTO();
+            result.CODSOA = infoSOA.CODSOA;
+            result.RAZSOCSOA = infoSOA.RAZSOCSOA;
+            result.RUCSOA = infoSOA.RUCSOA;
+            return result;
+
+        }
     }
 }
