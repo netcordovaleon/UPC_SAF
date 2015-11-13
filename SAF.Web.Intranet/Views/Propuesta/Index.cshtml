@@ -8,7 +8,6 @@
 }
 
 @Html.HiddenFor(c => c.CODPRO)
-@Html.HiddenFor(c => c.CODPUB)
 
 <div class="callout callout-info">
     <h4><i class="icon fa fa-info"></i>&nbsp;Información</h4>
@@ -30,7 +29,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
-                            @Html.LabelFor(c=>c.CODPUB)
+                            @Html.LabelFor(c => c.CODPUB)
                             @Html.DropDownListFor(c => c.CODPUB, Model.cboPublicaciones, "Seleccione", new { @class = "form-control" })
                         </div>
                         <div class="col-md-3">
@@ -65,65 +64,65 @@
     <script type="text/javascript" language="javascript">
 
 
-    var _dataPropuestas_ = null;
-    var tabPropuestas = $("#tabPropuestas").dataTable({
-        "info": false,
-        "bServerSide": false,
-        "data": _dataPropuestas_,
-        "order": [[1, "asc"]],
-        "columns": [
-            {
-                "bSortable": false,
-                "sClass": "center",
-                "sWidth": "5%",
-                "render": function (data, type, row) {
-                    return '<center><button class="btn btn-primary" title="Informacion Propuesta" type="button" onclick="verInformacionPropuesta(' + row[0] + ');"><i class="fa fa-file-pdf-o"></i></button></center>';
-                }
-            },
-            {
-                "sTitle": "Sociedad",
-                "render": function (data, type, row) {
-                    return "<div style='font-size:13px;'><i>RUC - Razon Social:</i> <br/>" + data + "</div>";
-                }
-            },
-            { "sTitle": "Representante", "sWidth": "15%" },
-            { "sTitle": "Cel. Representate", "visible": false },
-            { "sTitle": "Correo Representate", "visible": false },
-            { "sTitle": "Entidad" },
-            { "sTitle": "Retribucion" },
-            { "sTitle": "IGV" },
-            {
-                "sTitle": "Estado",
-                "sClass": "center",
-                "render": function (data, type, row) {
-                    if (row[10] == '@Convert.ToInt32(Estado.Propuesta.Ganadora)')
-                        return "<span style='font-weight:bold; color:green; font-size:15px;'>" + data + " <h4><i class='fa fa-thumbs-up'></i></h4> </span>";
-                    else if (row[10] == '@Convert.ToInt32(Estado.Propuesta.Descalifica)')
-                        return "<span style='font-weight:bold; color:red; font-size:15px;'>" + data + " <h4><i class='fa fa-thumbs-down'></i></h4> </span>";
-                    else
-                        return "<span >" + data + "</span>";
+        var _dataPropuestas_ = null;
+        var tabPropuestas = $("#tabPropuestas").dataTable({
+            "info": false,
+            "bServerSide": false,
+            "data": _dataPropuestas_,
+            "order": [[1, "asc"]],
+            "columns": [
+                {
+                    "bSortable": false,
+                    "sClass": "center",
+                    "sWidth": "5%",
+                    "render": function (data, type, row) {
+                        return '<center><button class="btn btn-primary" title="Informacion Propuesta" type="button" onclick="verInformacionPropuesta(' + row[0] + ');"><i class="fa fa-file-pdf-o"></i></button></center>';
+                    }
+                },
+                {
+                    "sTitle": "Sociedad",
+                    "render": function (data, type, row) {
+                        return "<div style='font-size:13px;'><i>RUC - Razon Social:</i> <br/>" + data + "</div>";
+                    }
+                },
+                { "sTitle": "Representante", "sWidth": "15%" },
+                { "sTitle": "Cel. Representate", "visible": false },
+                { "sTitle": "Correo Representate", "visible": false },
+                { "sTitle": "Entidad" },
+                { "sTitle": "Retribucion" },
+                { "sTitle": "IGV" },
+                {
+                    "sTitle": "Estado",
+                    "sClass": "center",
+                    "render": function (data, type, row) {
+                        if (row[10] == '@Convert.ToInt32(Estado.Propuesta.Ganadora)')
+                            return "<span style='font-weight:bold; color:green; font-size:15px;'>" + data + " <h4><i class='fa fa-thumbs-up'></i></h4> </span>";
+                        else if (row[10] == '@Convert.ToInt32(Estado.Propuesta.Descalifica)')
+                            return "<span style='font-weight:bold; color:red; font-size:15px;'>" + data + " <h4><i class='fa fa-thumbs-down'></i></h4> </span>";
+                        else
+                            return "<span >" + data + "</span>";
                     }
                 },
 
-                {
-                    "sTitle": "Puntaje",
-                    "sClass": "center",
-                    "render": function (data, type, row) {
-                        return "<span class='valoresPropuesta' id='valProp" + row[0] + "' style='font-weight:bold; color:red; font-size:12px;'>" + data + "</span>";
-                    }
-                },
-                {
-                    "sTitle": "Ganador",
-                    "render": function (data, type, row) {
-                        return "<center><input type='radio' value='" + row[0] + "' name='rdGanadorPropuesta' onclick='javascript:seleccionarPropuesta(this.value, " + row[11] + ");' /></center>";
-                    }
-                },
+                    {
+                        "sTitle": "Puntaje",
+                        "sClass": "center",
+                        "render": function (data, type, row) {
+                            return "<span class='valoresPropuesta' id='valProp" + row[0] + "' style='font-weight:bold; color:red; font-size:12px;'>" + data + "</span>";
+                        }
+                    },
+                    {
+                        "sTitle": "Ganador",
+                        "render": function (data, type, row) {
+                            return "<center><input type='radio' value='" + row[0] + "' name='rdGanadorPropuesta' onclick='javascript:seleccionarPropuesta(this.value, " + row[11] + ");' /></center>";
+                        }
+                    },
             ],
             "fnDrawCallback": function (oSettings) {
                 var mayorPropuesta = 0;
                 var idPropuestaGanadora = 0;
                 $(".valoresPropuesta").each(function () {
-                    if (parseInt($(this).text()) > mayorPropuesta){
+                    if (parseInt($(this).text()) > mayorPropuesta) {
                         mayorPropuesta = parseInt($(this).text());
                         idPropuestaGanadora = $(this).attr("id");
                     }
@@ -150,29 +149,32 @@
         function listarPropuestas() {
             $.ajax({
                 url: '@Url.Action("ListadoPropuestasCalificar", "Propuesta")',
-            type: 'POST',
-            async: false,
-            data: { idPub: $("#CODPUB").val() },
-            success: function (result) {
-                _dataPropuestas_ = result;
-                tabPropuestas.fnReloadData(_dataPropuestas_);
-            }
-        });
-    }
+                type: 'POST',
+                async: false,
+                data: { idPub: $("#CODPUB").val() },
+                success: function (result) {
+                    _dataPropuestas_ = result;
+                    tabPropuestas.fnReloadData(_dataPropuestas_);
+                }
+            });
+        }
 
-    function asignarPropuestaGanadora() {
-        $.ajax({
-            url: '@Url.Action("AsignarPropuestaComoGanadora", "Propuesta")',
-            type: 'POST',
-            async: false,
-            data: { idPropuesta: $("#CODPRO").val(), idPublicacion : $("").val() },
-            success: function (result) {
-                mostrarNotificacion(result);
-                listarPropuestas();
-            }
-        });
-    }
+        function asignarPropuestaGanadora() {
+            $.ajax({
+                url: '@Url.Action("AsignarPropuestaComoGanadora", "Propuesta")',
+                type: 'POST',
+                async: false,
+                data: { idPropuesta: $("#CODPRO").val(), idPublicacion: $("").val() },
+                success: function (result) {
+                    mostrarNotificacion(result);
+                    listarPropuestas();
+                }
+            });
+        }
 
-</script>
+        function verInformacionPropuesta(id) {
+            window.location.href = '@Url.Action("DescargarReportePropuesta", "Propuesta", new { id ="_id_" })'.replace('_id_', id);
+        }
 
+    </script>
 }

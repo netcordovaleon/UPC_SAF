@@ -103,5 +103,23 @@ namespace SAF.Web.Intranet
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_ASIGNARGANADORPROPUESTA_Result>("SP_SAF_ASIGNARGANADORPROPUESTA", cODPROParameter, cODPUBParameter);
         }
+    
+        public virtual ObjectResult<SP_SAF_PROPUESTA_RPT_Result> SP_SAF_PROPUESTA_RPT(Nullable<int> cODPRO)
+        {
+            var cODPROParameter = cODPRO.HasValue ?
+                new ObjectParameter("CODPRO", cODPRO) :
+                new ObjectParameter("CODPRO", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_PROPUESTA_RPT_Result>("SP_SAF_PROPUESTA_RPT", cODPROParameter);
+        }
+    
+        public virtual ObjectResult<SP_SAF_EQUIPOAUDITORIA_RPT_Result> SP_SAF_EQUIPOAUDITORIA_RPT(Nullable<int> cODPRO)
+        {
+            var cODPROParameter = cODPRO.HasValue ?
+                new ObjectParameter("CODPRO", cODPRO) :
+                new ObjectParameter("CODPRO", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_EQUIPOAUDITORIA_RPT_Result>("SP_SAF_EQUIPOAUDITORIA_RPT", cODPROParameter);
+        }
     }
 }

@@ -186,6 +186,7 @@
     </Compile>
     <Compile Include="Helper\Archivo.cs" />
     <Compile Include="Helper\Compare.cs" />
+    <Compile Include="Helper\Gantt.cs" />
     <Compile Include="Helper\NotificacionAdmin.cs" />
     <Compile Include="Hubs\NotificacionHub.cs" />
     <Compile Include="Hubs\NotificacionProceso.cs" />
@@ -370,6 +371,9 @@
     <Compile Include="SP_SAF_CREARSOLICITUDSOA_Result.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_SAF_DETALLEEQUIPOPORAUDITORIA_Result.cs">
+      <DependentUpon>modeloExtranet.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_SAF_ELIMINARFECHASASIGINVITACION_Result.cs">
       <DependentUpon>modeloExtranet.tt</DependentUpon>
     </Compile>
@@ -423,7 +427,6 @@
     <Content Include="Content\datepicker3.css" />
     <Content Include="Content\daterangepicker-bs3.css" />
     <Content Include="Content\font-awesome.min.css" />
-    <Content Include="Content\Images\sort_asc.png" />
     <Content Include="Content\Images\sort_asc_disabled.png" />
     <Content Include="Content\Images\sort_both.png" />
     <Content Include="Content\Images\sort_desc.png" />
@@ -449,19 +452,22 @@
     <Content Include="Content\Image\user6-128x128.jpg" />
     <Content Include="Content\Image\user7-128x128.jpg" />
     <Content Include="Content\Image\user8-128x128.jpg" />
+    <Content Include="Content\imgGantt\grid.png" />
+    <Content Include="Content\imgGantt\icon_sprite.png" />
+    <Content Include="Content\imgGantt\slider_handle.png" />
     <Content Include="Content\ionicons.min.css" />
     <Content Include="Content\jquery-jvectormap-1.2.2.css" />
     <Content Include="Content\morris.css" />
     <Content Include="Content\pnotify.custom.css" />
     <Content Include="Content\pnotify.custom.min.css" />
-    <Content Include="Content\prettify.css" />
+    <Content Include="Content\cssGantt\prettify.css" />
     <Content Include="Content\saf.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\skin-blue-light.css" />
     <Content Include="Content\skin-blue-light.min.css" />
     <Content Include="Content\skin-blue.css" />
     <Content Include="Content\skin-blue.min.css" />
-    <Content Include="Content\gantt.css" />
+    <Content Include="Content\cssGantt\gantt.css" />
     <Content Include="Content\_all-skins.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />

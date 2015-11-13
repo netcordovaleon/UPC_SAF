@@ -252,11 +252,39 @@ namespace SAF.Web.Controllers
         #endregion
 
         #region Auditoria - Gantt
-        //public JsonResult ObtenerGanttAuditoria(int id)
-        //{
-        //    //var equipo = modelEntity.SAF_PROPEQUIPO.Where()
-        //    //var detalle = modelEntity.SAF_PROPEQUIPODETALLE.Where(x=>x.)
-        //}
+        public JsonResult ObtenerGanttAuditoria(int id)
+        {
+            var gantt = new List<Gantt>();
+            var lista = modelEntity.SP_SAF_DETALLEEQUIPOPORAUDITORIA(id).ToList();
+            if (lista.Any())
+            {
+                var listCar = lista.Select(x => new { NOMCAR = x.NOMCAR, NOMCOMAUD = x.NOMCOMAUD, CODPROEQU = x.CODPROEQU }).Distinct();
+                var cargos = modelEntity.SAF_CARGO.ToList();
+                cargos.ForEach(x => gantt.AddRange(listCar.Where(y => y.NOMCAR == x.NOMCAR).Select(y => new Gantt()
+                {
+                    name = string.Format("<span style='font-size: 70% !important;'>{0}</span>", x.NOMCAR.ToUpper()),
+                    desc = string.Format("<span style='font-size: 65% !important;'>{0}</span>", y.NOMCOMAUD.ToUpper()),
+                    values = lista.Where(z => z.NOMCAR == x.NOMCAR && z.CODPROEQU == y.CODPROEQU).Select(a => new GanttDet
+                    {
+                        from = a.FECPROEQUIDET.GetValueOrDefault().ToString("MM/dd/yyyy"),
+                        to = a.FECPROEQUIDET.GetValueOrDefault().ToString("MM/dd/yyyy"),
+                        label = "8 hrs",
+                        customClass = "ganttGreen"
+                    }).ToList()
+                })));
+
+            }
+            else
+            {
+                gantt.Add(new Gantt()
+                {
+                    name = "",
+                    desc = string.Format("<span style='font-size: 65% !important;'>{0}</span>", "NO POSEE REGISTROS"),
+                    values = new List<GanttDet>()
+                });
+            }
+            return Json(gantt.ToArray());
+        }
         #endregion
     }
 }

@@ -102,7 +102,7 @@
 .fn-gantt .dataPanel {
     margin-left: 0px;
     border-right: 1px solid #DDD;
-    background-image: url(../img/grid.png);
+    background-image: url(../imgGantt/grid.png);
     background-repeat: repeat;
     background-position: 24px 24px;
     position: relative;
@@ -209,30 +209,46 @@
 }
 
 .fn-gantt .ganttRed {
-    background-color: #F9C4E1;
+    z-index: 11 !important;
+    background-color: #F9C4E1 !important;
 }
 .fn-gantt .ganttRed .fn-label {
+    z-index: 11 !important;
     color: #78436D !important;
 }
 
 .fn-gantt .ganttGreen {
-    background-color: #D8EDA3;
+    z-index: 11 !important;
+    background-color: #D8EDA3 !important;
 }
 .fn-gantt .ganttGreen .fn-label {
+    z-index: 11 !important;
     color: #778461 !important;
 }
 
 .fn-gantt .ganttGray {
-    background-color: #CCCCCC;
+    z-index: 11 !important;
+    background-color: #CCCCCC !important;
 }
 .fn-gantt .ganttGray .fn-label {
+    z-index: 11 !important;
+    color: #626184 !important;
+}
+.fn-gantt .ganttTransparent {
+    z-index: 11 !important;
+    background-color: transparent !important;
+}
+.fn-gantt .ganttTransparent .fn-label {
+    z-index: 11 !important;
     color: #626184 !important;
 }
 
 .fn-gantt .ganttOrange {
-    background-color: #FCD29A;
+    z-index: 11 !important;
+    background-color: #FCD29A !important;
 }
 .fn-gantt .ganttOrange .fn-label {
+    z-index: 11 !important;
     color: #714715 !important;
 }
 
@@ -320,7 +336,7 @@
 .fn-gantt .navigate .nav-slider-button {
     width: 17px;
     height: 60px;
-    background: url(../img/slider_handle.png) center center no-repeat;
+    background: url(../imgGantt/slider_handle.png) center center no-repeat;
     left: 0px;
     top: 0px;
     margin: -26px 0 0 0;
@@ -351,7 +367,7 @@
     width: 20px;
     height: 20px;
     font-size: 0px;
-    background: #595959 url(../img/icon_sprite.png) !important;
+    background: #595959 url(../imgGantt/icon_sprite.png) !important;
     border: 1px solid #454546;
     cursor: pointer;
     vertical-align: top;

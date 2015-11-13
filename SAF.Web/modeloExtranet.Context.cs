@@ -301,5 +301,14 @@ namespace SAF.Web
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_ELIMINARFECHASASIGINVITACION_Result>("SP_SAF_ELIMINARFECHASASIGINVITACION", cODINVParameter, sTRCODINVDETParameter);
         }
+    
+        public virtual ObjectResult<SP_SAF_DETALLEEQUIPOPORAUDITORIA_Result> SP_SAF_DETALLEEQUIPOPORAUDITORIA(Nullable<int> cODAUDITORIA)
+        {
+            var cODAUDITORIAParameter = cODAUDITORIA.HasValue ?
+                new ObjectParameter("CODAUDITORIA", cODAUDITORIA) :
+                new ObjectParameter("CODAUDITORIA", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SAF_DETALLEEQUIPOPORAUDITORIA_Result>("SP_SAF_DETALLEEQUIPOPORAUDITORIA", cODAUDITORIAParameter);
+        }
     }
 }

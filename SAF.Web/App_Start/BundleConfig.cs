@@ -173,9 +173,9 @@ namespace SAF.Web
                 ));
 
             bundles.Add(new StyleBundle("~/Content/Layout").Include(
-                "~/Content/gantt.css",
+                "~/Content/cssGantt/gantt.css",
                 "~/Content/bootstrap.min.css",
-                "~/Content/prettify.css",
+                "~/Content/cssGantt/prettify.css",
                 "~/Content/font-awesome.min.css",
                 "~/Content/ionicons.min.css",
                 "~/Content/AdminLTE.css",

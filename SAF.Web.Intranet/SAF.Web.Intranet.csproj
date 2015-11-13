@@ -40,6 +40,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -197,6 +201,11 @@
     <Compile Include="Models\PropuestaModel.cs" />
     <Compile Include="Models\SoaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\Datasets\dsPropuesta.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsPropuesta.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SAF_ARCHIVO.cs">
       <DependentUpon>modeloIntranet.tt</DependentUpon>
     </Compile>
@@ -327,7 +336,13 @@
     <Compile Include="SP_SAF_ASIGNARGANADORPROPUESTA_Result.cs">
       <DependentUpon>modeloIntranet.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_SAF_EQUIPOAUDITORIA_RPT_Result.cs">
+      <DependentUpon>modeloIntranet.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_SAF_PROPUESTAS_Result.cs">
+      <DependentUpon>modeloIntranet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAF_PROPUESTA_RPT_Result.cs">
       <DependentUpon>modeloIntranet.tt</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
@@ -441,6 +456,17 @@
     <Content Include="Areas\Publicacion\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Publicacion\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Publicacion\Views\Evaluador\Publicacion.cshtml" />
+    <Content Include="Reports\Datasets\dsPropuesta.xsc">
+      <DependentUpon>dsPropuesta.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\Datasets\dsPropuesta.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsPropuesta.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\Datasets\dsPropuesta.xss">
+      <DependentUpon>dsPropuesta.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap3-wysihtml5.all.min.js" />
     <Content Include="Scripts\ckeditor.js" />
@@ -596,6 +622,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\rptPropuesta.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

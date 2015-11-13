@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="modeloIntranet.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="modeloIntranet.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="SAF_ARCHIVO">
           <Key>
             <PropertyRef Name="CODARC" />
@@ -1427,6 +1427,12 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
         <Function Name="SP_SAF_ASIGNARGANADORPROPUESTA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CODPRO" Type="int" Mode="In" />
           <Parameter Name="CODPUB" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SAF_EQUIPOAUDITORIA_RPT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CODPRO" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SAF_PROPUESTA_RPT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CODPRO" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_SAF_PROPUESTAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="modeloIntranetStoreContainer">
@@ -2992,6 +2998,12 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
             <End Role="SAF_AUDITOR" EntitySet="SAF_AUDITOR" />
             <End Role="SAF_CORTE_AUDITOR_CARGO" EntitySet="SAF_CORTE_AUDITOR_CARGO" />
           </AssociationSet>
+          <FunctionImport Name="SP_SAF_PROPUESTA_RPT" ReturnType="Collection(modeloIntranet.SP_SAF_PROPUESTA_RPT_Result)">
+          <Parameter Name="CODPRO" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SAF_EQUIPOAUDITORIA_RPT" ReturnType="Collection(modeloIntranet.SP_SAF_EQUIPOAUDITORIA_RPT_Result)">
+            <Parameter Name="CODPRO" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="SAF_ARCHIVO">
           <Key>
@@ -3572,6 +3584,30 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="SP_SAF_PROPUESTA_RPT_Result">
+          <Property Type="Int32" Name="CODPRO" Nullable="false" />
+          <Property Type="String" Name="NUMPRO" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FECREG" Nullable="true" Precision="23" />
+          <Property Type="String" Name="DESBAS" Nullable="true" MaxLength="300" />
+          <Property Type="Int32" Name="CODPUB" Nullable="true" />
+          <Property Type="String" Name="NUMPUB" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="CODSOA" Nullable="false" />
+          <Property Type="String" Name="RUCSOA" Nullable="true" MaxLength="21" />
+          <Property Type="String" Name="RAZSOCSOA" Nullable="true" MaxLength="150" />
+          <Property Type="Decimal" Name="RETRECO" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="IGVTOTAL" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="RETRECOTOTAL" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="MONTVIATICO" Nullable="true" Precision="19" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="SP_SAF_EQUIPOAUDITORIA_RPT_Result">
+          <Property Type="Int32" Name="CODPRO" Nullable="true" />
+          <Property Type="Int32" Name="CODAUD" Nullable="false" />
+          <Property Type="String" Name="PERAUD" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="CODPROEQU" Nullable="false" />
+          <Property Type="Int32" Name="CODCAR" Nullable="false" />
+          <Property Type="String" Name="NOMCAR" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NOMB_AUD" Nullable="true" MaxLength="101" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4438,6 +4474,38 @@ warning 6002: The table/view 'SI_SOCAUD.dbo.VW_SAF_SOLICITUD' does not have a pr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_SAF_PROPUESTA_RPT" FunctionName="modeloIntranet.Store.SP_SAF_PROPUESTA_RPT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="modeloIntranet.SP_SAF_PROPUESTA_RPT_Result">
+                <ScalarProperty Name="CODPRO" ColumnName="CODPRO" />
+                <ScalarProperty Name="NUMPRO" ColumnName="NUMPRO" />
+                <ScalarProperty Name="FECREG" ColumnName="FECREG" />
+                <ScalarProperty Name="DESBAS" ColumnName="DESBAS" />
+                <ScalarProperty Name="CODPUB" ColumnName="CODPUB" />
+                <ScalarProperty Name="NUMPUB" ColumnName="NUMPUB" />
+                <ScalarProperty Name="CODSOA" ColumnName="CODSOA" />
+                <ScalarProperty Name="RUCSOA" ColumnName="RUCSOA" />
+                <ScalarProperty Name="RAZSOCSOA" ColumnName="RAZSOCSOA" />
+                <ScalarProperty Name="RETRECO" ColumnName="RETRECO" />
+                <ScalarProperty Name="IGVTOTAL" ColumnName="IGVTOTAL" />
+                <ScalarProperty Name="RETRECOTOTAL" ColumnName="RETRECOTOTAL" />
+                <ScalarProperty Name="MONTVIATICO" ColumnName="MONTVIATICO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SAF_EQUIPOAUDITORIA_RPT" FunctionName="modeloIntranet.Store.SP_SAF_EQUIPOAUDITORIA_RPT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="modeloIntranet.SP_SAF_EQUIPOAUDITORIA_RPT_Result">
+                <ScalarProperty Name="CODPRO" ColumnName="CODPRO" />
+                <ScalarProperty Name="CODAUD" ColumnName="CODAUD" />
+                <ScalarProperty Name="PERAUD" ColumnName="PERAUD" />
+                <ScalarProperty Name="CODPROEQU" ColumnName="CODPROEQU" />
+                <ScalarProperty Name="CODCAR" ColumnName="CODCAR" />
+                <ScalarProperty Name="NOMCAR" ColumnName="NOMCAR" />
+                <ScalarProperty Name="NOMB_AUD" ColumnName="NOMB_AUD" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
