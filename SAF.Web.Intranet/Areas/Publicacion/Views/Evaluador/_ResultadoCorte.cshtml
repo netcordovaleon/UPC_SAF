@@ -42,34 +42,29 @@
 
 <script type="text/javascript">
 
-    var tabCortePublicacion;
+    
     var _dataCortePublicacion_ = null;
 
     $(document).ready(function () {
         listarCortePublicacion();
     });
 
+    var tabCortePublicacion = $("#tabCortePublicacion").dataTable({
+        "info": false,
+        "bServerSide": false,
+        "data": _dataCortePublicacion_,
+        "order": [[0, "asc"]],
+        "columns": [
+            { "sTitle": "Auditor" },
+            { "sTitle": "Cargo" },
+            { "sTitle": "Capacitacion" },
+            { "sTitle": "Experiencia" },
+            { "sTitle": "Total" }
+        ]
+
+    });
+
     function listarCortePublicacion() {
-
-
-
-
-        if (tabCortePublicacion == undefined) {
-            tabCortePublicacion = $("#tabCortePublicacion").dataTable({
-                "info": false,
-                "bServerSide": false,
-                "data": _dataCortePublicacion_,
-                "order": [[0, "asc"]],
-                "columns": [
-                    { "sTitle": "Auditor" },
-                    { "sTitle": "Cargo" },
-                    { "sTitle": "Capacitacion" },
-                    { "sTitle": "Experiencia" },
-                    { "sTitle": "Total" }
-                ]
-
-            });
-
             $.ajax({
                 url: '@Url.Action("ListarResultadoCortePublicacion", "Evaluador", new { Area = "Publicacion" })',
                 type: 'POST',
@@ -80,14 +75,6 @@
                     tabCortePublicacion.fnReloadData(_dataCortePublicacion_);
                 }
             });
-
-
-        } else {
-            tabCortePublicacion.fnReloadAjax();
-        }
-
-
-
     }
 
 

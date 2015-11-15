@@ -47,11 +47,11 @@ namespace SAF.Web.Models
         public string dirAud { get; set; }
 
         [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
-        [Display(Name = "Departamento")]
+        [Display(Name = "Pais")]
         public Nullable<int> codDeparAud { get; set; }
 
         [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
-        [Display(Name = "Provincia")]
+        [Display(Name = "Departamento")]
         public Nullable<int> codProvAud { get; set; }
 
         [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]

@@ -267,7 +267,7 @@
             {
                 "sClass": "center",
                 "render": function (data, type, row) {
-                    return "";
+                    return '<center><button class="btn btn-info" title="Descarga" type="button" onclick="descargarArchivo(' + row[5] + ');"><i class="fa fa-download"></i></button></center>';
                 }
             },
             ]
@@ -310,10 +310,16 @@
             {
                 "sClass": "center",
                 "render": function (data, type, row) {
-                    return "";
+                    return '<center><button class="btn btn-info" title="Descarga" type="button" onclick="descargarArchivo(' + row[5] + ');"><i class="fa fa-download"></i></button></center>';
                 }
             },
             ]
         });
+
+
+        function descargarArchivo(id) {
+            document.location = '@Url.Action("DescargarArchivo", "General", new { Area = "" })' + '?id=' + id;
+
+        }
     </script>
 }

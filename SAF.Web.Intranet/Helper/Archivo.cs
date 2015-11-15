@@ -114,7 +114,7 @@ namespace SAF.Web.Helper
 
             if (resultado)
                 return archivo;
-            throw new Exception("Ha ocurrido un error al intentar descargar el archivo.");
+            return null;
         }
 
         public static long? RegistrarArchivo(long? id, FileBe filebe)
