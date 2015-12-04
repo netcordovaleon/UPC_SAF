@@ -39,6 +39,10 @@ namespace SAF.Negocio.Contrato
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetConsultas?idSoa={idSoa}&idPub={idPub}")]
         IEnumerable<ConsultaDTO> listarConsulta(int idSoa, int idPub);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetDisponibleConsulta?idPub={idPub}")]
+        MensajeRespuesta ValidarFechaRegConsulta(int idPub);
         
         #endregion
 

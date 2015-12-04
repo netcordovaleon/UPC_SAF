@@ -80,10 +80,29 @@ namespace SAF.Negocio.Implementacion
             return result;
         }
 
+
+        public MensajeRespuesta ValidarFechaRegConsulta(int idPub)
+        {
+
+            var pub = this._safPublicacionLogic.BuscarPorId(idPub);
+
+
+            var fechaString = pub.FECMAXCRECON.GetValueOrDefault().ToShortDateString();
+            var fechaMaxConsulta = Convert.ToDateTime(fechaString);
+
+            if (fechaMaxConsulta < DateTime.Now)
+            {
+                return new MensajeRespuesta("Fecha para registro de consultas finalizado", false);
+            }
+
+            return new MensajeRespuesta("Ok", true);
+        }
+
         public MensajeRespuesta registrarConsulta(int idSoa, int idPub, string desCon)
         {
             try
             {
+
                 var entidad = new SAF_CONSULTA()
                 {
                     CODPUB = idPub,
@@ -121,7 +140,26 @@ namespace SAF.Negocio.Implementacion
         {
             try
             {
+
                 var consulta = this._safConsultaLogic.BuscarPorId(idCon);
+
+                var pub = this._safPublicacionLogic.BuscarPorId(consulta.CODPUB.GetValueOrDefault());
+
+
+                var fechaString = pub.FECMAXCRECON.GetValueOrDefault().ToShortDateString();
+                var fechaMaxConsulta = Convert.ToDateTime(fechaString);
+
+                if (fechaMaxConsulta < DateTime.Now)
+                {
+                    return new MensajeRespuesta("Fecha para registro de consultas finalizado", false);
+                }
+
+
+                if (consulta.ESTCON == (int)Estado.ConsultasPublicacion.Enviado)
+                {
+                    return new MensajeRespuesta("La consulta ya fue enviada", false);
+                }
+
                 consulta.ESTCON = (int)Estado.ConsultasPublicacion.Enviado;
                 this._safConsultaLogic.Actualizar(consulta);
                 return new MensajeRespuesta(Mensaje.MensajeOperacionRealizadaExito, true);
