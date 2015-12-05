@@ -24,6 +24,8 @@ namespace SAF.Web
                 "~/Scripts/jquery-jvectormap-1.2.2.min.js",
                 "~/Scripts/jquery-jvectormap-world-mill-en.js",
                 "~/Scripts/jquery.knob.js", //check
+                "~/Scripts/globalize/globalize.js", //by rolo
+                "~/Scripts/globalize/cultures/globalize.culture.es-PE.js", //by rolo
                 "~/Scripts/moment.min.js",
                 "~/Scripts/daterangepicker.js",
                 "~/Scripts/bootstrap-datepicker.js",
@@ -54,7 +56,7 @@ namespace SAF.Web
                 "~/Scripts/jquery.validate.min.js",
                 "~/Scripts/jquery.validate.unobtrusive.min.js",
 
-
+                "~/Scripts/jquery.textarea.counter.js",
                 "~/Scripts/core.js"
                 
                 ));
@@ -87,6 +89,8 @@ namespace SAF.Web
                 "~/Scripts/jquery-ui.min.js",
                 "~/Scripts/jquery.validate*",
                 "~/Scripts/gantt/jquery.fn.gantt.min.js",
+                "~/Scripts/globalize/globalize.js", //by rolo
+                "~/Scripts/globalize/cultures/globalize.culture.es-PE.js", //by rolo
                 "~/Scripts/bootstrap.min.js",
                 "~/Scripts/gantt/prettify.js",
                 "~/Scripts/raphael-min.js",
@@ -122,8 +126,10 @@ namespace SAF.Web
                 "~/Scripts/bootstrap-datepicker.js",
                 "~/Scripts/locales/bootstrap-datepicker.es.js",
                 "~/Scripts/bootstrap-timepicker.js",
-
+                "~/Scripts/jquery.textarea.counter.js",
                 "~/Scripts/core.js"
+                
+                
                 ));
 
             bundles.Add(new ScriptBundle("~/Scripts/LayoutEmpty").Include(

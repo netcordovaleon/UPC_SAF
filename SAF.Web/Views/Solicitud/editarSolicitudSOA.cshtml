@@ -112,12 +112,12 @@
                         <div class="row">
                             <div class="col-md-4">
                                 @Html.LabelFor(c => c.celRepLegSoa)
-                                @Html.TextBoxFor(c => c.celRepLegSoa, new { @class = "form-control" })
+                                @Html.TextBoxFor(c => c.celRepLegSoa, new { @class = "form-control", @maxlength = "9" })
                                 @Html.ValidationMessageFor(c => c.celRepLegSoa)
                             </div>
                             <div class="col-md-4">
                                 @Html.LabelFor(c => c.telRepLegSoa)
-                                @Html.TextBoxFor(c => c.telRepLegSoa, new { @class = "form-control" })
+                                @Html.TextBoxFor(c => c.telRepLegSoa, new { @class = "form-control", @maxlength = "8" })
                                 @Html.ValidationMessageFor(c => c.telRepLegSoa)
                             </div>
                         </div>
@@ -142,7 +142,8 @@
                         <div class="row">
                             <div class="col-md-4">
                                 @Html.LabelFor(c => c.numParSunSoa)
-                                @Html.TextBoxFor(c => c.numParSunSoa, new { @class = "form-control" })
+                                @Html.TextBoxFor(c => c.numParSunSoa, new { @class = "form-control", @maxlength = "10" })
+                                @Html.ValidationMessageFor(c => c.numParSunSoa)
                             </div>
                             <div class="col-md-4">
                                 @Html.HiddenFor(c => c.firIntSoa)
@@ -168,7 +169,8 @@
                         <div class="row">
                             <div class="col-md-4">
                                 @Html.LabelFor(c => c.codColConSoa)
-                                @Html.TextBoxFor(c => c.codColConSoa, new { @class = "form-control" })
+                                @Html.TextBoxFor(c => c.codColConSoa, new { @class = "form-control", @maxlength = "10" })
+                                @Html.ValidationMessageFor(c => c.codColConSoa)
                             </div>
                         </div>
 
@@ -222,11 +224,18 @@
             } else {
                 $("#btnGuardarInfoSoaSolicitud").hide();
                 $("#btnEnviarInfoSoaSolicitud").hide();
+
+                $("input").prop("disabled", true);
+                $("select").prop("disabled", true);
+                $("#btnCancelarInfoSoaSolicitud").attr("disabled", false);
                 //$("#btnGuardarInfoSoaSolicitud").prop("disabled", true);
                 //$("#btnEnviarInfoSoaSolicitud").prop("disabled", true);
             }
 
             $("#btnGuardarInfoSoaSolicitud").click(function () {
+
+                $("#frmRegistroSolicitudSOA").updateValidation();
+                if (!$("#frmRegistroSolicitudSOA").isValid()) { return; }
 
                 bootbox.confirm(parametros.general.mensajeConfirmacion, function (result) {
                     if (result)
@@ -239,7 +248,8 @@
             $("#btnCancelarInfoSoaSolicitud").click(regresarListadoSolicitud);
             $("#btnEnviarInfoSoaSolicitud").click(function () {
                 bootbox.confirm(parametros.general.mensajeConfirmacion, function (result) {
-                    enviarSolicitudRegistroSOA();
+                    if (result)
+                        enviarSolicitudRegistroSOA();
                 });
             });
         });
@@ -247,7 +257,7 @@
 
         function guardarSolicitudSOA() {
 
-            if (!$("#frmRegistroSolicitudSOA").isValid()) { return; }
+            
 
             $("#firIntSoa").val($("#chkFirmaInternacional").is(":checked") ? "S" : "N");
             $("#firPcaobSoa").val($("#chkFirmaPCAOB").is(":checked") ? "S" : "N");
@@ -271,8 +281,9 @@
                 success: function (result) {
                     mostrarNotificacion(result);                    
                     if (result.Exito) {
-                        $("#btnGuardarInfoSoaSolicitud").prop("disabled", true);
-                        $("#btnEnviarInfoSoaSolicitud").prop("disabled", true);
+                        $("input").prop("disabled", true);
+                        $("select").prop("disabled", true);
+                        $("#btnCancelarInfoSoaSolicitud").attr("disabled", false);
                     }
                 }
             });

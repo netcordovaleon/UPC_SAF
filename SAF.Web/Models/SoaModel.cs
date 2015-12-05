@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using SAF.Configuracion.Constantes;
 using System.ComponentModel.DataAnnotations;
+
 namespace SAF.Web.Models
 {
     public class SoaModel
@@ -24,20 +25,25 @@ namespace SAF.Web.Models
         [Display(Name="Codigo SOA")]        
         public int codSoa { get; set; }
 
-        [Required(ErrorMessage=Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Razon Social")]        
+        [Required(ErrorMessage=Mensaje.MensajeCampoRequerido)]
+        [RegularExpression("[A-Za-z áéíóúÁÉÍÓÚñÑ]+", ErrorMessage = Mensaje.MensajeSoloLetras)]
         public string razSocSoa { get; set; }
 
-        [Required(ErrorMessage=Mensaje.MensajeCampoRequerido)]
         [Display(Name = "R.U.C")]        
+        [Required(ErrorMessage=Mensaje.MensajeCampoRequerido)]
+        [RegularExpression("[0-9]+", ErrorMessage = Mensaje.MensajeSoloNumeros)]
         public string rucSoa { get; set; }
 
+        [Display(Name = "Nombre")]
         [Required(ErrorMessage=Mensaje.MensajeCampoRequerido)]
-        [Display(Name = "Nombre")]        
+        [RegularExpression("[A-Za-z áéíóúÁÉÍÓÚñÑ]+", ErrorMessage = Mensaje.MensajeSoloLetras)]
         public string nomRepLegSoa { get; set; }
 
+        
+        [Display(Name = "Apellido Paterno")]
         [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
-        [Display(Name = "Apellido Paterno")]        
+        [RegularExpression("[A-Za-z áéíóúÁÉÍÓÚñÑ]+", ErrorMessage = Mensaje.MensajeSoloLetras)]
         public string apeRepLegSoa { get; set; }
 
         [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
@@ -45,21 +51,27 @@ namespace SAF.Web.Models
         [Display(Name = "Correo Electronico")]        
         public string corRepLegSoa { get; set; }
 
-        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Celular")]        
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
+        [RegularExpression("[0-9]+", ErrorMessage = Mensaje.MensajeSoloNumeros)]
         public string celRepLegSoa { get; set; }
 
-        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Telefono")]        
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
+        [RegularExpression("[0-9]+", ErrorMessage = Mensaje.MensajeSoloNumeros)]
         public string telRepLegSoa { get; set; }
 
-        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
-        [Display(Name = "Codigo Colegio Contadores")]        
-        public string codColConSoa { get; set; }
+        
+        [Display(Name = "Codigo Colegio Contadores")] 
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)] 
+        [RegularExpression("[0-9]+", ErrorMessage = Mensaje.MensajeSoloNumeros)] 
+        public string codColConSoa { get; set; } 
 
-        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
-        [Display(Name = "Nº Partida Sunarp")]        
-        public string numParSunSoa { get; set; }
+        
+        [Display(Name = "Nº Partida Sunarp")] 
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)] 
+        [RegularExpression("[0-9]+", ErrorMessage = Mensaje.MensajeSoloNumeros)] 
+        public string numParSunSoa { get; set; } 
 
         [Display(Name = "Firma PCAOB")]        
         public string firPcaobSoa { get; set; }
@@ -67,12 +79,15 @@ namespace SAF.Web.Models
         [Display(Name = "Firma Internacional")]        
         public string firIntSoa { get; set; }
 
-        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Mision")]        
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
+        //[MaxLength(300, ErrorMessage = Mensaje.MensajeCampoLongitudIncorrecta)]
         public string misSoa { get; set; }
 
-        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
+
         [Display(Name = "Vision")]        
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
+        //[MaxLength(300, ErrorMessage = Mensaje.MensajeCampoLongitudIncorrecta)]
         public string visSoa { get; set; }
 
 
@@ -85,14 +100,14 @@ namespace SAF.Web.Models
         public string nomUsu { get; set; }
 
 
-        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         
-        [Display(Name = "Contraseña")]                
+        [Display(Name = "Contraseña")]
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         public string pasUsu { get; set; }
 
-        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
-        [System.ComponentModel.DataAnnotations.Compare("pasUsu")]
         [Display(Name = "Repetir Contraseña")]
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
+        //[System.ComponentModel.DataAnnotations.Compare("pasUsu", ErrorMessage = "Debe ser igual a la contraseña")]       
         public string repPasUsu { get; set; }
     }
 }

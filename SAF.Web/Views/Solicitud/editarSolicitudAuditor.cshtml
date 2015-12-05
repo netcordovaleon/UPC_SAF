@@ -12,11 +12,19 @@
 }
 
 
+
+
+
 <iframe id="iRegistroSolicitudAuditor" name="RegistroSolicitudAuditor" style="visibility:hidden; display: none;"></iframe>
 @using (Html.BeginForm("grabarRegistroSolicitudAuditor", "Solicitud", FormMethod.Post, new { autocomplete = "off", id = "frmRegistroSolicitudAuditor", role = "form", enctype = "multipart/form-data", target = "RegistroSolicitudAuditor" }))
 {
     @Html.HiddenFor(c => c.codigoSolicitud)
     @Html.HiddenFor(c => c.codAud);
+    
+    @Html.HiddenFor(c => c.codProvAudSelect);
+    @Html.HiddenFor(c => c.codDisAudSelect);
+    
+    
 
                                   if (Model.estadoSolicitud == Convert.ToInt32(Estado.Solicitud.Observada))
                                   {
@@ -104,12 +112,12 @@
                                                         </div>
                                                         <div class="col-md-4">
                                                             @Html.LabelFor(c => c.telAud)
-                                                            @Html.TextBoxFor(c => c.telAud, new { @class = "form-control" })
+                                                            @Html.TextBoxFor(c => c.telAud, new { @class = "form-control", @maxlength = "8" })
                                                             @Html.ValidationMessageFor(c => c.telAud)
                                                         </div>
                                                         <div class="col-md-4">
                                                             @Html.LabelFor(c => c.celAud)
-                                                            @Html.TextBoxFor(c => c.celAud, new { @class = "form-control" })
+                                                            @Html.TextBoxFor(c => c.celAud, new { @class = "form-control", @maxlength = "9" })
                                                             @Html.ValidationMessageFor(c => c.celAud)
                                                         </div>
                                                     </div>
@@ -132,7 +140,7 @@
                                                     <div class="row">
                                                         <div class="col-md-4">
                                                             @Html.LabelFor(c => c.codCerAud)
-                                                            @Html.TextBoxFor(c => c.codCerAud, new { @class = "form-control" })
+                                                            @Html.TextBoxFor(c => c.codCerAud, new { @class = "form-control", @maxlength = "10" })
                                                             @Html.ValidationMessageFor(c => c.codCerAud)
                                                         </div>
 
@@ -216,12 +224,93 @@
 @section scripts {
 
     <script type="text/javascript" language="javascript">
+
+
+
+        $.validator.unobtrusive.adapters.add('isdateafter', ['propertytested', 'allowequaldates'], function (options) {
+            options.rules['isdateafter'] = options.params;
+            options.messages['isdateafter'] = options.message;
+        });
+
+        $.validator.addMethod("isdateafter", function (value, element, params) {
+            var parts = element.name.split(".");
+            var prefix = "";
+            if (parts.length > 1)
+                prefix = parts[0] + ".";
+            var startdatevalue = $('input[name*="' + prefix + params.propertytested + '"]').val();
+            if (!value || !startdatevalue) {
+                return true;
+            }
+
+            var start = Globalize.parseDate(startdatevalue, "dd/MM/yyyy");
+            var last = Globalize.parseDate(value, "dd/MM/yyyy");
+
+            return (params.allowequaldates == "True") ? start <= last : start < last;
+        });
+
+
+
         var _capacitaciones_= null;
-        var  _experiencias_ = null;
-        /*
-        tabCapacitaciones
-        tabExperiencias
-        */
+        var _experiencias_ = null;
+
+        $(document).ready(function () {
+
+            if ($("#codDeparAud").val() != null) {
+                listarProvincia($("#codDeparAud").val());
+                $("#codProvAud").val($("#codProvAudSelect").val());
+            }
+
+            if ($("#codProvAud").val() != null) {
+                listarDistrito($("#codProvAud").val());
+                $("#codDisAud").val($("#codDisAudSelect").val());
+            }
+
+           
+
+            $("#codDeparAud").change(function () {
+                listarProvincia($(this).val());
+                
+                
+            });
+
+            $("#codProvAud").change(function () {
+                listarDistrito($(this).val());
+            });
+
+        });
+
+
+        function listarProvincia(cod) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("CargarProvincia", "Solicitud")',
+                async:false,
+                data: { id: cod },
+                success: function (result) {
+                    $("#codProvAud option").not(":first").remove();
+                    $.each(result, function (i, v) {
+                        $("#codProvAud").append("<option value='" + v.Value + "'>" + v.Text + "</option>");
+                    });
+                }
+            });
+        }
+
+        function listarDistrito(cod) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("CargarDistrito", "Solicitud")',
+                async: false,
+                data: { id: cod },
+                success: function (result) {
+                    $("#codDisAud option").not(":first").remove();
+                    $.each(result, function (i, v) {
+                        $("#codDisAud").append("<option value='" + v.Value + "'>" + v.Text + "</option>");
+                    });
+                }
+            });
+        }
+
+ 
         $('#dlgRegistroCapacitacion').on('hidden.bs.modal', function () { $("#dlgRegistroCapacitacion").empty(); });
         $('#dlgRegistroExperiencia').on('hidden.bs.modal', function () { $("#dlgRegistroExperiencia").empty(); });
         $("#btnAgregarExperiencia").click(function () { agregarExperiencia() });
@@ -238,14 +327,36 @@
             $("#btnGuardarSolicitudInscripcionAuditor").prop("disabled", false);
 
         } else {
+            $("input").prop("disabled", true);
+            $("select").prop("disabled", true);
             $("#btnEnviarInfoAuditorSolicitud").prop("disabled", true);
             $("#btnGuardarSolicitudInscripcionAuditor").prop("disabled", true);
             $("#nombreArchivo").fileInput({ file: $("#codArchivo").val(), fileName: "archivoCertificadoAuditor", disabled: true });
             $("#btnAgregarExperiencia").attr("disabled", true);
             $("#btnAgregarCapacitacion").attr("disabled", true);
+            $("#btnRegresar").attr("disabled", false);
+            
         }
 
         $("#btnGuardarSolicitudInscripcionAuditor").click(function () {
+
+
+
+            $("#frmRegistroSolicitudAuditor").updateValidation();
+
+            if (!$("#frmRegistroSolicitudAuditor").isValid()) { return; }
+
+
+            if ($("#dniAud").val().length != 8) {
+                mostrarNotificacionError("La longitud del DNI no es valido");
+                return;
+            }
+
+            if ($("#nombreArchivo").val() == "") {
+                mostrarNotificacionError("Debe seleccionar un archivo");
+                return;
+            }
+
             bootbox.confirm(parametros.general.mensajeConfirmacion, function (result) {
                 if (result)
                     guardarSolicitudAuditor();
@@ -271,10 +382,17 @@
                 success: function (result) {
                     mostrarNotificacion(result);
                     if (result.Exito) {
+
+                        $("input").prop("disabled", true);
+                        $("select").prop("disabled", true);
+
                         $("#btnGuardarSolicitudInscripcionAuditor").prop("disabled", true);
                         $("#btnEnviarInfoAuditorSolicitud").prop("disabled", true);
                         $("#btnAgregarExperiencia").attr("disabled", true);
                         $("#btnAgregarCapacitacion").attr("disabled", true);
+
+                        $("#btnRegresar").attr("disabled", false);
+
 
                     }
                 }

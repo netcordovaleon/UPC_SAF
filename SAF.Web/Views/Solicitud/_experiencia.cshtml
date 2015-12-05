@@ -26,6 +26,7 @@
                         <div class="form-group">
                             @Html.LabelFor(c => c.codEmpresa)
                             @Html.DropDownListFor(c => c.codEmpresa, Model.Empresas, "Seleccione", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(c => c.codEmpresa)
                         </div>
                     </div>
                 </div>
@@ -34,6 +35,7 @@
                         <div class="form-group">
                             @Html.LabelFor(m => m.descSolExp)
                             @Html.TextBoxFor(m => m.descSolExp, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(c => c.descSolExp)
                         </div>
                     </div>
                 </div>
@@ -45,6 +47,7 @@
                                 @Html.TextBoxFor(m => m.fechaInicioSolExp, new { @class = "form-control" })
                                 <span class="input-group-addon"><i class="fa fa-calendar bigger-110"></i></span>
                             </div>
+                            @Html.ValidationMessageFor(c => c.fechaInicioSolExp)
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -54,6 +57,7 @@
                                 @Html.TextBoxFor(m => m.fechaFinSolExp, new { @class = "form-control" })
                                 <span class="input-group-addon"><i class="fa fa-calendar bigger-110"></i></span>
                             </div>
+                            @Html.ValidationMessageFor(c => c.fechaFinSolExp)
                         </div>
                     </div>
                 </div>
@@ -65,11 +69,13 @@
                                 @Html.TextBoxFor(m => m.nombreArchivoExp, new { @class = "form-control", @readonly = "" })
                             </div>
                             @Html.HiddenFor(m => m.codArchivoExp)
+                            @Html.ValidationMessageFor(c => c.codArchivoExp)
                         </div>
                     </div>
                     <div class="col-md-4">
                         @Html.LabelFor(c => c.numHorasSolExp)
                         @Html.TextBoxFor(c => c.numHorasSolExp, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(c => c.numHorasSolExp)
                     </div>
                 </div>
 
@@ -99,9 +105,18 @@
 
     $("#nombreArchivoExp").fileInput({ file: $("#codArchivoExp").val(), fileName: "archivoExpFile", ctrlCleanDelete: ["codArchivoExp"] });
     $("#btnGuardarExperiencia").click(function () {
+
+
+
         $("#frmRegistroExperiencia").updateValidation();
-        if ($("#frmRegistroExperiencia").isValid()){
-            $("#frmRegistroExperiencia").submit();
+        if ($("#frmRegistroExperiencia").isValid()) {
+
+            if ($("#nombreArchivoExp").val() == "") {
+                mostrarNotificacionError("Debe seleccionar un archivo");
+                return;
+            } else {
+                $("#frmRegistroExperiencia").submit();
+            }
         }
     });
     $("#iRegistroExperiencia").load(function () {

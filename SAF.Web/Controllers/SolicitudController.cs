@@ -50,7 +50,7 @@ namespace SAF.Web.Controllers
             model.codSolicitud = infoSolicitud.CODSOL;
             model.numSolicitud = infoSolicitud.NUMSOL;
             model.codSoa = infoSoa.CODSOA;
-            model.rucSoa = infoSoa.RUCSOA;
+            model.rucSoa = infoSoa.RUCSOA.Trim();
             model.razSocSoa = infoSoa.RAZSOCSOA;
             model.misSoa = infoSoa.MISSOA;
             model.visSoa = infoSoa.VISSOA;
@@ -76,12 +76,16 @@ namespace SAF.Web.Controllers
             model.codAud = infoAuditor.CODAUD;
             model.nomAud = infoAuditor.NOMAUD;
             model.apeComAud = infoAuditor.APEAUD;
-            model.dniAud = infoAuditor.DNIAUD;
+            model.dniAud = infoAuditor.DNIAUD.Trim();
             model.fecNacAud = infoAuditor.FECNACAUD.GetValueOrDefault().ToShortDateString();
             model.sexAud = infoAuditor.SEXAUD;
+
             model.codDeparAud = infoAuditor.CODDEPAUD;
             model.codProvAud = infoAuditor.CODPROVAUD;
+            model.codProvAudSelect = infoAuditor.CODPROVAUD;
             model.codDisAud = infoAuditor.CODDISAUD;
+            model.codDisAudSelect = infoAuditor.CODDISAUD;
+
             model.corAud = infoAuditor.CORAUD;
             model.telAud = infoAuditor.TELAUD;
             model.celAud = infoAuditor.CELAUD;
@@ -90,12 +94,26 @@ namespace SAF.Web.Controllers
             model.codArchivo = infoAuditor.CODARC;
             model.nombreArchivo = infoAuditor.NOMBLABEL;
             model.estadoSolicitud = infoSolicitud.ESTSOL.GetValueOrDefault();
-            model.observacionSolicitud = infoSolicitud.OBSSOL;
-            model.cboDepartamento = (from c in modelEntity.SAF_DEPARTAMENTO.ToList() select new SelectListItem() { Text = c.NOMDEP, Value = c.CODDEP.ToString(), Selected = (c.CODDEP == infoAuditor.CODDEPAUD) }).ToList();
-            model.cboProvincia = (from c in modelEntity.SAF_PROVINCIA.ToList() select new SelectListItem() { Text = c.NOMDEP, Value = c.CODPROV.ToString(), Selected = (c.CODPROV == infoAuditor.CODPROVAUD) }).ToList();
-            model.cboDistrito = (from c in modelEntity.SAF_DISTRITO.ToList() select new SelectListItem() { Text = c.NOMDEP, Value = c.CODDIS.ToString(), Selected = (c.CODDIS == infoAuditor.CODDISAUD) }).ToList();
+            model.observacionSolicitud = infoSolicitud.OBSSOL; 
+            model.cboDepartamento = (from c in modelEntity.SAF_DEPARTAMENTO.ToList().Where(c=>c.ESTREG == "1") select new SelectListItem() { Text = c.NOMDEP, Value = c.CODDEP.ToString(), Selected = (c.CODDEP == infoAuditor.CODDEPAUD) }).ToList();
+
+            //model.cboProvincia = (from c in modelEntity.SAF_PROVINCIA.ToList() select new SelectListItem() { Text = c.NOMDEP, Value = c.CODPROV.ToString(), Selected = (c.CODPROV == infoAuditor.CODPROVAUD) }).ToList();
+            //model.cboDistrito = (from c in modelEntity.SAF_DISTRITO.ToList() select new SelectListItem() { Text = c.NOMDEP, Value = c.CODDIS.ToString(), Selected = (c.CODDIS == infoAuditor.CODDISAUD) }).ToList();
             return View(model);
         }
+
+        public JsonResult CargarProvincia(int id)
+        {
+            var lista = (from c in modelEntity.SAF_PROVINCIA.ToList().Where(c => c.CODDEP == id && c.ESTREG == "1") select new SelectListItem() { Text = c.NOMDEP, Value = c.CODPROV.ToString() }).ToList();
+            return Json(lista);
+        }
+
+        public JsonResult CargarDistrito(int id)
+        {
+            var lista = (from c in modelEntity.SAF_DISTRITO.ToList().Where(c => c.CODPROV == id && c.ESTREG == "1") select new SelectListItem() { Text = c.NOMDEP, Value = c.CODDIS.ToString() }).ToList();
+            return Json(lista);
+        }
+
 
         [HttpPost]
         public string grabarRegistroSolicitudAuditor(AuditorModel model)

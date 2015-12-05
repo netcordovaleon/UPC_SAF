@@ -121,15 +121,19 @@
 
     $("#nombreArchivoCapa").fileInput({ file: $("#codArchivoCapa").val(), fileName: "archivoCapaFile", ctrlCleanDelete: ["codArchivoCapa"] });
     $("#btnGuardarCapacitacion").click(function () {
-        //$("#frmRegistroCapacitacion").removeData("validator");
-        //$("#frmRegistroCapacitacion").removeData("unobtrusiveValidation");
-        //$.validator.unobtrusive.parse("#frmRegistroCapacitacion");
-
+ 
 
 
         $("#frmRegistroCapacitacion").updateValidation();
-        if ($("#frmRegistroCapacitacion").isValid()){
-            $("#frmRegistroCapacitacion").submit();
+        if ($("#frmRegistroCapacitacion").isValid()) {
+
+
+            if ($("#nombreArchivoCapa").val() == "") {
+                mostrarNotificacionError("Debe seleccionar un archivo");
+                return;
+            } else {
+                $("#frmRegistroCapacitacion").submit();
+            }
         }
     });
 

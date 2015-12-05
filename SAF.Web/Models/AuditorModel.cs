@@ -1,4 +1,5 @@
 ﻿using SAF.Configuracion.Constantes;
+using SAF.Web.Infraestructure;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -21,25 +22,30 @@ namespace SAF.Web.Models
         public int codAud { get; set; }
 
         [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
+        [RegularExpression("[A-Za-z áéíóúÁÉÍÓÚñÑ]+", ErrorMessage = Mensaje.MensajeSoloLetras)]
         [Display(Name = "Nombre")]
         public string nomAud { get; set; }
 
         [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
+        [RegularExpression("[A-Za-z áéíóúÁÉÍÓÚñÑ]+", ErrorMessage = Mensaje.MensajeSoloLetras)]
         [Display(Name = "Apellidos")]
         public string apeComAud { get; set; }
 
 
-        [MaxLength(8, ErrorMessage = "Debe tener solo 8 digitos")]
-        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
-        [Display(Name = "DNI")]
-        public string dniAud { get; set; }
-        [Display(Name = "Celular")]
 
+        [Display(Name = "DNI")]
         [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
+        [RegularExpression("[0-9]+", ErrorMessage = Mensaje.MensajeSoloNumeros)]
+        public string dniAud { get; set; }
+
+        [Display(Name = "Celular")]
+        [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
+        [RegularExpression("[0-9]+", ErrorMessage = Mensaje.MensajeSoloNumeros)]
         public string celAud { get; set; }
 
         [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Telefono")]
+        [RegularExpression("[0-9]+", ErrorMessage = Mensaje.MensajeSoloNumeros)]
         public string telAud { get; set; }
 
         [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
@@ -47,16 +53,20 @@ namespace SAF.Web.Models
         public string dirAud { get; set; }
 
         [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
-        [Display(Name = "Pais")]
+        [Display(Name = "Departamento")]
         public Nullable<int> codDeparAud { get; set; }
 
         [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
-        [Display(Name = "Departamento")]
+        [Display(Name = "Provincia")]
         public Nullable<int> codProvAud { get; set; }
+
+        public Nullable<int> codProvAudSelect { get; set; }
 
         [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Distrito")]
         public Nullable<int> codDisAud { get; set; }
+
+        public Nullable<int> codDisAudSelect { get; set; }
 
         [RegularExpression(@"^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = Mensaje.MensajeCampoDebeSerCorreo)]
         [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
@@ -66,6 +76,8 @@ namespace SAF.Web.Models
         [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Sexo")]
         public string sexAud { get; set; }
+
+        public List<SelectListItem> cboSexo { get; set; }
 
         [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Fecha Nacimiento")]
@@ -78,6 +90,7 @@ namespace SAF.Web.Models
         public string indEsSoc { get; set; }
 
         [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
+        [RegularExpression("[0-9]+", ErrorMessage = Mensaje.MensajeSoloNumeros)]
         [Display(Name = "N° Certificado")]
         public string codCerAud { get; set; }
 
@@ -93,7 +106,7 @@ namespace SAF.Web.Models
         [Display(Name = "Contraseña")]
         public string pasUsu { get; set; }
 
-        [System.ComponentModel.DataAnnotations.Compare("pasUsu")]
+        //[System.ComponentModel.DataAnnotations.Compare("pasUsu", ErrorMessage= "Debe ser igual a la contraseña")]
         [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Repetir Contraseña")]
         public string repPasUsu { get; set; }
@@ -114,6 +127,10 @@ namespace SAF.Web.Models
             this.cboDepartamento = new List<SelectListItem>();
             this.cboProvincia = new List<SelectListItem>();
             this.cboDistrito = new List<SelectListItem>();
+            this.cboSexo = new List<SelectListItem>();
+
+            cboSexo.Add(new SelectListItem() { Value = "M", Text = "Masculino" });
+            cboSexo.Add(new SelectListItem(){ Value = "F", Text = "Femenino" });
         }
 
 
@@ -133,6 +150,7 @@ namespace SAF.Web.Models
 
         [Display(Name = "Fecha Fin")]
         [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
+        [IsDateAfter("fechaInicioSolCap", true, ErrorMessage = "Esta fecha debe ser mayor a la fecha inicial")]
         public string fechaFinSolCap { get; set; }
 
         [Display(Name = "Horas")]
@@ -183,6 +201,7 @@ namespace SAF.Web.Models
 
         [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]
         [Display(Name = "Fecha Fin")]
+        [IsDateAfter("fechaInicioSolExp", true, ErrorMessage = "Esta fecha debe ser mayor a la fecha inicial")]
         public string fechaFinSolExp { get; set; }
 
         [Required(ErrorMessage = Mensaje.MensajeCampoRequerido)]

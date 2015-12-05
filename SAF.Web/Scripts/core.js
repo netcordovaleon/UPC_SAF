@@ -6,6 +6,22 @@
         }
     };
 
+
+$(document).ready(function () {
+    Globalize.culture('es-PE');
+});
+
+
+function mostrarNotificacionError(mensaje) {
+    PNotify.removeAll();
+    new PNotify({
+        title: 'Respuesta Sistema!',
+        type: "error",
+        text: mensaje
+    });
+}
+
+
 function mostrarNotificacion(data) {
     PNotify.removeAll();
     new PNotify({
